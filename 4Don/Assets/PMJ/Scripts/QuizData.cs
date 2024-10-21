@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class QuizData
 {
-    public int quizNum;
-    public string category;
-    public string quiz;
-    public string type;
-    public string answer;
-    public string desc;
+    public int quizNum; //번호
+    public string category; //용돈관리
+    public string quiz; // 실제 문제
+    public string type; // o/x
+    public string answer; //정답 o
+    public string desc; // 해설
 }
 
 public class QuizlistData

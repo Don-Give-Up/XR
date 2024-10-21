@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,6 +8,11 @@ using Random = UnityEngine.Random;
 public class Quiz : MonoBehaviour
 {
     public QuizlistData quizlistdata;
+    
+    public TMP_Text TextquizNum;
+    public TMP_Text Textcategory;
+    public TMP_Text Textquiz;
+    
 
     private int _easyCount;
     private int _normalCount;
@@ -14,8 +20,8 @@ public class Quiz : MonoBehaviour
 
     private void Start()
     {
-        QuizStart();   
-        EasyQuiz(); 
+        QuizStart();
+        ShowEasyQuiz();
     }
 
     public void QuizStart()
@@ -47,19 +53,42 @@ public class Quiz : MonoBehaviour
         }
         //QuizlistData loadedData = JsonConvert.DeserializeObject<QuizlistData>();
     }
-
-    private void EasyQuiz()
+    
+    private QuizData GETEasyQuiz()
     {
         if (quizlistdata != null)
         {
-            var easy = quizlistdata.easy;
-            _easyCount = easy.Count;
+            
+            _easyCount = quizlistdata.easy.Count;
 
             int easyRandom = Random.Range(0, _easyCount);
-            
-            Debug.Log(easy[easyRandom].quiz);
 
-            //int a = quizlistdata.easy[easyRandom];
+            return quizlistdata.easy[easyRandom];
         }
+        else
+        {
+            return null;
+        }
+
     }
+
+    public void ShowEasyQuiz()
+    {
+        QuizData easyQuiz = GETEasyQuiz();
+        Debug.Log(easyQuiz.quizNum);
+        Debug.Log(easyQuiz.category);
+        Debug.Log(easyQuiz.quiz);
+        Debug.Log(easyQuiz.type);
+        Debug.Log(easyQuiz.answer);
+        Debug.Log(easyQuiz.desc);
+
+        TextquizNum.text = $"{easyQuiz.quizNum}";
+        Textcategory.text = $"{easyQuiz.category}";
+        Textquiz.text = $"{easyQuiz.quiz}";
+    }
+    
+    
 }
+
+// 뽑는 메소드 1
+// 출력하는 메소드 1 나눠리ㅏ!!
