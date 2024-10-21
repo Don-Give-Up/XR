@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuizData
 {
     public int quizNum;
-    public string catagory;
+    public string category;
     public string quiz;
     public string type;
     public string answer;
