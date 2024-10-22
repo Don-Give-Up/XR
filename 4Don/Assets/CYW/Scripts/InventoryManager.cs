@@ -1,4 +1,20 @@
+using System;
 using UnityEngine;
+
+[Serializable]
+public class ItemInfo
+{
+    public string name;
+    public Sprite icon;
+    public int price;
+}
+
+public enum ItemType
+{
+    Meat,
+    Bread,
+}
+
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,5 +24,47 @@ public class InventoryManager : MonoBehaviour
     // 이후 살래 or 안 살래 중 선택하여 구매 / 인벤토리에 저장 / 단, 필수상점 내의 빵은 사라지지 않음 인벤토리에 추가될 땐 아이콘 + 개수 (빵, 3)
     // 2번 선택 에쁘니까~~~~~
     
+    /// Slot list
+    public Slot[] slotList;
     
+    /// Item Prefab
+    public GameObject itemPrefab;
+
+    public ItemInfo[] itemInfoList;
+    
+    
+    
+    /// Add Item
+    public void AddItem(ItemType type)
+    {
+
+        Slot emptySlot = null;
+        foreach (var slot in slotList)
+        {
+            if (!slot.HasItem)
+            {
+                emptySlot = slot;
+                break;
+            }
+        }
+
+        if (emptySlot == null)
+        {
+            Debug.LogWarning("빈 슬롯이 없음");
+            return;
+        }
+
+        GameObject itemGO = Instantiate(itemPrefab, emptySlot.transform);
+        Item item = itemGO.GetComponent<Item>();
+        ItemInfo itemInfoInfo = itemInfoList[(int)type];
+        item.SetInfo(itemInfoInfo);
+
+        emptySlot.Add(item);
+    }
+
+    /// Remove Item
+    public void RemoveItem(Item item)
+    {
+        
+    }
 }
