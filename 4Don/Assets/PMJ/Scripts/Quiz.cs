@@ -27,7 +27,8 @@ public class Quiz : MonoBehaviour
     private int _easyCount;
     private int _normalCount;
     private int _hardCount;
-
+    
+    
     private void Start()
     {
         QuizStart();
@@ -144,6 +145,7 @@ public class Quiz : MonoBehaviour
 
                 if (correntAnswerCount >= 5)
                 {
+                    // 유진이 언니의 월급 관리자 호출
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
                     return;
