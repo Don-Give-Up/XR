@@ -16,7 +16,8 @@ public class Quiz : MonoBehaviour
     public TMP_Text Textquiz;
 
     public GameObject sugoimage;
-
+    public GameObject[] dotory;
+    
     public Button oButton;
     public Button xButton;
 
@@ -127,6 +128,7 @@ public class Quiz : MonoBehaviour
             {
                 Debug.Log("정답입니다");
                 correntAnswerCount++;
+                
 
                 if (correntAnswerCount >= 5)
                 {
