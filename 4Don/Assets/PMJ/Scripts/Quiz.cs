@@ -16,7 +16,8 @@ public class Quiz : MonoBehaviour
     public TMP_Text Textquiz;
 
     public GameObject sugoimage;
-
+    public GameObject[] dotory;
+    
     public Button oButton;
     public Button xButton;
 
@@ -32,6 +33,12 @@ public class Quiz : MonoBehaviour
         QuizStart();
         ShowEasyQuiz();
         sugoimage.SetActive(false);
+        //일단 도토리 다 꺼
+        foreach (var a in dotory)
+        {
+            a.SetActive(false);
+        }
+        
 
         // O 버튼과 X 버튼에 정답 체크 이벤트 연결
         oButton.onClick.AddListener(() => OnAnswerSelected("O"));
@@ -127,6 +134,13 @@ public class Quiz : MonoBehaviour
             {
                 Debug.Log("정답입니다");
                 correntAnswerCount++;
+                
+                //라이프 만들어짐
+                if (correntAnswerCount <= dotory.Length)
+                {
+                    dotory[correntAnswerCount - 1].SetActive(true);
+                }
+                
 
                 if (correntAnswerCount >= 5)
                 {
