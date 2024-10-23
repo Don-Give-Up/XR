@@ -10,6 +10,11 @@ public class InventoryTest : MonoBehaviour
         inventoryManager.AddItem(ItemType.Meat);
         inventoryManager.AddItem(ItemType.Bread);
         inventoryManager.AddItem(ItemType.Bread);
-        inventoryManager.AddItem(ItemType.Meat);
+        
+    }
+
+    public void OnBreadClick(ItemType type)
+    {
+        inventoryManager.AddItem(type);
     }
 }
