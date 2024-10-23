@@ -7,14 +7,12 @@ public class ItemInfo
     public string name;
     public Sprite icon;
     public int price;
-    public ItemType type;
 }
 
 public enum ItemType
 {
-    Bread1,
-    Bread5,
-    Bread10,
+    Meat,
+    Bread,
 }
 
 
