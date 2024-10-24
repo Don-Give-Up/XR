@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
+
+//using UnityEngine.InputSystem.Android;
 
 public class SalaryManager : MonoBehaviour
 {
