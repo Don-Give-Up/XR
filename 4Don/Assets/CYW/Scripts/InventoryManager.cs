@@ -67,6 +67,16 @@ public class InventoryManager : MonoBehaviour
     /// Remove Item
     public void RemoveItem(Item item)
     {
+        // 내가 써졌다 하고 알려주고 지워야 함
+        // 여기서 써진 건 지우는 코드 하나만 있으면 됨
         
+        foreach (var slot in slotList)
+        {
+            if (slot.HasItem && slot.currentItem == item)
+            {
+                slot.RemoveItem(item); // 슬롯에서 아이템 제거
+                break;
+            }
+        }
     }
 }
