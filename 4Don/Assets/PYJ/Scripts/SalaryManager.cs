@@ -35,7 +35,7 @@ public class SalaryManager : MonoBehaviour
         // 2. 저장하고 초기화 해줌 
         // 3. 정보 저장해서 넘겨줌
         Debug.Log("일 했니 안 했니");
-        laborChecked = true;//Quiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
+        laborChecked = Quiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
 
         gameDay = day % RoundSystem.Instance.oneWeekTime; // 몇 번째 요일?에 해당하는지 
 
@@ -78,8 +78,10 @@ public class SalaryManager : MonoBehaviour
     {
         double yearlySalary = GoogleSheetManager.Instance.YearlyDataGet(year).Salary;
         salary = (yearlySalary / RoundSystem.Instance.oneWeekTime) * laborTime;
-        
+
         Debug.Log($"월급 입금 : {salary}");
+        
+        PersonalFinancialManager.Instance.InputMoney(salary);
     }
 
     private void ResetSalary()
