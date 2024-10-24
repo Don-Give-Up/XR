@@ -20,14 +20,18 @@ public class Quiz : MonoBehaviour
     
     public Button oButton;
     public Button xButton;
+    
+    public bool onlaborCheak = false;
 
     private int correntAnswerCount = 0; // 맞힌 정답 갯수
     private List<int> usedEasyQuestions = new List<int>(); // 이미 출제된 문제 기록
-
+    
     private int _easyCount;
     private int _normalCount;
     private int _hardCount;
 
+    public static Quiz instance;
+    
     private void Start()
     {
         QuizStart();
@@ -144,8 +148,12 @@ public class Quiz : MonoBehaviour
 
                 if (correntAnswerCount >= 5)
                 {
+                    // 유진이 언니의 월급 관리자 호출
+                    // 노동 관리자 호출
+                    onlaborCheak = true;
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
+                    
                     return;
                 }
 
@@ -158,6 +166,11 @@ public class Quiz : MonoBehaviour
             //다음문제
             ShowEasyQuiz();
         }
+    }
+
+    public bool OnLaborCheak()
+    {
+        return onlaborCheak;
     }
 }
 
