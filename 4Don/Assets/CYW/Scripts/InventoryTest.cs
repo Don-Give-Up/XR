@@ -20,15 +20,19 @@ public class InventoryTest : MonoBehaviour
                 {
                     //inventoryManager.AddItem(type);
                     inventoryManager.AddItem(ItemType.Bread1);
+                    Destroy(hit.transform.gameObject);
+                    
                     
                 }
                 else if (hit.transform.CompareTag("Bread5"))
                 {
                     inventoryManager.AddItem(ItemType.Bread5);
+                    Destroy(hit.transform.gameObject);
                 }
                 else if (hit.transform.CompareTag("Bread10"))
                 {
                     inventoryManager.AddItem(ItemType.Bread10);
+                    Destroy(hit.transform.gameObject);
                 }
                 
             }

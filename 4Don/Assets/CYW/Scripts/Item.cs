@@ -43,6 +43,11 @@ public class Item : MonoBehaviour
                 Debug.LogWarning("알 수 없는 아이템입니다.");
                 break;
         }
+        
+        // 인벤토리매니저를 불러와서
+        GetComponentInParent<InventoryManager>().RemoveItem(this);
+
+
     }
 
     public void OnEatBread1()
