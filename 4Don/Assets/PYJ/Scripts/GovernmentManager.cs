@@ -9,7 +9,7 @@ public class GovernmentManager : MonoBehaviour
     
     private void Awake() // 나중에 디스폰 될 때 이벤트 삭제해주기
     {
-        //Debug.Log("정부 시스템 돌아가용");
+        Debug.Log("정부 시스템 돌아가용");
         //RoundSystem.Instance.onDayChanged += OnDayChanged;
         RoundSystem.Instance.onWeekChanged += OnWeekChanged; // 이벤트를 추가한 것일 뿐 델리게이트를 어디선가 불러줘야함.
     }
@@ -24,7 +24,7 @@ public class GovernmentManager : MonoBehaviour
     private void OnWeekChanged(int Week)
     {
         Debug.Log($"주: {Week}");
-        //Debug.Log("정부에서 주마다 바뀌는거");
+        Debug.Log("정부에서 주마다 바뀌는거");
         int year = weekOffset + Week;
         var newData = GoogleSheetManager.Instance.YearlyDataGet(year);
         

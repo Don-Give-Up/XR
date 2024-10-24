@@ -240,6 +240,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &228888908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 228888909}
+  - component: {fileID: 228888910}
+  m_Layer: 0
+  m_Name: LaborManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &228888909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228888908}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1561385129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &228888910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228888908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f74159f5d81b149bca4a48957310c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &681482015
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 681482016}
+  - component: {fileID: 681482017}
   m_Layer: 0
   m_Name: SalaryManager
   m_TagString: Untagged
@@ -271,6 +316,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1561385129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &681482017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681482015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9362424d5330e84e924cc5f4975dc07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842091199
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   googleSpreadsheetId: 1wDc_C9cEuxOjhwf0HQqhNL_wJY8t-hxj4tzEPQkn-E4
   credentialsNameInStreamingAssets: central-list-439306-t9-979b2bef8c80.json
+  IsLoaded: 0
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +638,7 @@ Transform:
   - {fileID: 1934655199}
   - {fileID: 1056638874}
   - {fileID: 681482016}
+  - {fileID: 228888909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934655198
@@ -626,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83d41f3639578445b987822437e6313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oneWeekTime: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

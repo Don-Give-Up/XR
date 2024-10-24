@@ -7,8 +7,7 @@ public class Item : MonoBehaviour
     public ItemInfo info;
     public Image iconImage;
     private HungryBar hungryBar;
-
-
+    
     public void SetInfo(ItemInfo info)
     {
         this.info = info;
@@ -16,8 +15,6 @@ public class Item : MonoBehaviour
         
     }
     
-    
-
     void Start()
     {
         hungryBar = FindObjectOfType<HungryBar>();
