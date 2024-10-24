@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/PMJ/Scenes/Room.unity
+    guid: 75e5d14e78a02d649b0de6be41726c5f
+  - enabled: 1
+    path: Assets/PMJ/Scenes/TestMap.unity
+    guid: ab0702fbefab58b478c13044b3932591
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
