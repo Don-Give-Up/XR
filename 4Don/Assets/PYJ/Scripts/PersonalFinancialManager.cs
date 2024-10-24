@@ -1,16 +1,20 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class PersonalFinancialManager : MonoBehaviour
+public class PersonalFinancialManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // 입금 . 출금 기능 
+    
+    // 입금 상황 = 
+    public void InputMoney(int inMoney)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OutputMoney(int outMoney)
     {
         
     }
+
+
 }
