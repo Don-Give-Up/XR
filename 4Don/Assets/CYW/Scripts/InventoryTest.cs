@@ -8,7 +8,6 @@ public class InventoryTest : MonoBehaviour
     
     public void Update()
     {
-        
         if (Input.GetMouseButtonDown(0)) // 마우스 좌측키로 클릭
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -21,8 +20,6 @@ public class InventoryTest : MonoBehaviour
                     //inventoryManager.AddItem(type);
                     inventoryManager.AddItem(ItemType.Bread1);
                     Destroy(hit.transform.gameObject);
-                    
-                    
                 }
                 else if (hit.transform.CompareTag("Bread5"))
                 {
@@ -34,10 +31,8 @@ public class InventoryTest : MonoBehaviour
                     inventoryManager.AddItem(ItemType.Bread10);
                     Destroy(hit.transform.gameObject);
                 }
-                
             }
             
-
         }
     }
 }

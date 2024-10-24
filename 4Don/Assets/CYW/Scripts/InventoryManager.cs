@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
@@ -8,6 +9,7 @@ public class ItemInfo
     public Sprite icon;
     public int price;
     public ItemType type;
+    // 배고픔에 대한 항목이 추가되면 좋을듯 
 }
 
 public enum ItemType
@@ -34,12 +36,11 @@ public class InventoryManager : MonoBehaviour
 
     public ItemInfo[] itemInfoList;
     
-    
-    
     /// Add Item
-    public void AddItem(ItemType type)
+    public async UniTaskVoid AddItem(ItemType type)
     {
-
+        await UniTask.WaitUntil(() => true); // 빵 가격을 확인해서 내가 가진 현금보다 작은지 확인 후 진행
+            
         Slot emptySlot = null;
         foreach (var slot in slotList)
         {
