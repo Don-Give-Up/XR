@@ -20,6 +20,8 @@ public class LaborManager : MonoBehaviour
         // 1. 민주 쪽 노동 확인 실행 
         // 2. 저장하고 초기화 해줌 
         // 3. 정보 저장해서 넘겨줌
+        
+        
     }
 
     private void OnSalaryChanged(int week)

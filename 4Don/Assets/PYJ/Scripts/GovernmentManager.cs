@@ -7,7 +7,7 @@ public class GovernmentManager : MonoBehaviour
     //private int dayOffset = 0;
     private int weekOffset = 1996;
     
-    private void Start() // 나중에 디스폰 될 때 이벤트 삭제해주기
+    private void Awake() // 나중에 디스폰 될 때 이벤트 삭제해주기
     {
         //Debug.Log("정부 시스템 돌아가용");
         //RoundSystem.Instance.onDayChanged += OnDayChanged;
@@ -25,10 +25,9 @@ public class GovernmentManager : MonoBehaviour
     {
         Debug.Log($"주: {Week}");
         //Debug.Log("정부에서 주마다 바뀌는거");
-        int year = weekOffset + Week -1;
+        int year = weekOffset + Week;
         var newData = GoogleSheetManager.Instance.YearlyDataGet(year);
         
         Debug.Log($"월급: {newData.Salary}");
     }
-    
 }

@@ -45,12 +45,14 @@ public class RoundSystem : MonoBehaviour
 
     private void Start() //선생님이 들어와서 아이들도 참가하고 진행버튼 누르면 실시되게 하기
     { 
-        Process();
+        StartCoroutine(Process());
     }
 
-    private void Process()
+    private IEnumerator Process()
     {
         //Debug.Log(" 진행시켜");
+
+        yield return new WaitUntil(()=>GoogleSheetManager.Instance.IsLoaded);
         
         StartCoroutine(Day());
         
@@ -67,7 +69,7 @@ public class RoundSystem : MonoBehaviour
             Debug.Log("선생님이 동작함");
             Debug.Log($"Day: {currentDay}");
             currentDay++;
-            Process();
+            StartCoroutine(Process());
         }
 
         //Debug.Log(" 하루 계산기 돌아가용");
@@ -82,8 +84,7 @@ public class RoundSystem : MonoBehaviour
             End();
         }
         
-        Process();
-
+        StartCoroutine(Process());
     }
 
     private void Week()
@@ -92,7 +93,6 @@ public class RoundSystem : MonoBehaviour
         onWeekChanged?.Invoke(currentWeek);
         Debug.Log($"Week: {currentWeek}"); // 왜 currentWeek == 0 일떄 실행이 안 돼지?
         currentWeek++;
-        
         // 분석 리포트도 제공해야 함 그게 끝날 때까지 잡고 있어야 할 듯 한디
     }
 

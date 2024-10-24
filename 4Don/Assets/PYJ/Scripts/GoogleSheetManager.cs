@@ -32,6 +32,8 @@ public class GoogleSheetManager : MonoBehaviour
         }
     }
 
+    public bool IsLoaded;
+
     // 전역 변수로 딕셔너리 저장
     private static Dictionary<int, Finance> government = new Dictionary<int, Finance>();
     
@@ -79,7 +81,9 @@ public class GoogleSheetManager : MonoBehaviour
             
             government.Add(yearlydata.Year, yearlydata);
         }
-        
+
+        IsLoaded = true;
+
     }
 
     //년도 입력하면 데이터 주는 쪽
