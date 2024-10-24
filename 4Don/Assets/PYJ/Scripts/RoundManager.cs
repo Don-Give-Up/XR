@@ -16,7 +16,7 @@ public class RoundSystem : MonoBehaviour
     // 선생님한테 종속되게 하면될 듯?
     // 나중에 네트워크 공유 데이터에 전달할 것 
     
-    private int oneWeekTime = 5; //5회
+    public int oneWeekTime = 5; //5회
     private int oneDay = 5 * 60; //5분 
     
     private int maxWeek = 28;
@@ -25,8 +25,12 @@ public class RoundSystem : MonoBehaviour
     private int currentDay = 0;
     private int currentWeek = 0;
 
+    public int[,] round;
+
     public Action<int> onDayChanged;
     public Action<int> onWeekChanged;
+
+    public bool isLoaded = false;
 
     public static RoundSystem Instance;
 
@@ -44,15 +48,22 @@ public class RoundSystem : MonoBehaviour
     }
 
     private void Start() //선생님이 들어와서 아이들도 참가하고 진행버튼 누르면 실시되게 하기
-    { 
+    {
+        round = new int[maxWeek, oneWeekTime]; // 주를 행으로 하루를 열로 하는 2차원 배열 생성
+        
+        
         StartCoroutine(Process());
     }
 
     private IEnumerator Process()
     {
-        //Debug.Log(" 진행시켜");
+        isLoaded = true;
+        Debug.Log("진행시켜");
 
         yield return new WaitUntil(()=>GoogleSheetManager.Instance.IsLoaded);
+
+        // 줘야하는 값의 형태 구조체 만들고 키 값으로 사용하는 딕셔너리 만들면 될 듯
+        //round[currentWeek, currentDay] = 10;
         
         StartCoroutine(Day());
         
@@ -72,7 +83,7 @@ public class RoundSystem : MonoBehaviour
             StartCoroutine(Process());
         }
 
-        //Debug.Log(" 하루 계산기 돌아가용");
+        Debug.Log(" 하루 계산기 돌아가용");
         onDayChanged?.Invoke(currentDay);
         //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분
         yield return new WaitForSecondsRealtime(0.1f);
@@ -89,7 +100,7 @@ public class RoundSystem : MonoBehaviour
 
     private void Week()
     { 
-        //Debug.Log("주 계산기 돌아가용");
+        Debug.Log("주 계산기 돌아가용");
         onWeekChanged?.Invoke(currentWeek);
         Debug.Log($"Week: {currentWeek}"); // 왜 currentWeek == 0 일떄 실행이 안 돼지?
         currentWeek++;

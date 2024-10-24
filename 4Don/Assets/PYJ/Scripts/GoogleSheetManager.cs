@@ -81,9 +81,7 @@ public class GoogleSheetManager : MonoBehaviour
             
             government.Add(yearlydata.Year, yearlydata);
         }
-
         IsLoaded = true;
-
     }
 
     //년도 입력하면 데이터 주는 쪽

@@ -30,7 +30,19 @@ public class Quiz : MonoBehaviour
     private int _normalCount;
     private int _hardCount;
 
-    public static Quiz instance;
+    public static Quiz Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
     private void Start()
     {
