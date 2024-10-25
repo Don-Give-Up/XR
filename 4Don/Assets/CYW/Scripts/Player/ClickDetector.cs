@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class ClickDetector : MonoBehaviour
 {
-
     private HungryBar _hungryBar;
-
-
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

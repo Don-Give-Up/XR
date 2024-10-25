@@ -14,7 +14,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     public Action<double> onMoneyChanged; 
 
-    private double currentMoney = 0;
+    public double currentMoney = 0;
     
     public static PersonalFinancialManager Instance;
     
@@ -40,13 +40,6 @@ public class PersonalFinancialManager : MonoBehaviour
 
     public void OutputMoney(double outMoney)
     {
-        if (currentMoney < outMoney) // 자산 보유 마이너스 
-        {
-            // 이 떄 물건 안 사지도록
-            // 이 떄 물건 안 사지도록
-        }
-        
-        // 이 때 물건 사지도록
         currentMoney -= outMoney;
     }
 

@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class InvestmentManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // 저축과 주식 
+    
 }

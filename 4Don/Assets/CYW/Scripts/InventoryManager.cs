@@ -3,16 +3,18 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
-public class ItemInfo
+public class ItemInfo // 아이템인포를 분할
 {
     public string name;
     public Sprite icon;
-    public int price;
+    public double price;
     public ItemType type;
-    // 배고픔에 대한 항목이 추가되면 좋을듯 
+    // 배고픔에 대한 항목이 추가되면 좋을듯 = level
+    // 혹은 다른 특성에 대한 항목 추가 
+    // scriptableObject로 관리할 수 있게 만드는 게 더 좋을 듯?
 }
 
-public enum ItemType
+public enum ItemType // 이걸 통합해도 될 듯?
 {
     Bread1,
     Bread5,
@@ -36,10 +38,12 @@ public class InventoryManager : MonoBehaviour
 
     public ItemInfo[] itemInfoList;
     
+    public static InventoryManager Instance;
+    
     /// Add Item
-    public async UniTaskVoid AddItem(ItemType type)
+    public void AddItem(ItemType type)
     {
-        await UniTask.WaitUntil(() => true); // 빵 가격을 확인해서 내가 가진 현금보다 작은지 확인 후 진행
+        //await UniTask.WaitUntil(() => true); // 빵 가격을 확인해서 내가 가진 현금보다 작은지 확인 후 진행
             
         Slot emptySlot = null;
         foreach (var slot in slotList)
@@ -61,8 +65,10 @@ public class InventoryManager : MonoBehaviour
         Item item = itemGO.GetComponent<Item>();
         ItemInfo itemInfoInfo = itemInfoList[(int)type];
         item.SetInfo(itemInfoInfo);
-
+        
+        // 하기 전에 판단
         emptySlot.Add(item);
+
     }
 
     /// Remove Item
