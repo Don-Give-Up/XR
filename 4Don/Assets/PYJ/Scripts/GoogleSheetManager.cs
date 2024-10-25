@@ -31,11 +31,24 @@ public class GoogleSheetManager : MonoBehaviour
             Tax = tax;
         }
     }
+    
+    public struct Stock 
+    {
+        public int Day { get; set; }
+        public double StockPrice { get; set; }
+
+        public Stock(int day, double stockPrice)
+        {
+            Day = day;
+            StockPrice = stockPrice;
+        }
+    }
 
     public bool IsLoaded;
 
     // 전역 변수로 딕셔너리 저장
     private static Dictionary<int, Finance> government = new Dictionary<int, Finance>();
+    private static Dictionary<int, Stock> stocks = new Dictionary<int, Stock>();
     
     private void Awake()
     {
@@ -81,6 +94,19 @@ public class GoogleSheetManager : MonoBehaviour
             
             government.Add(yearlydata.Year, yearlydata);
         }
+
+        var data2 = await Get("Stock!B2:C141");
+
+        foreach (var row in data2)
+        {
+            var dayilydata = new Stock(
+                Convert.ToInt32(row[0]),
+                Convert.ToDouble(row[1])
+            );
+            
+            stocks.Add(dayilydata.Day, dayilydata);
+        }
+        
         IsLoaded = true;
     }
 
@@ -89,5 +115,10 @@ public class GoogleSheetManager : MonoBehaviour
     {
         return government[year];
     }
-    
+
+    // 하루 데이터 제공
+    public Stock DailyDataGet(int day)
+    {
+        return stocks[day];
+    }
 }

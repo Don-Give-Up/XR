@@ -19,19 +19,18 @@ public class ConsumptionManager : MonoBehaviour
         }
     }
     
-    public bool Consumption(double itemPrice)
+    public bool Consumption(double price)
     {
-        if (PersonalFinancialManager.Instance.currentMoney < itemPrice)
+        if (PersonalFinancialManager.Instance.currentMoney < price)
         {
-            Debug.Log("물건 구매 X");
+            Debug.Log("소비 X");
             return false;
         }
         else
         {
-            Debug.Log("물건 구매 O");
-            PersonalFinancialManager.Instance.OutputMoney(itemPrice);
+            Debug.Log("소비 O");
+            PersonalFinancialManager.Instance.OutputMoney(price);
             return true;
         }
     }
-
 }

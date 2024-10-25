@@ -2,6 +2,5 @@ using UnityEngine;
 
 public class InvestmentManager : MonoBehaviour
 {
-    // 저축과 주식 
-    
+    // 저축 + 주식은 투자의 일종이다.
 }

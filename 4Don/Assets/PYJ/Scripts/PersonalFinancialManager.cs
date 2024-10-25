@@ -41,6 +41,7 @@ public class PersonalFinancialManager : MonoBehaviour
     public void OutputMoney(double outMoney)
     {
         currentMoney -= outMoney;
+        Debug.Log($"보유 잔액 : {currentMoney}"); 
     }
 
     // 돈에 관련된 거 text랑 연결
