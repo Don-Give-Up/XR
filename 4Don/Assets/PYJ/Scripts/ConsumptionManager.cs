@@ -6,6 +6,19 @@ public class ConsumptionManager : MonoBehaviour
     // 모든 오브젝트는 물건을 
     
     public static ConsumptionManager Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     public bool Consumption(double itemPrice)
     {
         if (PersonalFinancialManager.Instance.currentMoney < itemPrice)

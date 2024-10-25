@@ -14,23 +14,67 @@ public class InventoryTest : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit)) // 레이캐스트를 통해 클릭한 오브젝트인지
             {
-                
                 if (hit.transform.CompareTag("Bread1"))
                 {
                     //inventoryManager.AddItem(type);
-                        
-                    inventoryManager.AddItem(ItemType.Bread1);
-                    Destroy(hit.transform.gameObject);
+                    
+                    ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread1]; // null
+                    // consumptionManager, PersonalFinancialManager 가 필요함
+                    
+                    if (itemInfo == null)
+                    {
+                        Debug.Log("ItemInfo 없음");
+                        return;
+                    }
+
+                    double itemPrice = itemInfo.price;
+
+                    if (ConsumptionManager.Instance.Consumption(itemPrice))
+                    {
+                        inventoryManager.AddItem(ItemType.Bread1);
+                        Destroy(hit.transform.gameObject);
+                    }
+
                 }
                 else if (hit.transform.CompareTag("Bread5"))
                 {
-                    inventoryManager.AddItem(ItemType.Bread5);
-                    Destroy(hit.transform.gameObject);
+                    ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread5]; // null
+                    // consumptionManager, PersonalFinancialManager 가 필요함
+                    
+                    if (itemInfo == null)
+                    {
+                        Debug.Log("ItemInfo 없음");
+                        return;
+                    }
+
+                    double itemPrice = itemInfo.price;
+
+                    if (ConsumptionManager.Instance.Consumption(itemPrice))
+                    {
+                        inventoryManager.AddItem(ItemType.Bread5);
+                        Destroy(hit.transform.gameObject);
+                    }
+                    
                 }
                 else if (hit.transform.CompareTag("Bread10"))
                 {
-                    inventoryManager.AddItem(ItemType.Bread10);
-                    Destroy(hit.transform.gameObject);
+                    ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread10]; // null
+                    // consumptionManager, PersonalFinancialManager 가 필요함
+                    
+                    if (itemInfo == null)
+                    {
+                        Debug.Log("ItemInfo 없음");
+                        return;
+                    }
+
+                    double itemPrice = itemInfo.price;
+
+                    if (ConsumptionManager.Instance.Consumption(itemPrice))
+                    {
+                        inventoryManager.AddItem(ItemType.Bread10);
+                        Destroy(hit.transform.gameObject);
+                    }
+
                 }
                 
                 /*

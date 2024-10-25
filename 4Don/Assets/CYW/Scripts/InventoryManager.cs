@@ -39,7 +39,20 @@ public class InventoryManager : MonoBehaviour
     public ItemInfo[] itemInfoList;
     
     public static InventoryManager Instance;
-    
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     /// Add Item
     public void AddItem(ItemType type)
     {
