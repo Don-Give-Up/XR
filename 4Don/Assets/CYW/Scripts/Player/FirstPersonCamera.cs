@@ -6,8 +6,8 @@ public class FirstPersonCamera : MonoBehaviour
 
     private float verticalRotation;
     private float horizontalRotation;
-    public float distanceFromTarget = 5f; // 타겟과 카메라 사이의 거리
-    public float height = 2f; // 카메라의 높이
+    public float distanceFromTarget = 8f; // 타겟과 카메라 사이의 거리
+    public float height = 3f; // 카메라의 높이
 
     void LateUpdate()
     {
