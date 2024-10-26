@@ -17,9 +17,10 @@ public class Quiz : MonoBehaviour
 
     public GameObject sugoimage;
     public GameObject[] dotory;
+    public GameObject test;
     
-    public Button oButton;
-    public Button xButton;
+    //public Button oButton;
+    //public Button xButton;
     
     public bool onlaborCheak = false;
 
@@ -55,10 +56,10 @@ public class Quiz : MonoBehaviour
             a.SetActive(false);
         }
         
-
+        
         // O 버튼과 X 버튼에 정답 체크 이벤트 연결
-        oButton.onClick.AddListener(() => OnAnswerSelected("O"));
-        xButton.onClick.AddListener(() => OnAnswerSelected("X"));
+        //oButton.onClick.AddListener(() => OnAnswerSelected("O"));
+        //xButton.onClick.AddListener(() => OnAnswerSelected("X"));
     }
 
     public void QuizStart() // 퀴즈 먼저 읽어오기
