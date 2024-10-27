@@ -39,5 +39,8 @@ public class UIButtonHandler : MonoBehaviour
         canvasGroup.blocksRaycasts = false; // 레이캐스트 차단 해제
     }
     
+    
+    
+    
 }
 
