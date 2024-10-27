@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class RoundSystem : MonoBehaviour
@@ -34,6 +35,12 @@ public class RoundSystem : MonoBehaviour
 
     public bool isLoaded = false;
 
+    public GameObject dayObject; 
+    public TMP_Text dayText;
+    public GameObject weekObject;
+    public TMP_Text weekText; 
+    
+    
     public static RoundSystem Instance;
 
     private void Awake()
@@ -87,8 +94,10 @@ public class RoundSystem : MonoBehaviour
 
         Debug.Log(" 하루 계산기 돌아가용");
         onDayChanged?.Invoke(currentDay);
-        //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분
-        yield return new WaitForSecondsRealtime(0.1f);
+        StartCoroutine(DayText(currentDay));
+        
+        yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
+        //yield return new WaitForSecondsRealtime(5f); // ㅌㅔ스트 코드
         Debug.Log($"Day: {currentDay}");
         currentDay++;
 
@@ -100,15 +109,62 @@ public class RoundSystem : MonoBehaviour
         StartCoroutine(Process());
     }
 
+    private IEnumerator DayText(int currentDay)
+    {
+        int day = this.currentDay % 5;
+        string dayText = "";
+        
+        switch (day)
+        {
+            case 0:
+                dayText = "월요일";
+                break;
+            case 1:
+                dayText = "화요일";
+                break;
+            case 2:
+                dayText = "수요일";
+                break;
+            case 3 :
+                dayText = "목요일";
+                break;
+            case 4 :
+                dayText = "금요일";
+                break;
+        }
+
+        dayObject.SetActive(true);
+        this.dayText.text = dayText;
+        
+        yield return new WaitForSecondsRealtime(2f);
+
+        dayObject.SetActive(false);
+        
+    }
+
     private void Week()
     { 
         Debug.Log("주 계산기 돌아가용");
         onWeekChanged?.Invoke(currentWeek + yearOffset);
+        StartCoroutine(WeekText(currentWeek));
+        
         Debug.Log($"Week: {currentWeek}"); // 왜 currentWeek == 0 일떄 실행이 안 돼지?
         currentWeek++;
         // 분석 리포트도 제공해야 함 그게 끝날 때까지 잡고 있어야 할 듯 한디
     }
+    
+    private IEnumerator WeekText(int currenWeek)
+    {
+        string weekText = $"{currentWeek+1}주차";
+        
+        weekObject.SetActive(true);
+        this.weekText.text = weekText;
+        
+        yield return new WaitForSecondsRealtime(2f);
 
+        weekObject.SetActive(false);
+    }
+    
     private void End()
     {
         Debug.Log("게임 끝남");

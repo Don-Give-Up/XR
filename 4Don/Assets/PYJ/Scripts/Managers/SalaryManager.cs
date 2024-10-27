@@ -11,7 +11,7 @@ public class SalaryManager : MonoBehaviour
 
     private int gameDay = 0;
     private int laborTime = 0;
-    private int year = 1996;
+    private int year = 0;
     
     private double salary = 0;
     
@@ -89,7 +89,7 @@ public class SalaryManager : MonoBehaviour
     {
         Debug.Log("초기화 할라고");
 
-        year = 1996;
+        year = 0;
         laborTime = 0;
         salary = 0;
         Array.Clear(laborDay, 0, laborDay.Length);

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class PersonalFinancialManager : MonoBehaviour
@@ -12,9 +13,11 @@ public class PersonalFinancialManager : MonoBehaviour
     // 출금 상황 = 소비, 투자, 등 등 등  - -> 이벤트로 만들어도 됨
     // 합치자!
 
-    public Action<double> onMoneyChanged; 
+    //public Action<double> onMoneyChanged; 
 
-    public double currentMoney = 0;
+    public double currentMoney = 200;
+
+    public TMP_Text currentMoneyText;
     
     public static PersonalFinancialManager Instance;
     
@@ -29,21 +32,30 @@ public class PersonalFinancialManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        onMoneyChanged += OutputMoney;
+        currentMoney = 200;
+        MoneyText(currentMoney);
+        //onMoneyChanged += OutputMoney;
+        
     }
     
     public void InputMoney(double inMoney)
     {
         currentMoney += inMoney;
         Debug.Log($"보유 현금 : {currentMoney}"); 
+        MoneyText(currentMoney);
     }
 
     public void OutputMoney(double outMoney)
     {
         currentMoney -= outMoney;
         Debug.Log($"보유 잔액 : {currentMoney}"); 
+        MoneyText(currentMoney);
     }
 
+    private void MoneyText(double currentMoney)
+    {
+        currentMoneyText.text = $"보유 현금\n{currentMoney}";
+    }
     // 돈에 관련된 거 text랑 연결
 
 }
