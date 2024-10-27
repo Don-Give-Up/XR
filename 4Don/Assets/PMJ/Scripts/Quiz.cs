@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
@@ -19,8 +20,10 @@ public class Quiz : MonoBehaviour
     public GameObject[] dotory;
     public GameObject test;
     
-    //public Button oButton;
-    //public Button xButton;
+    public Canvas oxCanvas;
+    
+    public Button oButton;
+    public Button xButton;
     
     public bool onlaborCheak = false;
 
@@ -45,10 +48,11 @@ public class Quiz : MonoBehaviour
         }
     }
     
-    private void Start()
+    public void Start()
     {
-        QuizStart();
-        ShowEasyQuiz();
+        oxCanvas.gameObject.SetActive(false);
+        //QuizStart();
+        //ShowEasyQuiz();
         sugoimage.SetActive(false);
         //일단 도토리 다 꺼
         foreach (var a in dotory)
@@ -58,9 +62,10 @@ public class Quiz : MonoBehaviour
         
         
         // O 버튼과 X 버튼에 정답 체크 이벤트 연결
-        //oButton.onClick.AddListener(() => OnAnswerSelected("O"));
-        //xButton.onClick.AddListener(() => OnAnswerSelected("X"));
+        oButton.onClick.AddListener(() => OnAnswerSelected("O"));
+        xButton.onClick.AddListener(() => OnAnswerSelected("X"));
     }
+    
 
     public void QuizStart() // 퀴즈 먼저 읽어오기
     {
@@ -166,6 +171,9 @@ public class Quiz : MonoBehaviour
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
+                    
+                    Destroy(sugoimage, 5f);
+                    
                     
                     return;
                 }
