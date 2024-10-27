@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9751c679d2756141bacff4c7b151866
+guid: d10e087f8fa693a48b3cb567d75b61ba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,100 +108,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Inventory
-      rect:
-        serializedVersion: 2
-        x: 354
-        y: 123
-        width: 1173
-        height: 835
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb4a34ac9a9521242a4c568843f27c4c
-      internalID: 1160532563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Slot
-      rect:
-        serializedVersion: 2
-        x: 1603
-        y: 811
-        width: 124
-        height: 123
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f45d643380c2a32419f343339bb267b1
-      internalID: 199285823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: inventory_2
-      rect:
-        serializedVersion: 2
-        x: 1612
-        y: 266
-        width: 11
-        height: 503
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72f80ac0b9cdcc1458b4252f3694b207
-      internalID: -1296830142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: inventory_3
-      rect:
-        serializedVersion: 2
-        x: 1672
-        y: 609
-        width: 11
-        height: 156
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c1cec9947084774ca6777c426cc5ff2
-      internalID: 9685463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 739e250d4a9ff30498bb490ebf154796
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -210,11 +122,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Inventory: 1160532563
-      Slot: 199285823
-      inventory_2: -1296830142
-      inventory_3: 9685463
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
