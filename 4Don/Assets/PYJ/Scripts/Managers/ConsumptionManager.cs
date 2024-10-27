@@ -24,6 +24,7 @@ public class ConsumptionManager : MonoBehaviour
         if (PersonalFinancialManager.Instance.currentMoney < price)
         {
             Debug.Log("소비 X");
+            Debug.Log($"{price}");
             return false;
         }
         else

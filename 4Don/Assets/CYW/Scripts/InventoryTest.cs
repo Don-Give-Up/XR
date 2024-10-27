@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InventoryTest : MonoBehaviour
 {
-    /*public InventoryManager inventoryManager;
-    
+    public InventoryManager inventoryManager;
+
     public void Update()
     {
         if (Input.GetMouseButtonDown(0)) // 마우스 좌측키로 클릭
@@ -17,10 +17,10 @@ public class InventoryTest : MonoBehaviour
                 if (hit.transform.CompareTag("Bread1"))
                 {
                     //inventoryManager.AddItem(type);
-                    
+
                     ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread1]; // null
                     // consumptionManager, PersonalFinancialManager 가 필요함
-                    
+
                     if (itemInfo == null)
                     {
                         Debug.Log("ItemInfo 없음");
@@ -40,7 +40,7 @@ public class InventoryTest : MonoBehaviour
                 {
                     ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread5]; // null
                     // consumptionManager, PersonalFinancialManager 가 필요함
-                    
+
                     if (itemInfo == null)
                     {
                         Debug.Log("ItemInfo 없음");
@@ -54,13 +54,13 @@ public class InventoryTest : MonoBehaviour
                         inventoryManager.AddItem(ItemType.Bread5);
                         Destroy(hit.transform.gameObject);
                     }
-                    
+
                 }
                 else if (hit.transform.CompareTag("Bread10"))
                 {
                     ItemInfo itemInfo = InventoryManager.Instance.itemInfoList[(int)ItemType.Bread10]; // null
                     // consumptionManager, PersonalFinancialManager 가 필요함
-                    
+
                     if (itemInfo == null)
                     {
                         Debug.Log("ItemInfo 없음");
@@ -84,7 +84,6 @@ public class InventoryTest : MonoBehaviour
                 {
                     BankClerkManager.Instance.Visit();
                 }
-                /////////////
 
                 /*
                 Collider collider = hit.collider; // 레이캐스드는 콜라이더를 통해 다른 컨포넌트에 접근
@@ -133,46 +132,52 @@ public class InventoryTest : MonoBehaviour
                 #1#
 
             }
-            
+
         }
     }*/
-    
-    
-    public InventoryManager inventoryManager;
 
-    
-    public void Update()
-    {
-        
-        if (Input.GetMouseButtonDown(0)) // 마우스 좌측키로 클릭
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+                /*
 
-            if (Physics.Raycast(ray, out hit)) // 레이캐스트를 통해 클릭한 오브젝트인지
-            {
-                if (hit.transform.CompareTag("Bread1"))
+                public InventoryManager inventoryManager;
+
+
+                public void Update()
                 {
-                    //inventoryManager.AddItem(type);
-                    inventoryManager.AddItem(ItemType.Bread1);
-                    Destroy(hit.transform.gameObject);
-                    
-                    
+
+                    if (Input.GetMouseButtonDown(0)) // 마우스 좌측키로 클릭
+                    {
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(ray, out hit)) // 레이캐스트를 통해 클릭한 오브젝트인지
+                        {
+                            if (hit.transform.CompareTag("Bread1"))
+                            {
+                                //inventoryManager.AddItem(type);
+                                inventoryManager.AddItem(ItemType.Bread1);
+                                Destroy(hit.transform.gameObject);
+
+
+                            }
+                            else if (hit.transform.CompareTag("Bread5"))
+                            {
+                                inventoryManager.AddItem(ItemType.Bread5);
+                                Destroy(hit.transform.gameObject);
+                            }
+                            else if (hit.transform.CompareTag("Bread10"))
+                            {
+                                inventoryManager.AddItem(ItemType.Bread10);
+                                Destroy(hit.transform.gameObject);
+                            }
+
+                        }
+
+
+                    }
                 }
-                else if (hit.transform.CompareTag("Bread5"))
-                {
-                    inventoryManager.AddItem(ItemType.Bread5);
-                    Destroy(hit.transform.gameObject);
-                }
-                else if (hit.transform.CompareTag("Bread10"))
-                {
-                    inventoryManager.AddItem(ItemType.Bread10);
-                    Destroy(hit.transform.gameObject);
-                }
-                
+                */
             }
-            
-
         }
     }
 }
+
