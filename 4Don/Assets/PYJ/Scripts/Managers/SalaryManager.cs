@@ -37,7 +37,7 @@ public class SalaryManager : MonoBehaviour
         // 2. 저장하고 초기화 해줌 
         // 3. 정보 저장해서 넘겨줌
         Debug.Log("일 했니 안 했니");
-        laborChecked = Quiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
+        laborChecked = BEQuiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
 
         gameDay = day % RoundSystem.Instance.oneWeekTime; // 몇 번째 요일?에 해당하는지 
 
