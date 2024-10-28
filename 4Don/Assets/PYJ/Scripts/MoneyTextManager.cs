@@ -8,6 +8,6 @@ public class MoneyTextManager : MonoBehaviour
     
     public void Money(double currentMonney)
     {
-        currentMoneyText.text = $"보유 현금\n{(int)currentMonney}만원";
+        currentMoneyText.text = $"보유 현금\n{(int)currentMonney}";
     }
 }
