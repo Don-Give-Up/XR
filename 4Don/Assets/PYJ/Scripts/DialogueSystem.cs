@@ -19,8 +19,11 @@ public class DialogueSystem : MonoBehaviour
  * 5. dialogue 매니저 (제작)
  *
  * 1. npc를 클릭한다.
- * 2. 이름에 맞는 대화가 시작된다.
+ * 2. 이름에 맞는 대화가 시작된다. 
  * 3. 선택지에 따라 대화가 변경된다.
- * 
+ *
+ *
+ * [HideInInspector]
  */
+
 }
