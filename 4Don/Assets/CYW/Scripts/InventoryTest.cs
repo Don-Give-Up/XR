@@ -82,7 +82,7 @@ public class InventoryTest : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("Bank"))
                 {
-                    BankClerkManager.Instance.Visit();
+                   BankClerkDialogManager.instance.Dialogue(BankClerkDialogManager.instance.talkNum);
                 }
 
                 /*

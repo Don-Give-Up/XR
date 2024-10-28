@@ -1,33 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
-//인스펙터창에서 수정가능
 [System.Serializable]
-public class Dialgoue 
+public class Dialogue
 {
+    
+    [Tooltip("캐릭터 이름")] public string npcname;
 
-    [Tooltip("캐릭터 이름")]
-    public string name;
+    [Tooltip("대사 내용")] public string content;
 
-    [Tooltip("대사 내용")]
-    public string[] contexts;
+    [Tooltip("이벤트 번호")] public int eventNum;
 
-    [Tooltip("이벤트 번호")]
-    public string[] number;
-
-    [Tooltip("스킵라인")]
-    public string[] skipnum;
-
+    [Tooltip("스킵 라인")] public int skipNum;
 }
 
 [System.Serializable]
-public class DialgoueEvent
+public class DialogueEvent
 {
+    public Dictionary<int, Dialogue> dialogues; // iD를 키 값으로 사용
 
-    //이벤트 이름
-    public string name;
-
-    //public Vector2 line;
-    public Dialgoue[] dialgoues;
-
+    //public Dialogue[] dialogues;
 }
