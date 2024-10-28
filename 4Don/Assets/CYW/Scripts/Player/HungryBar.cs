@@ -9,13 +9,13 @@ public class HungryBar : MonoBehaviour
    // 빵은 아이템으로 나누고 태그 다 다르게 설정한 뒤 태그로 코드 짜기 => 지금은 모델을 바로 클릭하는 걸로 짜도 나중엔 아이콘 눌러서 실행되게 할 거니까
 
 
-   public Slider hungrySlider;
+   public Image hungryMask;
    public float decreaseRate = 0.1f; // 1분에 0.1만큼 줄어듦
    private float decreaseTimer;
 
    void Start()
    {
-      hungrySlider.value = 1; // 초기값을 1로 설정
+      hungryMask.fillAmount = 1; // 초기값을 1로 설정
       decreaseTimer = 30f; // 30초
    }
 
@@ -49,14 +49,14 @@ public class HungryBar : MonoBehaviour
             return;
       }
 
-      hungrySlider.value = Mathf.Clamp(hungrySlider.value + increaseAmount, 0, 1);
+      hungryMask.fillAmount = Mathf.Clamp(hungryMask.fillAmount + increaseAmount, 0, 1);
    }
 
    private void DecreaseHungry()
    {
-      if (hungrySlider.value > 0) // 0 이하로 줄어들지 않도록 체크
+      if (hungryMask.fillAmount > 0) // 0 이하로 줄어들지 않도록 체크
       {
-         hungrySlider.value = Mathf.Clamp(hungrySlider.value - decreaseRate, 0, 1);
+         hungryMask.fillAmount = Mathf.Clamp(hungryMask.fillAmount - decreaseRate, 0, 1);
       }
    }
    
