@@ -13,10 +13,17 @@ public class HungryBar : MonoBehaviour
    public float decreaseRate = 0.1f; // 1분에 0.1만큼 줄어듦
    private float decreaseTimer;
 
+   public PlayerSoloController playerSoloController;
+
+   public float minMoveSpeed = 1f; // fillAmount가 0일 때
+   public float midMoveSpeed = 3f; // fillAmount가 0.5일 때
+   public float maxMoveSpeed = 5f; // fillAmount가 1일 때
+
    void Start()
    {
-      hungryMask.fillAmount = 1; // 초기값을 1로 설정
+      hungryMask.fillAmount = 0.5f; // 초기값을 1로 설정
       decreaseTimer = 30f; // 30초
+      UpdateMoveSpeed();
    }
 
    void Update()
@@ -27,6 +34,8 @@ public class HungryBar : MonoBehaviour
          DecreaseHungry();
          decreaseTimer = 30f; // 타이머 리셋
       }
+
+      UpdateMoveSpeed(); // moveSpeed 업데이트
    }
 
    public void EatBread(int level)
@@ -50,6 +59,7 @@ public class HungryBar : MonoBehaviour
       }
 
       hungryMask.fillAmount = Mathf.Clamp(hungryMask.fillAmount + increaseAmount, 0, 1);
+      UpdateMoveSpeed(); // moveSpeed 업데이트
    }
 
    private void DecreaseHungry()
@@ -59,5 +69,25 @@ public class HungryBar : MonoBehaviour
          hungryMask.fillAmount = Mathf.Clamp(hungryMask.fillAmount - decreaseRate, 0, 1);
       }
    }
+
+   private void UpdateMoveSpeed()
+   {
+      float fillAmount = hungryMask.fillAmount;
+
+      // fillAmount에 따른 moveSpeed 계산
+      if (fillAmount == 0)
+      {
+         playerSoloController.moveSpeed = minMoveSpeed;
+      }
+      else if (fillAmount == 0.5f)
+      {
+         playerSoloController.moveSpeed = midMoveSpeed;
+      }
+      else if (fillAmount == 1)
+      {
+         playerSoloController.moveSpeed = maxMoveSpeed;
+      }
    
+
+   }
 }
