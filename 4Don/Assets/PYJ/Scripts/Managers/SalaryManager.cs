@@ -43,7 +43,7 @@ public class SalaryManager : MonoBehaviour
 
         laborDay[gameDay] = laborChecked;
 
-        Quiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
+        BEQuiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
     }
 
     private void OnSalaryChanged(int week)
