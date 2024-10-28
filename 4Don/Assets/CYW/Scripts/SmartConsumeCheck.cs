@@ -29,7 +29,7 @@ public class SmartConsumeCheck : MonoBehaviour
     {
         // 메시지 텍스트를 활성화하고 내용 설정
         messageText.gameObject.SetActive(true);
-        messageText.text = "합리적 소비입니다.";
+        messageText.text = "계획적 소비입니다.";
 
         // 클릭된 버튼의 이미지 변경
         Image buttonImage = clickedButton.GetComponent<Image>();
