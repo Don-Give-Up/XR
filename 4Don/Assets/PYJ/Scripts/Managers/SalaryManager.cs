@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 //using UnityEngine.InputSystem.Android;
@@ -42,12 +43,12 @@ public class SalaryManager : MonoBehaviour
 
         laborDay[gameDay] = laborChecked;
 
-        // Quiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
+        Quiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
     }
 
     private void OnSalaryChanged(int week)
     {
-        year += week;
+        year = week-1;
         
         Debug.Log("월급 줄게용");
 
@@ -61,7 +62,7 @@ public class SalaryManager : MonoBehaviour
         ResetSalary(); 
         
     }
-
+    
     private void LaborTimeCount()
     {
         for (int i = 0; i < laborDay.Length; i++)
