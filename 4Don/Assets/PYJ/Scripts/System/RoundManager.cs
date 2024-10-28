@@ -96,8 +96,8 @@ public class RoundSystem : MonoBehaviour
         onDayChanged?.Invoke(currentDay);
         StartCoroutine(DayText(currentDay));
         
-        //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
-        yield return new WaitForSecondsRealtime(30f); // ㅌㅔ스트 코드
+        yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
+        //yield return new WaitForSecondsRealtime(30f); // ㅌㅔ스트 코드
         Debug.Log($"Day: {currentDay}");
         currentDay++;
 
