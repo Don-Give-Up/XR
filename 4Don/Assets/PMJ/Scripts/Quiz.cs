@@ -41,31 +41,52 @@ public class Quiz : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            RoundSystem.Instance.onDayChanged += QuizReset;
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    
-    public void Start()
+
+    private void QuizReset(int day)
     {
-        oxCanvas.gameObject.SetActive(false);
-        //QuizStart();
-        //ShowEasyQuiz();
-        sugoimage.SetActive(false);
-        //일단 도토리 다 꺼
-        foreach (var a in dotory)
-        {
-            a.SetActive(false);
-        }
-        
-        
-        // O 버튼과 X 버튼에 정답 체크 이벤트 연결
-        oButton.onClick.AddListener(() => OnAnswerSelected("O"));
-        xButton.onClick.AddListener(() => OnAnswerSelected("X"));
+        onlaborCheak = false;
+        Debug.Log("하루 지났다용"+onlaborCheak);
+        // 초기화
+       
     }
-    
+
+    public void AStart()
+    {
+        if (!onlaborCheak)
+        {
+            Debug.Log("오늘 노동을 시작.");
+            oxCanvas.gameObject.SetActive(true);
+            QuizStart();
+            ShowEasyQuiz();
+            sugoimage.SetActive(false);
+            //일단 도토리 다 꺼
+            foreach (var a in dotory)
+            {
+                a.SetActive(false);
+            }
+
+            Debug.Log("퀴즈 시작합니당당구리동동");
+
+            // O 버튼과 X 버튼에 정답 체크 이벤트 연결
+            oButton.onClick.AddListener(() => OnAnswerSelected("O"));
+            xButton.onClick.AddListener(() => OnAnswerSelected("X"));
+            // 게임을 시작하는 코드들 
+        }
+        else
+        {
+            Debug.Log("하루에 노동은 한번만 가능합니다");
+        }
+
+
+    }
+
 
     public void QuizStart() // 퀴즈 먼저 읽어오기
     {
@@ -171,8 +192,10 @@ public class Quiz : MonoBehaviour
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
+
+                    correntAnswerCount = 0;
                     
-                    Destroy(sugoimage, 5f);
+                    Invoke("SetActiveFalse", 3f);
                     
                     
                     return;
@@ -192,6 +215,12 @@ public class Quiz : MonoBehaviour
     public bool OnLaborCheak()
     {
         return onlaborCheak;
+    }
+
+    private void SetActiveFalse()
+    {
+        sugoimage.SetActive(false);
+        oxCanvas.gameObject.SetActive(false);
     }
 }
 
