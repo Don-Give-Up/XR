@@ -25,7 +25,6 @@ public class DatabaseManager : MonoBehaviour
          {
             dialogueDic.Add(i+1, dialgoues[i]);// 사전에 순서대로 추가
          }
-
          isFinish = true; // 초기화 끝났음을 알림
       }
    }
@@ -38,7 +37,6 @@ public class DatabaseManager : MonoBehaviour
       {
          dialogueList.Add(dialogueDic[_StartNum + i]);
       }
-
       return dialogueList.ToArray(); // 그떄의 대화를 리스트로 반환 
    }
    
@@ -50,7 +48,6 @@ public class DatabaseManager : MonoBehaviour
       {
          selectDialogues.Add(selectdialogueDic[_StartNum + i]);
       }
-
       return selectDialogues.ToArray();
    }
    
