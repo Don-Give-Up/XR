@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 //using UnityEngine.InputSystem.Android;
@@ -36,18 +37,18 @@ public class SalaryManager : MonoBehaviour
         // 2. 저장하고 초기화 해줌 
         // 3. 정보 저장해서 넘겨줌
         Debug.Log("일 했니 안 했니");
-        laborChecked = Quiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
+        laborChecked = BEQuiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
 
         gameDay = day % RoundSystem.Instance.oneWeekTime; // 몇 번째 요일?에 해당하는지 
 
         laborDay[gameDay] = laborChecked;
 
-        // Quiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
+        Quiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
     }
 
     private void OnSalaryChanged(int week)
     {
-        year += week;
+        year = week-1;
         
         Debug.Log("월급 줄게용");
 
@@ -61,7 +62,7 @@ public class SalaryManager : MonoBehaviour
         ResetSalary(); 
         
     }
-
+    
     private void LaborTimeCount()
     {
         for (int i = 0; i < laborDay.Length; i++)

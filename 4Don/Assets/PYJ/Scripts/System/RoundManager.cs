@@ -23,7 +23,7 @@ public class RoundSystem : MonoBehaviour
     private int maxWeek = 28;
     private int maxDay = 5 * 28; // oneWeekTime * maxWeek //이거 수정해야 함~
 
-    private int currentDay = 0;
+    private int currentDay = 4;
     private int currentWeek = 0;
 
     private int yearOffset = 1996;
@@ -69,37 +69,35 @@ public class RoundSystem : MonoBehaviour
         isLoaded = true;
         Debug.Log("진행시켜");
 
+
         yield return new WaitUntil(()=>GoogleSheetManager.Instance.IsLoaded);
 
         // 줘야하는 값의 형태 구조체 만들고 키 값으로 사용하는 딕셔너리 만들면 될 듯
         //round[currentWeek, currentDay] = 10;
         
-        StartCoroutine(Day());
-        
-        if (currentDay == 0 || currentDay % 5 == 0)
+        // 처음 시작할 떄 
+        if (currentDay % 5 == 0)
         {
             Week();
-        }
+        } 
+        
+        StartCoroutine(DayText(currentDay)); 
+        StartCoroutine(WeekText(currentWeek));
+        
+        StartCoroutine(Day());
+        
     }
 
     private IEnumerator Day()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("선생님이 동작함");
-            Debug.Log($"Day: {currentDay}");
-            currentDay++;
-            StartCoroutine(Process());
-        }
-
         Debug.Log(" 하루 계산기 돌아가용");
-        onDayChanged?.Invoke(currentDay);
-        StartCoroutine(DayText(currentDay));
         
         //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
         yield return new WaitForSecondsRealtime(30f); // ㅌㅔ스트 코드
-        Debug.Log($"Day: {currentDay}");
         currentDay++;
+        onDayChanged?.Invoke(currentDay);
+        
+        Debug.Log($"Day: {currentDay}");
 
         if (currentDay == maxDay)
         {
@@ -145,17 +143,16 @@ public class RoundSystem : MonoBehaviour
     private void Week()
     { 
         Debug.Log("주 계산기 돌아가용");
+        currentWeek++;
         onWeekChanged?.Invoke(currentWeek + yearOffset);
-        StartCoroutine(WeekText(currentWeek));
         
         Debug.Log($"Week: {currentWeek}"); // 왜 currentWeek == 0 일떄 실행이 안 돼지?
-        currentWeek++;
         // 분석 리포트도 제공해야 함 그게 끝날 때까지 잡고 있어야 할 듯 한디
     }
     
     private IEnumerator WeekText(int currenWeek)
     {
-        string weekText = $"{currentWeek+1}주차";
+        string weekText = $"{currentWeek+yearOffset}년";
         
         weekObject.SetActive(true);
         this.weekText.text = weekText;

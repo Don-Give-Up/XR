@@ -51,7 +51,7 @@ public class Quiz : MonoBehaviour
 
     private void QuizReset(int day)
     {
-        onlaborCheak = false;
+        //onlaborCheak = false;
         Debug.Log("하루 지났다용"+onlaborCheak);
         // 초기화
        
