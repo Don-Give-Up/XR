@@ -24,7 +24,7 @@ public class DialgoueParser : MonoBehaviour
             List<string> SkipList = new List<string>(); // 엑셀 맨끝줄 비고 추가 안하면 오류남
             
             //dialgoue.contexts = row[2]; // 배열의 크기를 미리 지정해줘야되는데 강제로 넣고있어서 위 리스트를 이용
-            do
+            do // 최소 코드를 한번 실행하기 위해
             {
                 contextList.Add(row[2]);
                 EventList.Add(row[3]);

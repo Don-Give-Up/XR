@@ -8,7 +8,7 @@ public class DatabaseManager : MonoBehaviour
 
    [SerializeField] private string csv_FileName;
 
-   private Dictionary<int, Dialgoue> dialogueDic = new Dictionary<int, Dialgoue>();
+   private Dictionary<int, Dialgoue> dialogueDic = new Dictionary<int, Dialgoue>(); // 대화 내용을 저장하는 데 사용 
    private Dictionary<int, SelectDialogue> selectdialogueDic = new Dictionary<int, SelectDialogue>();
 
    public static bool isFinish = false;
@@ -18,19 +18,19 @@ public class DatabaseManager : MonoBehaviour
       if (instance == null)
       {
          instance = this;
-         DialgoueParser theParser = GetComponent<DialgoueParser>();
-         Dialgoue[] dialgoues = theParser.Parse(csv_FileName);
+         DialgoueParser theParser = GetComponent<DialgoueParser>(); // 현재 게임 오브젝트에서 변환 컴포넌트를 가져와서 변수에 저장, 데이터 파일을 변환하는 데 사용 
+         Dialgoue[] dialgoues = theParser.Parse(csv_FileName); // 매소드를 호출하여 파싱하고 결과를 반환받음 
 
          for (int i = 0; i < dialgoues.Length; i++)
          {
-            dialogueDic.Add(i+1, dialgoues[i]);
+            dialogueDic.Add(i+1, dialgoues[i]);// 사전에 순서대로 추가
          }
 
-         isFinish = true;
+         isFinish = true; // 초기화 끝났음을 알림
       }
    }
 
-   public Dialgoue[] GetDialgoues(int _StartNum, int _EndNum)
+   public Dialgoue[] GetDialgoues(int _StartNum, int _EndNum) // 특정 범위의 대화를 가져오는 매소드
    {
       List<Dialgoue> dialogueList = new List<Dialgoue>();
 
@@ -39,7 +39,7 @@ public class DatabaseManager : MonoBehaviour
          dialogueList.Add(dialogueDic[_StartNum + i]);
       }
 
-      return dialogueList.ToArray();
+      return dialogueList.ToArray(); // 그떄의 대화를 리스트로 반환 
    }
    
    public SelectDialogue[] GetSelects(int _StartNum, int _EndNum)
