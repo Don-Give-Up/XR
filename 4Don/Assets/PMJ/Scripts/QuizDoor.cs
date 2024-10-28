@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuizDoor : MonoBehaviour
 {
-    public Quiz a;
+    public BEQuiz a;
     
     private void OnTriggerEnter(Collider other)
     {

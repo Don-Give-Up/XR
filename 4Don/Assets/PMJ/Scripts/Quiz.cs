@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
@@ -51,7 +51,7 @@ public class Quiz : MonoBehaviour
 
     private void QuizReset(int day)
     {
-        onlaborCheak = false;
+        //onlaborCheak = false;
         Debug.Log("하루 지났다용"+onlaborCheak);
         // 초기화
        
@@ -226,4 +226,4 @@ public class Quiz : MonoBehaviour
 
 // 뽑는 메소드 1
 // 출력하는 메소드 1 나눠리ㅏ!!
-//o, x 버튼이 나누어져 있는데 매 문제에 들어오는 버튼을 answer에 따라 정답인지 아닌지 판단하기.
+//o, x 버튼이 나누어져 있는데 매 문제에 들어오는 버튼을 answer에 따라 정답인지 아닌지 판단하기.*/

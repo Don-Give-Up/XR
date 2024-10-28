@@ -11,6 +11,7 @@ public class QuizData
     public string type; // o/x
     public string answer; //정답 o
     public string desc; // 해설
+    public string level;
 }
 
 public class QuizlistData

@@ -15,7 +15,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     //public Action<double> onMoneyChanged; 
 
-    public double currentMoney = 200;
+    public double currentMoney = 50000;
 
     public TMP_Text currentMoneyText;
     
@@ -31,8 +31,8 @@ public class PersonalFinancialManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        currentMoney = 200;
+        
+        currentMoney = 50000;
         MoneyText(currentMoney);
         //onMoneyChanged += OutputMoney;
         
@@ -54,7 +54,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     private void MoneyText(double currentMoney)
     {
-        currentMoneyText.text = $"보유현금 {currentMoney}만원";
+        currentMoneyText.text = $"보유현금 {currentMoney}원";
     }
     // 돈에 관련된 거 text랑 연결
 
