@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -8,7 +9,8 @@ public class Article
     public string cleaned_title;
     public string cleaned_body;
     public string summary;
-    public Image image;
+    public string image;
+    public Texture2D texture;
 }
 
 [System.Serializable]
@@ -16,3 +18,5 @@ public class ArticlesData
 {
     public List<Article> articles;  // articles 배열
 }
+
+

@@ -1,20 +1,22 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
 
 
-public class Quiz : MonoBehaviour
+public class BEQuiz : MonoBehaviour
 {
-    public QuizlistData quizlistdata;
+    public QuizData[] BEQuizdata;
 
     public TMP_Text TextquizNum;
     public TMP_Text Textcategory;
     public TMP_Text Textquiz;
+    public TMP_Text Textlevel;
 
     public GameObject sugoimage;
     public GameObject[] dotory;
@@ -28,13 +30,13 @@ public class Quiz : MonoBehaviour
     public bool onlaborCheak = false;
 
     private int correntAnswerCount = 0; // 맞힌 정답 갯수
-    private List<int> usedEasyQuestions = new List<int>(); // 이미 출제된 문제 기록
+    private List<int> usedQuiz = new List<int>(); // 이미 출제된 문제 기록
     
-    private int _easyCount;
+    private int _Count;
     private int _normalCount;
     private int _hardCount;
 
-    public static Quiz Instance;
+    public static BEQuiz Instance;
     
     private void Awake()
     {
@@ -91,24 +93,22 @@ public class Quiz : MonoBehaviour
     public void QuizStart() // 퀴즈 먼저 읽어오기
     {
         //폴더에서 json파일 찾아
-        TextAsset jsonQuizData = Resources.Load<TextAsset>("Quiz");
+        string jsonQuizData = "구글시트연동해야됨";
 
         if (jsonQuizData != null)
         {
             //Debug.Log(" json 찾았지롱"+ jsonQuizData.text);
 
             //데이터 읽어오고 객체로 변환
-            quizlistdata = JsonConvert.DeserializeObject<QuizlistData>(jsonQuizData.text);
+            BEQuizdata = JsonConvert.DeserializeObject<QuizData[]>(jsonQuizData);
 
-            if (quizlistdata != null)
+            if (BEQuizdata != null && BEQuizdata.Length > 0)
             {
-                Debug.Log("Easy 모드 퀴즈 수: " + quizlistdata.easy.Count);
-                Debug.Log("Normal 모드 퀴즈 수: " + quizlistdata.normal.Count);
-                Debug.Log("Hard 모드 퀴즈 수: " + quizlistdata.hard.Count);
+                Debug.Log("총 " + BEQuizdata.Length + "개의 퀴즈 데이터를 불러왔습니다.");
             }
             else
             {
-                Debug.LogError("Quiz 데이터 역직렬화 삐빅");
+                Debug.LogError("Quiz 데이터 불러오는 데 실패함");
             }
         }
         else
@@ -118,21 +118,21 @@ public class Quiz : MonoBehaviour
         //QuizlistData loadedData = JsonConvert.DeserializeObject<QuizlistData>();
     }
 
-    private QuizData GETEasyQuiz() // easy난이도를 선택했을때 나옴, 이건 처음에 1문제만 나오지만 정답이 5개가 될때까지 나오도록 고쳐야함.
+    private QuizData GETEasyQuiz() 
     {
-        _easyCount = quizlistdata.easy.Count;
-        if (quizlistdata != null && _easyCount > 0 && usedEasyQuestions.Count < _easyCount)
+        _Count = BEQuizdata.Length;
+        if (BEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
         {
-            int easyRandom;
+            int QuizRandom;
 
             do
             {
-                easyRandom = Random.Range(0, _easyCount);
-            } while (usedEasyQuestions.Contains(easyRandom));
+                QuizRandom = Random.Range(0, _Count);
+            } while (usedQuiz.Contains(QuizRandom));
 
-            usedEasyQuestions.Add(easyRandom);
+            usedQuiz.Add(QuizRandom);
 
-            return quizlistdata.easy[easyRandom];
+            return BEQuizdata[QuizRandom];
         }
         else
         {
@@ -145,32 +145,35 @@ public class Quiz : MonoBehaviour
     {
         QuizData easyQuiz = GETEasyQuiz();
 
-        Debug.Log(easyQuiz.quizNum);
-        Debug.Log(easyQuiz.category);
-        Debug.Log(easyQuiz.quiz);
-        Debug.Log(easyQuiz.type);
-        Debug.Log(easyQuiz.answer);
-        Debug.Log(easyQuiz.desc);
 
         if (easyQuiz != null)
         {
+            Debug.Log(easyQuiz.quizNum);
+            Debug.Log(easyQuiz.category);
+            Debug.Log(easyQuiz.quiz);
+            Debug.Log(easyQuiz.type);
+            Debug.Log(easyQuiz.answer);
+            Debug.Log(easyQuiz.desc);
+            Debug.Log(easyQuiz.level);
             TextquizNum.text = $"{easyQuiz.quizNum}";
             Textcategory.text = $"{easyQuiz.category}";
             Textquiz.text = $"{easyQuiz.quiz}";
+            Textlevel.text = $"{easyQuiz.level}";
+
         }
         else
         {
-            Debug.Log("그만 틀리세용!");
+            Debug.Log("어디상 문제 없음");
         }
     }
 
     public void OnAnswerSelected(string selectedAnswer)
     {
         //현재 어디이썽?
-        if (usedEasyQuestions.Count > 0)
+        if (usedQuiz.Count > 0)
         {
-            int lastQuestionIndex = usedEasyQuestions[usedEasyQuestions.Count - 1];
-            QuizData currentQuiz = quizlistdata.easy[lastQuestionIndex];
+            int lastQuestionIndex = usedQuiz[usedQuiz.Count - 1];
+            QuizData currentQuiz = BEQuizdata[lastQuestionIndex];
 
             //정답 체크
             if (currentQuiz.answer == selectedAnswer)
@@ -226,4 +229,4 @@ public class Quiz : MonoBehaviour
 
 // 뽑는 메소드 1
 // 출력하는 메소드 1 나눠리ㅏ!!
-//o, x 버튼이 나누어져 있는데 매 문제에 들어오는 버튼을 answer에 따라 정답인지 아닌지 판단하기.*/
+//o, x 버튼이 나누어져 있는데 매 문제에 들어오는 버튼을 answer에 따라 정답인지 아닌지 판단하기.
