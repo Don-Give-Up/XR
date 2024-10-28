@@ -172,7 +172,7 @@ public class Quiz : MonoBehaviour
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
                     
-                    Destroy(sugoimage, 5f);
+                    Invoke("SetActiveFalse", 5f);
                     
                     
                     return;
@@ -192,6 +192,12 @@ public class Quiz : MonoBehaviour
     public bool OnLaborCheak()
     {
         return onlaborCheak;
+    }
+
+    private void SetActiveFalse()
+    {
+        sugoimage.SetActive(false);
+        oxCanvas.gameObject.SetActive(false);
     }
 }
 
