@@ -54,7 +54,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     private void MoneyText(double currentMoney)
     {
-        currentMoneyText.text = $"보유현금 {currentMoney}원";
+        currentMoneyText.text = $"보유현금 {currentMoney:N0}원";
     }
     // 돈에 관련된 거 text랑 연결
 
