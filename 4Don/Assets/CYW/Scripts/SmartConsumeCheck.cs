@@ -5,38 +5,48 @@ using UnityEngine.UI;
 
 public class SmartConsumeCheck : MonoBehaviour
 {
-    public Button button1; // 첫 번째 버튼
-    public Button button2; // 두 번째 버튼
-    public Button button3; // 세 번째 버튼
-    public Button button4; // 네 번째 버튼
+    public Toggle toggle1; 
+    public Toggle toggle2; 
+    public Toggle toggle3; 
+    public Toggle toggle4;
+    public Toggle toggle5; 
+    public Toggle toggle6; 
+    public Toggle toggle7; 
+    public Toggle toggle8;
+    public Toggle toggle9; 
+    public Toggle toggle10;
+
     public TMP_Text messageText; // 메시지를 표시할 텍스트
-    public Sprite checkedImage; // 체크된 이미지
-    public Sprite defaultImage; // 기본 이미지
 
     private void Start()
     {
         // 초기 상태에서 메시지 텍스트를 비활성화
         messageText.gameObject.SetActive(false);
 
-        // 버튼 클릭 이벤트 등록
-        button1.onClick.AddListener(() => DisplayMessage(button1));
-        button2.onClick.AddListener(() => DisplayMessage(button2));
-        button3.onClick.AddListener(() => DisplayMessage(button3));
-        button4.onClick.AddListener(() => DisplayMessage(button4));
+        // 토글 클릭 이벤트 등록
+        toggle1.onValueChanged.AddListener((isOn) => DisplayMessage(toggle1, isOn));
+        toggle2.onValueChanged.AddListener((isOn) => DisplayMessage(toggle2, isOn));
+        toggle3.onValueChanged.AddListener((isOn) => DisplayMessage(toggle3, isOn));
+        toggle4.onValueChanged.AddListener((isOn) => DisplayMessage(toggle4, isOn));
+        toggle5.onValueChanged.AddListener((isOn) => DisplayMessage(toggle5, isOn));
+        toggle6.onValueChanged.AddListener((isOn) => DisplayMessage(toggle6, isOn));
+        toggle7.onValueChanged.AddListener((isOn) => DisplayMessage(toggle7, isOn));
+        toggle8.onValueChanged.AddListener((isOn) => DisplayMessage(toggle8, isOn));
+        toggle9.onValueChanged.AddListener((isOn) => DisplayMessage(toggle9, isOn));
+        toggle10.onValueChanged.AddListener((isOn) => DisplayMessage(toggle10, isOn));
     }
 
-    private void DisplayMessage(Button clickedButton)
+    private void DisplayMessage(Toggle clickedToggle, bool isOn)
     {
-        // 메시지 텍스트를 활성화하고 내용 설정
-        messageText.gameObject.SetActive(true);
-        messageText.text = "계획적 소비입니다.";
-
-        // 클릭된 버튼의 이미지 변경
-        Image buttonImage = clickedButton.GetComponent<Image>();
-        buttonImage.sprite = checkedImage;
-
-        // 코루틴 호출
-        StartCoroutine(HideMessageAfterDelay(2f));
+        if (isOn)
+        {
+            // 메시지 텍스트를 활성화하고 내용 설정
+            messageText.gameObject.SetActive(true);
+            messageText.text = "계획적 소비입니다.";
+            
+            // 코루틴 호출
+            StartCoroutine(HideMessageAfterDelay(2f));
+        }
     }
 
     private IEnumerator HideMessageAfterDelay(float delay)
