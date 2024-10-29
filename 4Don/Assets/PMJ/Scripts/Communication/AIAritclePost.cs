@@ -122,6 +122,10 @@ public class AIAritclePost : MonoBehaviour
                 Debug.Log("No image found.");
             }
 
+            field.text = article.field;
+            title.text = article.cleaned_title;
+            summary.text = article.summary_50;
+
             // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
             UseArticleData(i, article);
         }
