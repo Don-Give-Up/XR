@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
@@ -44,9 +47,11 @@ public class BEQuiz : MonoBehaviour
         {
             Instance = this;
             RoundSystem.Instance.onDayChanged += QuizReset;
+            
         }
         else
         {
+            
             Destroy(gameObject);
         }
     }
@@ -59,14 +64,15 @@ public class BEQuiz : MonoBehaviour
        
     }
 
-    public void AStart()
+    public async void AStart()
     {
         if (!onlaborCheak)
         {
+            
             Debug.Log("오늘 노동을 시작.");
             oxCanvas.gameObject.SetActive(true);
             QuizStart();
-            ShowEasyQuiz();
+            //ShowEasyQuiz();
             sugoimage.SetActive(false);
             //일단 도토리 다 꺼
             foreach (var a in dotory)
@@ -92,30 +98,54 @@ public class BEQuiz : MonoBehaviour
 
     public void QuizStart() // 퀴즈 먼저 읽어오기
     {
-        //폴더에서 json파일 찾아
-        string jsonQuizData = "구글시트연동해야됨";
 
-        if (jsonQuizData != null)
+        var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈데이터");
+        
+        if (string.IsNullOrEmpty(urlData.Server))
         {
-            //Debug.Log(" json 찾았지롱"+ jsonQuizData.text);
+            Debug.LogError("퀴즈데이터 URL의 서버 주소가 비어있습니다.");
+            return;
+        }
 
-            //데이터 읽어오고 객체로 변환
-            BEQuizdata = JsonConvert.DeserializeObject<QuizData[]>(jsonQuizData);
+        StartCoroutine(GetQuizDataFromUrl(urlData.Server));
+    }
+    
+    private IEnumerator GetQuizDataFromUrl(string url)
+    {
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
+            yield return request.SendWebRequest();
 
-            if (BEQuizdata != null && BEQuizdata.Length > 0)
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.Log("총 " + BEQuizdata.Length + "개의 퀴즈 데이터를 불러왔습니다.");
+                Debug.LogError("퀴즈 데이터를 가져오는 중 오류 발생: " + request.error);
             }
             else
             {
-                Debug.LogError("Quiz 데이터 불러오는 데 실패함");
+                // JSON 데이터를 받아옴
+                string jsonQuizData = request.downloadHandler.text;
+
+                try
+                {
+                    // JSON 데이터를 QuizData 객체 배열로 변환
+                    BEQuizdata = JsonConvert.DeserializeObject<QuizData[]>(jsonQuizData);
+
+                    if (BEQuizdata != null && BEQuizdata.Length > 0)
+                    {
+                        ShowEasyQuiz();
+                        Debug.Log($"총 {BEQuizdata.Length}개의 퀴즈 데이터를 불러왔습니다.");
+                    }
+                    else
+                    {
+                        Debug.LogError("퀴즈 데이터를 불러오는 데 실패했습니다.");
+                    }
+                }
+                catch (JsonReaderException ex)
+                {
+                    Debug.LogError("JSON 파싱 중 오류 발생: " + ex.Message);
+                }
             }
         }
-        else
-        {
-            Debug.LogError("Quiz.json파일 삐빅");
-        }
-        //QuizlistData loadedData = JsonConvert.DeserializeObject<QuizlistData>();
     }
 
     private QuizData GETEasyQuiz() 
@@ -225,6 +255,7 @@ public class BEQuiz : MonoBehaviour
         sugoimage.SetActive(false);
         oxCanvas.gameObject.SetActive(false);
     }
+    
 }
 
 // 뽑는 메소드 1

@@ -44,11 +44,27 @@ public class GoogleSheetManager : MonoBehaviour
         }
     }
 
+    public struct Url
+    {
+        public string Name;
+        public string Server;
+        
+
+        public Url(string name, string server)
+        {
+            Name = name;
+            Server = server;
+            
+        }
+    }
+
     public bool IsLoaded;
 
     // 전역 변수로 딕셔너리 저장
     private static Dictionary<int, Finance> government = new Dictionary<int, Finance>();
     private static Dictionary<int, Stock> stocks = new Dictionary<int, Stock>();
+    //민주거
+    private static Dictionary<string, Url> url = new Dictionary<string, Url>();
     
     private void Awake()
     {
@@ -106,7 +122,31 @@ public class GoogleSheetManager : MonoBehaviour
             
             stocks.Add(dayilydata.Day, dayilydata);
         }
-        
+
+        var data3 = await Get("URL!A2:B3");
+        foreach (var row in data3)
+        {
+
+            var urldata = new Url(
+                row[0].ToString(),
+                row[1].ToString()
+            );
+            
+            if (!url.ContainsKey(urldata.Name))
+            {
+                url.Add(urldata.Name, urldata);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate key found: {urldata.Name}");
+            }
+            
+        }
+
+        foreach (var u in url)
+        {
+            Debug.Log($"{u.Key} : {u.Value.Name} : {u.Value.Server}");
+        }
         IsLoaded = true;
     }
 
@@ -120,5 +160,10 @@ public class GoogleSheetManager : MonoBehaviour
     public Stock DailyDataGet(int day)
     {
         return stocks[day];
+    }
+
+    public Url UrldataGet(string name)
+    {
+        return url[name];
     }
 }
