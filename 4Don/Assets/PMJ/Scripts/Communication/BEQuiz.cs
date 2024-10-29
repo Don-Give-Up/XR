@@ -189,7 +189,7 @@ public class BEQuiz : MonoBehaviour
             TextquizNum.text = $"{easyQuiz.quizNum}";
             Textcategory.text = $"{easyQuiz.category}";
             Textquiz.text = $"{easyQuiz.quiz}";
-            Textlevel.text = $"{easyQuiz.level}";
+            //Textlevel.text = $"{easyQuiz.level}";
 
         }
         else

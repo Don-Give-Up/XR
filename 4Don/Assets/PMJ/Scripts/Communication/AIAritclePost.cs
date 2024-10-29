@@ -12,11 +12,15 @@ using UnityEngine.UI;
 /// </summary>
 public class AIAritclePost : MonoBehaviour
 {
-    public TMP_Text field;
-    public TMP_Text title;
-    public TMP_Text summary;
-    public TMP_Text body;
-    public RawImage AIImage;
+    //public TMP_Text field;
+    public TMP_Text[] title;
+    public TMP_Text[] summary;
+    //public TMP_Text body;
+    // public RawImage AIImage;
+    
+    private List<string> fieldList = new List<string>();
+    private List<string> titleList = new List<string>();
+    private List<Texture2D> imageList = new List<Texture2D>();
 
     public string AritcleDay;
     public void Start()
@@ -50,7 +54,7 @@ public class AIAritclePost : MonoBehaviour
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, string>
         {
-            { "quarter", "19963" }
+            { "quarter", "19964" }
         };
 
         // 데이터를 JSON으로 직렬화
@@ -106,11 +110,11 @@ public class AIAritclePost : MonoBehaviour
         {
             var article = articlesData.articles[i];
             
-            Debug.Log("Field: " + article.field);
+            /*Debug.Log("Field: " + article.field);
             Debug.Log("Title: " + article.cleaned_title);
             Debug.Log("Body: " + article.cleaned_body);
             Debug.Log("Summary: " + article.summary_2_lines);
-            Debug.Log("Summary_50: " + article.summary_50);
+            Debug.Log("Summary_50: " + article.summary_50);*/
             // Base64 이미지 데이터를 Texture2D로 변환
             if (!string.IsNullOrEmpty(article.image))
             {
@@ -121,20 +125,27 @@ public class AIAritclePost : MonoBehaviour
             {
                 Debug.Log("No image found.");
             }
-
-            field.text = article.field;
-            title.text = article.cleaned_title;
-            summary.text = article.summary_50;
+            
+            //값 저장
+            //fieldList.Add(article.field);
+            titleList.Add(article.cleaned_title);
+            imageList.Add(article.texture);
+            
+            //field.text = article.field;
+            title[i].text = article.cleaned_title;
+            summary[i].text = article.summary_50;
 
             // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
             UseArticleData(i, article);
         }
     }
+    
+    
     void UseArticleImage(Texture2D image)
     {
         // 예를 들어, UI에 표시하기 위해 RawImage 컴포넌트를 사용하는 경우
         //RawImage imageComponent = GetComponent<RawImage>();
-        AIImage.texture = image;    
+        //AIImage.texture = image;    
     }
 
 
@@ -148,6 +159,7 @@ public class AIAritclePost : MonoBehaviour
         Debug.Log($"Using Data - Field: {article.field}, cleande_Title: {article.cleaned_title}, Body: {article.cleaned_body}, Summary: {article.summary_50}");
         
     }
+    
     
     
 }
