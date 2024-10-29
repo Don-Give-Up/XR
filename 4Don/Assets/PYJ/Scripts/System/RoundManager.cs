@@ -30,7 +30,7 @@ public class RoundSystem : MonoBehaviour
 
     public int[,] round;
 
-    public Action<int> onDayChanged;
+    public Action<int> onDayChanged; 
     public Action<int> onWeekChanged;
 
     public bool isLoaded = false;

@@ -8,7 +8,8 @@ public class Article
     public string field;
     public string cleaned_title;
     public string cleaned_body;
-    public string summary;
+    public string summary_2_lines;
+    public string summary_50;
     public string image;
     public Texture2D texture;
 }
