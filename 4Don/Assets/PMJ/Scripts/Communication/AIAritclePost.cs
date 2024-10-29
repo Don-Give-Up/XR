@@ -6,46 +6,58 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// 년+날짜값 가지고 오기 + 1 >> 보낼 데이터
+/// 
+/// </summary>
 public class AIAritclePost : MonoBehaviour
 {
-    string postUrl = "https://5a03-221-163-19-142.ngrok-free.app/news"; // 실제 API URL로 변경
-
     public TMP_Text field;
     public TMP_Text title;
     public TMP_Text summary;
     public TMP_Text body;
     public RawImage AIImage;
-    void Start()
+
+    public string AritcleDay;
+    public void Start()
     {
-        StartCoroutine(PostAndFetchArticlesData());
+        StartCoroutine(Test());
     }
 
-    Texture2D ConvertBase64ToTexture(string base64Image)
+    private IEnumerator Test()
     {
-        // Base64 문자열을 byte 배열로 변환
-        byte[] imageBytes = System.Convert.FromBase64String(base64Image);
-
-        // Texture2D 생성 및 이미지 데이터 로드
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(imageBytes);
-
-        return texture;
+        yield return new WaitForSeconds(3f);
+        var urlData = GoogleSheetManager.Instance.UrldataGet("뉴스데이터");
+        
+        
+        if (string.IsNullOrEmpty(urlData.Server))
+        {
+            Debug.LogError("뉴스데이터 URL의 서버 주소가 비어있습니다.");
+            yield break;
+        }
+        else
+        {
+            Debug.Log("뉴스데이터 url 받아짐");
+        }
+        Debug.Log(urlData.Name);
+        Debug.Log(urlData.Server);
+        StartCoroutine(PostAndFetchArticlesData(urlData.Server));
     }
 
     // 데이터를 POST로 보내고 응답을 받아오는 코루틴
-    IEnumerator PostAndFetchArticlesData()
+    IEnumerator PostAndFetchArticlesData(string url)
     {
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, string>
         {
-            { "quarter", "199603" }
+            { "quarter", "19963" }
         };
 
         // 데이터를 JSON으로 직렬화
         string jsonRequestData = JsonConvert.SerializeObject(requestData);
 
         // POST 요청 생성
-        UnityWebRequest request = new UnityWebRequest(postUrl, "POST");
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
 
         // JSON 데이터를 바이트로 변환하여 업로드 핸들러에 설정
         byte[] jsonToSend = System.Text.Encoding.UTF8.GetBytes(jsonRequestData);
@@ -75,6 +87,17 @@ public class AIAritclePost : MonoBehaviour
             Debug.LogError("Error: " + request.error);
         }
     }
+    Texture2D ConvertBase64ToTexture(string base64Image)
+    {
+        // Base64 문자열을 byte 배열로 변환
+        byte[] imageBytes = System.Convert.FromBase64String(base64Image);
+
+        // Texture2D 생성 및 이미지 데이터 로드
+        Texture2D texture = new Texture2D(2, 2);
+        texture.LoadImage(imageBytes);
+
+        return texture;
+    }
 
     private void UseArticlesData(ArticlesData articlesData)
     {
@@ -86,8 +109,8 @@ public class AIAritclePost : MonoBehaviour
             Debug.Log("Field: " + article.field);
             Debug.Log("Title: " + article.cleaned_title);
             Debug.Log("Body: " + article.cleaned_body);
-            Debug.Log("Summary: " + article.summary);
-
+            Debug.Log("Summary: " + article.summary_2_lines);
+            Debug.Log("Summary_50: " + article.summary_50);
             // Base64 이미지 데이터를 Texture2D로 변환
             if (!string.IsNullOrEmpty(article.image))
             {
@@ -118,9 +141,8 @@ public class AIAritclePost : MonoBehaviour
         
         // 여기서 각 데이터를 개별적으로 사용할 수 있습니다.
         // 예: UI 업데이트, 로직 처리 등
-        Debug.Log($"Using Data - Field: {article.field}, cleande_Title: {article.cleaned_title}, Body: {article.cleaned_body}, Summary: {article.summary}");
+        Debug.Log($"Using Data - Field: {article.field}, cleande_Title: {article.cleaned_title}, Body: {article.cleaned_body}, Summary: {article.summary_50}");
         
-        UseArticleData(0,article);
     }
     
     

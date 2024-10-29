@@ -164,6 +164,7 @@ public class GoogleSheetManager : MonoBehaviour
 
     public Url UrldataGet(string name)
     {
+        Debug.Log(url[name]);
         return url[name];
     }
 }

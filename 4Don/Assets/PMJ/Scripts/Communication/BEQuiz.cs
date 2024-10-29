@@ -98,7 +98,7 @@ public class BEQuiz : MonoBehaviour
 
     public void QuizStart() // 퀴즈 먼저 읽어오기
     {
-
+       
         var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈데이터");
         
         if (string.IsNullOrEmpty(urlData.Server))
@@ -108,6 +108,7 @@ public class BEQuiz : MonoBehaviour
         }
 
         StartCoroutine(GetQuizDataFromUrl(urlData.Server));
+     
     }
     
     private IEnumerator GetQuizDataFromUrl(string url)
