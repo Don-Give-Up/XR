@@ -105454,7 +105454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4036ffd7829ce1347a0fba8b7cf929cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 392.889
+      value: 392.984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4036ffd7829ce1347a0fba8b7cf929cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -134893,6 +134893,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80ff01aa1b57adb43be00143d9d18459, type: 2}
+    - target: {fileID: -1206874426333947015, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80ff01aa1b57adb43be00143d9d18459, type: 2}
     - target: {fileID: 919132149155446097, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
       propertyPath: m_Name
       value: girl_Standard Walk
