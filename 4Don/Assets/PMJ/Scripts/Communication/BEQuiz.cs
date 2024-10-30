@@ -26,7 +26,6 @@ public class BEQuiz : MonoBehaviour
     public GameObject test;
     
     public Canvas oxCanvas;
-    
     public Button oButton;
     public Button xButton;
     
@@ -54,6 +53,10 @@ public class BEQuiz : MonoBehaviour
             
             Destroy(gameObject);
         }
+        foreach (var a in dotory)
+        {
+            a.SetActive(false); // dotory 초기화
+        }
     }
 
     private void QuizReset(int day)
@@ -64,7 +67,7 @@ public class BEQuiz : MonoBehaviour
        
     }
 
-    public async void AStart()
+    public void AStart()
     {
         if (!onlaborCheak)
         {
@@ -73,16 +76,18 @@ public class BEQuiz : MonoBehaviour
             oxCanvas.gameObject.SetActive(true);
             QuizStart();
             //ShowEasyQuiz();
-            sugoimage.SetActive(false);
             //일단 도토리 다 꺼
-            foreach (var a in dotory)
+            /*foreach (var a in dotory)
             {
                 a.SetActive(false);
             }
+            */
 
             Debug.Log("퀴즈 시작합니당당구리동동");
 
             // O 버튼과 X 버튼에 정답 체크 이벤트 연결
+            oButton.onClick.RemoveAllListeners(); // 혹시 모를 중복 방지
+            xButton.onClick.RemoveAllListeners();
             oButton.onClick.AddListener(() => OnAnswerSelected("O"));
             xButton.onClick.AddListener(() => OnAnswerSelected("X"));
             // 게임을 시작하는 코드들 
@@ -200,6 +205,8 @@ public class BEQuiz : MonoBehaviour
 
     public void OnAnswerSelected(string selectedAnswer)
     {
+        
+        
         //현재 어디이썽?
         if (usedQuiz.Count > 0)
         {
@@ -226,8 +233,6 @@ public class BEQuiz : MonoBehaviour
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
-
-                    correntAnswerCount = 0;
                     
                     Invoke("SetActiveFalse", 3f);
                     
@@ -255,6 +260,13 @@ public class BEQuiz : MonoBehaviour
     {
         sugoimage.SetActive(false);
         oxCanvas.gameObject.SetActive(false);
+        
+        correntAnswerCount = 0;
+        foreach (var a in dotory)
+        {
+            a.SetActive(false); // dotory 초기화
+        }
+        
     }
     
 }
