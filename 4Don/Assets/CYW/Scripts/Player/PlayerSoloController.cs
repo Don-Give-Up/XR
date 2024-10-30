@@ -8,6 +8,12 @@ public class PlayerSoloController : MonoBehaviour
     public Animator anim; // Animator 컴포넌트를 연결할 변수
     private float epsilon = 0.01f; // 아주 작은 값
 
+    
+    // 다 빠져야함 
+    public GameObject stock1;
+    public GameObject stock2;
+    public GameObject dialogue;
+
     void Update()
     {
         // 좌우 방향키 입력 받기
@@ -37,6 +43,21 @@ public class PlayerSoloController : MonoBehaviour
         else
         {
             anim.SetBool("IsWalk", false); // 입력이 없을 때 걷기 애니메이션 멈춤
+        }
+
+        //다 빠져야함 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            stock1.SetActive(true);
+            stock2.SetActive(false);
+            dialogue.SetActive(false);
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            stock1.SetActive(false);
+            stock2.SetActive(true);
+            dialogue.SetActive(false);
         }
     }
     
