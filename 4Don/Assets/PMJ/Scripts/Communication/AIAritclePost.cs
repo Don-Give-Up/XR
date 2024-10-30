@@ -13,12 +13,16 @@ using UnityEngine.UI;
 /// </summary>
 public class AIAritclePost : MonoBehaviour
 {
+
+    public News[] news;
+
+    public News1[] news1;
     //public TMP_Text field;
     public TMP_Text[] title;
     public TMP_Text[] summary;
 
     public TMP_Text[] cleaned_body;
-    public TMP_Text[] field;
+    //public TMP_Text[] field;
     public RawImage[] images;
     
     //public TMP_Text body;
@@ -114,17 +118,6 @@ public class AIAritclePost : MonoBehaviour
             Debug.LogError("Error: " + request.error);
         }
     }
-    Texture2D ConvertBase64ToTexture(string base64Image)
-    {
-        // Base64 문자열을 byte 배열로 변환
-        byte[] imageBytes = System.Convert.FromBase64String(base64Image);
-
-        // Texture2D 생성 및 이미지 데이터 로드
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(imageBytes);
-
-        return texture;
-    }
 
     private void UseArticlesData(ArticlesData articlesData)
     {
@@ -132,60 +125,8 @@ public class AIAritclePost : MonoBehaviour
         for (int i = 0; i < articlesData.articles.Count; ++i)
         {
             var article = articlesData.articles[i];
-            
-            /*Debug.Log("Field: " + article.field);
-            Debug.Log("Title: " + article.cleaned_title);
-            Debug.Log("Body: " + article.cleaned_body);
-            Debug.Log("Summary: " + article.summary_2_lines);
-            Debug.Log("Summary_50: " + article.summary_50);*/
-            // Base64 이미지 데이터를 Texture2D로 변환
-            if (!string.IsNullOrEmpty(article.image))
-            {
-                article.texture = ConvertBase64ToTexture(article.image);
-                Debug.Log("Image successfully converted.");
-            }
-            else
-            {
-                Debug.Log("No image found.");
-            }
-            
-            //값 저장
-            //fieldList.Add(article.field);
-            /*titleList.Add(article.cleaned_title);
-            imageList.Add(article.texture);*/
-            
-            //field[i].text = article.field;
-            title[i].text = article.cleaned_title;
-            summary[i].text = article.summary_50;
-
-            //cleaned_body[i].text = article.cleaned_body;
-            images[i].texture = article.texture;
-
-            // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
-            UseArticleData(i, article);
+            news[i].UseData(article);
+            news1[i].UseData(article);
         }
     }
-    
-    
-    void UseArticleImage(Texture2D image)
-    {
-        // 예를 들어, UI에 표시하기 위해 RawImage 컴포넌트를 사용하는 경우
-        //RawImage imageComponent = GetComponent<RawImage>();
-        //AIImage.texture = image;    
-    }
-
-
-    // article 데이터를 사용하는 예시 메서드
-    private void UseArticleData(int index, Article article)
-    {
-        UseArticleImage(article.texture);
-        
-        // 여기서 각 데이터를 개별적으로 사용할 수 있습니다.
-        // 예: UI 업데이트, 로직 처리 등
-        Debug.Log($"Using Data - Field: {article.field}, cleande_Title: {article.cleaned_title}, Body: {article.cleaned_body}, Summary: {article.summary_50}");
-        
-    }
-    
-    
-    
 }
