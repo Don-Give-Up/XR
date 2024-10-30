@@ -144766,6 +144766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: News
       objectReference: {fileID: 0}
+    - target: {fileID: 5087708364955108097, guid: 6dbffb0dcf635e148965f8e412bb39b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165539,9 +165543,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: '300
-
-'
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -180533,7 +180535,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178666719309072978, guid: 57f49e18d3c004a489a99b296f89cfa9, type: 3}
       propertyPath: m_Text
-      value: "\uBE75\n"
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1178666719309072978, guid: 57f49e18d3c004a489a99b296f89cfa9, type: 3}
       propertyPath: m_GlobalFontAsset
@@ -193061,8 +193065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ed823818f304443852dd4b38bff458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuButton: {fileID: 0}
-  menuButtonHandler: {fileID: 0}
+  menuButton: {fileID: 2124826163}
+  menuButtonHandler: {fileID: 2124826166}
   objectButton1: {fileID: 919716247}
   objectButton2: {fileID: 1059149922}
   objectButton3: {fileID: 114576858}
