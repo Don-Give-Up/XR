@@ -15,6 +15,11 @@ public class AIAritclePost : MonoBehaviour
     //public TMP_Text field;
     public TMP_Text[] title;
     public TMP_Text[] summary;
+
+    public TMP_Text[] cleaned_body;
+    public TMP_Text[] field;
+    public Texture2D[] images;
+    
     //public TMP_Text body;
     // public RawImage AIImage;
     
@@ -128,12 +133,15 @@ public class AIAritclePost : MonoBehaviour
             
             //값 저장
             //fieldList.Add(article.field);
-            titleList.Add(article.cleaned_title);
-            imageList.Add(article.texture);
+            /*titleList.Add(article.cleaned_title);
+            imageList.Add(article.texture);*/
             
-            //field.text = article.field;
+            field[i].text = article.field;
             title[i].text = article.cleaned_title;
             summary[i].text = article.summary_50;
+
+            cleaned_body[i].text = article.cleaned_body;
+            images[i] = article.texture;
 
             // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
             UseArticleData(i, article);
