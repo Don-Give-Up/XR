@@ -17,10 +17,14 @@ public class News : MonoBehaviour
 
     public void UseData(Article article)
     {
+        
         title.text = article.cleaned_title;
         //summary.text = article.summary_50;
-
         cleaned_body.text = article.cleaned_body;
+        if (article.image == null)
+        {
+            return;
+        }
         images.texture = article.image;
 
     }
