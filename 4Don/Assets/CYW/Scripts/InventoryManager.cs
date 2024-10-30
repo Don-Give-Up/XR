@@ -50,6 +50,8 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        gameObject.SetActive(false);
     }
 
 
