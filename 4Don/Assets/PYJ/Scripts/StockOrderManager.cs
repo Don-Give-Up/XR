@@ -8,28 +8,38 @@ public class StockOrderManager : MonoBehaviour
     public TMP_Text canToBuyText ;
     public TMP_Text wantText;
     public TMP_Text warningText;
+
+    public GameObject stockCanvas;
+    
     private int wantToBuy = 0;
     private double stockPrice = 0;
 
     private int canToBuy; 
-    public int currentStock = 500; // 주식 가격이랑 연동
-    public double personalMoney = 5500;
-    private bool isOrdered = false; 
+    public double currentStock; // 주식 가격이랑 연동
+    public double personalMoney;
+    private bool isOrdered = false;
     
     private void Awake()
     {
-        // 
+        RoundSystem.Instance.onDayChanged += CurrentStock;
+    }
+
+    private void CurrentStock(int day)
+    {
+        currentStock = GoogleSheetManager.Instance.DailyDataGet(day).StockPrice;
         Set();
     }
+
 
     private void Set()
     {
         wantText.text = "";
         warningText.text = "";
-        currentStock = 500; // 매일 바뀜
-        personalMoney = 5500; // 거래가 발생하면 바뀜
+        personalMoney = PersonalFinancialManager.Instance.currentMoney; // 거래가 발생하면 바뀜
+        Debug.Log($"@@@:{personalMoney}");
         isOrdered = false; 
         canToBuy = (int)(personalMoney / currentStock); // 내림 값으로 얼마나 살 수 있는 지 게산 
+        Debug.Log($"@@@: {canToBuy}");
         CanBuyText(canToBuy, currentStock); // 거래 가능 수량 업데이트 
     }
 
@@ -88,8 +98,10 @@ public class StockOrderManager : MonoBehaviour
     {
         if (isOrdered)
         {
+            PersonalFinancialManager.Instance.OutputMoney(stockPrice);
             Debug.Log("거래가 완료되었습니다.");
             Set();
+            stockCanvas.SetActive(false);
         }
         else
         {

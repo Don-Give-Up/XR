@@ -40,15 +40,7 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
         GetDialogues();
         GetSeletDialogues();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Dialogue(talkNum);
-        }
-    }
-
+    
     // 필요한 대화 불러오기
     private Dictionary<int, Dialogue> GetDialogues()
     {

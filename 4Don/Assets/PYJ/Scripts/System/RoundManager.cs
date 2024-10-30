@@ -78,7 +78,6 @@ public class RoundSystem : MonoBehaviour
         onDayChanged?.Invoke(currentDay);
         
         StartCoroutine(DayText(currentDay)); 
-        StartCoroutine(WeekText(currentWeek));
         
         StartCoroutine(Day());
         // 처음 시작할 떄 
@@ -87,6 +86,7 @@ public class RoundSystem : MonoBehaviour
             onWeekChanged?.Invoke(currentWeek + yearOffset);
             Week();
         } 
+        StartCoroutine(WeekText(currentWeek));
         
     }
 
@@ -95,7 +95,7 @@ public class RoundSystem : MonoBehaviour
         Debug.Log(" 하루 계산기 돌아가용");
         
         //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
-        yield return new WaitForSecondsRealtime(30f); // ㅌㅔ스트 코드
+        yield return new WaitForSecondsRealtime(210f); // ㅌㅔ스트 코드
         currentDay++;
         
         Debug.Log($"Day: {currentDay}");
