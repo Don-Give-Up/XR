@@ -5,6 +5,7 @@ public class PlayerSoloController : MonoBehaviour
 {
     
     public float moveSpeed = 5f; // 이동 속도
+    public float rotateSpeed = 2.5f; // 이동 속도
     public Animator anim; // Animator 컴포넌트를 연결할 변수
     private float epsilon = 0.01f; // 아주 작은 값
 
@@ -20,7 +21,7 @@ public class PlayerSoloController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
 
         // 방향 전환
-        transform.Rotate(0, moveHorizontal * moveSpeed * Time.deltaTime * 100f, 0);
+        transform.Rotate(0, moveHorizontal * rotateSpeed * Time.deltaTime * 100f, 0);
 
         // 앞뒤 이동 입력 받기
         float moveVertical = Input.GetAxis("Vertical");

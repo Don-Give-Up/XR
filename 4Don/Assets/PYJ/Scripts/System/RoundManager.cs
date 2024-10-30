@@ -38,9 +38,9 @@ public class RoundSystem : MonoBehaviour
     public GameObject dayObject; 
     public TMP_Text dayText;
     public GameObject weekObject;
-    public TMP_Text weekText; 
-    
-    
+    public TMP_Text weekText;
+
+    private bool nextDay;
     public static RoundSystem Instance;
 
     private void Awake()
@@ -62,6 +62,14 @@ public class RoundSystem : MonoBehaviour
         
         
         StartCoroutine(Process());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            nextDay = true;
+        }
     }
 
     private IEnumerator Process()
@@ -95,7 +103,9 @@ public class RoundSystem : MonoBehaviour
         Debug.Log(" 하루 계산기 돌아가용");
         
         //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
-        yield return new WaitForSecondsRealtime(180f); // ㅌㅔ스트 코드
+        //yield return new WaitForSecondsRealtime(120f); // ㅌㅔ스트 코드
+        yield return new WaitUntil(() => nextDay);
+        nextDay = false;
         currentDay++;
         
         Debug.Log($"Day: {currentDay}");
