@@ -15,18 +15,24 @@ public class MenuButtonController : MonoBehaviour
     public GameObject object2; // 두 번째 오브젝트
     public GameObject object3; // 세 번째 오브젝트
 
+    public GameObject news1st;
+    public GameObject news2nd;
+
     private void Start()
     {
-        
         // 초기 상태에서 두 버튼을 비활성화
         objectButton1.gameObject.SetActive(false);
         objectButton2.gameObject.SetActive(false);
         objectButton3.gameObject.SetActive(false);
 
         // 가방 버튼 클릭 이벤트 등록
-        
         objectButton1.onClick.AddListener(() => UseObject(object1));
-        objectButton2.onClick.AddListener(() => UseObject(object2));
+        objectButton2.onClick.AddListener(() =>
+        {
+            news1st.SetActive(true);
+            news2nd.SetActive(false);
+            UseObject(object2);
+        });
         objectButton3.onClick.AddListener(()=> UseObject(object3));
     }
 
@@ -40,7 +46,6 @@ public class MenuButtonController : MonoBehaviour
 
     private void UseObject(GameObject obj)
     {
-        
         menuButtonHandler.ButtonsOn(false);
         
         // 오브젝트 사용 로직을 여기서 구현

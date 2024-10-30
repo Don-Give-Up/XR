@@ -17,11 +17,13 @@ public class SmartConsumeCheck : MonoBehaviour
     public Toggle toggle10;
 
     public TMP_Text messageText; // 메시지를 표시할 텍스트
+    public GameObject textBG;
 
     private void Start()
     {
         // 초기 상태에서 메시지 텍스트를 비활성화
         messageText.gameObject.SetActive(false);
+        textBG.gameObject.SetActive(false);
 
         // 토글 클릭 이벤트 등록
         toggle1.onValueChanged.AddListener((isOn) => DisplayMessage(toggle1, isOn));
@@ -42,6 +44,7 @@ public class SmartConsumeCheck : MonoBehaviour
         {
             // 메시지 텍스트를 활성화하고 내용 설정
             messageText.gameObject.SetActive(true);
+            textBG.gameObject.SetActive(true);
             messageText.text = "계획적 소비입니다.";
             
             // 코루틴 호출
@@ -56,6 +59,7 @@ public class SmartConsumeCheck : MonoBehaviour
         
         // 메시지 텍스트 비활성화
         messageText.gameObject.SetActive(false);
+        textBG.gameObject.SetActive(false);
     }
     
 }
