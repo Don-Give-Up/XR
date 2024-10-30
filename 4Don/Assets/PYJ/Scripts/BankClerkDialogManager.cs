@@ -57,7 +57,6 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
     // 필요한 대화 불러오기
     private Dictionary<int, SeletDialogue> GetSeletDialogues()
     {
-        // 키값 1개에 다 들어가고 있어서 에러 발생
         usedselect.seletDialogues = DataBaseManager.instance.GetSeletDialogues((int)myDialogNum.x, (int)myDialogNum.y); // (int)dialogue.line.x, (int)dialogue.line.y
         return usedselect.seletDialogues;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class AIAritclePost : MonoBehaviour
 
     public TMP_Text[] cleaned_body;
     public TMP_Text[] field;
-    public Texture2D[] images;
+    public RawImage[] images;
     
     //public TMP_Text body;
     // public RawImage AIImage;
@@ -27,12 +28,29 @@ public class AIAritclePost : MonoBehaviour
     private List<string> titleList = new List<string>();
     private List<Texture2D> imageList = new List<Texture2D>();
 
-    public string AritcleDay;
-    public void Start()
+    private int articleYear; //  몫
+    private int articleDay; //나누기
+    private int offset = 1996;
+    
+    public string aritcleDayText;
+
+    private void Awake()
     {
-        StartCoroutine(Test());
+        RoundSystem.Instance.onDayChanged += AiPostDataDay;
     }
 
+    private void AiPostDataDay(int days) // 바뀌는 날마다 데이터 받아올거임
+    {
+        Debug.Log("날실행!!");
+        articleYear = (days / 5) + offset;
+        articleDay = (days % 5) + 1;
+
+        aritcleDayText = articleYear.ToString() + articleDay.ToString();
+        
+        Debug.Log($"{aritcleDayText}");
+        StartCoroutine(Test());
+    }
+    
     private IEnumerator Test()
     {
         yield return new WaitForSeconds(3f);
@@ -59,7 +77,7 @@ public class AIAritclePost : MonoBehaviour
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, string>
         {
-            { "quarter", "19964" }
+            { "quarter", aritcleDayText }
         };
 
         // 데이터를 JSON으로 직렬화
@@ -136,12 +154,12 @@ public class AIAritclePost : MonoBehaviour
             /*titleList.Add(article.cleaned_title);
             imageList.Add(article.texture);*/
             
-            field[i].text = article.field;
+            //field[i].text = article.field;
             title[i].text = article.cleaned_title;
             summary[i].text = article.summary_50;
 
-            cleaned_body[i].text = article.cleaned_body;
-            images[i] = article.texture;
+            //cleaned_body[i].text = article.cleaned_body;
+            images[i].texture = article.texture;
 
             // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
             UseArticleData(i, article);
