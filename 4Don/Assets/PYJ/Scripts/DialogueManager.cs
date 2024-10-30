@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour
             int dialogueResumNum = resumNum[i];
             Button obj = Instantiate(choiceButtonPrefabs);
             obj.transform.SetParent(seletDialogObject.transform, false);// 로컬 좌표제를 유지하도록 설정 
-            obj.onClick.AddListener(() => Events.instance.EventOccure(eventTypes[i]));
+            //obj.onClick.AddListener(() => Events.instance.EventOccure(eventTypes[i]));
             obj.onClick.AddListener(()=>BankClerkDialogManager.instance.Dialogue(dialogueResumNum));
             obj.onClick.AddListener(() => EndSelectDialog());
             TMP_Text objText = obj.GetComponentInChildren<TMP_Text>();
