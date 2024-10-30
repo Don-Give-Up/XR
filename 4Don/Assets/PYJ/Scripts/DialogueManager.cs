@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
         dialogText.text = talkContent;
     }
 
-    public void SeletDialogText(int sameEventNum, string[] choiceContents, int[] resumNum)// 나중에 다른 타이밍에 다른 매개변수로 실행되게 
+    public void SeletDialogText(int sameEventNum, string[] choiceContents, int[] resumNum, EventType?[] eventTypes)// 나중에 다른 타이밍에 다른 매개변수로 실행되게 
     {
         seletDialogObject.SetActive(true);
         Debug.Log("옮길번호: " + string.Join(", ", resumNum));
@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
             int dialogueResumNum = resumNum[i];
             Button obj = Instantiate(choiceButtonPrefabs);
             obj.transform.SetParent(seletDialogObject.transform, false);// 로컬 좌표제를 유지하도록 설정 
+            obj.onClick.AddListener(() => Events.instance.EventOccure(eventTypes[i]));
             obj.onClick.AddListener(()=>BankClerkDialogManager.instance.Dialogue(dialogueResumNum));
             obj.onClick.AddListener(() => EndSelectDialog());
             TMP_Text objText = obj.GetComponentInChildren<TMP_Text>();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,8 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
     private int eventNum; 
     
     private List<string> selectedChoice = new List<string>();
-    private List<int> selectedChoiceNum = new List<int>(); 
+    private List<int> selectedChoiceNum = new List<int>();
+    private List<EventType?> selectedEventType = new List<EventType?>();
     
     public static BankClerkDialogManager instance; 
     private void Awake()
@@ -79,6 +81,7 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
 
         selectedChoice = new List<string>();
         selectedChoiceNum = new List<int>();
+        selectedEventType = new List<EventType?>();
        
         for (int i = 1; i <= usedselect.seletDialogues.Count; i++) // key 값을 1부터 넣음
         {
@@ -86,11 +89,28 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
             if (usedselect.seletDialogues[i].eventNum == eventNum)
             {
                 sameEventNum++;
-                selectedChoice.Add(usedselect.seletDialogues[i].choiceContent); //선택지에 뜨울 배열 추가
+                selectedChoice.Add(usedselect.seletDialogues[i].choiceContent); //선택지에 띄울 배열 추가
                 selectedChoiceNum.Add(usedselect.seletDialogues[i].resumeNum);
+                selectedEventType.Add(usedselect.seletDialogues[i].eventType); // null 이 들어갈 수도 있음
+                
             }
         }
-        DialogueManager.instance.SeletDialogText(sameEventNum, selectedChoice.ToArray(), selectedChoiceNum.ToArray());
+        DialogueManager.instance.SeletDialogText(sameEventNum, selectedChoice.ToArray(), selectedChoiceNum.ToArray(), selectedEventType.ToArray());
+    }
+    private void EventOccurs(int dialogueResumNum, EventType eventType) 
+    {
+        switch (eventType)
+        {
+            case EventType.none: break;
+            case EventType.deposit : break;
+            case EventType.withdrawal: break;
+            case EventType.buyStock: 
+                // 주식을 사는 창 뜸 
+                break;
+            case EventType.sellStock: break;
+            case EventType.purchase: break;
+            case EventType.sale: break;
+        }
     }
 
     public void TalkNum() // 대화가 시작된 후, 버튼 클릭받으면 대사 뜨고 숫자 한게 증가시켜 놓기
@@ -127,7 +147,11 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
         // event -> dialoge = MoveDialoge 로 해도 될 듯
         Dialogue(talkNum); // 변경된 번호로 실행 
     }
-    
-    // 선택지에서 어떠한 선택지 고르면 그 선택지의 resumNum을 talkNum 으로 받는다. 
+
+
+    // 선택 대화창이 실행되었을때 어떤 버튼을 눌러 실행하면
+    // 다음 대화창과 함꼐 어떤 선택이 실행되었는지 판단하여
+    // 해당 대화창이 실행되어야하고 
+    // 확인을 눌렀을 때 그 대화창이 꺼져야한다. 
  
 }

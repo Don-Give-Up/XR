@@ -9,7 +9,9 @@ public class SeletDialogue
     [Tooltip("선택지")] public string choiceContent;
     
     [Tooltip("NPC 대화 시작 라인")] public int resumeNum;
-    
+
+    [Tooltip("이벤트")] public EventType? eventType;
+
 }
 
 [System.Serializable]

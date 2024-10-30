@@ -68,7 +68,7 @@ public class DialogParser : MonoBehaviour
         {
             string[] row = data[i].Split(new char[] { ',' });
 
-            if (row.Length < 4 || string.IsNullOrWhiteSpace(row[0]))
+            if (row.Length < 5 || string.IsNullOrWhiteSpace(row[0]))
                 continue;
 
             int key = Int32.Parse(row[0]);
@@ -76,7 +76,8 @@ public class DialogParser : MonoBehaviour
             {
                 eventNum = Int32.Parse(row[1]),
                 choiceContent = row[2],
-                resumeNum = Int32.Parse(row[3])
+                resumeNum = Int32.Parse(row[3]),
+                eventType = ParseEventType(row[4]) // eventType = ParseEventType(row[4]) ?? EventType.defaultValue; // ?? 왼쪽 값이 널이면 오른쪽 값이다. 
             };
 
             // 중복 체크
@@ -88,6 +89,16 @@ public class DialogParser : MonoBehaviour
         }
 
         return seletDialoguesDic;
+    }
+
+    private EventType? ParseEventType(string eventType)
+    {
+        if (string.IsNullOrEmpty(eventType) || eventType == "-1")
+        {
+            return null;
+        }
+
+        return (EventType)Enum.Parse(typeof(EventType), eventType);
     }
 }
 
