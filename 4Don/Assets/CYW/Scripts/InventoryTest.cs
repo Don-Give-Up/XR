@@ -74,7 +74,6 @@ public class InventoryTest : MonoBehaviour
                         inventoryManager.AddItem(ItemType.Bread10);
                         Destroy(hit.transform.gameObject);
                     }
-
                 }
                 else if (hit.collider.CompareTag("ATM"))
                 {

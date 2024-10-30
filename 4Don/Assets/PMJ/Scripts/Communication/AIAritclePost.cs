@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,46 +7,88 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// 년+날짜값 가지고 오기 + 1 >> 보낼 데이터
+/// 
+/// </summary>
 public class AIAritclePost : MonoBehaviour
 {
-    string postUrl = "https://5a03-221-163-19-142.ngrok-free.app/news"; // 실제 API URL로 변경
 
-    public TMP_Text field;
-    public TMP_Text title;
-    public TMP_Text summary;
-    public TMP_Text body;
-    public RawImage AIImage;
-    void Start()
+    public News[] news;
+
+    public News1[] news1;
+    //public TMP_Text field;
+    public TMP_Text[] title;
+    public TMP_Text[] summary;
+
+    public TMP_Text[] cleaned_body;
+    //public TMP_Text[] field;
+    public RawImage[] images;
+    
+    //public TMP_Text body;
+    // public RawImage AIImage;
+    
+    private List<string> fieldList = new List<string>();
+    private List<string> titleList = new List<string>();
+    private List<Texture2D> imageList = new List<Texture2D>();
+
+    private int articleYear; //  몫
+    private int articleDay; //나누기
+    private int offset = 1996;
+    
+    public string aritcleDayText;
+
+    private void Awake()
     {
-        StartCoroutine(PostAndFetchArticlesData());
+        RoundSystem.Instance.onDayChanged += AiPostDataDay;
     }
 
-    Texture2D ConvertBase64ToTexture(string base64Image)
+    private void AiPostDataDay(int days) // 바뀌는 날마다 데이터 받아올거임
     {
-        // Base64 문자열을 byte 배열로 변환
-        byte[] imageBytes = System.Convert.FromBase64String(base64Image);
+        Debug.Log("날실행!!");
+        articleYear = (days / 5) + offset;
+        articleDay = (days % 5) + 1;
 
-        // Texture2D 생성 및 이미지 데이터 로드
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(imageBytes);
-
-        return texture;
+        aritcleDayText = articleYear.ToString() + articleDay.ToString();
+        
+        Debug.Log($"{aritcleDayText}");
+        StartCoroutine(Test());
+    }
+    
+    private IEnumerator Test()
+    {
+        yield return new WaitForSeconds(3f);
+        var urlData = GoogleSheetManager.Instance.UrldataGet("뉴스데이터");
+        
+        
+        if (string.IsNullOrEmpty(urlData.Server))
+        {
+            Debug.LogError("뉴스데이터 URL의 서버 주소가 비어있습니다.");
+            yield break;
+        }
+        else
+        {
+            Debug.Log("뉴스데이터 url 받아짐");
+        }
+        Debug.Log(urlData.Name);
+        Debug.Log(urlData.Server);
+        StartCoroutine(PostAndFetchArticlesData(urlData.Server));
     }
 
     // 데이터를 POST로 보내고 응답을 받아오는 코루틴
-    IEnumerator PostAndFetchArticlesData()
+    IEnumerator PostAndFetchArticlesData(string url)
     {
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, string>
         {
-            { "quarter", "199603" }
+            { "quarter", aritcleDayText }
         };
 
         // 데이터를 JSON으로 직렬화
         string jsonRequestData = JsonConvert.SerializeObject(requestData);
 
         // POST 요청 생성
-        UnityWebRequest request = new UnityWebRequest(postUrl, "POST");
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
 
         // JSON 데이터를 바이트로 변환하여 업로드 핸들러에 설정
         byte[] jsonToSend = System.Text.Encoding.UTF8.GetBytes(jsonRequestData);
@@ -82,46 +125,8 @@ public class AIAritclePost : MonoBehaviour
         for (int i = 0; i < articlesData.articles.Count; ++i)
         {
             var article = articlesData.articles[i];
-            
-            Debug.Log("Field: " + article.field);
-            Debug.Log("Title: " + article.cleaned_title);
-            Debug.Log("Body: " + article.cleaned_body);
-            Debug.Log("Summary: " + article.summary);
-
-            // Base64 이미지 데이터를 Texture2D로 변환
-            if (!string.IsNullOrEmpty(article.image))
-            {
-                article.texture = ConvertBase64ToTexture(article.image);
-                Debug.Log("Image successfully converted.");
-            }
-            else
-            {
-                Debug.Log("No image found.");
-            }
-
-            // 필요 시 데이터를 UI에 표시하거나 다른 로직에 사용
-            UseArticleData(i, article);
+            news[i].UseData(article);
+            news1[i].UseData(article);
         }
     }
-    void UseArticleImage(Texture2D image)
-    {
-        // 예를 들어, UI에 표시하기 위해 RawImage 컴포넌트를 사용하는 경우
-        //RawImage imageComponent = GetComponent<RawImage>();
-        AIImage.texture = image;    
-    }
-
-
-    // article 데이터를 사용하는 예시 메서드
-    private void UseArticleData(int index, Article article)
-    {
-        UseArticleImage(article.texture);
-        
-        // 여기서 각 데이터를 개별적으로 사용할 수 있습니다.
-        // 예: UI 업데이트, 로직 처리 등
-        Debug.Log($"Using Data - Field: {article.field}, cleande_Title: {article.cleaned_title}, Body: {article.cleaned_body}, Summary: {article.summary}");
-        
-        UseArticleData(0,article);
-    }
-    
-    
 }

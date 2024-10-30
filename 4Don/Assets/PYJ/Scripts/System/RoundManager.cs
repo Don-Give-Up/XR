@@ -30,7 +30,7 @@ public class RoundSystem : MonoBehaviour
 
     public int[,] round;
 
-    public Action<int> onDayChanged;
+    public Action<int> onDayChanged; 
     public Action<int> onWeekChanged;
 
     public bool isLoaded = false;
@@ -75,16 +75,18 @@ public class RoundSystem : MonoBehaviour
         // 줘야하는 값의 형태 구조체 만들고 키 값으로 사용하는 딕셔너리 만들면 될 듯
         //round[currentWeek, currentDay] = 10;
         
-        // 처음 시작할 떄 
-        if (currentDay % 5 == 0)
-        {
-            Week();
-        } 
+        onDayChanged?.Invoke(currentDay);
         
         StartCoroutine(DayText(currentDay)); 
         StartCoroutine(WeekText(currentWeek));
         
         StartCoroutine(Day());
+        // 처음 시작할 떄 
+        if (currentDay % 5 == 0)
+        {
+            onWeekChanged?.Invoke(currentWeek + yearOffset);
+            Week();
+        } 
         
     }
 
@@ -95,7 +97,6 @@ public class RoundSystem : MonoBehaviour
         //yield return new WaitForSecondsRealtime(oneDay); // 실제론 5분 
         yield return new WaitForSecondsRealtime(30f); // ㅌㅔ스트 코드
         currentDay++;
-        onDayChanged?.Invoke(currentDay);
         
         Debug.Log($"Day: {currentDay}");
 
@@ -134,7 +135,7 @@ public class RoundSystem : MonoBehaviour
         dayObject.SetActive(true);
         this.dayText.text = dayText;
         
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(4f);
 
         dayObject.SetActive(false);
         
@@ -144,8 +145,6 @@ public class RoundSystem : MonoBehaviour
     { 
         Debug.Log("주 계산기 돌아가용");
         currentWeek++;
-        onWeekChanged?.Invoke(currentWeek + yearOffset);
-        
         Debug.Log($"Week: {currentWeek}"); // 왜 currentWeek == 0 일떄 실행이 안 돼지?
         // 분석 리포트도 제공해야 함 그게 끝날 때까지 잡고 있어야 할 듯 한디
     }
@@ -157,7 +156,7 @@ public class RoundSystem : MonoBehaviour
         weekObject.SetActive(true);
         this.weekText.text = weekText;
         
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(4f);
 
         weekObject.SetActive(false);
     }

@@ -48,7 +48,7 @@ public class SalaryManager : MonoBehaviour
 
     private void OnSalaryChanged(int week)
     {
-        year = week-1;
+        year = week;
         
         Debug.Log("월급 줄게용");
 

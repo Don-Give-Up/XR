@@ -10,19 +10,21 @@ public class HungryBar : MonoBehaviour
 
 
    public Image hungryMask;
-   public float decreaseRate = 0.1f; // 1분에 0.1만큼 줄어듦
+   public float decreaseRate = 0.2f; // 1분에 0.1만큼 줄어듦
    private float decreaseTimer;
 
    public PlayerSoloController playerSoloController;
 
    public float minMoveSpeed = 1f; // fillAmount가 0일 때
-   public float midMoveSpeed = 3f; // fillAmount가 0.5일 때
    public float maxMoveSpeed = 5f; // fillAmount가 1일 때
+   private float speedRange; 
 
    void Start()
    {
-      hungryMask.fillAmount = 0.5f; // 초기값을 1로 설정
-      decreaseTimer = 30f; // 30초
+      hungryMask.fillAmount = 0.6f; // 초기값을 1로 설정
+      decreaseTimer = 60f; // 30초
+      speedRange = maxMoveSpeed - minMoveSpeed;
+      
       UpdateMoveSpeed();
    }
 
@@ -32,10 +34,8 @@ public class HungryBar : MonoBehaviour
       if (decreaseTimer <= 0)
       {
          DecreaseHungry();
-         decreaseTimer = 30f; // 타이머 리셋
+         decreaseTimer = 60f; // 타이머 리셋
       }
-
-      UpdateMoveSpeed(); // moveSpeed 업데이트
    }
 
    public void EatBread(int level)
@@ -64,30 +64,41 @@ public class HungryBar : MonoBehaviour
 
    private void DecreaseHungry()
    {
+      
       if (hungryMask.fillAmount > 0) // 0 이하로 줄어들지 않도록 체크
       {
          hungryMask.fillAmount = Mathf.Clamp(hungryMask.fillAmount - decreaseRate, 0, 1);
       }
+
+      UpdateMoveSpeed(); // moveSpeed 업데이트
    }
 
    private void UpdateMoveSpeed()
    {
       float fillAmount = hungryMask.fillAmount;
-
-      // fillAmount에 따른 moveSpeed 계산
-      if (fillAmount == 0)
-      {
-         playerSoloController.moveSpeed = minMoveSpeed;
-      }
-      else if (fillAmount == 0.5f)
-      {
-         playerSoloController.moveSpeed = midMoveSpeed;
-      }
-      else if (fillAmount == 1)
-      {
-         playerSoloController.moveSpeed = maxMoveSpeed;
-      }
-   
-
+      float currentSpeed = minMoveSpeed + speedRange * fillAmount;
+      playerSoloController.moveSpeed = currentSpeed;
    }
+   
+   /*1   5
+
+4 (0%~100%)
+
+
+0%
+1
+1 + 4 * 0.0 = 1
+
+50%
+3
+1 + 4 * 0.5 = 3
+
+100%
+5
+1 + 4 * 1.0 = 5
+
+최소 속도 + 속도 범위 * % = 현재 속도
+minSpeed + speedRange * ratio = currentSpeed*/
+   
+   
 }

@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -15518,6 +15519,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3014267282466667556, guid: 0d3cefde90e512a449c074ca2a5ad464, type: 3}
   m_PrefabInstance: {fileID: 135994261}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &136794770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 250.27063
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 45.983414
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 358.05716
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0736e528377f9ce4882d40e839797509, type: 3}
+      propertyPath: m_Name
+      value: girl_origin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0736e528377f9ce4882d40e839797509, type: 3}
 --- !u!1001 &136827129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105454,7 +105512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4036ffd7829ce1347a0fba8b7cf929cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 392.889
+      value: 392.984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4036ffd7829ce1347a0fba8b7cf929cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -134893,6 +134951,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80ff01aa1b57adb43be00143d9d18459, type: 2}
+    - target: {fileID: -1206874426333947015, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80ff01aa1b57adb43be00143d9d18459, type: 2}
     - target: {fileID: 919132149155446097, guid: 90d5fabc5894df543a70c4d45debc3cf, type: 3}
       propertyPath: m_Name
       value: girl_Standard Walk
@@ -250621,3 +250687,4 @@ SceneRoots:
   - {fileID: 1012455690}
   - {fileID: 2022777132}
   - {fileID: 1189492487}
+  - {fileID: 136794770}
