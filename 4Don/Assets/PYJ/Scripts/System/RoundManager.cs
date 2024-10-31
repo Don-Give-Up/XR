@@ -161,7 +161,7 @@ public class RoundSystem : MonoBehaviour
     
     private IEnumerator WeekText(int currenWeek)
     {
-        string weekText = $"{currentWeek+yearOffset}년";
+        string weekText = $"{currentWeek+1}주차";
         
         weekObject.SetActive(true);
         this.weekText.text = weekText;
