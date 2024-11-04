@@ -191866,6 +191866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  rotateSpeed: 2.5
   anim: {fileID: 945247825}
   stock1: {fileID: 985130785}
   stock2: {fileID: 885601971}
@@ -266861,27 +266862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &4149952688466218959
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8501899971255460025}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.47077805, y: 0.62240183, z: 0.47077805}
-  m_Center: {x: 0, y: 0.31120092, z: 0}
 --- !u!65 &4149952689493533284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -267652,7 +267632,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -267959,7 +267939,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -267981,7 +267961,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -272691,8 +272671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BEQuizdata: []
-  TextquizNum: {fileID: 7761370147394061502}
-  Textcategory: {fileID: 8331127837484033613}
   Textquiz: {fileID: 5425765836253594869}
   Textlevel: {fileID: 0}
   sugoimage: {fileID: 5109993710571607841}
@@ -273289,7 +273267,6 @@ GameObject:
   - component: {fileID: 9130767139087956483}
   - component: {fileID: 5267201396019213734}
   - component: {fileID: 7997316012208439660}
-  - component: {fileID: 4149952688466218959}
   m_Layer: 0
   m_Name: P_PROP_cupcake_holder_city
   m_TagString: Untagged
