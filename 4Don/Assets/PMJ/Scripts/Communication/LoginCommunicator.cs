@@ -27,11 +27,11 @@ public class LoginCommunicator : MonoBehaviour
             Debug.Log("로그인 URL 받아짐");
         }
 
-        LoginRequest reqInfo = loginManager.GetLoginData();  // 로그인 데이터를 수집한 후
+        LoginData reqInfo = loginManager.GetLogin();  // 로그인 데이터를 수집한 후
         StartCoroutine(PostLoginRequest(urlData.Server, reqInfo));
     }
 
-    private IEnumerator PostLoginRequest(string uri, LoginRequest reqInfo)
+    private IEnumerator PostLoginRequest(string uri, LoginData reqInfo)
     {
         // LoginManager를 JsonConvert를 사용해 JSON으로 변환
         var jsonData = JsonConvert.SerializeObject(reqInfo);
@@ -50,8 +50,8 @@ public class LoginCommunicator : MonoBehaviour
             
             // request.downloadHandler.text -> (Deserialize) -> LoginResponse
             string jsonResponse = request.downloadHandler.text;
-            LoginResponse rep = JsonConvert.DeserializeObject<LoginResponse>(jsonResponse);
-            Debug.Log(rep.memberId);
+            LoginData rep = JsonConvert.DeserializeObject<LoginData>(jsonResponse);
+            Debug.Log(rep);
         }
         else
         {

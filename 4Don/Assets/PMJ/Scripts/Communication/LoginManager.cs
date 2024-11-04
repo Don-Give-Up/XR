@@ -16,7 +16,7 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField gradeField;
     public TMP_InputField classField;
     
-    public LoginRequest GetLoginData()
+    public LoginRequest GetSignUp()
     {
         LoginRequest req = new LoginRequest()
         {
@@ -32,6 +32,18 @@ public class LoginManager : MonoBehaviour
         };
         return req;
     }
+    
+    public LoginData GetLogin()
+    {
+        LoginData req = new LoginData()
+        {
+            memberEmail = emailField.text,
+            memberPassword = passwordField.text,
+           
+        };
+        return req;
+    }
+    
 }
 
 [System.Serializable]
@@ -62,4 +74,12 @@ public class LoginRequest
     public int memberGrade;
     public int memberClass;
 }
+
+[System.Serializable]
+public class LoginData
+{
+    public string memberEmail;
+    public string memberPassword;
+}
+
 
