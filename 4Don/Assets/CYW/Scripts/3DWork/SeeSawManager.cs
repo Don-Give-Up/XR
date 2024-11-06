@@ -6,6 +6,10 @@ public class SeeSawManager : MonoBehaviour
     // x의 로테이션은 -12와 12사이에서만 기울여야 함
     // O 와 X에 시소가 닿는 걸 인식하고 상태를 체크해야 함
     
+    // 정답 입력 들어왔을 때 퀴즈 해설 띄우기
+    // 채팅창, 문제 띄우는 UI,방 모양으로, 카메라 수정 (3인칭으로)
+    // 앞벽에 문제를 띄워야 되는데...
+    
     
     public Transform leftSide;  // 왼쪽 지지대
     public Transform rightSide; // 오른쪽 지지대
