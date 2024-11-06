@@ -16,8 +16,8 @@ public class BEQuiz : MonoBehaviour
 {
     public QuizData[] BEQuizdata;
 
-    public TMP_Text TextquizNum;
-    public TMP_Text Textcategory;
+    //public TMP_Text TextquizNum;
+    //public TMP_Text Textcategory;
     public TMP_Text Textquiz;
     public TMP_Text Textlevel;
 
@@ -191,8 +191,8 @@ public class BEQuiz : MonoBehaviour
             Debug.Log(easyQuiz.answer);
             Debug.Log(easyQuiz.desc);
             Debug.Log(easyQuiz.level);
-            TextquizNum.text = $"{easyQuiz.quizNum}";
-            Textcategory.text = $"{easyQuiz.category}";
+            //TextquizNum.text = $"{easyQuiz.quizNum}";
+            //Textcategory.text = $"{easyQuiz.category}";
             Textquiz.text = $"{easyQuiz.quiz}";
             //Textlevel.text = $"{easyQuiz.level}";
 

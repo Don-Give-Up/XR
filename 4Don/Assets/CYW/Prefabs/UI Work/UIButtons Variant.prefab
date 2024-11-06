@@ -673,46 +673,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1613127380942072829, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3864775492122884053}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 382824212014762032, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1747340997870664154}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
 --- !u!224 &675917549347772764 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1613127380942072829, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
   m_PrefabInstance: {fileID: 2234820744772170401}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1798390891861609996 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 573794834165546157, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
-  m_PrefabInstance: {fileID: 2234820744772170401}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1897067915268504209 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 382824212014762032, guid: 1f3ef05ef7126364e95f2eb36784e65c, type: 3}
-  m_PrefabInstance: {fileID: 2234820744772170401}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1747340997870664154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897067915268504209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ed823818f304443852dd4b38bff458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bagButton: {fileID: 1798390891861609996}
-  objectButton1: {fileID: 146609923975455400}
-  objectButton2: {fileID: 7525203146997330122}
-  object1: {fileID: 0}
-  object2: {fileID: 0}

@@ -123,7 +123,7 @@ public class GoogleSheetManager : MonoBehaviour
             stocks.Add(dayilydata.Day, dayilydata);
         }
 
-        var data3 = await Get("URL!A2:B3");
+        var data3 = await Get("URL!A2:B5");
         foreach (var row in data3)
         {
 
