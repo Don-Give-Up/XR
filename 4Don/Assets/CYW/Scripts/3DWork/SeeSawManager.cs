@@ -4,6 +4,7 @@ public class SeeSawManager : MonoBehaviour
 {
     // 시소 위의 플레이어가 많아질수록 많이 기우는데 기우는 건 X의 로테이션 값임
     // x의 로테이션은 -12와 12사이에서만 기울여야 함
+    // O 와 X에 시소가 닿는 걸 인식하고 상태를 체크해야 함
     
     
     public Transform leftSide;  // 왼쪽 지지대
