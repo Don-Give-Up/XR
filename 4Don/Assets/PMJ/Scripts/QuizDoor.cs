@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuizDoor : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class QuizDoor : MonoBehaviour
         if (other.gameObject.CompareTag("QuizDoor"))
         {
             Debug.Log("노동 문 열어라");
-
-            a.AStart();
+            SceneManager.LoadScene("3DWork");
+            //a.AStart();
         }
 
     }
+    
+    
 }

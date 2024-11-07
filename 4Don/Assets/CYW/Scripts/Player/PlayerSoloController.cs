@@ -10,10 +10,11 @@ public class PlayerSoloController : MonoBehaviour
     private float epsilon = 0.01f; // 아주 작은 값
 
     
-    // 다 빠져야함 
-    public GameObject stock1;
-    public GameObject stock2;
-    public GameObject dialogue;
+    /*// 다 빠져야함 
+    //public GameObject stock1;
+    //public GameObject stock2;
+    //public GameObject dialogue;
+    */
 
     void Update()
     {
@@ -46,7 +47,7 @@ public class PlayerSoloController : MonoBehaviour
             anim.SetBool("IsWalk", false); // 입력이 없을 때 걷기 애니메이션 멈춤
         }
 
-        //다 빠져야함 
+        /*//다 빠져야함 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             stock1.SetActive(true);
@@ -59,7 +60,7 @@ public class PlayerSoloController : MonoBehaviour
             stock1.SetActive(false);
             stock2.SetActive(true);
             dialogue.SetActive(false);
-        }
+        }*/
     }
     
 }
