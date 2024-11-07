@@ -50,13 +50,13 @@ public class PhoStartGame : MonoBehaviour
             test = true;
         }*/
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)) // 광장
         {
             InstantiateRunner();
             JoinSquare();
         }
         
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
         {
             Shutdown();
             InstantiateRunner();
