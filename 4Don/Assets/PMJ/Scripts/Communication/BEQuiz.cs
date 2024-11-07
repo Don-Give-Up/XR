@@ -205,7 +205,7 @@ public class BEQuiz : MonoBehaviour
 
     public void OnAnswerSelected(string selectedAnswer)
     {
-        
+        Debug.Log("정답이 체크되고 있음"+ selectedAnswer);
         
         //현재 어디이썽?
         if (usedQuiz.Count > 0)
@@ -231,7 +231,7 @@ public class BEQuiz : MonoBehaviour
                     // 유진이 언니의 월급 관리자 호출
                     // 노동 관리자 호출
                     onlaborCheak = true;
-                    Debug.Log("정답을 다 맞췄습니다! 노동을 종료합니다!");
+                    Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
                     
                     Invoke("SetActiveFalse", 3f);

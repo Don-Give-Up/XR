@@ -2,18 +2,21 @@ using System;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PhoStartGame : MonoBehaviour
 {
+    public static PhoStartGame Instance { get; private set; }
+    
     //방에서 광장으로 가고 싶어
     /// 방 >> 광장 씬 이동
     /// 세션입장.
-    public NetworkRunner _runner;
+    public NetworkRunner runner;
 
     public NetworkRunner runnerPrefab;
     public GameObject playerPrefab;
-    public static PhoStartGame Instance { get; private set; }
-
+    
+    private bool test = true;
     private void Awake()
     {
         if (Instance == null)
@@ -29,47 +32,79 @@ public class PhoStartGame : MonoBehaviour
 
     private void Start()
     {
-        //_runner = Instantiate(runnerPrefab);
+        InstantiateRunner();
     }
 
-    private bool test = true;
+    private void InstantiateRunner()
+    {
+        runner = Instantiate(runnerPrefab);
+        runner.AddCallbacks(new RunnerController());
+    }
+   
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)&&test)
+        /*if (Input.GetKeyDown(KeyCode.E)&&test)
         {
-            //Shutdown();
             test = false;
-            _runner.Spawn(playerPrefab,new Vector3(226.1f, 47f, 364.8f), Quaternion.identity);
+            runner.Spawn(playerPrefab,new Vector3(226.1f, 47f, 364.8f), Quaternion.identity);
             test = true;
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.F)) // 광장
+        {
+            InstantiateRunner();
+            JoinSquare();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
+        {
+            Shutdown();
+            InstantiateRunner();
+            JoinQuiz();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            Shutdown();
             BackRoom();
         }
     }
 
     public async void JoinSquare()
     {
-        var sceneInfo = new NetworkSceneInfo();
-        sceneInfo.AddSceneRef(SceneRef.FromIndex(1));
+        /*var sceneInfo = new NetworkSceneInfo();
+        //sceneInfo.AddSceneRef(SceneRef.FromIndex(1));
+        sceneInfo.AddSceneRef(SceneRef.FromPath("PMJ/Scenes/Login"));*/
         
         var arg = new StartGameArgs
         {
             GameMode = GameMode.Shared,
             SessionName = "광장",
-            Scene = sceneInfo
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("TestMap"))
+                
         };
-        await _runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+        await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+    }
+
+    public async void JoinQuiz()
+    {
+        
+        var arg = new StartGameArgs()
+        {
+            GameMode = GameMode.Shared,
+            SessionName = "노동",
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Photon"))
+        };
+        await runner.StartGame(arg);
     }
 
     private async void Shutdown()
     {
-        await _runner.Shutdown();
+        await runner.Shutdown();
     }
 
     private void BackRoom()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Room");
     }
 }
