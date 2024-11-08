@@ -1038,7 +1038,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runner: {fileID: 0}
   runnerPrefab: {fileID: 4970247936237789629, guid: 64a8b6ab6933ec448ad64b26a445257b, type: 3}
-  playerPrefab: {fileID: 7635933658484529047, guid: f0df311080f316b4ea3d4631d506b9ce, type: 3}
+  sharedGameDataPrefab:
+    RawGuidValue: ac2f218ff143da24f84cfe7fb9c71f04
+  playerPrefab:
+    RawGuidValue: 8ac68ffc6481c0e48a410cc3a7657e50
 --- !u!4 &472148110
 Transform:
   m_ObjectHideFlags: 0
@@ -3004,7 +3007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1564268557
 RectTransform:
   m_ObjectHideFlags: 0

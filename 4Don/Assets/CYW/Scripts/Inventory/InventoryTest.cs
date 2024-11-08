@@ -1,3 +1,4 @@
+/*
 using System;
 using UnityEngine;
 
@@ -128,12 +129,12 @@ public class InventoryTest : MonoBehaviour
                         Destroy(hit.transform.gameObject);
                     }
                 }
-                #1#
+                #2#
 
             }
 
         }
-    }*/
+    }#1#
 
                 /*
 
@@ -174,9 +175,10 @@ public class InventoryTest : MonoBehaviour
 
                     }
                 }
-                */
+                #1#
             }
         }
     }
 }
+*/
 

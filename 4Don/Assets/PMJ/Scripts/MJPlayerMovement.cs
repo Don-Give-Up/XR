@@ -1,9 +1,4 @@
 
-
-
-
-
-
 using Fusion;
 using UnityEngine;
 
@@ -18,6 +13,7 @@ public class MJPlayerMovement : NetworkBehaviour
 
     public float JumpForce = 5f;
     public float GravityValue = -9.81f;
+    public Animator anim;
 
     public Camera Camera;
     private void Awake()

@@ -8,6 +8,7 @@ public class LoginCommunicator : MonoBehaviour
 {
     public LoginManager loginManager;
 
+    public static string Value;
     public void StartLoginProcess() 
     {
         StartCoroutine(LoginStart());
@@ -31,7 +32,7 @@ public class LoginCommunicator : MonoBehaviour
         StartCoroutine(PostLoginRequest(urlData.Server, reqInfo));
     }
 
-    private IEnumerator PostLoginRequest(string uri, LoginData reqInfo)
+    public IEnumerator PostLoginRequest(string uri, LoginData reqInfo)
     {
         // LoginManager를 JsonConvert를 사용해 JSON으로 변환
         var jsonData = JsonConvert.SerializeObject(reqInfo);
@@ -52,6 +53,9 @@ public class LoginCommunicator : MonoBehaviour
             string jsonResponse = request.downloadHandler.text;
             LoginData rep = JsonConvert.DeserializeObject<LoginData>(jsonResponse);
             Debug.Log(rep);
+
+            Value = rep.ToString();
+
         }
         else
         {

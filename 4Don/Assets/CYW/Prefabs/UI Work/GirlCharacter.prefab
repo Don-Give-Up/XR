@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1976313154053194866}
   - component: {fileID: 4480048272255463219}
   - component: {fileID: 2723855437357982345}
+  - component: {fileID: -7494963961069689272}
+  - component: {fileID: 4923414174239698725}
   m_Layer: 0
   m_Name: GirlCharacter
   m_TagString: Untagged
@@ -78,9 +80,6 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 2.5
   anim: {fileID: 0}
-  stock1: {fileID: 0}
-  stock2: {fileID: 0}
-  dialogue: {fileID: 0}
 --- !u!136 &4480048272255463219
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -117,6 +116,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   a: {fileID: 0}
+--- !u!114 &-7494963961069689272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849122848582386394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3862054759
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 4923414174239698725}
+--- !u!114 &4923414174239698725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849122848582386394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1001 &5719807331310466715
 PrefabInstance:
   m_ObjectHideFlags: 0

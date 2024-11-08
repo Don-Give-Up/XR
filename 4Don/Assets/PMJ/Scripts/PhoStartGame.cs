@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,8 @@ public class PhoStartGame : MonoBehaviour
     public NetworkRunner runner;
 
     public NetworkRunner runnerPrefab;
-    public GameObject playerPrefab;
+    public NetworkPrefabRef sharedGameDataPrefab;
+    public NetworkPrefabRef playerPrefab;
     
     private bool test = true;
     private void Awake()
@@ -80,7 +82,7 @@ public class PhoStartGame : MonoBehaviour
         {
             GameMode = GameMode.Shared,
             SessionName = "광장",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("TestMap"))
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo 2"))
                 
         };
         await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
@@ -106,5 +108,17 @@ public class PhoStartGame : MonoBehaviour
     private void BackRoom()
     {
         SceneManager.LoadScene("Room");
+    }
+
+    private IEnumerator Process()
+    {
+        // SharedGameData 스폰
+        var dataOp = PhoStartGame.Instance.runner.SpawnAsync(sharedGameDataPrefab);
+        yield return new WaitUntil(() => dataOp.Status == NetworkSpawnStatus.Spawned);
+        dataOp.Object.name = $"{nameof(SharedGameData)}: {dataOp.Object.Id}";
+
+        // 플레이어 스폰
+        var op = PhoStartGame.Instance.runner.SpawnAsync(playerPrefab);
+        yield return new WaitUntil(() => op.Status == NetworkSpawnStatus.Spawned);
     }
 }
