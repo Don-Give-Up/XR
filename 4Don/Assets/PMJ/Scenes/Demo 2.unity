@@ -220858,7 +220858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8374fb3b719e34fb403ea9c9ff035d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a: {fileID: 0}
 --- !u!1001 &1915564284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -255660,11 +255659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826702590585665739, guid: 54cbd9d917cc8174586dc122478b0bf7, type: 3}
       propertyPath: height
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8826702590585665739, guid: 54cbd9d917cc8174586dc122478b0bf7, type: 3}
       propertyPath: distanceFromTarget
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
