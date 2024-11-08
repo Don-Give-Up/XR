@@ -33,13 +33,23 @@ public class QuestEvent : MonoBehaviour
         }
     }
     
-    public event Action<string> onQuestStateChange; //수정 필요 
+    //public event Action<Quest> onQuestStateChange; //수정 필요 
 
-    public void QuestStateChange(string id)
+    /*public void QuestStateChange(Quest quest)
     {
         if (onQuestStateChange != null)
         {
-            onQuestStateChange(id);
+            onQuestStateChange(quest);
         }
     }
+   
+    public event Action<string, int, QuestStepState> onQuestStepStateChange;
+
+    public void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
+    {
+        if (onQuestStepStateChange != null)
+        {
+            onQuestStepStateChange(id, stepIndex, questStepState);
+        }
+    }*/
 }
