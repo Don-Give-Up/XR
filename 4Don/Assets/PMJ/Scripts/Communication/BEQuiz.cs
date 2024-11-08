@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
 using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ public class BEQuiz : MonoBehaviour
     //public TMP_Text TextquizNum;
     //public TMP_Text Textcategory;
     public TMP_Text Textquiz;
+    public TMP_Text TextTitle;
     public TMP_Text Textlevel;
 
     public GameObject sugoimage;
@@ -67,13 +69,12 @@ public class BEQuiz : MonoBehaviour
        
     }
 
-    public void AStart()
+    public void Start()
     {
         if (!onlaborCheak)
         {
-            
             Debug.Log("오늘 노동을 시작.");
-            oxCanvas.gameObject.SetActive(true);
+            //oxCanvas.gameObject.SetActive(true);
             QuizStart();
             //ShowEasyQuiz();
             //일단 도토리 다 꺼
@@ -112,15 +113,20 @@ public class BEQuiz : MonoBehaviour
             return;
         }
 
-        StartCoroutine(GetQuizDataFromUrl(urlData.Server));
-     
+
+
+        GetQuizDataFromUrl(urlData.Server).Forget();
+
     }
     
-    private IEnumerator GetQuizDataFromUrl(string url)
+    private async UniTask GetQuizDataFromUrl(string url)
     {
+      
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            yield return request.SendWebRequest();
+            //request.SetRequestHeader("Authorization",LoginCommunicator.Value); main
+            request.SetRequestHeader("Authorization", "Bearer eyJkYXRlIjoxNzMwNzEyNjA4NTY4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDgiLCJtZW1iZXJTY2hvb2wiOiJzY2hvb2wiLCJtZW1iZXJHcmFkZSI6MywibWVtYmVyTmFtZSI6Im5hbWUiLCJtZW1iZXJOaWNrbmFtZSI6Im5pY2tuYW1lIiwiZXhwIjoxNzYyMjQ4NjA4LCJtZW1iZXJSb2xlIjoiU1RVREVOVCIsIm1lbWJlckNsYXNzIjozLCJtZW1iZXJJZCI6OCwibWVtYmVyRW1haWwiOiJlbWFpbCJ9.dxvJMBF88sWHvsPLosKjD4jbgzDPh_-ROUZ7U8vpMW4"); // test
+            await request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
@@ -193,7 +199,8 @@ public class BEQuiz : MonoBehaviour
             Debug.Log(easyQuiz.level);
             //TextquizNum.text = $"{easyQuiz.quizNum}";
             //Textcategory.text = $"{easyQuiz.category}";
-            Textquiz.text = $"{easyQuiz.quiz}";
+            //Textquiz.text = $"{easyQuiz.quiz}";
+            TextTitle.text = $"{easyQuiz.quiz}";
             //Textlevel.text = $"{easyQuiz.level}";
 
         }

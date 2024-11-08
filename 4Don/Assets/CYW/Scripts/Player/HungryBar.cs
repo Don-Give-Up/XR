@@ -77,7 +77,7 @@ public class HungryBar : MonoBehaviour
    {
       float fillAmount = hungryMask.fillAmount;
       float currentSpeed = minMoveSpeed + speedRange * fillAmount;
-      playerSoloController.moveSpeed = currentSpeed;
+      //playerSoloController.moveSpeed = currentSpeed;
    }
    
    /*1   5
