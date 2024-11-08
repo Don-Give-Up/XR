@@ -13,7 +13,7 @@ public class QuizDoor : MonoBehaviour
         {
             Debug.Log("노동 문 열어라");
             SceneManager.LoadScene("3DWork");
-            //a.AStart();
+            // a.AStart();
         }
 
     }
