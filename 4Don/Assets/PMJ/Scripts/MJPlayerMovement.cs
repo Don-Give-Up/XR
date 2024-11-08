@@ -15,7 +15,7 @@ public class MJPlayerMovement : NetworkBehaviour
     public float GravityValue = -9.81f;
     public Animator anim;
 
-    public FirstPersonCamera Camera;
+    public Camera Camera;
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -33,8 +33,8 @@ public class MJPlayerMovement : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            Camera = FindAnyObjectByType<FirstPersonCamera>();
-            Camera.Target = transform;
+            Camera = Camera.main;
+            Camera.GetComponent<FirstPersonCamera>().Target = transform;
         }
     }
 

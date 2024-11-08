@@ -10,7 +10,6 @@ public class RunnerController : INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log($"OnPlayerJoined : {player.PlayerId}");
-        runner.Spawn(PhoStartGame.Instance.playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
     public void OnConnectedToServer(NetworkRunner runner)
