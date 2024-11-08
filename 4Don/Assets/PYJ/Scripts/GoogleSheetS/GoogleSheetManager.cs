@@ -107,8 +107,12 @@ public class GoogleSheetManager : MonoBehaviour
                 Convert.ToDouble(row[4]),
                 Convert.ToDouble(row[5])
             );
-            
-            government.Add(yearlydata.Year, yearlydata);
+
+            if (!government.ContainsKey(yearlydata.Year))
+            {
+                government.Add(yearlydata.Year, yearlydata);
+            }
+
         }
 
         var data2 = await Get("Stock!B2:C141");
@@ -120,7 +124,11 @@ public class GoogleSheetManager : MonoBehaviour
                 Convert.ToDouble(row[1])
             );
             
-            stocks.Add(dayilydata.Day, dayilydata);
+            if (!stocks.ContainsKey(dayilydata.Day))
+            {
+                stocks.Add(dayilydata.Day, dayilydata);
+            }
+
         }
 
         var data3 = await Get("URL!A2:B5");

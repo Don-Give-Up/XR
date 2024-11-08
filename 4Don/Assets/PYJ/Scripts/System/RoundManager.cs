@@ -35,10 +35,11 @@ public class RoundSystem : MonoBehaviour
 
     public bool isLoaded = false;
 
-    public GameObject dayObject; 
+    /*public GameObject dayObject; 
     public TMP_Text dayText;
     public GameObject weekObject;
     public TMP_Text weekText;
+    */
 
     private bool nextDay;
     public static RoundSystem Instance;
@@ -142,12 +143,12 @@ public class RoundSystem : MonoBehaviour
                 break;
         }
 
-        dayObject.SetActive(true);
-        this.dayText.text = dayText;
+        //dayObject.SetActive(true);
+        //this.dayText.text = dayText;
         
         yield return new WaitForSecondsRealtime(4f);
 
-        dayObject.SetActive(false);
+        //dayObject.SetActive(false);
         
     }
 
@@ -163,12 +164,12 @@ public class RoundSystem : MonoBehaviour
     {
         string weekText = $"{currentWeek+1}주차";
         
-        weekObject.SetActive(true);
-        this.weekText.text = weekText;
+        //weekObject.SetActive(true);
+        //this.weekText.text = weekText;
         
         yield return new WaitForSecondsRealtime(4f);
 
-        weekObject.SetActive(false);
+        //weekObject.SetActive(false);
     }
     
     private void End()
