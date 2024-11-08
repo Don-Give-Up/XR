@@ -100,6 +100,11 @@ public class PhoStartGame : MonoBehaviour
         await runner.StartGame(arg);
     }
 
+    private void SpawnPlayer()
+    {
+        //Runner.Spawn(PlayerPrefab, new Vector3(226.1f, 47f, 364.8f), Quaternion.identity);
+    }
+
     private async void Shutdown()
     {
         await runner.Shutdown();

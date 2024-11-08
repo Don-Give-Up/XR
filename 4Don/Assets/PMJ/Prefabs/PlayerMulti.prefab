@@ -85,10 +85,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4797287
-  m_Height: 1.602272
+  m_Radius: 0.3
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8270378, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &2723855437357982345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,13 +155,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.6
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &223437138989427249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   JumpForce: 5
   GravityValue: -9.81
   anim: {fileID: 2164617198070385418}
-  Camera: {fileID: 8682630600817038809, guid: 54cbd9d917cc8174586dc122478b0bf7, type: 3}
+  Camera: {fileID: 0}
 --- !u!1001 &5719807331310466715
 PrefabInstance:
   m_ObjectHideFlags: 0
