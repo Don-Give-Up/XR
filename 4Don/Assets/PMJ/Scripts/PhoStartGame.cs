@@ -95,7 +95,7 @@ public class PhoStartGame : MonoBehaviour
         {
             GameMode = GameMode.Shared,
             SessionName = "노동",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Photon"))
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
         };
         await runner.StartGame(arg);
     }
