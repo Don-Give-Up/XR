@@ -1,80 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class MadeRoom : MonoBehaviour
 {
     public MadeRoomData madeRoomData;
 
-  
+    // 방 생성 시작
     public void RoomMade()
     {
-        StartCoroutine(Test());
+        
+        TestAsync();
     }
 
-    private IEnumerator Test()
+    // 방 생성 데이터를 서버로 보내기 전 URL 데이터 확인
+    public void TestAsync()
     {
         var urlData = GoogleSheetManager.Instance.UrldataGet("방만들기");
-        
+
         if (string.IsNullOrEmpty(urlData.Server))
         {
             Debug.LogError("방만들기 URL의 서버 주소가 비어있습니다.");
-            yield break;
+            return;
         }
-        else
-        {
-            Debug.Log("방만들기 url 받아짐");
-        }
-        
-        Debug.Log(urlData.Name);
-        Debug.Log(urlData.Server);
+
+        Debug.Log("방만들기 URL 받아짐: " + urlData.Server);
+
         // MadeRoomData에서 입력된 데이터를 가져와 PostMadeRoomData 객체로 변환
         PostMadeRoomData requestData = madeRoomData.GetRoomMade();
-        Debug.Log(requestData.roomName);
-        Debug.Log(requestData.roomPassword);
-        StartCoroutine(RoomMadePost(urlData.Server, requestData));
+        Debug.Log($"Room Name: {requestData.gameName}, Room Password: {requestData.gamePassword}");
+
+        // 비동기 POST 요청 실행
+        RoomMadePostAsync(urlData.Server, requestData).Forget();
     }
 
-    // 데이터를 POST로 보내고 응답을 받아오는 코루틴
-    IEnumerator RoomMadePost(string url, PostMadeRoomData requestData)
+    // 서버에 방 생성 요청을 보내는 비동기 메서드
+    public async UniTask RoomMadePostAsync(string url, PostMadeRoomData requestData)
     {
         
-
+        
         // 데이터를 JSON으로 직렬화
         string jsonRequestData = JsonConvert.SerializeObject(requestData);
 
-        // POST 요청 생성
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        using var request = UnityWebRequest.Post(url, jsonRequestData, "application/json");
+        
+        Debug.Log("서버로 POST 요청 보내는 중...");
+        //request.SetRequestHeader("Authorization", LoginCommunicator.Value);
+        request.SetRequestHeader("Authorization", "Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k"); // test
+        // 비동기 요청을 보내고 응답 대기
+        await request.SendWebRequest();
 
-        // JSON 데이터를 바이트로 변환하여 업로드 핸들러에 설정
-        byte[] jsonToSend = System.Text.Encoding.UTF8.GetBytes(jsonRequestData);
-        request.uploadHandler = new UploadHandlerRaw(jsonToSend);
-        request.downloadHandler = new DownloadHandlerBuffer();
-
-        // Content-Type 헤더 설정 (JSON 데이터를 전송하므로)
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        // 서버에 요청을 보내고 응답을 기다림
-        yield return request.SendWebRequest();
-
-        // 요청이 성공했는지 확인
+        // 요청 결과 확인
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("Response: " + jsonResponse);
-            
-            // 서버의 응답을 PostMadeRoomData 객체로 역직렬화 (필요 시)
-            //PostMadeRoomData postMadeRoomData = JsonConvert.DeserializeObject<PostMadeRoomData>(jsonResponse);
-            // 서버 응답 데이터를 사용하여 필요한 작업 수행
-            //역직렬화할 필요 없을거 같음. 
+            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+
+            // 필요시 서버 응답 데이터를 추가로 처리
         }
         else
         {
-            // 요청 실패 시 오류 메시지 출력
-            Debug.LogError("Error: " + request.error);
+            Debug.LogError("서버 요청 실패: " + request.error);
         }
+    
     }
 }

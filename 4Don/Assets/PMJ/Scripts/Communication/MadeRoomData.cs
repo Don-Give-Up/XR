@@ -1,8 +1,10 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MadeRoomData : MonoBehaviour
 {
+    public TMP_InputField memberIdField;
     public TMP_InputField roomNameField;
     public TMP_InputField roomPasswordField;
 
@@ -11,8 +13,9 @@ public class MadeRoomData : MonoBehaviour
         // PostMadeRoomData의 인스턴스를 생성하여 필요한 데이터를 저장
         PostMadeRoomData req = new PostMadeRoomData()
         {
-            roomName = roomNameField.text,
-            roomPassword = roomPasswordField.text
+            memberId = int.Parse(memberIdField.text),
+            gameName = roomNameField.text,
+            gamePassword = roomPasswordField.text
         };
         return req;
     }
@@ -21,6 +24,7 @@ public class MadeRoomData : MonoBehaviour
 [System.Serializable]
 public class PostMadeRoomData
 {
-    public string roomName;
-    public string roomPassword;
+    public int memberId;
+    public string gameName;
+    public string gamePassword;
 }
