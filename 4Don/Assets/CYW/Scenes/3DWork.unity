@@ -2521,15 +2521,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2455321249054526162, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2455321249054526162, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2455321249054526162, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2455321249054526162, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2582,6 +2582,14 @@ PrefabInstance:
     - target: {fileID: 6849122848582386394, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
       propertyPath: m_Name
       value: GirlCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335784921484849541, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335784921484849541, guid: 8ac68ffc6481c0e48a410cc3a7657e50, type: 3}
+      propertyPath: m_Constraints
+      value: 114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
