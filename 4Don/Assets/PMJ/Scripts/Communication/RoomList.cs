@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -13,9 +15,12 @@ using UnityEngine.Networking;
 /// </summary>
 public class RoomList : MonoBehaviour
 {
-    public TMP_Text[] gameName;
+    public Room[] gameName;
+    public GameObject parentPosition;
+    
+    
 
-    private List<string> gameNameList = new List<string>();
+    //private List<string> gameNameList = new List<string>();
 
 
     public void GetRoomList()
@@ -48,6 +53,8 @@ public class RoomList : MonoBehaviour
             Debug.Log("서버 응답 수신 성공: " + jsonResponse);
 
             // 필요시 서버 응답 데이터를 추가로 처리
+            RoomListData roomListData = JsonConvert.DeserializeObject<RoomListData>(jsonResponse);
+            UseRoomListData(roomListData);
         }
         else
         {
@@ -57,4 +64,15 @@ public class RoomList : MonoBehaviour
     }
     //유저 따로 빼놓고 써야함. 여기서 배열에 차곡차곡 넣어주면 됨!!
 
+    private void UseRoomListData(RoomListData roomListData)
+    {
+        for (int i = 0; i < roomListData.roomList.Count; ++i)
+        {
+            var room = roomListData.roomList[i];
+            gameName[i].UseData(room);
+            Instantiate(gameName[i], parentPosition.transform);
+        }
+    }
+    
+    
 }
