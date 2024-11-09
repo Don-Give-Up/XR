@@ -130,8 +130,8 @@ public class GoogleSheetManager : MonoBehaviour
             }
 
         }
-
-        var data3 = await Get("URL!A2:B5");
+////민주야 니가 찾는거 여기있다!!!!!!!!!!!!!!!!!!!!!!!!!
+        var data3 = await Get("URL!A2:B6");
         foreach (var row in data3)
         {
 
