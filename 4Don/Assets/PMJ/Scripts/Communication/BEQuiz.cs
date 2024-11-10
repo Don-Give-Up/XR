@@ -36,8 +36,6 @@ public class BEQuiz : MonoBehaviour
     
     public bool onlaborCheak = false;
 
-    private SpawnManager playerSpawn;
-
     private int correntAnswerCount = 0; // 맞힌 정답 갯수
     private List<int> usedQuiz = new List<int>(); // 이미 출제된 문제 기록
     
