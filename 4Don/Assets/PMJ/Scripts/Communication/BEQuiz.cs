@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -162,6 +162,7 @@ public class BEQuiz : MonoBehaviour
 
     private QuizData GETEasyQuiz() 
     {
+        Random.InitState(100);
         _Count = BEQuizdata.Length;
         if (BEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
         {
@@ -254,6 +255,7 @@ public class BEQuiz : MonoBehaviour
             }
 
             //다음문제
+            //여기다가 플레이어 위치 초기화되는 코드 추가해주기.
             ShowEasyQuiz();
         }
     }
