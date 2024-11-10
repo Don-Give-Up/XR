@@ -1,6 +1,7 @@
 
 using Fusion;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MJPlayerMovement : NetworkBehaviour
 {
@@ -54,10 +55,18 @@ public class MJPlayerMovement : NetworkBehaviour
         if (HasStateAuthority)
         {
             Camera = FindAnyObjectByType<FirstPersonCamera>();
-            Camera.Target = transform;
-            
             NoChDrop = GetComponent<NetworkCharacterController>();
-            NoChDrop.Teleport(new Vector3(226f, 47f, 365f));
+
+            if (SceneManager.GetActiveScene().name == "3DWork 1")
+            {
+                NoChDrop.Teleport(new Vector3(0, 3f, 0));
+            }
+            else
+            {
+                Camera.Target = transform;
+                
+                NoChDrop.Teleport(new Vector3(226f, 47f, 365f));
+            }
         }
     }
 
@@ -73,10 +82,10 @@ public class MJPlayerMovement : NetworkBehaviour
         {
             _velocity = new Vector3(0, -1, 0);
         }
-
+        
         Quaternion cameraRotationY = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
         Vector3 move = cameraRotationY * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Runner.DeltaTime * PlayerSpeed;
-
+        
         _velocity.y += GravityValue * Runner.DeltaTime;
         if (_jumpPressed && _controller.isGrounded)
         {
