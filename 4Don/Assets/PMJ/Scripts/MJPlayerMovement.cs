@@ -1,4 +1,5 @@
 
+using System.Linq;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,10 +19,12 @@ public class MJPlayerMovement : NetworkBehaviour
     public Animator anim;
 
     public FirstPersonCamera Camera;
+
+    private int _spawnCount;
+    
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        
     }
 
     void Update()
@@ -56,18 +59,27 @@ public class MJPlayerMovement : NetworkBehaviour
         {
             Camera = FindAnyObjectByType<FirstPersonCamera>();
             NoChDrop = GetComponent<NetworkCharacterController>();
-
+            
+            _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
+            Debug.Log(_spawnCount);
+            
             if (SceneManager.GetActiveScene().name == "3DWork 1")
             {
-                NoChDrop.Teleport(new Vector3(0, 3f, 0));
+                BEQuiz.Instance.QuizTeleport += Teleport;
+                Teleport();
             }
             else
             {
                 Camera.Target = transform;
                 
-                NoChDrop.Teleport(new Vector3(226f, 47f, 365f));
+                NoChDrop.Teleport(new Vector3(226f + _spawnCount -2, 47f, 365f));
             }
         }
+    }
+
+    private void Teleport()
+    {
+        NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount - 2));
     }
 
     public override void FixedUpdateNetwork()

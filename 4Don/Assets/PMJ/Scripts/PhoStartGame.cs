@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,7 @@ public class PhoStartGame : MonoBehaviour
         {
             Destroy(gameObject); // 중복된 인스턴스가 있으면 파괴
         }
+        
     }
 
     private void Start()
@@ -94,7 +96,7 @@ public class PhoStartGame : MonoBehaviour
         var arg = new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "노동",
+            SessionName = "노동aa",
             Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
         };
         await runner.StartGame(arg);

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -15,6 +16,8 @@ using Random = UnityEngine.Random;
 
 public class BEQuiz : MonoBehaviour
 {
+    public Action QuizTeleport;
+    
     public QuizData[] BEQuizdata;
 
     //public TMP_Text TextquizNum;
@@ -33,12 +36,16 @@ public class BEQuiz : MonoBehaviour
     
     public bool onlaborCheak = false;
 
+    private SpawnManager playerSpawn;
+
     private int correntAnswerCount = 0; // 맞힌 정답 갯수
     private List<int> usedQuiz = new List<int>(); // 이미 출제된 문제 기록
     
     private int _Count;
     private int _normalCount;
     private int _hardCount;
+    
+    
 
     public static BEQuiz Instance;
     
@@ -181,11 +188,11 @@ public class BEQuiz : MonoBehaviour
         {
             return null;
         }
-
     }
 
     public void ShowEasyQuiz() // 퀴즈가 보이게 함.
     {
+        QuizTeleport?.Invoke();
         QuizData easyQuiz = GETEasyQuiz();
 
 
@@ -207,7 +214,7 @@ public class BEQuiz : MonoBehaviour
         }
         else
         {
-            Debug.Log("어디상 문제 없음");
+            Debug.Log("더이상 문제 없음");
         }
     }
 
@@ -258,6 +265,7 @@ public class BEQuiz : MonoBehaviour
 
             //다음문제
             //여기다가 플레이어 위치 초기화되는 코드 추가해주기.
+            
             ShowEasyQuiz();
         }
     }
