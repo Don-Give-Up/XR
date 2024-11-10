@@ -37,7 +37,7 @@ public class PhoStartGame : MonoBehaviour
         InstantiateRunner();
     }
 
-    private void InstantiateRunner()
+    public void InstantiateRunner()
     {
         runner = Instantiate(runnerPrefab);
         runner.AddCallbacks(new RunnerController());
@@ -58,12 +58,12 @@ public class PhoStartGame : MonoBehaviour
             JoinSquare();
         }
         
-        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
+        /*if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
         {
             Shutdown();
             InstantiateRunner();
             JoinQuiz();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -100,7 +100,7 @@ public class PhoStartGame : MonoBehaviour
         await runner.StartGame(arg);
     }
 
-    private async void Shutdown()
+    public async void Shutdown()
     {
         await runner.Shutdown();
     }
