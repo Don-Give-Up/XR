@@ -210,6 +210,7 @@ public class BEQuiz : MonoBehaviour
         }
     }
 
+    
     public void OnAnswerSelected(string selectedAnswer)
     {
         Debug.Log("정답이 체크되고 있음"+ selectedAnswer);
@@ -233,6 +234,7 @@ public class BEQuiz : MonoBehaviour
                 }
                 
 
+                // 노동 종료할 때 수고 이미지 띄우기
                 if (correntAnswerCount >= 5)
                 {
                     // 유진이 언니의 월급 관리자 호출
