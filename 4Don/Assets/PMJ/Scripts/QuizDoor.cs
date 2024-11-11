@@ -17,7 +17,7 @@ public class QuizDoor : MonoBehaviour
     
     private void Start()
     {
-        a = PhoStartGame.Instance;
+        a = PhoStartGame.Instance; 
         _1Key.SetActive(false);
     }
 

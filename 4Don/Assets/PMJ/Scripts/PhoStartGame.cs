@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -74,7 +75,7 @@ public class PhoStartGame : MonoBehaviour
         }
     }
 
-    public async void JoinSquare()
+    public async UniTask JoinSquare()
     {
         /*var sceneInfo = new NetworkSceneInfo();
         //sceneInfo.AddSceneRef(SceneRef.FromIndex(1));
@@ -84,7 +85,7 @@ public class PhoStartGame : MonoBehaviour
         {
             GameMode = GameMode.Shared,
             SessionName = "광장",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo 2"))
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
                 
         };
         await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
@@ -102,7 +103,7 @@ public class PhoStartGame : MonoBehaviour
         await runner.StartGame(arg);
     }
 
-    public async void Shutdown()
+    public async UniTask Shutdown()
     {
         await runner.Shutdown();
     }

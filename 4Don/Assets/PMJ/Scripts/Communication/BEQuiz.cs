@@ -1,15 +1,10 @@
-
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Triggers;
-using Google.Apis.Sheets.v4.Data;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
 
@@ -42,7 +37,7 @@ public class BEQuiz : MonoBehaviour
     private int _Count;
     private int _normalCount;
     private int _hardCount;
-    
+    public static bool isFinish = false; 
     
 
     public static BEQuiz Instance;
@@ -53,7 +48,7 @@ public class BEQuiz : MonoBehaviour
         {
             Instance = this;
             RoundSystem.Instance.onDayChanged += QuizReset;
-            
+            isFinish = true; 
         }
         else
         {
@@ -228,7 +223,7 @@ public class BEQuiz : MonoBehaviour
     }
 
     
-    public void OnAnswerSelected(string selectedAnswer)
+    public async void OnAnswerSelected(string selectedAnswer)
     {
         Debug.Log("정답이 체크되고 있음"+ selectedAnswer);
         
@@ -260,8 +255,11 @@ public class BEQuiz : MonoBehaviour
                     Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
                     
-                    Invoke("SetActiveFalse", 3f);
+                    await UniTask.Delay(2000);
+                    SetActiveFalse();
                     
+                    await PhoStartGame.Instance.Shutdown();
+                    await PhoStartGame.Instance.JoinSquare();
                     
                     return;
                 }
