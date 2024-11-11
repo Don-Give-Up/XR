@@ -3,12 +3,13 @@ using Fusion;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class QuizDoor : MonoBehaviour
 {
     private PhoStartGame a;
     private bool _interact = true;
-    public GameObject f1Key;
+    public GameObject _1Key;
     //콜라이더 닿았을때를 불타입변수로
     //그때 f1를 누르기
     
@@ -25,10 +26,10 @@ public class QuizDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("닿음");
-        f1Key.SetActive(true);
-        if (other.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.F1) && _interact)
+        _1Key.SetActive(true);
+        if (other.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Alpha1) && _interact)
         {
-            f1Key.SetActive(false);
+            _1Key.SetActive(false);
             _interact = false;
             Debug.Log("노동 문 열어라");
 
