@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
@@ -20,15 +22,19 @@ public class BEQuiz : MonoBehaviour
     
     public QuizData[] BEQuizdata;
 
+
     //public TMP_Text TextquizNum;
     //public TMP_Text Textcategory;
     public TMP_Text Textquiz;
     public TMP_Text TextTitle;
     public TMP_Text Textlevel;
+    public TMP_Text resultText;
+    public TMP_Text desText;
 
     public GameObject sugoimage;
     public GameObject[] dotory;
     public GameObject test;
+    public GameObject desImage;
     
     public Canvas oxCanvas;
     public Button oButton;
@@ -42,10 +48,11 @@ public class BEQuiz : MonoBehaviour
     private int _Count;
     private int _normalCount;
     private int _hardCount;
-    
-    
+
+    public float displayTime = 7f; // 해설에 배경 이미지가 표시되는 시간
 
     public static BEQuiz Instance;
+    
     
     private void Awake()
     {
@@ -64,6 +71,9 @@ public class BEQuiz : MonoBehaviour
         {
             a.SetActive(false); // dotory 초기화
         }
+        
+        
+        
     }
 
     /*private void Update()
@@ -85,6 +95,11 @@ public class BEQuiz : MonoBehaviour
 
     public void Start()
     {
+        
+        desImage.SetActive(false);
+        
+        
+        
         if (!onlaborCheak)
         {
             Debug.Log("오늘 노동을 시작.");
@@ -92,11 +107,10 @@ public class BEQuiz : MonoBehaviour
             QuizStart();
             //ShowEasyQuiz();
             //일단 도토리 다 꺼
-            /*foreach (var a in dotory)
+            foreach (var a in dotory)
             {
                 a.SetActive(false);
             }
-            */
 
             Debug.Log("퀴즈 시작합니당당구리동동");
 
@@ -227,6 +241,9 @@ public class BEQuiz : MonoBehaviour
         }
     }
 
+    // 플레이어 위치가 +면 O 선택, -면 X 선택
+    
+    
     
     public void OnAnswerSelected(string selectedAnswer)
     {
@@ -244,6 +261,11 @@ public class BEQuiz : MonoBehaviour
                 Debug.Log("정답입니다");
                 correntAnswerCount++;
                 
+                // 화면에 정답 개수를 표시
+                resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
+                
+               
+                
                 //라이프 만들어짐
                 if (correntAnswerCount <= dotory.Length)
                 {
@@ -259,25 +281,48 @@ public class BEQuiz : MonoBehaviour
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
                     sugoimage.SetActive(true);
+
+                    SceneManager.LoadScene("Demo");
                     
                     Invoke("SetActiveFalse", 3f);
                     
                     
                     return;
                 }
-
+                
             }
             else
             {
                 Debug.Log("틀렸습니다.");
             }
+            
+            ShowDescription(currentQuiz.desc);
+         
 
+            
+            
             //다음문제
             //여기다가 플레이어 위치 초기화되는 코드 추가해주기.
-            
+            // bool 타입 통해서 다음 문제 나오기 전에 시소 클릭 안 되게 하기
             ShowEasyQuiz();
         }
     }
+
+    public void ShowDescription(string currentQuizDesc)
+    {
+        desImage.SetActive(true);
+        desText.text = currentQuizDesc;
+
+        StartCoroutine(HIdeDescriptionAfterTime(displayTime)); // 7초 후에 해설을 숨기는 코드
+    }
+
+    private IEnumerator HIdeDescriptionAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        desImage.SetActive(false);
+        desText.text = "";
+    }
+    
 
     public bool OnLaborCheak()
     {

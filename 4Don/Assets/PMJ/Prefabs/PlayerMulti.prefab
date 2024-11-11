@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7494963961069689272}
   - component: {fileID: 1701358952434060654}
   - component: {fileID: 223437138989427249}
-  - component: {fileID: 8712786231412534529}
+  - component: {fileID: 3893485113062051144}
   m_Layer: 0
   m_Name: PlayerMulti
   m_TagString: Player
@@ -106,7 +106,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 223437138989427249}
-  - {fileID: 8712786231412534529}
+  - {fileID: 3893485113062051144}
   - {fileID: 8407958560949304021}
 --- !u!143 &1701358952434060654
 CharacterController:
@@ -150,7 +150,7 @@ MonoBehaviour:
   GravityValue: -9.81
   anim: {fileID: 2164617198070385418}
   Camera: {fileID: 0}
---- !u!114 &8712786231412534529
+--- !u!114 &3893485113062051144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
