@@ -3,8 +3,11 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using TMPro;
 using Unity.Mathematics;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// 방 들어가기
@@ -15,13 +18,19 @@ using UnityEngine.Networking;
 /// </summary>
 public class RoomList : MonoBehaviour
 {
-    public Room[] gameName;
+    private List<Room> gameNameList = new();
+    private List<RoomData> roomListData = new(); 
     public GameObject parentPosition;
+    public GameObject roomNamePrefab;
     
     
+
 
     //private List<string> gameNameList = new List<string>();
 
+    private void Start()
+    {
+    }
 
     public void GetRoomList()
     {
@@ -45,7 +54,7 @@ public class RoomList : MonoBehaviour
         request.SetRequestHeader("Authorization",
             "Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k"); // test
         await request.SendWebRequest();
-        
+
         // 요청 결과 확인
         if (request.result == UnityWebRequest.Result.Success)
         {
@@ -53,26 +62,28 @@ public class RoomList : MonoBehaviour
             Debug.Log("서버 응답 수신 성공: " + jsonResponse);
 
             // 필요시 서버 응답 데이터를 추가로 처리
-            RoomListData roomListData = JsonConvert.DeserializeObject<RoomListData>(jsonResponse);
-            UseRoomListData(roomListData);
+            List<RoomData> roomList = JsonConvert.DeserializeObject<List<RoomData>>(jsonResponse);
+            UseRoomListData(roomList);
         }
         else
         {
             Debug.LogError("서버 요청 실패: " + request.error);
         }
-        
+
     }
     //유저 따로 빼놓고 써야함. 여기서 배열에 차곡차곡 넣어주면 됨!!
-
-    private void UseRoomListData(RoomListData roomListData)
+    private void UseRoomListData(List<RoomData> roomDataList)
     {
-        for (int i = 0; i < roomListData.roomList.Count; ++i)
+        foreach (var roomData in roomDataList)
         {
-            var room = roomListData.roomList[i];
-            gameName[i].UseData(room);
-            Instantiate(gameName[i], parentPosition.transform);
+            GameObject gameNameObject = Instantiate(roomNamePrefab, parentPosition.transform);
+            Room room = gameNameObject.GetComponent<Room>();
+            room.UseData(roomData);
+            
+            
         }
     }
-    
-    
+
+   
+
 }

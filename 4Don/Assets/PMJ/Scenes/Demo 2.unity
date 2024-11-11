@@ -35704,7 +35704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8374fb3b719e34fb403ea9c9ff035d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f1Key: {fileID: 0}
+  _1Key: {fileID: 2055269766}
 --- !u!1 &308156597
 GameObject:
   m_ObjectHideFlags: 0
@@ -220867,7 +220867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8374fb3b719e34fb403ea9c9ff035d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f1Key: {fileID: 0}
+  _1Key: {fileID: 0}
 --- !u!1001 &1915564284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238105,12 +238105,12 @@ GameObject:
   - component: {fileID: 2055269769}
   - component: {fileID: 2055269768}
   m_Layer: 5
-  m_Name: F1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2055269767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -238150,7 +238150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "F1\uD0A4\uB97C \uB204\uB974\uBA74 \uC774\uB3D9\uD569\uB2C8\uB2E4."
+  m_text: "\uC22B\uC790 1 \uD0A4\uB97C \uB204\uB974\uBA74 \uC774\uB3D9\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
   m_sharedMaterial: {fileID: 2219011476113103088, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
