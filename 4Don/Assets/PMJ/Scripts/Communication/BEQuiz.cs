@@ -48,6 +48,8 @@ public class BEQuiz : MonoBehaviour
     private int _Count;
     private int _normalCount;
     private int _hardCount;
+    public static bool isFinish = false; 
+    
 
     public float displayTime = 7f; // 해설에 배경 이미지가 표시되는 시간
 
@@ -60,7 +62,7 @@ public class BEQuiz : MonoBehaviour
         {
             Instance = this;
             RoundSystem.Instance.onDayChanged += QuizReset;
-            
+            isFinish = true; 
         }
         else
         {
@@ -111,6 +113,7 @@ public class BEQuiz : MonoBehaviour
             {
                 a.SetActive(false);
             }
+            
 
             Debug.Log("퀴즈 시작합니당당구리동동");
 
@@ -245,7 +248,7 @@ public class BEQuiz : MonoBehaviour
     
     
     
-    public void OnAnswerSelected(string selectedAnswer)
+    public async void OnAnswerSelected(string selectedAnswer)
     {
         Debug.Log("정답이 체크되고 있음"+ selectedAnswer);
         
@@ -284,8 +287,11 @@ public class BEQuiz : MonoBehaviour
 
                     SceneManager.LoadScene("Demo");
                     
-                    Invoke("SetActiveFalse", 3f);
+                    await UniTask.Delay(2000);
+                    SetActiveFalse();
                     
+                    await PhoStartGame.Instance.Shutdown();
+                    await PhoStartGame.Instance.JoinSquare();
                     
                     return;
                 }

@@ -26,23 +26,32 @@ public class SalaryManager : MonoBehaviour
     {
         yield return new WaitUntil(() => RoundSystem.Instance.isLoaded);
         //laborDay = new bool[RoundSystem.Instance.oneWeekTime]; // 5개 만들어짐 
-        RoundSystem.Instance.onDayChanged += OnLaborChecked;
+        RoundSystem.Instance.onDayChanged += HandleOnDayChange;
         RoundSystem.Instance.onWeekChanged += OnSalaryChanged; 
     }
 
-    private void OnLaborChecked(int day)
+    private async void HandleOnDayChange(int day)
+    {
+        await OnLaborChecked(day);
+    }
+
+    private async UniTask OnLaborChecked(int day)
     {
         // 날이 지날 때 노동을 했는지 안 했는지를 확인한다.(노동은 날짜를 바탕으로 해야할 것 같음)
         // 1. 민주 쪽 노동 확인 실행 
         // 2. 저장하고 초기화 해줌 
         // 3. 정보 저장해서 넘겨줌
         Debug.Log("일 했니 안 했니");
+
+        await UniTask.WaitUntil(() => BEQuiz.isFinish);
+        
         laborChecked = BEQuiz.Instance.OnLaborCheak(); // 당일에 해당하는 정보
 
         gameDay = day % RoundSystem.Instance.oneWeekTime; // 몇 번째 요일?에 해당하는지 
 
         laborDay[gameDay] = laborChecked;
 
+        BEQuiz.isFinish = false;
         BEQuiz.Instance.onlaborCheak = false; // 값 저장한 다음 초기화 
     }
 
