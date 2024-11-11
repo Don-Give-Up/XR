@@ -66,6 +66,15 @@ public class BEQuiz : MonoBehaviour
         }
     }
 
+    /*private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            QuizStart();
+        }
+    }*/
+
+
     private void QuizReset(int day)
     {
         //onlaborCheak = false;
@@ -107,9 +116,11 @@ public class BEQuiz : MonoBehaviour
     }
 
 
-    public void QuizStart() // 퀴즈 먼저 읽어오기
+    public async void QuizStart() // 퀴즈 먼저 읽어오기
     {
-       
+        if (!GoogleSheetManager.Instance.IsLoaded)
+            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+        
         var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈데이터");
         
         if (string.IsNullOrEmpty(urlData.Server))
