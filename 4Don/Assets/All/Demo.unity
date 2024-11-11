@@ -39733,7 +39733,7 @@ Transform:
   m_GameObject: {fileID: 307435215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6931254, z: -0, w: 0.72081715}
-  m_LocalPosition: {x: 226.2, y: 46.25, z: 355.65}
+  m_LocalPosition: {x: 226.17, y: 46.12, z: 354.78}
   m_LocalScale: {x: 1, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39758,8 +39758,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.485656, y: 1, z: 1.1430165}
+  m_Center: {x: -3.7428312, y: 0, z: 0.01476991}
 --- !u!1001 &307694280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131556,7 +131556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807089345688097341, guid: 8fc6a0ebefb973c4aa4cdb533d7e45e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 45.193176
+      value: 44.98
       objectReference: {fileID: 0}
     - target: {fileID: 7807089345688097341, guid: 8fc6a0ebefb973c4aa4cdb533d7e45e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -249465,7 +249465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   googleSpreadsheetId: 1wDc_C9cEuxOjhwf0HQqhNL_wJY8t-hxj4tzEPQkn-E4
   credentialsNameInStreamingAssets: central-list-439306-t9-979b2bef8c80.json
-  IsLoaded: 0
 --- !u!1001 &1931841657
 PrefabInstance:
   m_ObjectHideFlags: 0

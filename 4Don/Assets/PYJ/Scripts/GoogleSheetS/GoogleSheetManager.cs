@@ -5,6 +5,8 @@ using TMPro;
 //using UnityEditor.Overlays;
 using UnityEngine;
 using static GoogleSheets;
+
+[DefaultExecutionOrder(-100)]
 public class GoogleSheetManager : MonoBehaviour
 {
     public string googleSpreadsheetId = "your-spreadsheet-id";
@@ -58,7 +60,7 @@ public class GoogleSheetManager : MonoBehaviour
         }
     }
 
-    public bool IsLoaded;
+    public bool IsLoaded { get; private set; }
 
     // 전역 변수로 딕셔너리 저장
     private static Dictionary<int, Finance> government = new Dictionary<int, Finance>();
