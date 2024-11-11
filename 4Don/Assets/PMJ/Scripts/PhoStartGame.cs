@@ -96,7 +96,7 @@ public class PhoStartGame : MonoBehaviour
         var arg = new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "노동aa",
+            SessionName = "노동aa", 
             Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
         };
         await runner.StartGame(arg);
