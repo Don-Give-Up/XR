@@ -59,6 +59,7 @@ public class LoginResponse
     public string memberRole;
     public int memberGrade;
     public int memberClass;
+    public string token;
 }
 
 [System.Serializable]
