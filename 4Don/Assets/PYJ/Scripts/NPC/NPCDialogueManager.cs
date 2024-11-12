@@ -1,77 +1,113 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
 public class NPCDialogueManager : MonoBehaviour
 {
     // 받아온 정보를 
-    private AllDialogueEvent usedDialogue;
+    [SerializeField] 
+    private AllDialogueEvent usedAllDialogue;
 
-    [SerializeField] private AllDialogueEvent usedAllDialogue;
+    private QuestInfoSO currentQuestInfo; 
 
-    private QuestManager questManager;
+    private bool hasTalked = true;
 
+    private int currentDialogueNum = 0; 
+    
+    private KingQuest kingQuest;
+    //private QuestManager questManager;
+    
     private void Awake()
     {
-        questManager = QuestManager.instance;
+        kingQuest = KingQuest.instance; 
+        //questManager = QuestManager.instance;
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck; 
-        //GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueAdvance; 
+        //GameEventsManager.instance.npcdialogEvents.onShowDialoge += OnShowDialogue; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueFinish; 
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck -= OnNPCDialogueCheck; 
-        //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueAdvance; 
+        //GameEventsManager.instance.npcdialogEvents.onShowDialoge -= OnShowDialogue; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueFinish; 
     }
 
     // 퀘스트의 상태를 확인하고 해댕 npc 대화 시작 가능 여부를 판단
     public void OnNPCDialogueCheck(string npcName) // 어떤 대화를 해야 할 지 선택하는 과정, npc 이름을 가지고 들어옴
     {
-       // can_Start 인 친구 중
-       // npc 이름이 들어왔을 떄
-       // 1. 일단 지금 요구조건을 충족 못 한 상태가 아닌 그리고 끝난 상태가 아닌 퀘스트 정보를 가지고 온다. 
-       // 2. 관련 npc 가 맞는지 확인한다. 
-       // 3. 상태에 따라 대화를 출력허고 
-       // 4. 퀘스트의 상태를 업데이트 하는 쪽에 연락한다. 
-       Quest currentQuest = null;
-       
-       //한 바퀴 쭉 돌면서 어떤 퀘스트의 대화를 할 지 하나 뽑기
-       foreach (Quest quest in questManager.questDic.Values)
-       {
-           if (quest.info.name == npcName)
-           {
-               if (quest.state != QuestState.REQUIREMENTS_NOT_MET && quest.state != QuestState.FINISHED)
-               {
-                   currentQuest = quest; // 일단 하나만 찾아서 나가는 거 // 어떤 엔피시가 어떤 대화를 하고 싶어하는지
-                   Debug.Log($"NPC:{npcName}, 퀘스트 이름: {quest.info.name}, 상태: {quest.state}");
-                   break; 
-               }
-           }
-       }
+        // 클릭했을 때 NPC의 이름을 반환하고 
+        // 현재 퀘스트 정보를 가지고 와서 
+        // 이 친구가 말할 수 있는 지? 어떤 내용을 말해야하는 지 대답한다. 
 
-       //하나 뽑은 퀘스트의 상태에 따라 어떤 대화 출력할지 정하기
-       Vector2 dialogueNum = Vector2.zero;
-       switch (currentQuest.state)
-       {
-           case QuestState.CAN_START: // 전 
-               dialogueNum = currentQuest.info.dialogueLine[0];
-               break;
-           case QuestState.IN_PROGRESS: // 중
-               dialogueNum = currentQuest.info.dialogueLine[1];
-               break;
-           case QuestState.CAN_FINISH: // 후
-               dialogueNum = currentQuest.info.dialogueLine[2];
-               break;
-       }
-       
-       
+        currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴
+        Vector2 dialogueNum = Vector2.zero;
+        
+        switch (hasTalked)
+        {
+            case true:
+                // 전 대화를 나누었어! 
+                // 후 대화를 나눌차례
+                dialogueNum = currentQuestInfo.dialogueLine[1];
+                hasTalked = false;
+                break;
+            case false:
+                // 전 대화를 나누지 않았어.
+                // 후 대화를 나눌차례 
+                dialogueNum = currentQuestInfo.dialogueLine[0];
+                hasTalked = true; 
+                break;
+        }
+        
+        Debug.Log($"대화라인:{(int)dialogueNum.x}, {(int)dialogueNum.y}");
+
+        currentDialogueNum = (int)dialogueNum.x;
+        GetDialogueData(dialogueNum);
+        OnShowDialogue(currentDialogueNum);
+    }
+
+    // 필요한 대화 저장하기
+    private Dictionary<int, AllDialogue> GetDialogueData(Vector2 dialogueNum)
+    {
+        usedAllDialogue.alldialogues = DataBaseManager.instance.GetAllDialogues(dialogueNum);
+        return usedAllDialogue.alldialogues;
+    }
+
+    private void OnShowDialogue(int currentDial)
+    {
+        string npcName = usedAllDialogue.alldialogues[currentDial].name;
+        string npcText = usedAllDialogue.alldialogues[currentDial].content;
+        
+        Debug.Log($"{npcText}");
+ 
+    }
+
+    // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
+    public void MoveNext()
+    {
+        // 현재 라인의 상태에 따라 어디로 옮길 지, 어떤 행동을 할 지 등등 구별해 놓기 
+
+        if ()
+        {
+            
+        }
+        else if ()
+        {
+            
+        }
+        else
+        {
+        }
+
+        currentDialogueNum++; 
+        OnShowDialogue(currentDialogueNum);
     }
 
     public void OnNPCDialogueAdvance()

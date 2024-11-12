@@ -10,14 +10,17 @@ public abstract class QuestStep : MonoBehaviour // 퀘스트 단계를 처리 / 
     private bool isFinished = false;
     private string questId; // 퀘스트의 고유 id 를 나타냄 
     private int stepIndex; // 단계 인덱스, 여러 단계 중 몇 번째인지 기록 
-    public QuestState currentState = QuestState.REQUIREMENTS_NOT_MET;
+   
+    //public QuestState currentState = QuestState.REQUIREMENTS_NOT_MET;
     
-    public void InitializeQuestStep(string questId, int stepIndex, QuestState questStepState) // 초기화하는 메서드
+    public void InitializeQuestStep(string questId, int stepIndex, string questStepState) // 초기화하는 메서드
     {
         this.questId = questId;
         this.stepIndex = stepIndex;
-        this.currentState = questStepState; 
-        SetQuestStepState(questStepState); // 추상 메서드 , QuestStep 클래스를 상속한 구체적인 클래스에서 단계 상태를 설정하는 로직을 정의해야함 
+        if (questStepState != null && questStepState != "")
+        {
+            SetQuestStepState(questStepState);
+        }// 추상 메서드 , QuestStep 클래스를 상속한 구체적인 클래스에서 단계 상태를 설정하는 로직을 정의해야함 
     }
 
     protected void FinishQuestStep() // 퀘스트 단계를 완료할 때 호출하는 메소드, 이 메서드는 단계가 이미 완료된 강태인지 확인하고 그렇지 않으면 퀘스트를 완료 처리하고 해당 단계를 파괴함 
@@ -30,7 +33,7 @@ public abstract class QuestStep : MonoBehaviour // 퀘스트 단계를 처리 / 
         }
     }
     
-    protected void ChangeState(QuestState newState, string newStatus) // 퀘스트 단계의 상태를 변경하는 데 사용
+    protected void ChangeState(string newState, string newStatus) // 퀘스트 단계의 상태를 변경하는 데 사용
     {
         GameEventsManager.instance.questEvents.QuestStepStateChange(
             questId, 
@@ -40,7 +43,6 @@ public abstract class QuestStep : MonoBehaviour // 퀘스트 단계를 처리 / 
     }
     
 
-    protected abstract void SetQuestStepState(QuestState state); // 추상 매서드, 구체적인 자식 클래스에서 단계 상태를 설정하는 구체적인 로직을 구현. 상속받는 각 클래스는 자신이 처리하는 퀘스트 단게에 맞게 이 메서드를 오버라이드하여 단게 상태 설정을 정의 
-
-    protected abstract void SetNPCDialogue(string name, Vector2 dialogueNum);
+    protected abstract void SetQuestStepState(string state); // 추상 매서드, 구체적인 자식 클래스에서 단계 상태를 설정하는 구체적인 로직을 구현. 상속받는 각 클래스는 자신이 처리하는 퀘스트 단게에 맞게 이 메서드를 오버라이드하여 단게 상태 설정을 정의 
+    
 }

@@ -5,11 +5,11 @@ public class QuestInfoSO : ScriptableObject
 {
     [field: SerializeField]public string id { get; private set; }
 
-    [Header("퀘스트 제목")] 
-    public string diaplayName;
+    [Header("퀘스트 제목")] public string diaplayName;
 
-    [Header("퀘스트 내용")] 
-    public string[] displayContents;
+    [Header("퀘스트 내용")] public string displayContents;
+
+    [Header("보상정보")] public string reward;
 
     [Header("관련 npc")] 
     public string[] npcName; 
