@@ -267,7 +267,7 @@ public class BEQuiz : MonoBehaviour
                 
 
                 // 노동 종료할 때 수고 이미지 띄우기
-                if (correntAnswerCount >= 5)
+                if (correntAnswerCount >= 3)
                 {
                     // 유진이 언니의 월급 관리자 호출
                     // 노동 관리자 호출

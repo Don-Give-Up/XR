@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1701358952434060654}
   - component: {fileID: 223437138989427249}
   - component: {fileID: 3893485113062051144}
+  - component: {fileID: 681864102221675173}
   m_Layer: 0
   m_Name: PlayerMulti
   m_TagString: Player
@@ -107,6 +108,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 223437138989427249}
   - {fileID: 3893485113062051144}
+  - {fileID: 681864102221675173}
   - {fileID: 8407958560949304021}
 --- !u!143 &1701358952434060654
 CharacterController:
@@ -168,6 +170,18 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 2
   rotationSpeed: 15
+--- !u!114 &681864102221675173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849122848582386394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6376dd7fc23b3764483a7349b58502e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5719807331310466715
 PrefabInstance:
   m_ObjectHideFlags: 0

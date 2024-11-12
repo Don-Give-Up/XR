@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,13 +15,15 @@ public class Room : MonoBehaviour
         this.roomData = roomData;
     }
 
-    public void CheckPassword()
+    public async void CheckPassword(string text)
     {
         Debug.Log("아야 버튼눌렸냐?!");
         if (roomData.gamePassword == password.text)
         {
             Debug.Log("비밀번호가 옳바릅니다.");
-            SceneManager.LoadScene("Room");
+            // SceneManager.LoadScene("Room");
+            await PhoStartGame.Instance.JoinSquare();
+          
         }
         else
         {

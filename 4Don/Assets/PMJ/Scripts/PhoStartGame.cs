@@ -69,11 +69,11 @@ public class PhoStartGame : MonoBehaviour
             JoinQuiz();
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             Shutdown();
             BackRoom();
-        }
+        }*/
     }
 
     private async UniTask ResetRunner()
@@ -107,7 +107,7 @@ public class PhoStartGame : MonoBehaviour
             await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
         }
         Debug.Log("광장 접속됨");
-        await UniTask.Delay(1500);
+        await UniTask.Delay(3500);
         loadingPanel.SetActive(false);
     }
 

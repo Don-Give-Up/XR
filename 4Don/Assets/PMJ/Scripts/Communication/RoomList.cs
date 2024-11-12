@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using TMPro;
 //using TMPro;
 //using Unity.Mathematics;
 //using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+
 //using UnityEngine.SceneManagement;
 //using UnityEngine.UI;
 
@@ -22,8 +25,8 @@ public class RoomList : MonoBehaviour
     private List<RoomData> roomListData = new(); 
     public GameObject parentPosition;
     public GameObject roomNamePrefab;
-    
-    
+    public TMP_InputField password;
+    public GameObject passwordCheck;
 
 
     //private List<string> gameNameList = new List<string>();
@@ -81,13 +84,17 @@ public class RoomList : MonoBehaviour
         foreach (var roomData in roomDataList)
         {
             GameObject gameNameObject = Instantiate(roomNamePrefab, parentPosition.transform);
+
+            var button = gameNameObject.GetComponent<Button>();
+            
+            button.onClick.AddListener(()=> passwordCheck.SetActive(true));
             Room room = gameNameObject.GetComponent<Room>();
             room.UseData(roomData);
-            
-            
+            room.password = password;
+            password.onEndEdit.AddListener(room.CheckPassword);
         }
     }
-
+    
    
 
 }
