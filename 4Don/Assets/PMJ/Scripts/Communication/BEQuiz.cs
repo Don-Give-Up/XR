@@ -30,6 +30,7 @@ public class BEQuiz : MonoBehaviour
     public TMP_Text Textlevel;
     public TMP_Text resultText;
     public TMP_Text desText;
+    public TMP_Text textComponent; // 일정 시간 뒤에 텍스트 띄우는 
 
     public GameObject sugoimage;
     //public GameObject[] dotory;
@@ -51,10 +52,15 @@ public class BEQuiz : MonoBehaviour
     public static bool isFinish = false; 
     
 
-    public float displayTime = 7f; // 해설에 배경 이미지가 표시되는 시간
+    public float displayTime = 5f; // 해설에 배경 이미지가 표시되는 시간
+    public float displayDuration = 2f; // 텍스트가 표시될 시간
+    
 
     public static BEQuiz Instance;
+
+    public SeeSawManager seeSawManager;
     
+   
     
     private void Awake()
     {
@@ -69,23 +75,10 @@ public class BEQuiz : MonoBehaviour
             
             Destroy(gameObject);
         }
-        /*foreach (var a in dotory)
-        {
-            a.SetActive(false); // dotory 초기화
-        }*/
-        
         
         
     }
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QuizStart();
-        }
-    }*/
-
+    
 
     private void QuizReset(int day)
     {
@@ -108,12 +101,6 @@ public class BEQuiz : MonoBehaviour
             //oxCanvas.gameObject.SetActive(true);
             QuizStart();
             //ShowEasyQuiz();
-            //일단 도토리 다 꺼
-            /*foreach (var a in dotory)
-            {
-                a.SetActive(false);
-            }
-            */
             
 
             Debug.Log("퀴즈 시작합니당당구리동동");
@@ -249,9 +236,15 @@ public class BEQuiz : MonoBehaviour
     
     
     
-    public async void OnAnswerSelected(string selectedAnswer)
+    public void OnAnswerSelected(string selectedAnswer)
     {
         Debug.Log("정답이 체크되고 있음"+ selectedAnswer);
+        Process(selectedAnswer).Forget();
+    }
+
+    private async UniTaskVoid Process(string selectedAnswer)
+    {
+        TextTitle.text = "";
         
         //현재 어디이썽?
         if (usedQuiz.Count > 0)
@@ -265,16 +258,12 @@ public class BEQuiz : MonoBehaviour
                 Debug.Log("정답입니다");
                 correntAnswerCount++;
                 
+                // 화면에 정답입니다 텍스트 표시
+                await DisplayTextForTime("정답입니다", displayDuration);
+                
                 // 화면에 정답 개수를 표시
                 resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
                 
-               
-                
-                /*//라이프 만들어짐
-                if (correntAnswerCount <= dotory.Length)
-                {
-                    dotory[correntAnswerCount - 1].SetActive(true);
-                }*/
                 
 
                 // 노동 종료할 때 수고 이미지 띄우기
@@ -284,6 +273,7 @@ public class BEQuiz : MonoBehaviour
                     // 노동 관리자 호출
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
+                    await UniTask.Delay(100);
                     sugoimage.SetActive(true);
 
                     SceneManager.LoadScene("Demo");
@@ -301,13 +291,17 @@ public class BEQuiz : MonoBehaviour
             else
             {
                 Debug.Log("틀렸습니다.");
-            }
-            
-            ShowDescription(currentQuiz.desc);
-         
+                await DisplayTextForTime("오답입니다", displayDuration);
 
-            
-            
+
+            }
+
+            // 문제 사라지고
+            // 정답입니다
+            ShowDescription(currentQuiz.desc);
+            await UniTask.Delay((int)(displayTime * 1000));
+            HIdeDescriptionAfterTime(); // 7초 후에 해설을 숨기는 코드
+
             //다음문제
             //여기다가 플레이어 위치 초기화되는 코드 추가해주기.
             // bool 타입 통해서 다음 문제 나오기 전에 시소 클릭 안 되게 하기
@@ -315,20 +309,51 @@ public class BEQuiz : MonoBehaviour
         }
     }
 
+    
+    // 마지막에 수고 이미지도 해설 뜬 이후에 뜨기
+    
+    private async UniTask DisplayTextForTime(string message, float duration)
+    {
+        // 텍스트 설정
+        textComponent.text = message;
+
+        // duration 동안 기다림
+        await UniTask.Delay((int)duration * 1000);
+
+        // 텍스트 숨기기
+        textComponent.text = "";
+
+    }
+
     public void ShowDescription(string currentQuizDesc)
     {
+        
         desImage.SetActive(true);
         desText.text = currentQuizDesc;
 
-        StartCoroutine(HIdeDescriptionAfterTime(displayTime)); // 7초 후에 해설을 숨기는 코드
+        // 정답 체크 후 문제 사라지게
+        // 정답 체크 후 '정답입니다', '오답입니다' 텍스트 뜨게
+        // 해설 숨기고 난 후에 그라운드 체크가 돼야 함
+        // 해설 숨기고 난 후에 다음 문제 나오게
+       
     }
 
-    private IEnumerator HIdeDescriptionAfterTime(float time)
+    private void HIdeDescriptionAfterTime()
     {
-        yield return new WaitForSeconds(time);
         desImage.SetActive(false);
         desText.text = "";
+        
+        // 해설이 끝난 후 SeeSawManager의 TriggerCollision 메서드 호출
+        if (seeSawManager != null)
+        {
+            seeSawManager.TriggerCollision();
+            Debug.Log("SeeSawManager 호출");
+        }
+        
+
+
     }
+    
     
 
     public bool OnLaborCheak()
