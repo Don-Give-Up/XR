@@ -32,7 +32,7 @@ public class BEQuiz : MonoBehaviour
     public TMP_Text desText;
 
     public GameObject sugoimage;
-    public GameObject[] dotory;
+    //public GameObject[] dotory;
     public GameObject test;
     public GameObject desImage;
     
@@ -69,10 +69,10 @@ public class BEQuiz : MonoBehaviour
             
             Destroy(gameObject);
         }
-        foreach (var a in dotory)
+        /*foreach (var a in dotory)
         {
             a.SetActive(false); // dotory 초기화
-        }
+        }*/
         
         
         
@@ -109,10 +109,11 @@ public class BEQuiz : MonoBehaviour
             QuizStart();
             //ShowEasyQuiz();
             //일단 도토리 다 꺼
-            foreach (var a in dotory)
+            /*foreach (var a in dotory)
             {
                 a.SetActive(false);
             }
+            */
             
 
             Debug.Log("퀴즈 시작합니당당구리동동");
@@ -269,11 +270,11 @@ public class BEQuiz : MonoBehaviour
                 
                
                 
-                //라이프 만들어짐
+                /*//라이프 만들어짐
                 if (correntAnswerCount <= dotory.Length)
                 {
                     dotory[correntAnswerCount - 1].SetActive(true);
-                }
+                }*/
                 
 
                 // 노동 종료할 때 수고 이미지 띄우기
@@ -341,10 +342,10 @@ public class BEQuiz : MonoBehaviour
         oxCanvas.gameObject.SetActive(false);
         
         correntAnswerCount = 0;
-        foreach (var a in dotory)
+        /*foreach (var a in dotory)
         {
             a.SetActive(false); // dotory 초기화
-        }
+        }*/
         
     }
     
