@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -93,21 +93,219 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: room_list_icon_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 945
+        width: 282
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd24b0669dc74fd439f9a3f00c49c3ab
+      internalID: 2006204823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_4
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 946
+        width: 1003
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb2aabbe167b6946bb0afa4e883f520
+      internalID: -457727820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_20
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 198
+        width: 1075
+        height: 682
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be02ea9b804f744cbb9234b5d7c6ced
+      internalID: -1003279108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_24
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 878
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab677a7d8e6c957479ed861e2e620541
+      internalID: -32741917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_25
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 764
+        width: 67
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a648f4220b6bbb408fec8e9af920e20
+      internalID: 1058956086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 122
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0d3f5dee6a9fd47a0f4912c0dba656
+      internalID: 487581107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_list_icon_27
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 123
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c68679581c64ea49a3ce3f883e79c5c
+      internalID: 284612975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a6d7ed0c4b75d084c8d3144d85ede78c
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      room_list_icon_0: 2006204823
+      room_list_icon_1: 733948939
+      room_list_icon_10: -1699984494
+      room_list_icon_11: -1497315649
+      room_list_icon_12: -43313291
+      room_list_icon_13: -1653197199
+      room_list_icon_14: -518913142
+      room_list_icon_15: 1845268292
+      room_list_icon_16: 296731848
+      room_list_icon_17: 850280239
+      room_list_icon_18: 1535701781
+      room_list_icon_19: 1040812351
+      room_list_icon_2: -743552295
+      room_list_icon_20: -1003279108
+      room_list_icon_21: 519825859
+      room_list_icon_22: -1345865429
+      room_list_icon_23: 2062843335
+      room_list_icon_24: -32741917
+      room_list_icon_25: 1058956086
+      room_list_icon_26: 487581107
+      room_list_icon_27: 284612975
+      room_list_icon_28: 759659615
+      room_list_icon_3: 183778340
+      room_list_icon_4: -457727820
+      room_list_icon_5: -1089813728
+      room_list_icon_6: -577844831
+      room_list_icon_7: 1022164878
+      room_list_icon_8: -144026854
+      room_list_icon_9: -1560092896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

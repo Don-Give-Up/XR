@@ -28,8 +28,12 @@ public class RoomList : MonoBehaviour
 
     //private List<string> gameNameList = new List<string>();
 
-    private void Start()
+    private async void Start()
     {
+        if (!GoogleSheetManager.Instance.IsLoaded)
+            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+        
+        GetRoomList();
     }
 
     public void GetRoomList()
