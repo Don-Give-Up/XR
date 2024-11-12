@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour // 여러 퀘스트를 관리, 퀘스트 시스템 전반의 흐름을 조정하는 역할 
 {
-    private Dictionary<string, Quest> questDic;
-    private Queue<GameObject> queueOBJ;
+    private Dictionary<string, Quest> questDic; // 모든 데이터 저장되어 있음
+    public List<string> canStartQuests;
+    
+    
     private void Awake()
     {
-        queueOBJ = new Queue<GameObject>(); // 초기화 
+        canStartQuests = new List<string>();
         questDic = CreateQuestDic();
     }
 
@@ -69,7 +71,8 @@ public class QuestManager : MonoBehaviour // 여러 퀘스트를 관리, 퀘스�
             {
                 Debug.Log($"준비 완료: {quest.info.id}");
                 //StartQuest(quest.info.id);
-                ChangeQuestState(quest.info.id, QuestState.CAN_START);
+                ChangeQuestState(quest.info.id, QuestState.CAN_START); 
+                canStartQuests.Add(quest.info.id); // 실행가능한 친구만 추가 해놈
             }
         }
     }

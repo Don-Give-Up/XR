@@ -20,7 +20,10 @@ MonoBehaviour:
   - "\uB178\uB3D9\uC744 \uD558\uB7EC \uAC00\uC790!"
   npcName:
   - JJANG
-  dialogueLine: []
+  dialogueLine:
+  - {x: 4, y: 8}
+  - {x: 0, y: 0}
+  - {x: 9, y: 10}
   questPrerequisites:
   - {fileID: 11400000, guid: 34e4395429492b34ebbab1ea224023c0, type: 2}
   questStepPrefabs: []

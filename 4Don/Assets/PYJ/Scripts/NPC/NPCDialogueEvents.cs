@@ -3,6 +3,17 @@ using UnityEngine;
 
 public class NPCDialogueEvents
 {
+
+    public event Action<string> onDialogueNumCheck;
+
+    public void CheckDialogue(string npcName)
+    {
+        if (onDialogueNumCheck != null)
+        {
+            onDialogueNumCheck(npcName);
+        }
+    }
+
     public event Action<string> onStartDialoge; // 퀘스트가 시작할 때 발생하는 이벤트
     public void StartDialoge(string npcName) // 이 매소드에서 이 이벤트를 호출함 
     {

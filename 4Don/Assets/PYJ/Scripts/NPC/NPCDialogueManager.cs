@@ -8,23 +8,26 @@ public class NPCDialogueManager : MonoBehaviour
     public int dialogueNum = 0; 
     private AllDialogueEvent usedDialogue;
 
+    [SerializeField] private AllDialogueEvent usedAllDialogue; 
+
     private void OnEnable()
     {
-        GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueStart; 
+        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueAdvance; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueFinish; 
     }
 
     private void OnDisable()
     {
-        GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueStart; 
+        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck -= OnNPCDialogueCheck; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueAdvance; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueFinish; 
     }
 
-    public void OnNPCDialogueStart(string npcName)
+    public void OnNPCDialogueCheck(string npcName) // 어떤 대화를 해야 할 지 선택하는 과정, npc 이름을 가지고 들어옴
     {
-        // NPC 이름을 기준으로 can_start 인 퀘스트의 
+       // can_Start 인 친구 중 
+
     }
 
     public void OnNPCDialogueAdvance()
@@ -36,5 +39,7 @@ public class NPCDialogueManager : MonoBehaviour
     {
         
     }
+    
+    
 
 }

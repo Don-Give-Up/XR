@@ -6,14 +6,12 @@ public class DialogParser : MonoBehaviour
 {
     private void Start()
     {
-        //DialoguParse("NPCDialgue");
-        //SeletDialoguesParser("SeletionDialgue");
-        AllDialoguParse("AllDialogue");
+        //AllDialoguParse("AllDialogue");
     }
     
-    Dictionary<int, AllDialogue> allDialoguesDic = new Dictionary<int, AllDialogue>();
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialoguesDic = new Dictionary<string, List<Dictionary<int, AllDialogue>>>();
 
-    public Dictionary<int, AllDialogue> AllDialoguParse(string _CSVAllDialogFileName)
+    public Dictionary<string, List<Dictionary<int, AllDialogue>>> AllDialoguParse(string _CSVAllDialogFileName)
     {
         TextAsset csvAllDialogData = Resources.Load<TextAsset>(_CSVAllDialogFileName);
         if (csvAllDialogData == null)
@@ -28,29 +26,38 @@ public class DialogParser : MonoBehaviour
         {
             string[] row = data[i].Split(new char[] { ',' });
 
-            if (row.Length < 8 || string.IsNullOrWhiteSpace(row[0]))
+            if (row.Length < 9 || string.IsNullOrWhiteSpace(row[0]))
                 continue;
 
-            int key = Int32.Parse(row[0]);
-            Debug.Log($"key: {key}");
+            string outterkey = row[0]; // questName
+            int innerkey = Int32.Parse(row[1]); // Line number
+
+            Debug.Log($"outterkey: {outterkey}, innerkey: {innerkey}");
 
             AllDialogue alldialogue = new AllDialogue
             {
-                line = Int32.Parse(row[0]),
-                selectLine = Int32.Parse(row[1]),
-                name = row[2],
-                content = row[3],
-                choiceEventNum = Int32.Parse(row[4]),
-                skipLine = Int32.Parse(row[5]),
-                questName = row[6],
+                questName = row[0],
+                line = Int32.Parse(row[1]),
+                selectLine = Int32.Parse(row[2]),
+                name = row[3],
+                content = row[4],
+                choiceEventNum = Int32.Parse(row[5]),
+                skipLine = Int32.Parse(row[6]),
+                questState = Int32.Parse(row[7]),
             };
 
-            // 중복 체크
-            if (!allDialoguesDic.TryAdd(key, alldialogue))
+            // Add a new list if questName does not exist
+            if (!allDialoguesDic.ContainsKey(outterkey))
             {
-                //Debug.LogWarning($"Duplicate key {key} found in DialoguParse. Updating entry.");
-                allDialoguesDic[key] = alldialogue; // 기존 값을 덮어씀
+                allDialoguesDic[outterkey] = new List<Dictionary<int, AllDialogue>>();
             }
+
+            // Add the AllDialogue to the respective questName list
+            Dictionary<int, AllDialogue> innerDic = new Dictionary<int, AllDialogue>
+            {
+                { innerkey, alldialogue }
+            };
+            allDialoguesDic[outterkey].Add(innerDic);
         }
 
         return allDialoguesDic;

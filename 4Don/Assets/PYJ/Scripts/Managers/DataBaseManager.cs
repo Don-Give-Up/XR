@@ -12,7 +12,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
 
     /*private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>(); 
     private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();*/
-    private Dictionary<int, AllDialogue> allDialogueDic = new Dictionary<int, AllDialogue>();
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialogueDic = new Dictionary<string,List<Dictionary<int, AllDialogue>>>();
 
     private DialogParser theParser;
 
@@ -27,6 +27,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
             instance = this; 
             //DialogDataSave();
             //SeletDialogDataSave();
+            DontDestroyOnLoad(gameObject);
             AllDialogueDataSave();
         }
         else
@@ -53,7 +54,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
         isFinish = true; 
     }
 
-    public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
+    /*public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
     {
         Dictionary<int, AllDialogue> targetDialoguesDic = new Dictionary<int, AllDialogue>();
 
@@ -70,7 +71,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
         }
 
         return targetDialoguesDic; 
-    }
+    }*/
 
     /*public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
     {
