@@ -1,6 +1,8 @@
 
+using System.Linq;
 using Fusion;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MJPlayerMovement : NetworkBehaviour
 {
@@ -17,10 +19,12 @@ public class MJPlayerMovement : NetworkBehaviour
     public Animator anim;
 
     public FirstPersonCamera Camera;
+
+    private int _spawnCount;
+    
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        
     }
 
     void Update()
@@ -54,11 +58,28 @@ public class MJPlayerMovement : NetworkBehaviour
         if (HasStateAuthority)
         {
             Camera = FindAnyObjectByType<FirstPersonCamera>();
-            Camera.Target = transform;
-            
             NoChDrop = GetComponent<NetworkCharacterController>();
-            NoChDrop.Teleport(new Vector3(226f, 47f, 365f));
+            
+            _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
+            Debug.Log(_spawnCount);
+            
+            if (SceneManager.GetActiveScene().name == "3DWork 1")
+            {
+                BEQuiz.Instance.QuizTeleport += Teleport;
+                Teleport();
+            }
+            else
+            {
+                Camera.Target = transform;
+                
+                NoChDrop.Teleport(new Vector3(226f + _spawnCount -2, 47f, 365f));
+            }
         }
+    }
+
+    private void Teleport()
+    {
+        NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount + 4f));
     }
 
     public override void FixedUpdateNetwork()
@@ -71,12 +92,12 @@ public class MJPlayerMovement : NetworkBehaviour
 
         if (_controller.isGrounded)
         {
-            _velocity = new Vector3(0, -1, 0);
+            _velocity = new Vector3(0, -1f, 0);
         }
-
+        
         Quaternion cameraRotationY = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
         Vector3 move = cameraRotationY * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Runner.DeltaTime * PlayerSpeed;
-
+        
         _velocity.y += GravityValue * Runner.DeltaTime;
         if (_jumpPressed && _controller.isGrounded)
         {

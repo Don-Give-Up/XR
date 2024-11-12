@@ -50,9 +50,9 @@ public class LoginCommunicator : MonoBehaviour
             Debug.Log("Data sent successfully: " + request.downloadHandler.text);
             
             // request.downloadHandler.text -> (Deserialize) -> LoginResponse
-            string jsonResponse = request.downloadHandler.text;
-            LoginData rep = JsonConvert.DeserializeObject<LoginData>(jsonResponse);
+            string rep = request.downloadHandler.text;
             Debug.Log(rep);
+            
 
             Value = rep.ToString();
 

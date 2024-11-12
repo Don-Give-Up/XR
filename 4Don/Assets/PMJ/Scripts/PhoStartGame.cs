@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,6 +32,7 @@ public class PhoStartGame : MonoBehaviour
         {
             Destroy(gameObject); // 중복된 인스턴스가 있으면 파괴
         }
+        
     }
 
     private void Start()
@@ -37,7 +40,7 @@ public class PhoStartGame : MonoBehaviour
         InstantiateRunner();
     }
 
-    private void InstantiateRunner()
+    public void InstantiateRunner()
     {
         runner = Instantiate(runnerPrefab);
         runner.AddCallbacks(new RunnerController());
@@ -58,12 +61,12 @@ public class PhoStartGame : MonoBehaviour
             JoinSquare();
         }
         
-        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
+        /*if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
         {
             Shutdown();
             InstantiateRunner();
             JoinQuiz();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -72,7 +75,7 @@ public class PhoStartGame : MonoBehaviour
         }
     }
 
-    public async void JoinSquare()
+    public async UniTask JoinSquare()
     {
         /*var sceneInfo = new NetworkSceneInfo();
         //sceneInfo.AddSceneRef(SceneRef.FromIndex(1));
@@ -82,7 +85,7 @@ public class PhoStartGame : MonoBehaviour
         {
             GameMode = GameMode.Shared,
             SessionName = "광장",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo 2"))
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
                 
         };
         await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
@@ -94,13 +97,13 @@ public class PhoStartGame : MonoBehaviour
         var arg = new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "노동",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Photon"))
+            SessionName = "노동aa", 
+            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
         };
         await runner.StartGame(arg);
     }
 
-    private async void Shutdown()
+    public async UniTask Shutdown()
     {
         await runner.Shutdown();
     }
