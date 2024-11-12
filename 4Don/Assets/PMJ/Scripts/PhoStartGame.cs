@@ -19,6 +19,8 @@ public class PhoStartGame : MonoBehaviour
     public NetworkRunner runnerPrefab;
     public NetworkPrefabRef sharedGameDataPrefab;
     public NetworkPrefabRef playerPrefab;
+
+    public GameObject loadingPanel;
     
     private bool test = true;
     private void Awake()
@@ -57,7 +59,6 @@ public class PhoStartGame : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F)) // 광장
         {
-            InstantiateRunner();
             JoinSquare();
         }
         
@@ -75,32 +76,58 @@ public class PhoStartGame : MonoBehaviour
         }
     }
 
+    private async UniTask ResetRunner()
+    {
+        if (runner == null)
+        {
+            InstantiateRunner();
+            return;
+        }
+        
+        if (runner.State == NetworkRunner.States.Running)
+        {
+            await runner.Shutdown();
+            runner = null;
+            InstantiateRunner();
+        }
+    }
+
     public async UniTask JoinSquare()
     {
-        /*var sceneInfo = new NetworkSceneInfo();
-        //sceneInfo.AddSceneRef(SceneRef.FromIndex(1));
-        sceneInfo.AddSceneRef(SceneRef.FromPath("PMJ/Scenes/Login"));*/
+        await ResetRunner();
         
-        var arg = new StartGameArgs
+        loadingPanel.SetActive(true);
         {
-            GameMode = GameMode.Shared,
-            SessionName = "광장",
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
-                
-        };
-        await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+            var arg = new StartGameArgs
+            {
+                GameMode = GameMode.Shared,
+                SessionName = "광장",
+                Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
+            };
+            await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+        }
+        Debug.Log("광장 접속됨");
+        await UniTask.Delay(1500);
+        loadingPanel.SetActive(false);
     }
 
     public async void JoinQuiz()
     {
+        await ResetRunner();
         
-        var arg = new StartGameArgs()
+        loadingPanel.SetActive(true);
         {
-            GameMode = GameMode.Shared,
-            SessionName = "노동aa", 
-            Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
-        };
-        await runner.StartGame(arg);
+            var arg = new StartGameArgs()
+            {
+                GameMode = GameMode.Shared,
+                SessionName = "노동aa",
+                Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
+            };
+            await runner.StartGame(arg);
+        }
+        Debug.Log("퀴즈 접속됨");
+        await UniTask.Delay(2000);
+        loadingPanel.SetActive(false);
     }
 
     public async UniTask Shutdown()
