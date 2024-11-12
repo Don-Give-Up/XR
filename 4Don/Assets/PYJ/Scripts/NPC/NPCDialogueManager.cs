@@ -94,6 +94,7 @@ public class NPCDialogueManager : MonoBehaviour
     {
         // 현재 라인의 상태에 따라 어디로 옮길 지, 어떤 행동을 할 지 등등 구별해 놓기 
 
+        /*
         if ()
         {
             
@@ -105,6 +106,7 @@ public class NPCDialogueManager : MonoBehaviour
         else
         {
         }
+        */
 
         currentDialogueNum++; 
         OnShowDialogue(currentDialogueNum);
