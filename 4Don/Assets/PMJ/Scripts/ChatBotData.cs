@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class ChatBotData
 {
-   private string _answer;
+   public string Result { get; set; }
 }
