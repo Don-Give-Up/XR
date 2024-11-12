@@ -36,13 +36,27 @@ public class GoogleSheetManager : MonoBehaviour
     
     public struct Stock 
     {
-        public int Day { get; set; }
-        public double StockPrice { get; set; }
+        public int Year { get; set; }
+        public double FoodStockPrice { get; set; }
+        public double ThreeStarStockPrice{ get; set; }
+        public double HoldingsStockPrice{ get; set; }
+        public double AirStockPrice{ get; set; }
+        public double InnovationStockPrice{ get; set; }
+        public double ElectonicCarStockPrice{ get; set; }
+        public double ITStockPrice{ get; set; }
+        public double BioStockPrice{ get; set; }
 
-        public Stock(int day, double stockPrice)
+        public Stock(int year, double food, double threeStar, double holding, double air, double innovation, double car, double it, double bio)
         {
-            Day = day;
-            StockPrice = stockPrice;
+            Year = year;
+            FoodStockPrice = food;
+            ThreeStarStockPrice = threeStar;
+            HoldingsStockPrice = holding;
+            AirStockPrice = air;
+            InnovationStockPrice = innovation;
+            ElectonicCarStockPrice = car;
+            ITStockPrice = it;
+            BioStockPrice = bio;
         }
     }
 
@@ -50,13 +64,11 @@ public class GoogleSheetManager : MonoBehaviour
     {
         public string Name;
         public string Server;
-        
 
         public Url(string name, string server)
         {
             Name = name;
             Server = server;
-            
         }
     }
 
@@ -117,18 +129,25 @@ public class GoogleSheetManager : MonoBehaviour
 
         }
 
-        var data2 = await Get("Stock!B2:C141");
+        var data2 = await Get("Stock!A2:I9");
 
         foreach (var row in data2)
         {
-            var dayilydata = new Stock(
+            var yealydata = new Stock(
                 Convert.ToInt32(row[0]),
-                Convert.ToDouble(row[1])
+                Convert.ToDouble(row[1]),
+                Convert.ToDouble(row[2]),
+                Convert.ToDouble(row[3]),
+                Convert.ToDouble(row[4]),
+                Convert.ToDouble(row[5]),
+                Convert.ToDouble(row[6]),
+                Convert.ToDouble(row[7]),
+                Convert.ToDouble(row[8])
             );
             
-            if (!stocks.ContainsKey(dayilydata.Day))
+            if (!stocks.ContainsKey(yealydata.Year))
             {
-                stocks.Add(dayilydata.Day, dayilydata);
+                stocks.Add(yealydata.Year, yealydata);
             }
 
         }
@@ -167,9 +186,9 @@ public class GoogleSheetManager : MonoBehaviour
     }
 
     // 하루 데이터 제공
-    public Stock DailyDataGet(int day)
+    public Stock YearlyStockDataGet(int Year)
     {
-        return stocks[day];
+        return stocks[Year];
     }
 
     public Url UrldataGet(string name)

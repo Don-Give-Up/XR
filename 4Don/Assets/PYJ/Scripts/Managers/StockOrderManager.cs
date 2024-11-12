@@ -26,7 +26,7 @@ public class StockOrderManager : MonoBehaviour
 
     private void CurrentStock(int day)
     {
-        currentStock = GoogleSheetManager.Instance.DailyDataGet(day).StockPrice;
+        //currentStock = GoogleSheetManager.Instance.DailyDataGet(day).StockPrice;
         Set();
     }
 

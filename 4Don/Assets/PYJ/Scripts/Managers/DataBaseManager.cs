@@ -10,21 +10,22 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
     [SerializeField] private string csv_SeletionDialogueFileName;*/
     [SerializeField] private string csv_AllDialogueFileName;
 
-    /*private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>(); 
+    /*private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>();
     private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();*/
-    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialogueDic = new Dictionary<string,List<Dictionary<int, AllDialogue>>>();
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialogueDic =
+        new Dictionary<string, List<Dictionary<int, AllDialogue>>>();
 
     private DialogParser theParser;
 
     public static bool isFinish = false;
-   // public static bool isSFinish = false;
+    // public static bool isSFinish = false;
 
     private void Awake()
     {
         if (instance == null)
         {
             theParser = GetComponent<DialogParser>();
-            instance = this; 
+            instance = this;
             //DialogDataSave();
             //SeletDialogDataSave();
             DontDestroyOnLoad(gameObject);
@@ -51,16 +52,17 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
     private void AllDialogueDataSave()
     {
         allDialogueDic = theParser.AllDialoguParse(csv_AllDialogueFileName);
-        isFinish = true; 
+        isFinish = true;
     }
 
-    /*public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
+    /*
+    public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
     {
         Dictionary<int, AllDialogue> targetDialoguesDic = new Dictionary<int, AllDialogue>();
 
-        for (int i = startNum; i <= endNum- startNum; i ++)
+        for (int i = startNum; i <= endNum - startNum; i++)
         {
-            if (allDialogueDic.TryGetValue(i, out AllDialogue allDialogue))
+            if (allDialogueDic.TryGetValue(i, out AllDialogue allDialogue)) // 이거 수정
             {
                 targetDialoguesDic.Add(i, allDialogue);
             }
@@ -70,45 +72,46 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
             }
         }
 
-        return targetDialoguesDic; 
-    }*/
-
-    /*public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
-    {
-        Dictionary<int, Dialogue> targetDialogueDic = new Dictionary<int, Dialogue>();
-
-        for (int i = _StartNum; i <= _EndNum; i++)
-        {
-            if (dialogDic.TryGetValue(i, out Dialogue dialogue))
-            {
-                targetDialogueDic.Add(i, dialogue);
-            }
-            else
-            {
-                Debug.LogWarning($"Key {i} not found in dialogDic.");
-            }
-        }
-        return targetDialogueDic;
-    }
-
-    public Dictionary<int, SeletDialogue> GetSeletDialogues(int _StartNum, int _EndNum)
-    {
-        Dictionary<int, SeletDialogue> targetSeletDialogueDic = new Dictionary<int, SeletDialogue>();
-
-        for (int i = _StartNum; i <= _EndNum; i++)
-        {
-            if (seletDialogDic.TryGetValue(i, out SeletDialogue seletDialogue))
-            {
-                targetSeletDialogueDic.Add(i, seletDialogue);
-            }
-            else
-            {
-                Debug.LogWarning($"Key {i} not found in seletDialogDic.");
-            }
-        }
-        return targetSeletDialogueDic;
+        return targetDialoguesDic;
     }*/
 }
+
+/*public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
+{
+    Dictionary<int, Dialogue> targetDialogueDic = new Dictionary<int, Dialogue>();
+
+    for (int i = _StartNum; i <= _EndNum; i++)
+    {
+        if (dialogDic.TryGetValue(i, out Dialogue dialogue))
+        {
+            targetDialogueDic.Add(i, dialogue);
+        }
+        else
+        {
+            Debug.LogWarning($"Key {i} not found in dialogDic.");
+        }
+    }
+    return targetDialogueDic;
+}
+
+public Dictionary<int, SeletDialogue> GetSeletDialogues(int _StartNum, int _EndNum)
+{
+    Dictionary<int, SeletDialogue> targetSeletDialogueDic = new Dictionary<int, SeletDialogue>();
+
+    for (int i = _StartNum; i <= _EndNum; i++)
+    {
+        if (seletDialogDic.TryGetValue(i, out SeletDialogue seletDialogue))
+        {
+            targetSeletDialogueDic.Add(i, seletDialogue);
+        }
+        else
+        {
+            Debug.LogWarning($"Key {i} not found in seletDialogDic.");
+        }
+    }
+    return targetSeletDialogueDic;
+}*/
+
 /*
 using System;
 using System.Collections.Generic;

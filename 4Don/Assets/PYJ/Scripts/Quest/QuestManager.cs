@@ -1,19 +1,32 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour // 여러 퀘스트를 관리, 퀘스트 시스템 전반의 흐름을 조정하는 역할 
 {
-    private Dictionary<string, Quest> questDic; // 모든 데이터 저장되어 있음
+    public Dictionary<string, Quest> questDic; // 모든 데이터 저장되어 있음
     public List<string> canStartQuests;
-    
+
+    public static QuestManager instance;
     
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
+        }
+
         canStartQuests = new List<string>();
         questDic = CreateQuestDic();
     }
 
+    /*
     private void OnEnable()
     {
         GameEventsManager.instance.questEvents.onStartQuest += StartQuest;
@@ -28,6 +41,7 @@ public class QuestManager : MonoBehaviour // 여러 퀘스트를 관리, 퀘스�
         GameEventsManager.instance.questEvents.onAdvanceQuest -= AdvanceQuest;
         GameEventsManager.instance.questEvents.onFinishQuest -= FinishQuest;
     }
+    */
 
     private void Start()
     {

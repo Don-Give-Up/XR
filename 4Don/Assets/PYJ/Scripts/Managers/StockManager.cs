@@ -20,7 +20,7 @@ public class StockManager : MonoBehaviour
 
  private void StockPrice(int day)
  {
-  currentStockPrice = GoogleSheetManager.Instance.DailyDataGet(day).StockPrice;
+  //currentStockPrice = GoogleSheetManager.Instance.YearlyStockDataGet(day).ITStockPrice;
  }
     
  private void BuyStock(int count)
