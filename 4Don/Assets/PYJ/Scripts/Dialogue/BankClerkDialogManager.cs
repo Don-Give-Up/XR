@@ -37,12 +37,12 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
 
     private void Start()
     {
-        GetDialogues();
-        GetSeletDialogues();
+        //GetDialogues();
+        //GetSeletDialogues();
     }
     
     // 필요한 대화 불러오기
-    private Dictionary<int, Dialogue> GetDialogues()
+    /*private Dictionary<int, Dialogue> GetDialogues()
     {
         useddialgoue.dialogues = DataBaseManager.instance.GetDialogues((int)bankClerkDialogNum.x, (int)bankClerkDialogNum.y); // (int)dialogue.line.x, (int)dialogue.line.y
         return useddialgoue.dialogues;
@@ -53,7 +53,7 @@ public class BankClerkDialogManager : MonoBehaviour // 은행 직원
     {
         usedselect.seletDialogues = DataBaseManager.instance.GetSeletDialogues((int)myDialogNum.x, (int)myDialogNum.y); // (int)dialogue.line.x, (int)dialogue.line.y
         return usedselect.seletDialogues;
-    }
+    }*/
     
     // NPC 가 클릭되면 실행될 코드
     public void Dialogue(int talkNum) //번호 바뀌면 해당하는 대사 정해기 

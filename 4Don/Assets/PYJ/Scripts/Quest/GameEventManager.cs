@@ -5,7 +5,8 @@ public class GameEventsManager : MonoBehaviour // 게임에서 발생하는 여�
 {
     public static GameEventsManager instance { get; private set; } // 싱글톤 패턴을 사용 , 외부에서 인스턴스를 수정하지 못하도록 보호 
     
-    //public QuestEvents questEvents;
+    public QuestEvents questEvents;
+    public NPCDialogueEvents npcdialogEvents;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class GameEventsManager : MonoBehaviour // 게임에서 발생하는 여�
 
         // 각종 인스턴스 초기화 
         // initialize all events
-        //questEvents = new QuestEvents();
+        questEvents = new QuestEvents();
+        npcdialogEvents = new NPCDialogueEvents();
     }
 }

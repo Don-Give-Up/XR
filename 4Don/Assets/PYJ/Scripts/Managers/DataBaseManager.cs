@@ -6,25 +6,30 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
 {
     public static DataBaseManager instance;
 
-    [SerializeField] private string csv_DialogueFileName;
-    [SerializeField] private string csv_SeletionDialogueFileName;
+    /*[SerializeField] private string csv_DialogueFileName;
+    [SerializeField] private string csv_SeletionDialogueFileName;*/
+    [SerializeField] private string csv_AllDialogueFileName;
 
-    private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>(); 
-    private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();
+    /*private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>();
+    private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();*/
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialogueDic =
+        new Dictionary<string, List<Dictionary<int, AllDialogue>>>();
 
     private DialogParser theParser;
 
-    public static bool isDFinish = false;
-    public static bool isSFinish = false;
+    public static bool isFinish = false;
+    // public static bool isSFinish = false;
 
     private void Awake()
     {
         if (instance == null)
         {
             theParser = GetComponent<DialogParser>();
-            instance = this; 
-            DialogDataSave();
-            SeletDialogDataSave();
+            instance = this;
+            //DialogDataSave();
+            //SeletDialogDataSave();
+            DontDestroyOnLoad(gameObject);
+            AllDialogueDataSave();
         }
         else
         {
@@ -32,7 +37,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
         }
     }
 
-    private void DialogDataSave()
+    /*private void DialogDataSave()
     {
         dialogDic = theParser.DialoguParse(csv_DialogueFileName);
         isDFinish = true;
@@ -42,44 +47,71 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
     {
         seletDialogDic = theParser.SeletDialoguesParser(csv_SeletionDialogueFileName);
         isSFinish = true;
-    }
-  
-    public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
-    {
-        Dictionary<int, Dialogue> targetDialogueDic = new Dictionary<int, Dialogue>();
+    }*/
 
-        for (int i = _StartNum; i <= _EndNum; i++)
+    private void AllDialogueDataSave()
+    {
+        allDialogueDic = theParser.AllDialoguParse(csv_AllDialogueFileName);
+        isFinish = true;
+    }
+
+    /*
+    public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
+    {
+        Dictionary<int, AllDialogue> targetDialoguesDic = new Dictionary<int, AllDialogue>();
+
+        for (int i = startNum; i <= endNum - startNum; i++)
         {
-            if (dialogDic.TryGetValue(i, out Dialogue dialogue))
+            if (allDialogueDic.TryGetValue(i, out AllDialogue allDialogue)) // 이거 수정
             {
-                targetDialogueDic.Add(i, dialogue);
+                targetDialoguesDic.Add(i, allDialogue);
             }
             else
             {
-                Debug.LogWarning($"Key {i} not found in dialogDic.");
+                Debug.Log("찾는 다이알로그 없음");
             }
         }
-        return targetDialogueDic;
-    }
 
-    public Dictionary<int, SeletDialogue> GetSeletDialogues(int _StartNum, int _EndNum)
-    {
-        Dictionary<int, SeletDialogue> targetSeletDialogueDic = new Dictionary<int, SeletDialogue>();
-
-        for (int i = _StartNum; i <= _EndNum; i++)
-        {
-            if (seletDialogDic.TryGetValue(i, out SeletDialogue seletDialogue))
-            {
-                targetSeletDialogueDic.Add(i, seletDialogue);
-            }
-            else
-            {
-                Debug.LogWarning($"Key {i} not found in seletDialogDic.");
-            }
-        }
-        return targetSeletDialogueDic;
-    }
+        return targetDialoguesDic;
+    }*/
 }
+
+/*public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
+{
+    Dictionary<int, Dialogue> targetDialogueDic = new Dictionary<int, Dialogue>();
+
+    for (int i = _StartNum; i <= _EndNum; i++)
+    {
+        if (dialogDic.TryGetValue(i, out Dialogue dialogue))
+        {
+            targetDialogueDic.Add(i, dialogue);
+        }
+        else
+        {
+            Debug.LogWarning($"Key {i} not found in dialogDic.");
+        }
+    }
+    return targetDialogueDic;
+}
+
+public Dictionary<int, SeletDialogue> GetSeletDialogues(int _StartNum, int _EndNum)
+{
+    Dictionary<int, SeletDialogue> targetSeletDialogueDic = new Dictionary<int, SeletDialogue>();
+
+    for (int i = _StartNum; i <= _EndNum; i++)
+    {
+        if (seletDialogDic.TryGetValue(i, out SeletDialogue seletDialogue))
+        {
+            targetSeletDialogueDic.Add(i, seletDialogue);
+        }
+        else
+        {
+            Debug.LogWarning($"Key {i} not found in seletDialogDic.");
+        }
+    }
+    return targetSeletDialogueDic;
+}*/
+
 /*
 using System;
 using System.Collections.Generic;

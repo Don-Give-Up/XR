@@ -35,7 +35,8 @@ public class RoundSystem : MonoBehaviour
 
     public bool isLoaded = false;
 
-    /*public GameObject dayObject; 
+    /*
+    public GameObject dayObject; 
     public TMP_Text dayText;
     public GameObject weekObject;
     public TMP_Text weekText;
