@@ -79,7 +79,7 @@ public class MJPlayerMovement : NetworkBehaviour
 
     private void Teleport()
     {
-        NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount - 2));
+        NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount + 4f));
     }
 
     public override void FixedUpdateNetwork()
@@ -92,7 +92,7 @@ public class MJPlayerMovement : NetworkBehaviour
 
         if (_controller.isGrounded)
         {
-            _velocity = new Vector3(0, -1, 0);
+            _velocity = new Vector3(0, -1f, 0);
         }
         
         Quaternion cameraRotationY = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
