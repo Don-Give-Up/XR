@@ -6,14 +6,68 @@ public class DialogParser : MonoBehaviour
 {
     private void Start()
     {
-        DialoguParse("NPCDialgue");
-        SeletDialoguesParser("SeletionDialgue");
+        //AllDialoguParse("AllDialogue");
     }
+    
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialoguesDic = new Dictionary<string, List<Dictionary<int, AllDialogue>>>();
 
-    Dictionary<int, Dialogue> dialoguesDic = new Dictionary<int, Dialogue>();
-    Dictionary<int, SeletDialogue> seletDialoguesDic = new Dictionary<int, SeletDialogue>();
+    public Dictionary<string, List<Dictionary<int, AllDialogue>>> AllDialoguParse(string _CSVAllDialogFileName)
+    {
+        TextAsset csvAllDialogData = Resources.Load<TextAsset>(_CSVAllDialogFileName);
+        if (csvAllDialogData == null)
+        {
+            //Debug.LogError($"Failed to load CSV file: {_CSVDialogFileName}");
+            return null;
+        }
 
-    public Dictionary<int, Dialogue> DialoguParse(string _CSVDialogFileName)
+        string[] data = csvAllDialogData.text.Split(new char[] { '\n' });
+
+        for (int i = 1; i < data.Length; i++)
+        {
+            string[] row = data[i].Split(new char[] { ',' });
+
+            if (row.Length < 9 || string.IsNullOrWhiteSpace(row[0]))
+                continue;
+
+            string outterkey = row[0]; // questName
+            int innerkey = Int32.Parse(row[1]); // Line number
+
+            Debug.Log($"outterkey: {outterkey}, innerkey: {innerkey}");
+
+            AllDialogue alldialogue = new AllDialogue
+            {
+                questName = row[0],
+                line = Int32.Parse(row[1]),
+                selectLine = Int32.Parse(row[2]),
+                name = row[3],
+                content = row[4],
+                choiceEventNum = Int32.Parse(row[5]),
+                skipLine = Int32.Parse(row[6]),
+                questState = Int32.Parse(row[7]),
+            };
+
+            // Add a new list if questName does not exist
+            if (!allDialoguesDic.ContainsKey(outterkey))
+            {
+                allDialoguesDic[outterkey] = new List<Dictionary<int, AllDialogue>>();
+            }
+
+            // Add the AllDialogue to the respective questName list
+            Dictionary<int, AllDialogue> innerDic = new Dictionary<int, AllDialogue>
+            {
+                { innerkey, alldialogue }
+            };
+            allDialoguesDic[outterkey].Add(innerDic);
+        }
+
+        return allDialoguesDic;
+    }
+}
+
+//Dictionary<int, Dialogue> dialoguesDic = new Dictionary<int, Dialogue>();
+//Dictionary<int, SeletDialogue> seletDialoguesDic = new Dictionary<int, SeletDialogue>();
+
+    /*public Dictionary<int, Dialogue> DialoguParse(string _CSVDialogFileName)
     {
         TextAsset csvDialogData = Resources.Load<TextAsset>(_CSVDialogFileName);
         if (csvDialogData == null)
@@ -33,7 +87,7 @@ public class DialogParser : MonoBehaviour
 
             int key = Int32.Parse(row[0]);
             Debug.Log($"key: {key}");
-            
+
             Dialogue dialogue = new Dialogue
             {
                 npcname = row[1],
@@ -51,56 +105,58 @@ public class DialogParser : MonoBehaviour
         }
 
         return dialoguesDic;
-    }
+    }*/
 
-    public Dictionary<int, SeletDialogue> SeletDialoguesParser(string _CSVSeletDialogFileName)
+   
+
+/*public Dictionary<int, SeletDialogue> SeletDialoguesParser(string _CSVSeletDialogFileName)
+{
+    TextAsset csvSeletDialogData = Resources.Load<TextAsset>(_CSVSeletDialogFileName);
+    if (csvSeletDialogData == null)
     {
-        TextAsset csvSeletDialogData = Resources.Load<TextAsset>(_CSVSeletDialogFileName);
-        if (csvSeletDialogData == null)
-        {
-            //Debug.LogError($"Failed to load CSV file: {_CSVSeletDialogFileName}");
-            return null;
-        }
-
-        string[] data = csvSeletDialogData.text.Split(new char[] { '\n' });
-
-        for (int i = 1; i < data.Length; i++)
-        {
-            string[] row = data[i].Split(new char[] { ',' });
-
-            if (row.Length < 5 || string.IsNullOrWhiteSpace(row[0]))
-                continue;
-
-            int key = Int32.Parse(row[0]);
-            SeletDialogue seletDialogue = new SeletDialogue
-            {
-                eventNum = Int32.Parse(row[1]),
-                choiceContent = row[2],
-                resumeNum = Int32.Parse(row[3]),
-                eventType = ParseEventType(row[4]) // eventType = ParseEventType(row[4]) ?? EventType.defaultValue; // ?? 왼쪽 값이 널이면 오른쪽 값이다. 
-            };
-
-            // 중복 체크
-            if (!seletDialoguesDic.TryAdd(key, seletDialogue))
-            {
-                //Debug.LogWarning($"Duplicate key {key} found in SeletDialoguesParser. Updating entry.");
-                seletDialoguesDic[key] = seletDialogue; // 기존 값을 덮어씀
-            }
-        }
-
-        return seletDialoguesDic;
+        //Debug.LogError($"Failed to load CSV file: {_CSVSeletDialogFileName}");
+        return null;
     }
 
-    private EventType? ParseEventType(string eventType)
+    string[] data = csvSeletDialogData.text.Split(new char[] { '\n' });
+
+    for (int i = 1; i < data.Length; i++)
     {
-        if (string.IsNullOrEmpty(eventType) || eventType == "-1")
-        {
-            return null;
-        }
+        string[] row = data[i].Split(new char[] { ',' });
 
-        return (EventType)Enum.Parse(typeof(EventType), eventType);
+        if (row.Length < 5 || string.IsNullOrWhiteSpace(row[0]))
+            continue;
+
+        int key = Int32.Parse(row[0]);
+        SeletDialogue seletDialogue = new SeletDialogue
+        {
+            eventNum = Int32.Parse(row[1]),
+            choiceContent = row[2],
+            resumeNum = Int32.Parse(row[3]),
+            eventType = ParseEventType(row[4]) // eventType = ParseEventType(row[4]) ?? EventType.defaultValue; // ?? 왼쪽 값이 널이면 오른쪽 값이다.
+        };
+
+        // 중복 체크
+        if (!seletDialoguesDic.TryAdd(key, seletDialogue))
+        {
+            //Debug.LogWarning($"Duplicate key {key} found in SeletDialoguesParser. Updating entry.");
+            seletDialoguesDic[key] = seletDialogue; // 기존 값을 덮어씀
+        }
     }
+
+    return seletDialoguesDic;
 }
+
+private EventType? ParseEventType(string eventType)
+{
+    if (string.IsNullOrEmpty(eventType) || eventType == "-1")
+    {
+        return null;
+    }
+
+    return (EventType)Enum.Parse(typeof(EventType), eventType);
+}
+}*/
 
 /*
 using System;

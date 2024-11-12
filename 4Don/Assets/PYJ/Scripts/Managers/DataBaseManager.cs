@@ -6,16 +6,18 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
 {
     public static DataBaseManager instance;
 
-    [SerializeField] private string csv_DialogueFileName;
-    [SerializeField] private string csv_SeletionDialogueFileName;
+    /*[SerializeField] private string csv_DialogueFileName;
+    [SerializeField] private string csv_SeletionDialogueFileName;*/
+    [SerializeField] private string csv_AllDialogueFileName;
 
-    private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>(); 
-    private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();
+    /*private Dictionary<int, Dialogue> dialogDic = new Dictionary<int, Dialogue>(); 
+    private Dictionary<int, SeletDialogue> seletDialogDic = new Dictionary<int, SeletDialogue>();*/
+    private Dictionary<string, List<Dictionary<int, AllDialogue>>> allDialogueDic = new Dictionary<string,List<Dictionary<int, AllDialogue>>>();
 
     private DialogParser theParser;
 
-    public static bool isDFinish = false;
-    public static bool isSFinish = false;
+    public static bool isFinish = false;
+   // public static bool isSFinish = false;
 
     private void Awake()
     {
@@ -23,8 +25,10 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
         {
             theParser = GetComponent<DialogParser>();
             instance = this; 
-            DialogDataSave();
-            SeletDialogDataSave();
+            //DialogDataSave();
+            //SeletDialogDataSave();
+            DontDestroyOnLoad(gameObject);
+            AllDialogueDataSave();
         }
         else
         {
@@ -32,7 +36,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
         }
     }
 
-    private void DialogDataSave()
+    /*private void DialogDataSave()
     {
         dialogDic = theParser.DialoguParse(csv_DialogueFileName);
         isDFinish = true;
@@ -42,9 +46,34 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
     {
         seletDialogDic = theParser.SeletDialoguesParser(csv_SeletionDialogueFileName);
         isSFinish = true;
+    }*/
+
+    private void AllDialogueDataSave()
+    {
+        allDialogueDic = theParser.AllDialoguParse(csv_AllDialogueFileName);
+        isFinish = true; 
     }
-  
-    public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
+
+    /*public Dictionary<int, AllDialogue> GetAllDialogues(int startNum, int endNum)
+    {
+        Dictionary<int, AllDialogue> targetDialoguesDic = new Dictionary<int, AllDialogue>();
+
+        for (int i = startNum; i <= endNum- startNum; i ++)
+        {
+            if (allDialogueDic.TryGetValue(i, out AllDialogue allDialogue))
+            {
+                targetDialoguesDic.Add(i, allDialogue);
+            }
+            else
+            {
+                Debug.Log("찾는 다이알로그 없음");
+            }
+        }
+
+        return targetDialoguesDic; 
+    }*/
+
+    /*public Dictionary<int, Dialogue> GetDialogues(int _StartNum, int _EndNum)
     {
         Dictionary<int, Dialogue> targetDialogueDic = new Dictionary<int, Dialogue>();
 
@@ -78,7 +107,7 @@ public class DataBaseManager : MonoBehaviour // csv 파일을 파싱한 결과�
             }
         }
         return targetSeletDialogueDic;
-    }
+    }*/
 }
 /*
 using System;

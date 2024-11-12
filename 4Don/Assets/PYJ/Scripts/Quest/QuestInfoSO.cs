@@ -8,6 +8,15 @@ public class QuestInfoSO : ScriptableObject
     [Header("퀘스트 제목")] 
     public string diaplayName;
 
+    [Header("퀘스트 내용")] 
+    public string[] displayContents;
+
+    [Header("관련 npc")] 
+    public string[] npcName; 
+    
+    [Header("다이알로그")] 
+    public Vector2[] dialogueLine; 
+   
     [Header("요구사항")] 
     public QuestInfoSO[] questPrerequisites;
 
@@ -19,7 +28,7 @@ public class QuestInfoSO : ScriptableObject
 
     [Header("보상")] 
     public int coinReward;
-    public int twonEnergy;
+    public int townEnergy;
 
     private void OnValidate()
     {
