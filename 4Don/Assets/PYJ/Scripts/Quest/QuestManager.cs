@@ -1,6 +1,5 @@
-using System;
+
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour // 여러 퀘스트를 관리, 퀘스트 시스템 전반의 흐름을 조정하는 역할 

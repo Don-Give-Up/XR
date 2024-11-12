@@ -1,21 +1,24 @@
+using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JJANGMovement : MonoBehaviour
+public class JJANGMovement : NetworkBehaviour
 {
     public Transform player; // 플레이어의 Transform
     private NavMeshAgent agent; // NavMeshAgent
 
+    public GameObject jjang;
+
     public float distanceAheadPlayer = 1f; // 플레이어의 앞쪽으로 이동할 거리
     public float offsetDistance = 1f; // 플레이어의 오른쪽에 위치할 거리
 
-    void Start()
+    public override void Spawned()
     {
         // NavMeshAgent 컴포넌트를 가져옵니다.
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
         if (player != null)
         {
@@ -37,5 +40,18 @@ public class JJANGMovement : MonoBehaviour
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * 500f);  // 회전 속도 조절
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            jjang.SetActive(false);
+        }
+        
+        
+        
     }
+    
+    
+    
+    
+    
 }

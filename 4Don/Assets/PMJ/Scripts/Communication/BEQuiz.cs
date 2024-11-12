@@ -43,7 +43,7 @@ public class BEQuiz : MonoBehaviour
     
     public bool onlaborCheak = false;
 
-    private int correntAnswerCount = 0; // 맞힌 정답 갯수
+    public int correntAnswerCount = 0; // 맞힌 정답 갯수
     private List<int> usedQuiz = new List<int>(); // 이미 출제된 문제 기록
     
     private int _Count;
@@ -267,7 +267,7 @@ public class BEQuiz : MonoBehaviour
                 
 
                 // 노동 종료할 때 수고 이미지 띄우기
-                if (correntAnswerCount >= 5)
+                if (correntAnswerCount >= 3)
                 {
                     // 유진이 언니의 월급 관리자 호출
                     // 노동 관리자 호출
@@ -276,12 +276,9 @@ public class BEQuiz : MonoBehaviour
                     await UniTask.Delay(100);
                     sugoimage.SetActive(true);
 
-                    SceneManager.LoadScene("Demo");
-                    
                     await UniTask.Delay(2000);
                     SetActiveFalse();
                     
-                    await PhoStartGame.Instance.Shutdown();
                     await PhoStartGame.Instance.JoinSquare();
                     
                     return;

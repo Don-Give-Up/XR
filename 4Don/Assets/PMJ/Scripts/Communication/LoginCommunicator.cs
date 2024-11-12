@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json; 
 using System.Text;
+using UnityEngine.SceneManagement;
 
 public class LoginCommunicator : MonoBehaviour
 {
@@ -52,8 +53,8 @@ public class LoginCommunicator : MonoBehaviour
             // request.downloadHandler.text -> (Deserialize) -> LoginResponse
             string rep = request.downloadHandler.text;
             Debug.Log(rep);
+            SceneManager.LoadScene("SsamMade");
             
-
             Value = rep.ToString();
 
         }

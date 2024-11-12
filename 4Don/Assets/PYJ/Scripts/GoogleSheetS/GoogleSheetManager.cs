@@ -152,7 +152,7 @@ public class GoogleSheetManager : MonoBehaviour
 
         }
 ////민주야 니가 찾는거 여기있다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var data3 = await Get("URL!A2:B7");
+        var data3 = await Get("URL!A2:B8");
         foreach (var row in data3)
         {
 
