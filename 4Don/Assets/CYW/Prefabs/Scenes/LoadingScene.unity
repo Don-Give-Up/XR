@@ -296,7 +296,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9199958736826655970, guid: 7e98a63115011f8459083c17f95590ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -140
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5823683624914984187, guid: 7e98a63115011f8459083c17f95590ca, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
