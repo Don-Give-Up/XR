@@ -1,21 +1,67 @@
+using System;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class JJANGMovement : NetworkBehaviour
 {
-    public Transform player; // 플레이어의 Transform
+    public Transform player; // 플레이어의 Transform 얘를 언제 할지 어떻게 할지 아무튼 네트워크에 있는 이자식을 데려다가 얘 위치를 따라가야 되니까
     private NavMeshAgent agent; // NavMeshAgent
-
+    private NetworkTransform NoChDropp;
     public GameObject jjang;
+    public Animator anim;
 
     public float distanceAheadPlayer = 1f; // 플레이어의 앞쪽으로 이동할 거리
     public float offsetDistance = 1f; // 플레이어의 오른쪽에 위치할 거리
+    
+
 
     public override void Spawned()
     {
+        
         // NavMeshAgent 컴포넌트를 가져옵니다.
         agent = GetComponent<NavMeshAgent>();
+        NoChDropp = GetComponent<NetworkTransform>();
+        
+        ConnectPlayer().Forget();
+        NoChDropp.Teleport(new Vector3(230f , 47f, 365f));
+    }
+    
+    private async UniTaskVoid ConnectPlayer()
+    {
+        await UniTask.WaitUntil(() => Runner.ActivePlayers.Any());
+        // 한 명이 되면 연결
+        // 아마 1
+        
+           
+        // 첫 번째 플레이어를 가져옴
+        var firstPlayer = Runner.ActivePlayers.First(); // 첫번째 플레이어
+        var players = GameObject.FindObjectsByType<MJPlayerMovement>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        GameObject playerObject = null;
+        foreach (var p in players)
+        {
+            var nb = p.GetComponent<NetworkBehaviour>();
+            if (firstPlayer.PlayerId == nb.Id.Behaviour)
+            {
+                playerObject = p.gameObject;
+            }
+        }
+        
+        if (playerObject != null)
+        {
+            player = playerObject.transform;  // 해당 게임오브젝트의 Transform을 player 변수에 할당
+            Debug.Log("첫 번째 플레이어의 transform: " + player.position);
+        }
+        else
+        {
+            Debug.LogError("첫 번째 플레이어의 GameObject를 찾을 수 없습니다.");
+        }
+        // 첫 번째 플레이어의 게임오브젝트를 가져와서 그거를 플레이어에 연결
+        // 플레이어의 GameObject 가져오기
+        // 위치 동기화하는 컴퍼넌트를 들고 와서 teleport
+        // 플레이어 프리팹도 연결을 해야 될 거 같은데... 
     }
 
     public override void FixedUpdateNetwork()
@@ -41,10 +87,30 @@ public class JJANGMovement : NetworkBehaviour
             }
         }
 
+        
+        // 마을당 한 마리
+        // 첫 번째 들어온 놈만 따라가게
+        
+        // 플레이어한테 붙어있는 스폰 메시지를 찾아서 촌장한테 연결시켜 주기
+        
         if (Input.GetKeyDown(KeyCode.J))
         {
             jjang.SetActive(false);
         }
+        
+        // 애니메이션 추가하기
+        // navigation 조건으로 바뀌게
+        
+        // NavMeshAgent의 속도가 0보다 크면 이동 중, 아니면 멈춤
+        if (agent.velocity.sqrMagnitude > 0f) // 
+        {
+            anim.SetBool("IsWalk", true); // 걷기 애니메이션 시작
+        }
+        else
+        {
+            anim.SetBool("IsWalk", false); // 입력이 없을 때 걷기 애니메이션 멈춤
+        }
+
         
         
         

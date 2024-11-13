@@ -17,6 +17,12 @@ public class RoundSystem : MonoBehaviour
     // 선생님한테 종속되게 하면될 듯?
     // 나중에 네트워크 공유 데이터에 전달할 것 
     
+    //d이게 없어지고 
+    //년도로만 진행
+    ////시연은 5분이므로 년도도 5분진행
+    // 전부 하루에 대한건데 week가 년도 데이터를 기반으로 함. offset쪽을 2020년으로 바꾸면 될듯.
+    // 시연용으로 따로 스크립트 짜야할 수 도 있음. 이벤트 연결해놓으면. 
+    
     public int oneWeekTime = 5; //5회
     private int oneDay = 5 * 60; //5분 
     

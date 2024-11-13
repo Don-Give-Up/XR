@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LoginCommunicator : MonoBehaviour
 {
     public LoginManager loginManager;
+    public AudioSource audioSource;
 
     public static string Value;
     public void StartLoginProcess() 
@@ -54,6 +55,7 @@ public class LoginCommunicator : MonoBehaviour
             string rep = request.downloadHandler.text;
             Debug.Log(rep);
             SceneManager.LoadScene("SsamMade");
+            DontDestroyOnLoad(audioSource);
             
             Value = rep.ToString();
 
@@ -63,4 +65,14 @@ public class LoginCommunicator : MonoBehaviour
             Debug.LogError("Error sending data: " + request.error);
         }
     }
+    
+    public void StopAudio()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
+    
+    
 }

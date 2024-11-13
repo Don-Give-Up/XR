@@ -7,12 +7,23 @@ using UnityEngine;
 public class RunnerController : INetworkRunnerCallbacks
 {
 
+    public GameObject JJANGPrefab;
+    
+    
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log($"OnPlayerJoined : {player.PlayerId}");
         if (runner.LocalPlayer == player)
         {
             runner.Spawn(PhoStartGame.Instance.playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            
+            if (runner.IsSharedModeMasterClient)
+            {
+               // PhoStartGame.Instance.runner.SpawnAsync(JJANGPrefab);
+                // 여기서 스폰하기
+                Debug.Log("짱 출발!!!");
+                runner.Spawn(PhoStartGame.Instance.JJANGPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            }
         }
     }
 
