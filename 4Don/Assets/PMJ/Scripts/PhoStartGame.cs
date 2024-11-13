@@ -24,6 +24,12 @@ public class PhoStartGame : MonoBehaviour
     public GameObject loadingPanel;
     
     private bool test = true;
+    
+    public GameObject loadingObject; // Loading 오브젝트
+    private LoginCommunicator loginCommunicator; // LoginCommunicator 스크립트
+
+    
+    
     private void Awake()
     {
         if (Instance == null)
@@ -35,6 +41,9 @@ public class PhoStartGame : MonoBehaviour
         {
             Destroy(gameObject); // 중복된 인스턴스가 있으면 파괴
         }
+        
+        // LoginCommunicator 스크립트 가져오기
+        loginCommunicator = FindObjectOfType<LoginCommunicator>();
         
     }
 
@@ -101,6 +110,9 @@ public class PhoStartGame : MonoBehaviour
         
         loadingPanel.SetActive(true);
         {
+
+            loginCommunicator.StopAudio();
+            
             var arg = new StartGameArgs
             {
                 GameMode = GameMode.Shared,
@@ -110,7 +122,7 @@ public class PhoStartGame : MonoBehaviour
             await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
         }
         Debug.Log("광장 접속됨");
-        await UniTask.Delay(4500);
+        await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
     }
 
@@ -129,7 +141,7 @@ public class PhoStartGame : MonoBehaviour
             await runner.StartGame(arg);
         }
         Debug.Log("퀴즈 접속됨");
-        await UniTask.Delay(3800);
+        await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
     }
 

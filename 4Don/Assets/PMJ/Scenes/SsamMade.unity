@@ -2747,6 +2747,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RunnerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4865653374975871728, guid: d6152432dba2a0a46bf03391a3c47f9d, type: 3}
+      propertyPath: loadingObject
+      value: 
+      objectReference: {fileID: 2113909478}
+    - target: {fileID: 4865653374975871728, guid: d6152432dba2a0a46bf03391a3c47f9d, type: 3}
+      propertyPath: 'JJANGPrefab.RawGuidValue.Array.data[0]'
+      value: -2014194202031551391
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865653374975871728, guid: d6152432dba2a0a46bf03391a3c47f9d, type: 3}
+      propertyPath: 'JJANGPrefab.RawGuidValue.Array.data[1]'
+      value: 6347781686151863211
+      objectReference: {fileID: 0}
     - target: {fileID: 6545873336878844883, guid: d6152432dba2a0a46bf03391a3c47f9d, type: 3}
       propertyPath: m_Resource
       value: 
@@ -3810,6 +3822,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080171027}
   m_CullTransparentMesh: 1
+--- !u!1 &2113909478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 24861190283696587, guid: d6152432dba2a0a46bf03391a3c47f9d, type: 3}
+  m_PrefabInstance: {fileID: 1306457789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2116198337
 GameObject:
   m_ObjectHideFlags: 0
