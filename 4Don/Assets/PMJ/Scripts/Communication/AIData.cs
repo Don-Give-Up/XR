@@ -4,27 +4,46 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
+using System;
+
+[System.Serializable]
+public class ArticlesData
+{
+    public Article economy;
+    public Article finance;
+}
+
 [System.Serializable]
 public class Article
 {
+    public string title;
+    public string summary;
+} 
+  /*
+[System.Serializable]
+public class Article
+
+{
     public string field;
-    public string cleaned_title;
+    public string title;
     public string cleaned_body;
     public string summary_2_lines;
-    public string summary_50;
-    [JsonConverter(typeof(Texture2DConverter))]
-    public Texture2D image;
+    public string summary;
+    //[JsonConverter(typeof(Texture2DConverter))]
+    //public Texture2D image;
 }
+*/
 
+/*
 [System.Serializable]
 public class ArticlesData
 {
     public List<Article> articles;  // articles 배열
 }
+*/
+  
 
-
-
-public class Texture2DConverter : JsonConverter
+/*public class Texture2DConverter : JsonConverter
 {
     public override bool CanConvert(Type objectType)
     {
@@ -55,4 +74,4 @@ public class Texture2DConverter : JsonConverter
 
         return texture;
     }
-}
+}*/

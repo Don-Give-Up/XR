@@ -31,7 +31,7 @@ public class QuizDoor : MonoBehaviour
                 _interact = false;
                 OnTrigger = false;
                 Debug.Log("자 노동 드가자");
-                GotoQuiz();
+                a.JoinQuiz();
                 
             }
         }
@@ -51,10 +51,5 @@ public class QuizDoor : MonoBehaviour
         }
     }
 
-    private void GotoQuiz()
-    {
-        a.Shutdown();
-        a.InstantiateRunner();
-        a.JoinQuiz();
-    }
+    
 }
