@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PMJ/Scenes/3DWork 1.unity
-    guid: 5093df3b0a3e3f943acdf8d23c48e674
-  - enabled: 1
-    path: Assets/All/Demo.unity
-    guid: 88657958399b254488fd852f5ad941f5
-  - enabled: 1
     path: Assets/PMJ/Scenes/Login.unity
     guid: 07b80d35fafceb446a9cb721ea4ffbf3
   - enabled: 1
     path: Assets/PMJ/Scenes/SsamMade.unity
     guid: ef6b36ff5d04e154eaafa4d0c1e7de9f
+  - enabled: 1
+    path: Assets/All/Demo.unity
+    guid: 88657958399b254488fd852f5ad941f5
+  - enabled: 1
+    path: Assets/PMJ/Scenes/3DWork 1.unity
+    guid: 5093df3b0a3e3f943acdf8d23c48e674
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

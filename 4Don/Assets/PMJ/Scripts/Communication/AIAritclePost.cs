@@ -14,20 +14,22 @@ using UnityEngine.UI;
 public class AIAritclePost : MonoBehaviour
 {
 
-    public News[] news;
-
     public News1[] news1;
+    
+
+    //public News1[] news1;
     //public TMP_Text field;
     public TMP_Text[] title;
     public TMP_Text[] summary;
 
     public TMP_Text[] cleaned_body;
+
     //public TMP_Text[] field;
     public RawImage[] images;
-    
+
     //public TMP_Text body;
     // public RawImage AIImage;
-    
+
     private List<string> fieldList = new List<string>();
     private List<string> titleList = new List<string>();
     private List<Texture2D> imageList = new List<Texture2D>();
@@ -35,10 +37,10 @@ public class AIAritclePost : MonoBehaviour
     private int articleYear; //  몫
     private int articleDay; //나누기
     private int offset = 1996;
-    
+
     public string aritcleDayText;
 
-    private void Awake()
+    /*private void Awake()
     {
         RoundSystem.Instance.onDayChanged += AiPostDataDay;
     }
@@ -50,17 +52,23 @@ public class AIAritclePost : MonoBehaviour
         articleDay = (days % 5) + 1;
 
         aritcleDayText = articleYear.ToString() + articleDay.ToString();
-        
+
         Debug.Log($"{aritcleDayText}");
         StartCoroutine(Test());
     }
-    
+    */
+
+    private void Start()
+    {
+        StartCoroutine(Test());
+    }
+
     private IEnumerator Test()
     {
         yield return new WaitForSeconds(3f);
         var urlData = GoogleSheetManager.Instance.UrldataGet("뉴스데이터");
-        
-        
+
+
         if (string.IsNullOrEmpty(urlData.Server))
         {
             Debug.LogError("뉴스데이터 URL의 서버 주소가 비어있습니다.");
@@ -70,6 +78,7 @@ public class AIAritclePost : MonoBehaviour
         {
             Debug.Log("뉴스데이터 url 받아짐");
         }
+
         Debug.Log(urlData.Name);
         Debug.Log(urlData.Server);
         StartCoroutine(PostAndFetchArticlesData(urlData.Server));
@@ -79,9 +88,9 @@ public class AIAritclePost : MonoBehaviour
     IEnumerator PostAndFetchArticlesData(string url)
     {
         // 서버에 보낼 데이터
-        var requestData = new Dictionary<string, string>
+        var requestData = new Dictionary<string, int>
         {
-            { "quarter", aritcleDayText }
+            { "year", 2020 }
         };
 
         // 데이터를 JSON으로 직렬화
@@ -119,14 +128,15 @@ public class AIAritclePost : MonoBehaviour
         }
     }
 
+
+    // 각 Article의 데이터를 개별적으로 사용
     private void UseArticlesData(ArticlesData articlesData)
     {
-        // 각 Article의 데이터를 개별적으로 사용
-        for (int i = 0; i < articlesData.articles.Count; ++i)
-        {
-            var article = articlesData.articles[i];
-            news[i].UseData(article);
-            news1[i].UseData(article);
-        }
+        // 개별 Article 데이터를 사용
+        news1[0].UseData(articlesData.economy);
+        news1[1].UseData(articlesData.finance);
     }
+
+
 }
+

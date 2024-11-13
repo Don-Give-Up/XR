@@ -257,12 +257,12 @@ public class BEQuiz : MonoBehaviour
             {
                 Debug.Log("정답입니다");
                 correntAnswerCount++;
-                
+                // 화면에 정답 개수를 표시
+                resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
+
                 // 화면에 정답입니다 텍스트 표시
                 await DisplayTextForTime("정답입니다", displayDuration);
                 
-                // 화면에 정답 개수를 표시
-                resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
                 
                 
 
