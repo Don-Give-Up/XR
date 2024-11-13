@@ -464,26 +464,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3761888998255449583}
     m_Modifications:
-    - target: {fileID: 92289682664635883, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_PressedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6956108313807403731, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
       propertyPath: m_Name
       value: News - 1st
@@ -586,26 +566,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3761888998255449583}
     m_Modifications:
-    - target: {fileID: 92289682664635883, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_PressedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6956108313807403731, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
       propertyPath: m_Name
       value: News - 2rd
@@ -708,33 +668,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3761888998255449583}
     m_Modifications:
-    - target: {fileID: 92289682664635883, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_PressedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114136860914874145, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6956108313807403731, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
       propertyPath: m_Name
       value: News - 3th
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956108313807403731, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7837156589725036349, guid: 336b813b00d137a429f8efc1d139e440, type: 3}
       propertyPath: m_Pivot.x

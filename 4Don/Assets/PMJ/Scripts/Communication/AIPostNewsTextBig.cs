@@ -1,4 +1,3 @@
-/*
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +5,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 /// <summary>
 /// 년+날짜값 가지고 오기 + 1 >> 보낼 데이터
 /// 
 /// </summary>
-public class AIAritclePost : MonoBehaviour
+public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
 {
 
-    public News1[] news1;
+    public News1[] news;
     
 
     //public News1[] news1;
@@ -40,7 +40,9 @@ public class AIAritclePost : MonoBehaviour
     private int offset = 1996;
 
     public string aritcleDayText;
-
+    
+    //지금 날짜 넘어갔을때 넘어가는거 안되어있음. 다시 해야함. 
+    
     /*private void Awake()
     {
         RoundSystem.Instance.onDayChanged += AiPostDataDay;
@@ -57,7 +59,7 @@ public class AIAritclePost : MonoBehaviour
         Debug.Log($"{aritcleDayText}");
         StartCoroutine(Test());
     }
-    #1#
+    */
 
     private void Start()
     {
@@ -66,7 +68,8 @@ public class AIAritclePost : MonoBehaviour
 
     private IEnumerator Test()
     {
-        yield return new WaitForSeconds(3f);
+        if (!GoogleSheetManager.Instance.IsLoaded)
+            yield return new WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
         var urlData = GoogleSheetManager.Instance.UrldataGet("뉴스데이터");
 
 
@@ -134,11 +137,10 @@ public class AIAritclePost : MonoBehaviour
     private void UseArticlesData(NewsBigData newsBigData)
     {
         // 개별 Article 데이터를 사용
-        news1[0].UseData(newsBigData.economy);
-        news1[1].UseData(newsBigData.finance);
+        news[0].UseData(newsBigData.economy);
+        news[1].UseData(newsBigData.finance);
     }
 
 
 }
-*/
 
