@@ -19,6 +19,7 @@ public class PhoStartGame : MonoBehaviour
     public NetworkRunner runnerPrefab;
     public NetworkPrefabRef sharedGameDataPrefab;
     public NetworkPrefabRef playerPrefab;
+    public NetworkPrefabRef JJANGPrefab;
 
     public GameObject loadingPanel;
     
@@ -37,6 +38,8 @@ public class PhoStartGame : MonoBehaviour
         
     }
 
+    
+    // 여기서 러너 생성
     private void Start()
     {
         InstantiateRunner();
