@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c11fb15c0ea6d147964eb81626e6719, type: 3}
-  m_Name: "0. \uB9C8\uC744 \uC785\uC8FC\uD558\uAE30"
+  m_Name: "5. \uAC1C\uC778 \uC9C0\uCD9C"
   m_EditorClassIdentifier: 
-  <id>k__BackingField: "0. \uB9C8\uC744 \uC785\uC8FC\uD558\uAE30"
-  diaplayName: "\uB9C8\uC744 \uC18C\uAC1C\uBC1B\uAE30!"
-  displayContents: "\uB9C8\uC744 \uCD0C\uC7A5\uACFC \uB300\uD654\uB97C \uB098\uB204\uC5B4
-    \uBCF4\uC790."
+  <id>k__BackingField: "5. \uAC1C\uC778 \uC9C0\uCD9C"
+  diaplayName: "\uAC1C\uC778 \uC9C0\uCD9C\uAD00\uB9AC!"
+  displayContents: "\uC18C\uBE44\uC5D0 \uB300\uD574 \uC54C\uC544\uBCF4\uC790. "
   reward: 
-  npcName:
-  - JJANG
+  npcName: []
   dialogueLine:
-  - {x: 0, y: 0}
-  - {x: 1, y: 7}
+  - {x: 47, y: 49}
+  - {x: 50, y: 52}
   questPrerequisites: []
   questStepPrefabs: []
   times: 0
