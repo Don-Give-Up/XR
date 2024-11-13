@@ -8,6 +8,9 @@ public class KingQuest : MonoBehaviour
     public Queue<QuestInfoSO> quests = new Queue<QuestInfoSO>();
     public GameObject questObj;
     private TMP_Text questText;
+
+    public NPCDialogueManager npcDialogueManager;
+    
     public static KingQuest instance;
     
     private void Awake()

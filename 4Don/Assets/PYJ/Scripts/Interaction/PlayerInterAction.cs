@@ -1,4 +1,5 @@
 using System;
+using Fusion;
 using UnityEngine;
 
 public class PlayerInterAction : MonoBehaviour
@@ -7,11 +8,18 @@ public class PlayerInterAction : MonoBehaviour
    
    private void Update()
    {
+      // Camera.main이 null인지 확인
+      if (Camera.main == null)
+      {
+         Debug.LogError("Main Camera not found!");
+         return;  // Camera가 없으면 Update에서 더 이상 진행하지 않음
+      }
+
       if (Input.GetMouseButtonDown(0))
       {
          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
          RaycastHit hit;
-         
+
          if (Physics.Raycast(ray, out hit, rayDistance))
          {
             NPCCheck(hit);
@@ -28,7 +36,7 @@ public class PlayerInterAction : MonoBehaviour
       }
       else
       {
-         Debug.Log("NPC 아님");
+         Debug.Log("NPC 아님"); // 일단 되긴 하는 듯 일단 npc 아니라고 함 ㅋㅋ
       }
    }
 

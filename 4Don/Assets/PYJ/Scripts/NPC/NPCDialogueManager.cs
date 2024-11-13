@@ -29,6 +29,8 @@ public class NPCDialogueManager : MonoBehaviour
 
     private QuestInfoSO currentQuestInfo; 
 
+    Vector2 dialogueNum = Vector2.zero;
+    
     private bool hasTalked = true;
 
     private bool dialogueOn = false;
@@ -43,7 +45,8 @@ public class NPCDialogueManager : MonoBehaviour
     private void Awake()
     {
         //selectObjectPos = selectdialogueObj.transform;
-        kingQuest = KingQuest.instance; 
+        kingQuest = KingQuest.instance;
+        hasTalked = true; 
         //questManager = QuestManager.instance;
         for (int i = 0; i < eventUI.Count; i++)
         {
@@ -79,7 +82,7 @@ public class NPCDialogueManager : MonoBehaviour
         // 이 친구가 말할 수 있는 지? 어떤 내용을 말해야하는 지 대답한다. 
 
         currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴
-        Vector2 dialogueNum = Vector2.zero;
+        dialogueNum = Vector2.zero;
         
         switch (hasTalked)
         {
@@ -102,6 +105,7 @@ public class NPCDialogueManager : MonoBehaviour
         currentDialogueNum = (int)dialogueNum.x;
         GetDialogueData(dialogueNum);
         OnShowDialogue(currentDialogueNum);
+        currentDialogueNum++; 
     }
 
     private void Update() // bool 타입 값에 따라 어떤 창을 띄울까 표시
@@ -124,7 +128,12 @@ public class NPCDialogueManager : MonoBehaviour
             dialogueObj.SetActive(false); 
             selectdialogueObj.SetActive(false);
         }
-            
+
+        if (hasTalked == false && changeQuest) //
+        {
+            KingQuest.instance.MoveNextQuest();
+        }
+
     }
 
     // 필요한 대화 저장하기
@@ -138,8 +147,11 @@ public class NPCDialogueManager : MonoBehaviour
     {
         dialogueOn = true;
         
-        string npcName = usedAllDialogue.alldialogues[currentDial].name;
+        string npcNameText = usedAllDialogue.alldialogues[currentDial].name;
         string npcText = usedAllDialogue.alldialogues[currentDial].content;
+
+        dialogueText.text = npcText;
+        npcName.text = npcNameText;
     }
 
     private void OnSelectDialogue(int selectNum)
@@ -194,7 +206,7 @@ public class NPCDialogueManager : MonoBehaviour
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
     public void MoveNext() // 메인 다이알로그와 연결 함
     {
-        if (usedAllDialogue.alldialogues.ContainsKey(currentDialogueNum++))
+        if (currentDialogueNum <= (int)dialogueNum.y)
         {
             // 현재 번호를 가지고 옴, 처음 클릭 시에는 처음 인덱스를 가지고 옴
             if (usedAllDialogue.alldialogues[currentDialogueNum].selectLine > 0) // 선택다이알로그이다. 
@@ -226,8 +238,8 @@ public class NPCDialogueManager : MonoBehaviour
                 else
                 {
                     // 이거면 특별한 이벤트나 스킵넘버 없업
-                    currentDialogueNum++; 
                     OnShowDialogue(currentDialogueNum);
+                    currentDialogueNum++; 
                 }
             }
         }
