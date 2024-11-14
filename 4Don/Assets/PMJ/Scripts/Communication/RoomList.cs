@@ -86,8 +86,8 @@ public class RoomList : MonoBehaviour
             GameObject gameNameObject = Instantiate(roomNamePrefab, parentPosition.transform);
 
             var button = gameNameObject.GetComponent<Button>();
-            
             button.onClick.AddListener(()=> passwordCheck.SetActive(true));
+            
             Room room = gameNameObject.GetComponent<Room>();
             room.UseData(roomData);
             room.password = password;

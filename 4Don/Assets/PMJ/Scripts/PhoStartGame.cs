@@ -56,6 +56,7 @@ public class PhoStartGame : MonoBehaviour
 
     public void InstantiateRunner()
     {
+        Debug.Log("InstantiateRunner", gameObject);
         runner = Instantiate(runnerPrefab);
         runner.AddCallbacks(new RunnerController());
     }
@@ -90,18 +91,20 @@ public class PhoStartGame : MonoBehaviour
 
     private async UniTask ResetRunner()
     {
+        Debug.Log("ResetRunner");
         if (runner == null)
         {
             InstantiateRunner();
             return;
         }
-        
-        if (runner.State == NetworkRunner.States.Running)
+
+        if (runner.State != NetworkRunner.States.Shutdown)
         {
             await runner.Shutdown();
-            runner = null;
-            InstantiateRunner();
         }
+
+        runner = null;
+        InstantiateRunner();
     }
 
     public async UniTask JoinSquare()
