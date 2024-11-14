@@ -15,7 +15,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     //public Action<double> onMoneyChanged; 
 
-    public double currentMoney = 5000;
+    public double currentMoney = 0;
 
     public TMP_Text currentMoneyText;
     
@@ -32,7 +32,7 @@ public class PersonalFinancialManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        currentMoney = 5000;
+        currentMoney = 0;
         MoneyText(currentMoney);
         //onMoneyChanged += OutputMoney;
         
