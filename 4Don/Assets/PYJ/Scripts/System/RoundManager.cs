@@ -65,7 +65,7 @@ public class RoundSystem : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 

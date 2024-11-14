@@ -89,7 +89,7 @@ public class GoogleSheetManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
     

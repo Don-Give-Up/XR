@@ -131087,7 +131087,7 @@ PrefabInstance:
     - target: {fileID: 8345882902886286694, guid: 5a904e679325d48488b0b3ba0ba3cde6, type: 3}
       propertyPath: youPrefab
       value: 
-      objectReference: {fileID: 3254713568135422917, guid: 933ff9d40de4ccb4da3a891f2ffcf8fb, type: 3}
+      objectReference: {fileID: 766160572028907372, guid: c236fb4180366d54ab195a542e52fe0b, type: 3}
     - target: {fileID: 8345882902886286694, guid: 5a904e679325d48488b0b3ba0ba3cde6, type: 3}
       propertyPath: parentPosition
       value: 
@@ -137072,6 +137072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2455321249054526162, guid: cda9f423f75b1954a9df9177493a975f, type: 3}
   jjang: {fileID: 1046796729}
+  anim: {fileID: 0}
   distanceAheadPlayer: 1
   offsetDistance: 1
 --- !u!4 &1046796732
@@ -137102,7 +137103,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2661089852
+  SortKey: 1306789823
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []

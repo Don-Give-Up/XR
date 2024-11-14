@@ -120,6 +120,7 @@ public class PhoStartGame : MonoBehaviour
         {
             
             loginCommunicator.StopAudio();
+            audioSourceQ.Stop();
             audioSourceL.Play();
 
             
@@ -149,6 +150,7 @@ public class PhoStartGame : MonoBehaviour
         loadingPanel.SetActive(true);
         {
             // 광장씬 노래 종료
+            
             audioSourceD.Stop();
             audioSourceL.Play();
             var arg = new StartGameArgs()
