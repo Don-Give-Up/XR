@@ -15,8 +15,22 @@ public class StockPriceManager : MonoBehaviour
     
     public double wantToBuyStockPrice = 0;
 
-    //public Action<double> OnWantToBuyStock; 
+    public Action<double> OnWantToBuyStock;
+
+    public static StockPriceManager instance;
     
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnEnable()
     {
         RoundSystem.Instance.onRoundChange += RoundStockPriceGet; // 라운드가 바뀔 때 가격이 바뀜
@@ -78,9 +92,9 @@ public class StockPriceManager : MonoBehaviour
         stockCurrentObj[i + 1].text = dayDif.ToString("N0");
     }
 
-    public void WantToBuyStock(int stockNum) // 사려고 누른 순간 가격
+    public void WantToBuyStock(int stockNum) // 사려고 누른 순간 가격 
     {
          wantToBuyStockPrice = roundStockPrices[stockNum]; // 선택한 주식의 가격을 반환하게
-         //OnWantToBuyStock?.Invoke(wantToBuyStockPrice);
+         OnWantToBuyStock?.Invoke(wantToBuyStockPrice);
     }
 }
