@@ -25,7 +25,7 @@ public class QuizDoor : MonoBehaviour
     {
         if (OnTrigger)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonDown(0))
             {
                 _1Key.SetActive(false);
                 _interact = false;

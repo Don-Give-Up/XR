@@ -17,26 +17,30 @@ public class ChatBot : MonoBehaviour
 
     private string _url;
     
-    private IEnumerator Start()
+    private async void Start()
     {
-        yield return new WaitForSeconds(3f);
+        if (!GoogleSheetManager.Instance.IsLoaded)
+        {
+            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+        }
+    
         var urlData = GoogleSheetManager.Instance.UrldataGet("챗봇");
-        
-        
+    
         if (string.IsNullOrEmpty(urlData.Server))
         {
             Debug.LogError("챗봇 URL의 서버 주소가 비어있습니다.");
-            yield break;
+            return;
         }
         else
         {
             Debug.Log("챗봇 url 받아짐");
         }
+
         Debug.Log(urlData.Name);
         Debug.Log(urlData.Server);
         _url = urlData.Server;
-
     }
+
 
     public void SendMessage()
     {

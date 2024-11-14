@@ -8,31 +8,31 @@ public class MenuButtonController : MonoBehaviour
     public MenuButtonHandler menuButtonHandler;
     
     public Button objectButton1; // 첫 번째 오브젝트 버튼 자산
-    public Button objectButton2; // 두 번째 오브젝트 버튼 경제
+    /*public Button objectButton2; */// 두 번째 오브젝트 버튼 경제
     public Button objectButton3; // 세 번째 오브젝트 버튼 분석
 
     public GameObject object1; // 첫 번째 오브젝트
     public GameObject object2; // 두 번째 오브젝트
     public GameObject object3; // 세 번째 오브젝트
 
-    public GameObject news1st;
-    public GameObject news2nd;
+    /*public GameObject news1st;
+    public GameObject news2nd;*/
 
     private void Start()
     {
         // 초기 상태에서 두 버튼을 비활성화
         objectButton1.gameObject.SetActive(false);
-        objectButton2.gameObject.SetActive(false);
+        /*objectButton2.gameObject.SetActive(false);*/
         objectButton3.gameObject.SetActive(false);
 
         // 가방 버튼 클릭 이벤트 등록
         objectButton1.onClick.AddListener(() => UseObject(object1));
-        objectButton2.onClick.AddListener(() =>
+        /*objectButton2.onClick.AddListener(() =>
         {
-            news1st.SetActive(true);
-            news2nd.SetActive(false);
+            /*news1st.SetActive(true);
+            news2nd.SetActive(false);#1#
             UseObject(object2);
-        });
+        });*/
         objectButton3.onClick.AddListener(()=> UseObject(object3));
     }
 
@@ -40,7 +40,7 @@ public class MenuButtonController : MonoBehaviour
     {
         bool isActive = !objectButton1.gameObject.activeSelf;
         objectButton1.gameObject.SetActive(isActive);
-        objectButton2.gameObject.SetActive(isActive);
+        /*objectButton2.gameObject.SetActive(isActive);*/
         objectButton3.gameObject.SetActive(isActive);
     }
 
