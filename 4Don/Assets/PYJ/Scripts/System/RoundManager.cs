@@ -32,7 +32,7 @@ public class RoundSystem : MonoBehaviour
     private int currentDay = 4;
     private int currentWeek = 0;
 
-    private int yearOffset = 1996;
+    private int yearOffset = 2020;
 
     public int[,] round;
 

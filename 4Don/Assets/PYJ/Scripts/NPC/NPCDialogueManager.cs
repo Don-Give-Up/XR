@@ -31,16 +31,21 @@ public class NPCDialogueManager : MonoBehaviour
 
     Vector2 dialogueNum = Vector2.zero;
     
-    private bool hasTalked = true;
+    private bool hasTalked = true; // 대화가 끝나는 순간
+    private bool changeQuest = false; // 퀘스트가 바뀌는 순간
+
+    private int beforeQuestState = 0;
 
     private bool dialogueOn = false;
     private bool selectDialogueOn = false;
-    private bool changeQuest = false;
     
     private int currentDialogueNum = 0; 
     
     private KingQuest kingQuest;
     //private QuestManager questManager;
+    
+    // 1 -> 0  // 퀘스트 끝남, 퀘스트 번호를 하나 옮기고 0 -> 1 될 떄 까지 안 보이게 한다.  
+    // 0 -> 1  // 퀘스트 시작, 퀘스트를 발행하고 유지한다. 
     
     private void Awake()
     {
@@ -62,14 +67,17 @@ public class NPCDialogueManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck; 
+        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck;
+        // 일단 이벤트 바뀌는 순간 감지
+        // 이벤트 끝나는 순간 감지
         //GameEventsManager.instance.npcdialogEvents.onShowDialoge += OnShowDialogue; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge += OnNPCDialogueFinish; 
     }
-
+    
     private void OnDisable()
     {
         GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck -= OnNPCDialogueCheck; 
+        // 끝날 떄, 끝나기
         //GameEventsManager.instance.npcdialogEvents.onShowDialoge -= OnShowDialogue; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueFinish; 
     }
@@ -81,7 +89,7 @@ public class NPCDialogueManager : MonoBehaviour
         // 현재 퀘스트 정보를 가지고 와서 
         // 이 친구가 말할 수 있는 지? 어떤 내용을 말해야하는 지 대답한다. 
 
-        currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴
+        currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴 // 현재  퀘스트 정보를 어떻게 가져와야하지? 
         dialogueNum = Vector2.zero;
         
         switch (hasTalked)
@@ -101,9 +109,15 @@ public class NPCDialogueManager : MonoBehaviour
         }
         
         Debug.Log($"대화라인:{(int)dialogueNum.x}, {(int)dialogueNum.y}");
-
         currentDialogueNum = (int)dialogueNum.x;
         GetDialogueData(dialogueNum);
+        
+        if (usedAllDialogue.alldialogues[currentDialogueNum].name != npcName )
+        {
+            // 일단 상호작용 안 되게만 해놓음
+            return;
+        }
+
         OnShowDialogue(currentDialogueNum);
         currentDialogueNum++; 
     }
@@ -125,15 +139,11 @@ public class NPCDialogueManager : MonoBehaviour
         }
         else // 아무런 대화가 나오지 않고 있음
         {
+            
             dialogueObj.SetActive(false); 
             selectdialogueObj.SetActive(false);
         }
-
-        if (hasTalked == false && changeQuest) //
-        {
-            KingQuest.instance.MoveNextQuest();
-        }
-
+        
     }
 
     // 필요한 대화 저장하기
@@ -245,8 +255,21 @@ public class NPCDialogueManager : MonoBehaviour
         }
         else
         {
+            if (usedAllDialogue.alldialogues[currentDialogueNum].questState == 1)
+            { 
+                // 1 -> 0으로 가는 순간 
+                // 안 끝내, 대화 계속해  , 다음 퀘스트로 넘어가 
+                KingQuest.instance.onQuestEnd.Invoke();
+            }
+            else
+            {
+                // 0 -> 1으로 가는 순간 
+                // 끝내, 퀘스트 시작 
+                KingQuest.instance.onQuestStart.Invoke(); 
+                OnNPCDialogueFinish(); // 끝내!
+            }
+
             // 다음 번호가 없다. 
-            OnNPCDialogueFinish(); // 끝내!
         }
     }
     
@@ -258,6 +281,4 @@ public class NPCDialogueManager : MonoBehaviour
         // 및 등록된 버튼들 삭제
     }
     
-    
-
 }
