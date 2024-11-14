@@ -72,13 +72,16 @@ public class BEQuiz : MonoBehaviour
         }
         else
         {
-            
+            Debug.Log("BEQuiz Destroy");
             Destroy(gameObject);
         }
-        
-        
     }
-    
+
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestroy");
+    }
+
 
     /*private void QuizReset(int day)
     {
@@ -261,7 +264,7 @@ public class BEQuiz : MonoBehaviour
                 resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
 
                 // 화면에 정답입니다 텍스트 표시
-                await DisplayTextForTime("정답입니다", displayDuration);
+                await DisplayTextForTime("정답입니다", 1f);
                 
                 
                 
@@ -273,6 +276,7 @@ public class BEQuiz : MonoBehaviour
                     // 노동 관리자 호출
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
+                    ShowDescription(currentQuiz.desc);
                     await UniTask.Delay(100);
                     sugoimage.SetActive(true);
 

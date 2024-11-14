@@ -2704,6 +2704,7 @@ GameObject:
   - component: {fileID: 961739750}
   - component: {fileID: 961739754}
   - component: {fileID: 961739755}
+  - component: {fileID: 961739756}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2878,6 +2879,19 @@ MonoBehaviour:
   height: 2
   rotationSmoothTime: 0.1
   maxRotationSpeed: 100
+--- !u!114 &961739756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961739749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5005eaa5b98e04bbd62d99a9657dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quiz: {fileID: 1908500659}
 --- !u!1001 &974119744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5889,8 +5903,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1908500660}
   - component: {fileID: 1908500661}
-  - component: {fileID: 1908500662}
-  - component: {fileID: 1908500663}
   m_Layer: 0
   m_Name: Quiz
   m_TagString: Untagged
@@ -5945,34 +5957,6 @@ MonoBehaviour:
   displayTime: 7
   displayDuration: 2
   seeSawManager: {fileID: 1009687917}
---- !u!114 &1908500662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908500659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83d41f3639578445b987822437e6313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oneWeekTime: 5
-  isLoaded: 0
---- !u!114 &1908500663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908500659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03b4685e4d844a42b057f356bd1c807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  googleSpreadsheetId: 1wDc_C9cEuxOjhwf0HQqhNL_wJY8t-hxj4tzEPQkn-E4
-  credentialsNameInStreamingAssets: central-list-439306-t9-979b2bef8c80.json
 --- !u!1001 &1927422285
 PrefabInstance:
   m_ObjectHideFlags: 0

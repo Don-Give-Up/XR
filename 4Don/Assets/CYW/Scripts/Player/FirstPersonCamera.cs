@@ -28,10 +28,10 @@ public class FirstPersonCamera : MonoBehaviour
 
         // 목표 회전 각도에 자연스럽게 도달하도록 조정
         currentHorizontalRotation = Mathf.SmoothDampAngle(
-            currentHorizontalRotation, 
-            targetHorizontalRotation, 
-            ref rotationVelocity, 
-            rotationSmoothTime, 
+            currentHorizontalRotation,
+            targetHorizontalRotation,
+            ref rotationVelocity,
+            rotationSmoothTime,
             maxRotationSpeed
         );
 
@@ -53,4 +53,5 @@ public class FirstPersonCamera : MonoBehaviour
         // 수직 회전 제한
         verticalRotation = Mathf.Clamp(verticalRotation, -30f, 30f);
     }
+    
 }
