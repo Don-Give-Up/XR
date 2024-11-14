@@ -277,9 +277,15 @@ public class BEQuiz : MonoBehaviour
                     onlaborCheak = true;
                     Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
                     ShowDescription(currentQuiz.desc);
-                    await UniTask.Delay(100);
+                    
+                    await UniTask.Delay((int)(displayTime * 1000));
+                    HIdeDescriptionAfterTime(); // 7초 후에 해설을 숨기는 코드
+                    
+                    //await UniTask.Delay(5500);
+                    
+                    //await UniTask.Delay((int)(displayTime * 1000));
                     sugoimage.SetActive(true);
-
+                    Debug.Log("수고이미지 나와유");
                     await UniTask.Delay(2000);
                     SetActiveFalse();
                     
