@@ -60,48 +60,49 @@ public class PhoStartGame : MonoBehaviour
         runner.AddCallbacks(new RunnerController());
     }
    
-    private void Update()
+    /*private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.E)&&test)
+        if (Input.GetKeyDown(KeyCode.E)&&test)
         {
             test = false;
             runner.Spawn(playerPrefab,new Vector3(226.1f, 47f, 364.8f), Quaternion.identity);
             test = true;
-        }*/
+        }
 
         if (Input.GetKeyDown(KeyCode.F)) // 광장
         {
             JoinSquare();
         }
         
-        /*if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
+        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
         {
             Shutdown();
             InstantiateRunner();
             JoinQuiz();
-        }*/
-
-        /*if (Input.GetKeyDown(KeyCode.Q))
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Shutdown();
             BackRoom();
-        }*/
-    }
+        }
+    }*/
 
     private async UniTask ResetRunner()
     {
+        Debug.Log("리셋 되었습니다.");
         if (runner == null)
         {
             InstantiateRunner();
             return;
         }
         
-        if (runner.State == NetworkRunner.States.Running)
+        if (runner.State != NetworkRunner.States.Shutdown)
         {
             await runner.Shutdown();
-            runner = null;
-            InstantiateRunner();
         }
+        
+        runner = null;
+        InstantiateRunner();
     }
 
     public async UniTask JoinSquare()
@@ -135,7 +136,7 @@ public class PhoStartGame : MonoBehaviour
             var arg = new StartGameArgs()
             {
                 GameMode = GameMode.Shared,
-                SessionName = "노동aa",
+                SessionName = "노동",
                 Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
             };
             await runner.StartGame(arg);
