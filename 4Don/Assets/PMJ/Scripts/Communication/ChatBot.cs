@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class ChatBot : MonoBehaviour
     public GameObject mePrefab;
     public GameObject youPrefab;
     public GameObject parentPosition;
-    
+    public ScrollRect scrollrect;
 
     private string _url;
     
@@ -39,9 +40,13 @@ public class ChatBot : MonoBehaviour
 
     public void SendMessage()
     {
-        StartCoroutine(PostChatBotQuestion(_url));
-        
+        if (question.text.Trim() != "")
+        {
+            Me(question.text);
+            StartCoroutine(PostChatBotQuestion(_url));
+        }
     }
+
     // 데이터를 POST로 보내고 응답을 받아오는 코루틴
     private IEnumerator PostChatBotQuestion(string url)
     {
@@ -53,6 +58,8 @@ public class ChatBot : MonoBehaviour
             { "query", quest }
         };
 
+        question.text = "";
+        
         // 데이터를 JSON으로 직렬화
         string jsonRequestData = JsonConvert.SerializeObject(requestData);
 
@@ -70,8 +77,7 @@ public class ChatBot : MonoBehaviour
         // 서버에 요청을 보내고 응답을 기다림
         yield return request.SendWebRequest();
         
-        Me(quest);
-        question.text = "";
+        
         // 요청이 성공했는지 확인
         if (request.result == UnityWebRequest.Result.Success)
         {
@@ -91,21 +97,39 @@ public class ChatBot : MonoBehaviour
         }
     }
 
+    private async UniTaskVoid Rebuild(TMP_Text text)
+    {
+        for (int i = 0; i < 10; ++i)
+        {
+            await UniTask.Delay(10);
+            text.SetAllDirty();
+            await UniTask.Delay(10);
+            text.ForceMeshUpdate();
+            await UniTask.Delay(10);
+            text.rectTransform.ForceUpdateRectTransforms();
+            await UniTask.Delay(10);
+            scrollrect.verticalNormalizedPosition = 0f;
+        }
+    }
   
     private void Me(string queryText)
     {
         //여기서 내 말 생성해주기   
-        var youText = Instantiate(mePrefab, parentPosition.transform);
-        var text = youText.GetComponentInChildren<TMP_Text>();
+        var go = Instantiate(mePrefab, parentPosition.transform);
+        var text = go.GetComponentInChildren<TMP_Text>();
         text.text = queryText;
+
+        Rebuild(text).Forget();
     }
 
     private void You(string resultText)
     {
         //여기서 니 말 생성 해주기
-        var youText = Instantiate(youPrefab, parentPosition.transform);
-        var text = youText.GetComponentInChildren<TMP_Text>();
+        var you = Instantiate(youPrefab, parentPosition.transform);
+        var text = you.GetComponentInChildren<TMP_Text>();
         text.text = resultText;
+
+        Rebuild(text).Forget();
     }
     //읭? 지금 텍스트 받아온건 어디로 주지?
 }
