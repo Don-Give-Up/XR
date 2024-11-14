@@ -21,7 +21,7 @@ public class StockOrderManager : MonoBehaviour
     
     private void Awake()
     {
-        RoundSystem.Instance.onDayChanged += CurrentStock;
+        RoundSystem.Instance.onRoundChange += CurrentStock;
     }
 
     private void CurrentStock(int day)

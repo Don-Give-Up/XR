@@ -32,12 +32,17 @@ public class RoundSystem : MonoBehaviour
     private int currentDay = 4;
     private int currentWeek = 0;
 
-    private int yearOffset = 2020;
+    private int yearOffset = 1996;
 
-    public int[,] round;
+    //public int[,] round;
 
-    public Action<int> onDayChanged; 
-    public Action<int> onWeekChanged;
+    //public Action<int> onDayChanged; 
+    //public Action<int> onWeekChanged;
+
+    private int currentRound = 0;
+    private int currentRoundOffset = 2020; 
+    private bool nextRound; 
+    public Action<int> onRoundChange; 
 
     public bool isLoaded = false;
 
@@ -66,17 +71,29 @@ public class RoundSystem : MonoBehaviour
 
     private void Start() //선생님이 들어와서 아이들도 참가하고 진행버튼 누르면 실시되게 하기
     {
-        round = new int[maxWeek, oneWeekTime]; // 주를 행으로 하루를 열로 하는 2차원 배열 생성
+        //round = new int[maxWeek, oneWeekTime]; // 주를 행으로 하루를 열로 하는 2차원 배열 생성
+        RoundProcess();
+        //StartCoroutine(Process());
+    }
+
+    private async UniTask RoundProcess()
+    {
+        isLoaded = true;
         
+        await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
         
-        StartCoroutine(Process());
+        //일단 누르면 라운드 시스템 발동하도록
+        Debug.Log($"현재 라운드: {currentRound + currentRoundOffset}");
+        onRoundChange?.Invoke(currentRound + currentRoundOffset); // 현재 라운드 정보 제공
+
+        currentRound++; 
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            nextDay = true;
+            nextRound = true;
         }
     }
 
@@ -91,7 +108,7 @@ public class RoundSystem : MonoBehaviour
         // 줘야하는 값의 형태 구조체 만들고 키 값으로 사용하는 딕셔너리 만들면 될 듯
         //round[currentWeek, currentDay] = 10;
         
-        onDayChanged?.Invoke(currentDay);
+        //onDayChanged?.Invoke(currentDay);
         
         StartCoroutine(DayText(currentDay)); 
         
@@ -99,7 +116,7 @@ public class RoundSystem : MonoBehaviour
         // 처음 시작할 떄 
         if (currentDay % 5 == 0)
         {
-            onWeekChanged?.Invoke(currentWeek + yearOffset);
+            //onWeekChanged?.Invoke(currentWeek + yearOffset);
             Week();
         } 
         StartCoroutine(WeekText(currentWeek));
