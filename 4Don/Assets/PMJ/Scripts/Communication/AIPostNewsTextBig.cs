@@ -96,7 +96,7 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         {
             { "year", 2020 }
         };
-
+        Debug.Log("본문 데이터 서버에 보냄");
         // 데이터를 JSON으로 직렬화
         string jsonRequestData = JsonConvert.SerializeObject(requestData);
 
@@ -111,9 +111,11 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         // Content-Type 헤더 설정 (JSON 데이터를 전송하므로)
         request.SetRequestHeader("Content-Type", "application/json");
 
+        Debug.Log("응답 기다리는 중");
         // 서버에 요청을 보내고 응답을 기다림
         yield return request.SendWebRequest();
 
+        Debug.Log("답변 받음");
         // 요청이 성공했는지 확인
         if (request.result == UnityWebRequest.Result.Success)
         {
