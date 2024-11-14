@@ -8,6 +8,7 @@ public class MJPlayerMovement : NetworkBehaviour
 {
     private Vector3 _velocity;
     private bool _jumpPressed;
+    
 
     private CharacterController _controller;
     private NetworkCharacterController NoChDrop;
@@ -65,22 +66,32 @@ public class MJPlayerMovement : NetworkBehaviour
             
             if (SceneManager.GetActiveScene().name == "3DWork 1")
             {
-                BEQuiz.Instance.QuizTeleport += Teleport;
-                Teleport();
+                BEQuiz.Instance.QuizTeleport += QuizTeleport;
+                QuizTeleport();
             }
             else
             {
                 Camera.Target = transform;
+                SpaureTeleport();
                 
-                NoChDrop.Teleport(new Vector3(226f + _spawnCount -2, 47f, 365f));
             }
+
         }
     }
 
-    private void Teleport()
+    private void QuizTeleport()
     {
         NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount + 4f));
     }
+
+    private void SpaureTeleport()
+    {
+        NoChDrop.Teleport(new Vector3(226f + _spawnCount -2, 43f, 360f)); // 처음 스폰 위치
+    }
+    /*public void QuizToSquare()
+    {
+        NoChDrop.Teleport(new Vector3(22f + _spawnCount - 1, 48f, 350f));
+    }*/
 
     public override void FixedUpdateNetwork()
     {

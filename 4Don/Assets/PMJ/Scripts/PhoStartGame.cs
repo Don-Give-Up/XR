@@ -11,6 +11,8 @@ public class PhoStartGame : MonoBehaviour
 {
     public static PhoStartGame Instance { get; private set; }
     
+    private bool wasInQuiz = false;
+    
     //방에서 광장으로 가고 싶어
     /// 방 >> 광장 씬 이동
     /// 세션입장.
@@ -141,6 +143,17 @@ public class PhoStartGame : MonoBehaviour
         // 광장씬 노래 시작
         audioSourceD.Play();
         
+        /*// 퀴즈 세션에서 돌아온 경우에만 QuizToSquare 호출
+        if (wasInQuiz)
+        {
+            var playerMovement = FindObjectOfType<MJPlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.QuizToSquare();
+            }
+            wasInQuiz = false; // 호출 후 상태 초기화
+        }*/
+        
     }
 
     public async void JoinQuiz()
@@ -168,7 +181,9 @@ public class PhoStartGame : MonoBehaviour
         audioSourceL.Stop();
         // 퀴즈씬 노래 시작
         audioSourceQ.Play();
-        
+
+        /*wasInQuiz = true;*/
+
     }
 
     public async UniTask Shutdown()
