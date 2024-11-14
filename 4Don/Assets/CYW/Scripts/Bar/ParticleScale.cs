@@ -27,6 +27,7 @@ public class ParticleScale : MonoBehaviour
                 // 스케일이 4 이상으로 커지지 않도록 제한
                 if (currentScale >= 4f)
                 {
+                    // 전체에 대한 보상 시스템 없음
                     currentScale = 4f; // 목표 스케일 4에 고정
                     // 스케일이 4 이상이 되면 새로운 게임 오브젝트 추가
                     if (!newObjectAdded && newObject != null)
