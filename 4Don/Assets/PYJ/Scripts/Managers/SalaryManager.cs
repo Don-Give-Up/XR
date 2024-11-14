@@ -26,8 +26,10 @@ public class SalaryManager : MonoBehaviour
     {
         yield return new WaitUntil(() => RoundSystem.Instance.isLoaded);
         //laborDay = new bool[RoundSystem.Instance.oneWeekTime]; // 5개 만들어짐 
-        RoundSystem.Instance.onDayChanged += HandleOnDayChange;
-        RoundSystem.Instance.onWeekChanged += OnSalaryChanged; 
+        //RoundSystem.Instance.onDayChanged += HandleOnDayChange;
+        //RoundSystem.Instance.onWeekChanged += OnSalaryChanged; 
+        // 월급 바뀌는 상황 == 퀴즈를 완료하면 몇 문제 틀렸는 지에 따라 돈을 줌
+        // 퀴즈 하는 사람과 상의 후 돈 하는 거 수정 합니다.
     }
 
     private async void HandleOnDayChange(int day)

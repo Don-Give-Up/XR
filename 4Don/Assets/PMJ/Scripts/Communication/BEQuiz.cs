@@ -67,7 +67,7 @@ public class BEQuiz : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            RoundSystem.Instance.onDayChanged += QuizReset;
+            //RoundSystem.Instance.onRoundChange += QuizReset;
             isFinish = true; 
         }
         else
@@ -80,13 +80,13 @@ public class BEQuiz : MonoBehaviour
     }
     
 
-    private void QuizReset(int day)
+    /*private void QuizReset(int day)
     {
         //onlaborCheak = false;
         Debug.Log("하루 지났다용"+onlaborCheak);
         // 초기화
        
-    }
+    }*/
 
     public void Start()
     {
