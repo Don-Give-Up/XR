@@ -2,9 +2,10 @@ using System;
 using Photon.Voice.Unity;
 using UnityEngine;
 
-public class VoiceMaterKey : MonoBehaviour
+public class VoiceMasterKey : MonoBehaviour
 {
    public Recorder recorder;
+ 
 
    private void Start()
    {
@@ -33,5 +34,8 @@ public class VoiceMaterKey : MonoBehaviour
             Debug.Log("마이크 꺼짐 ㅠㅠ");
          }
       }
+
+      
    }
+   
 }
