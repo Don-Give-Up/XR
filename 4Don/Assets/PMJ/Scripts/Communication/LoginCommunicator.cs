@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json; 
 using System.Text;
+using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 public class LoginCommunicator : MonoBehaviour
@@ -11,19 +12,22 @@ public class LoginCommunicator : MonoBehaviour
     public AudioSource audioSource;
 
     public static string Value;
-    public void StartLoginProcess() 
+    private async void StartLoginProcess() 
     {
-        StartCoroutine(LoginStart());
+        await (LoginStart());
     }
     
-    private IEnumerator LoginStart()
+    private async UniTask LoginStart()
     {
+        if (!GoogleSheetManager.Instance.IsLoaded)
+            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+
         var urlData = GoogleSheetManager.Instance.UrldataGet("로그인");
         
         if (string.IsNullOrEmpty(urlData.Server))
         {
             Debug.LogError("로그인 URL의 서버 주소가 비어있습니다.");
-            yield break;
+            return;
         }
         else
         {
