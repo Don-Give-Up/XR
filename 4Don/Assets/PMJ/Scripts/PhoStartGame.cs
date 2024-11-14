@@ -28,6 +28,11 @@ public class PhoStartGame : MonoBehaviour
     public GameObject loadingObject; // Loading 오브젝트
     private LoginCommunicator loginCommunicator; // LoginCommunicator 스크립트
 
+    public AudioSource audioSourceL; // 로딩씬
+    public AudioSource audioSourceQ; // 퀴즈씬
+    public AudioSource audioSourceD; // 광장씬
+    
+
     
     
     private void Awake()
@@ -107,12 +112,16 @@ public class PhoStartGame : MonoBehaviour
 
     public async UniTask JoinSquare()
     {
+        // 
+        
         await ResetRunner();
         
         loadingPanel.SetActive(true);
         {
+            
+            loginCommunicator.StopAudio();
+            audioSourceL.Play();
 
-            //loginCommunicator.StopAudio();
             
             var arg = new StartGameArgs
             {
@@ -125,6 +134,12 @@ public class PhoStartGame : MonoBehaviour
         Debug.Log("광장 접속됨");
         await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
+        
+        // 로딩씬 노래 종료
+        audioSourceL.Stop();
+        // 광장씬 노래 시작
+        audioSourceD.Play();
+        
     }
 
     public async void JoinQuiz()
@@ -133,6 +148,9 @@ public class PhoStartGame : MonoBehaviour
         
         loadingPanel.SetActive(true);
         {
+            // 광장씬 노래 종료
+            audioSourceD.Stop();
+            audioSourceL.Play();
             var arg = new StartGameArgs()
             {
                 GameMode = GameMode.Shared,
@@ -144,6 +162,11 @@ public class PhoStartGame : MonoBehaviour
         Debug.Log("퀴즈 접속됨");
         await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
+        // 로딩씬 노래 종료
+        audioSourceL.Stop();
+        // 퀴즈씬 노래 시작
+        audioSourceQ.Play();
+        
     }
 
     public async UniTask Shutdown()
