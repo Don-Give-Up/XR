@@ -260,14 +260,17 @@ public class NPCDialogueManager : MonoBehaviour
                 // 1 -> 0으로 가는 순간 
                 // 안 끝내, 대화 계속해  , 다음 퀘스트로 넘어가 
                 KingQuest.instance.onQuestEnd.Invoke();
+                // 사실 이 떄 대화 계속 진행하는 코드가 있어야 하는데 아직 구현 안 됨 
             }
             else
             {
                 // 0 -> 1으로 가는 순간 
                 // 끝내, 퀘스트 시작 
                 KingQuest.instance.onQuestStart.Invoke(); 
-                OnNPCDialogueFinish(); // 끝내!
+                //OnNPCDialogueFinish(); // 끝내!
             }
+            
+            OnNPCDialogueFinish(); // 끝내!
 
             // 다음 번호가 없다. 
         }

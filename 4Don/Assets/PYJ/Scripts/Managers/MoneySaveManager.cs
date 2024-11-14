@@ -22,7 +22,7 @@ public class MoneySaveManager : MonoBehaviour
 
     private void Awake()
     {
-        RoundSystem.Instance.onWeekChanged += Interest;
+        RoundSystem.Instance.onRoundChange += Interest;
     }
 
     public void asseddion()

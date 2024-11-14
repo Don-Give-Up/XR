@@ -15,12 +15,12 @@ public class StockManager : MonoBehaviour
 
  private void Awake()
  {
-  RoundSystem.Instance.onDayChanged += StockPrice;
+  RoundSystem.Instance.onRoundChange += StockPrice;
  }
 
- private void StockPrice(int day)
+ private void StockPrice(int round)
  {
-  //currentStockPrice = GoogleSheetManager.Instance.YearlyStockDataGet(day).ITStockPrice;
+   currentStockPrice = GoogleSheetManager.Instance.YearlyStockDataGet(round).ITStockPrice;
  }
     
  private void BuyStock(int count)

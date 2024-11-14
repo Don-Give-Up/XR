@@ -8,7 +8,7 @@ public class GovernmentManager : MonoBehaviour
     {
         Debug.Log("정부 시스템 돌아가용");
         //RoundSystem.Instance.onDayChanged += OnDayChanged;
-        RoundSystem.Instance.onWeekChanged += OnWeekChanged; // 이벤트를 추가한 것일 뿐 델리게이트를 어디선가 불러줘야함.
+        RoundSystem.Instance.onRoundChange += OnRoundChanged; // 이벤트를 추가한 것일 뿐 델리게이트를 어디선가 불러줘야함.
     }
 
     private void OnDayChanged(int Day)
@@ -23,6 +23,15 @@ public class GovernmentManager : MonoBehaviour
         Debug.Log($"주: {year}");
         Debug.Log("정부에서 주마다 바뀌는거");
         var newData = GoogleSheetManager.Instance.YearlyDataGet(year);
+        
+        Debug.Log($"월급: {newData.Salary}");
+    }
+    
+    private void OnRoundChanged(int round)
+    {
+        Debug.Log($"주: {round}");
+        Debug.Log("정부에서 주마다 바뀌는거");
+        var newData = GoogleSheetManager.Instance.YearlyDataGet(round);
         
         Debug.Log($"월급: {newData.Salary}");
     }
