@@ -84,13 +84,14 @@ public class RoomList : MonoBehaviour
         foreach (var roomData in roomDataList)
         {
             GameObject gameNameObject = Instantiate(roomNamePrefab, parentPosition.transform);
-
             var button = gameNameObject.GetComponent<Button>();
+            
             button.onClick.AddListener(()=> passwordCheck.SetActive(true));
             
             Room room = gameNameObject.GetComponent<Room>();
             room.UseData(roomData);
             room.password = password;
+            
             password.onEndEdit.AddListener(room.CheckPassword);
         }
     }

@@ -112,7 +112,7 @@ public class PhoStartGame : MonoBehaviour
         loadingPanel.SetActive(true);
         {
 
-            loginCommunicator.StopAudio();
+            //loginCommunicator.StopAudio();
             
             var arg = new StartGameArgs
             {
