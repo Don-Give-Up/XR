@@ -12,14 +12,14 @@ public class News : MonoBehaviour // 본문
     public TMP_Text summary;
     //public TMP_Text cleaned_body;
     //public TMP_Text[] field;
-    public RawImage images;
+    //public RawImage images;
 
 
-    public void UseData(Article article)
+    public void UseData(NewsBig newsBig)
     {
         
-        title.text = article.title;
-        summary.text = article.summary;
+        title.text = newsBig.title;
+        summary.text = newsBig.summary;
         //cleaned_body.text = article.cleaned_body;
         /*if (article.image == null)
         {

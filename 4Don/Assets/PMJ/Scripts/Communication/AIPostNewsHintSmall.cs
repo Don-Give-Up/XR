@@ -1,64 +1,13 @@
-/*
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
-using Newtonsoft.Json;
-using TMPro;
-using UnityEngine.UI;
 
-/// <summary>
-/// 년+날짜값 가지고 오기 + 1 >> 보낼 데이터
-/// 
-/// </summary>
-public class AIAritclePost : MonoBehaviour
+public class AIPostNewsHintSmall : MonoBehaviour
 {
-
-    public News1[] news1;
+    public NewsHintsmall[] news1;
     
-
-    //public News1[] news1;
-    //public TMP_Text field;
-    public TMP_Text[] title;
-    public TMP_Text[] summary;
-
-    public TMP_Text[] cleaned_body;
-
-    //public TMP_Text[] field;
-    public RawImage[] images;
-
-    //public TMP_Text body;
-    // public RawImage AIImage;
-
-    private List<string> fieldList = new List<string>();
-    private List<string> titleList = new List<string>();
-    private List<Texture2D> imageList = new List<Texture2D>();
-
-    private int articleYear; //  몫
-    private int articleDay; //나누기
-    private int offset = 1996;
-
-    public string aritcleDayText;
-
-    /*private void Awake()
-    {
-        RoundSystem.Instance.onDayChanged += AiPostDataDay;
-    }
-
-    private void AiPostDataDay(int days) // 바뀌는 날마다 데이터 받아올거임
-    {
-        Debug.Log("날실행!!");
-        articleYear = (days / 5) + offset;
-        articleDay = (days % 5) + 1;
-
-        aritcleDayText = articleYear.ToString() + articleDay.ToString();
-
-        Debug.Log($"{aritcleDayText}");
-        StartCoroutine(Test());
-    }
-    #1#
-
     private void Start()
     {
         StartCoroutine(Test());
@@ -66,18 +15,20 @@ public class AIAritclePost : MonoBehaviour
 
     private IEnumerator Test()
     {
-        yield return new WaitForSeconds(3f);
-        var urlData = GoogleSheetManager.Instance.UrldataGet("뉴스데이터");
+        if (!GoogleSheetManager.Instance.IsLoaded)
+            yield return new WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+
+        var urlData = GoogleSheetManager.Instance.UrldataGet("힌트뉴스데이터");
 
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("뉴스데이터 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("힌트뉴스데이터 URL의 서버 주소가 비어있습니다.");
             yield break;
         }
         else
         {
-            Debug.Log("뉴스데이터 url 받아짐");
+            Debug.Log("힌트뉴스데이터 url 받아짐");
         }
 
         Debug.Log(urlData.Name);
@@ -119,8 +70,8 @@ public class AIAritclePost : MonoBehaviour
             Debug.Log("Response: " + jsonResponse);
 
             // JSON 응답을 ArticlesData 객체로 역직렬화
-            NewsBigData newsBigData = JsonConvert.DeserializeObject<NewsBigData>(jsonResponse);
-            UseArticlesData(newsBigData);
+            CompanyData companyData = JsonConvert.DeserializeObject<CompanyData>(jsonResponse);
+            UseArticlesData(companyData);
         }
         else
         {
@@ -131,14 +82,17 @@ public class AIAritclePost : MonoBehaviour
 
 
     // 각 Article의 데이터를 개별적으로 사용
-    private void UseArticlesData(NewsBigData newsBigData)
+    private void UseArticlesData(CompanyData companyData)
     {
-        // 개별 Article 데이터를 사용
-        news1[0].UseData(newsBigData.economy);
-        news1[1].UseData(newsBigData.finance);
+        news1[0].UseData(companyData.minjeong);
+        news1[1].UseData(companyData.hojin);
+        news1[2].UseData(companyData.meta);
+        news1[3].UseData(companyData.boyeong);
+        news1[4].UseData(companyData.yeowon);
+        news1[5].UseData(companyData.yujin);
+        news1[6].UseData(companyData.chaeho);
+        news1[7].UseData(companyData.minju);
+        
     }
 
-
 }
-*/
-

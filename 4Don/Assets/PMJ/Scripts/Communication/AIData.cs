@@ -7,18 +7,46 @@ using UnityEngine.UI;
 using System;
 
 [System.Serializable]
-public class ArticlesData
+public class NewsBigData
 {
-    public Article economy;
-    public Article finance;
+    public NewsBig economy;
+    public NewsBig finance;
 }
 
 [System.Serializable]
-public class Article
+public class NewsBig
 {
     public string title;
     public string summary;
-} 
+}
+
+
+[System.Serializable]
+public class CompanyData
+{
+
+    // public List<CompanyInfo> Company;
+    public CompanyInfo minjeong;
+    public CompanyInfo hojin;
+    public CompanyInfo meta;
+    public CompanyInfo boyeong;
+    public CompanyInfo yeowon;
+    public CompanyInfo yujin;
+    public CompanyInfo chaeho;
+    public CompanyInfo minju;
+
+}
+
+[System.Serializable]
+public class CompanyInfo
+{
+    //public string company_name;
+    public string hint_title_1;      
+    public string summary_100;       
+    public string hint_title_2;    // 이거는 돈 주고 샀을떄 
+    public string summary_2_lines; // 나오는 겁니당.
+}
+
   /*
 [System.Serializable]
 public class Article
