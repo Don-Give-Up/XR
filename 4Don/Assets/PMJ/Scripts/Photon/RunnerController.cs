@@ -15,6 +15,7 @@ public class RunnerController : INetworkRunnerCallbacks
         Debug.Log($"OnPlayerJoined : {player.PlayerId}");
         if (runner.LocalPlayer == player)
         {
+            Debug.Log("캐릭터 스폰");
             runner.Spawn(PhoStartGame.Instance.playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
             
             if (runner.IsSharedModeMasterClient)

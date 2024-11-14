@@ -2699,10 +2699,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas - Main - Login
       objectReference: {fileID: 0}
+    - target: {fileID: 4655463012943802199, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_Text
+      value: meami@gmail.com
+      objectReference: {fileID: 0}
     - target: {fileID: 5672779824913710842, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1547521861}
+    - target: {fileID: 6691085258916438394, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6923982999273885090, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2783,10 +2791,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8019179197777856822, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8426484094423223212, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1628934318}
+    - target: {fileID: 9120943428048792372, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_Text
+      value: 1234
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

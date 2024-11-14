@@ -28,6 +28,11 @@ public class PhoStartGame : MonoBehaviour
     public GameObject loadingObject; // Loading 오브젝트
     private LoginCommunicator loginCommunicator; // LoginCommunicator 스크립트
 
+    public AudioSource audioSourceL; // 로딩씬
+    public AudioSource audioSourceQ; // 퀴즈씬
+    public AudioSource audioSourceD; // 광장씬
+    
+
     
     
     private void Awake()
@@ -56,65 +61,67 @@ public class PhoStartGame : MonoBehaviour
 
     public void InstantiateRunner()
     {
-        Debug.Log("InstantiateRunner", gameObject);
         runner = Instantiate(runnerPrefab);
         runner.AddCallbacks(new RunnerController());
     }
    
-    private void Update()
+    /*private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.E)&&test)
+        if (Input.GetKeyDown(KeyCode.E)&&test)
         {
             test = false;
             runner.Spawn(playerPrefab,new Vector3(226.1f, 47f, 364.8f), Quaternion.identity);
             test = true;
-        }*/
+        }
 
         if (Input.GetKeyDown(KeyCode.F)) // 광장
         {
             JoinSquare();
         }
         
-        /*if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
+        if (Input.GetKeyDown(KeyCode.K)) // 퀴즈
         {
             Shutdown();
             InstantiateRunner();
             JoinQuiz();
-        }*/
-
-        /*if (Input.GetKeyDown(KeyCode.Q))
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Shutdown();
             BackRoom();
-        }*/
-    }
+        }
+    }*/
 
     private async UniTask ResetRunner()
     {
-        Debug.Log("ResetRunner");
+        Debug.Log("리셋 되었습니다.");
         if (runner == null)
         {
             InstantiateRunner();
             return;
         }
-
+        
         if (runner.State != NetworkRunner.States.Shutdown)
         {
             await runner.Shutdown();
         }
-
+        
         runner = null;
         InstantiateRunner();
     }
 
     public async UniTask JoinSquare()
     {
+        // 
+        
         await ResetRunner();
         
         loadingPanel.SetActive(true);
         {
-
+            
             loginCommunicator.StopAudio();
+            audioSourceL.Play();
+
             
             var arg = new StartGameArgs
             {
@@ -127,6 +134,12 @@ public class PhoStartGame : MonoBehaviour
         Debug.Log("광장 접속됨");
         await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
+        
+        // 로딩씬 노래 종료
+        audioSourceL.Stop();
+        // 광장씬 노래 시작
+        audioSourceD.Play();
+        
     }
 
     public async void JoinQuiz()
@@ -135,10 +148,13 @@ public class PhoStartGame : MonoBehaviour
         
         loadingPanel.SetActive(true);
         {
+            // 광장씬 노래 종료
+            audioSourceD.Stop();
+            audioSourceL.Play();
             var arg = new StartGameArgs()
             {
                 GameMode = GameMode.Shared,
-                SessionName = "노동aa",
+                SessionName = "노동",
                 Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
             };
             await runner.StartGame(arg);
@@ -146,6 +162,11 @@ public class PhoStartGame : MonoBehaviour
         Debug.Log("퀴즈 접속됨");
         await UniTask.Delay(6500);
         loadingPanel.SetActive(false);
+        // 로딩씬 노래 종료
+        audioSourceL.Stop();
+        // 퀴즈씬 노래 시작
+        audioSourceQ.Play();
+        
     }
 
     public async UniTask Shutdown()
