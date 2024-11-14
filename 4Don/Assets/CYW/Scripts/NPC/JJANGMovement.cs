@@ -75,6 +75,11 @@ public class JJANGMovement : NetworkBehaviour
 
                 // 목표 위치로 NPC 이동
                 agent.SetDestination(offsetPosition);
+                // 씬 안 넘어가게 설정?
+                // 노동씬 넘어갈 땐 없어지고 새로 
+                // 첫 번째 플레이어에 무조건 고정하고 씬 안 넘어가게 설정
+                
+                
                 //agent.isStopped
                 //
 

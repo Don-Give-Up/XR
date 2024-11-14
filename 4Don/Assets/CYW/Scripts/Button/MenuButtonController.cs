@@ -7,9 +7,9 @@ public class MenuButtonController : MonoBehaviour
 
     public MenuButtonHandler menuButtonHandler;
     
-    public Button objectButton1; // 첫 번째 오브젝트 버튼
-    public Button objectButton2; // 두 번째 오브젝트 버튼
-    public Button objectButton3; // 세 번째 오브젝트 버튼
+    public Button objectButton1; // 첫 번째 오브젝트 버튼 자산
+    public Button objectButton2; // 두 번째 오브젝트 버튼 경제
+    public Button objectButton3; // 세 번째 오브젝트 버튼 분석
 
     public GameObject object1; // 첫 번째 오브젝트
     public GameObject object2; // 두 번째 오브젝트
