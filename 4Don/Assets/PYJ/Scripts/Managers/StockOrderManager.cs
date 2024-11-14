@@ -21,15 +21,15 @@ public class StockOrderManager : MonoBehaviour
     
     private void Awake()
     {
-        RoundSystem.Instance.onRoundChange += CurrentStock;
+        //RoundSystem.Instance.onRoundChange += CurrentStock;
+        StockPriceManager.instance.OnWantToBuyStock += CurrentStock;
     }
 
-    private void CurrentStock(int day)
+    private void CurrentStock(double stockPrice)
     {
-        //currentStock = GoogleSheetManager.Instance.DailyDataGet(day).StockPrice;
+        currentStock = stockPrice;
         Set();
     }
-
 
     private void Set()
     {
@@ -116,4 +116,3 @@ public class StockOrderManager : MonoBehaviour
     }
 }
 
-// 연결이 필요하다. 

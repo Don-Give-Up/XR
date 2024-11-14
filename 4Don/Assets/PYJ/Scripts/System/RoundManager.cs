@@ -78,6 +78,11 @@ public class RoundSystem : MonoBehaviour
 
     private async UniTask RoundProcess()
     {
+        if (!isLoaded) // 처음에 가격이나 이런 상황 보여주기 위해
+        {
+            onRoundChange?.Invoke(currentRound + currentRoundOffset);
+        }
+
         isLoaded = true;
         
         await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
