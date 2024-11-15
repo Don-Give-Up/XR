@@ -23,6 +23,7 @@ public class NPCDialogueManager : MonoBehaviour
     // 이벤트 유아이 저장
     public GameObject[] eventUI = new GameObject[]{};
     
+    
     // 받아온 정보를 
     [SerializeField] 
     private AllDialogueEvent usedAllDialogue;
@@ -41,7 +42,8 @@ public class NPCDialogueManager : MonoBehaviour
     
     private int currentDialogueNum = 0;
 
-    public GameObject buyStockObj; 
+    public GameObject orderObj; // 1
+    public GameObject buyStockObj; //2
     
     private KingQuest kingQuest;
     //private QuestManager questManager;
@@ -148,6 +150,13 @@ public class NPCDialogueManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             OnNPCDialogueCheck("은행원");
+            //orderObj.SetActive(true);
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            OnNPCDialogueCheck("안내원");
         }
     }
 

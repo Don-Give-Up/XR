@@ -8,6 +8,9 @@ public class MaterKey : MonoBehaviour
    public GameObject blur;
    private PersonalFinancialManager money;
 
+   public GameObject price;
+   public GameObject order; 
+
 
    private void Start()
    {
@@ -31,6 +34,18 @@ public class MaterKey : MonoBehaviour
             // InputMoney 메서드를 통해 1키를 눌렀을 때 돈이 추가되도록 호출
             money.InputMoney(8 * 8590);
          }
+      }
+
+      if (Input.GetKeyDown(KeyCode.Alpha3))
+      {
+         price.SetActive(true);
+         order.SetActive(false);
+      }
+
+      if (Input.GetKeyDown(KeyCode.Alpha4))
+      {
+         price.SetActive(false);
+         order.SetActive(true);
       }
    }
 }

@@ -100,7 +100,7 @@ public class RoundSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             nextRound = true;
         }
