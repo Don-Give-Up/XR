@@ -110583,7 +110583,8 @@ MonoBehaviour:
   eventUI:
   - {fileID: 1940158226}
   - {fileID: 520836232}
-  buyStockObj: {fileID: 520836232}
+  orderObj: {fileID: 1631299631}
+  stockPrice: {fileID: 520836232}
 --- !u!1001 &814408014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217693,7 +217694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1631299632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -217890,6 +217891,8 @@ MonoBehaviour:
   newsmain: {fileID: 2012950586}
   chatBot: {fileID: 1077011410}
   blur: {fileID: 1654597595}
+  price: {fileID: 520836232}
+  order: {fileID: 1562599781}
 --- !u!1001 &1634332368
 PrefabInstance:
   m_ObjectHideFlags: 0
