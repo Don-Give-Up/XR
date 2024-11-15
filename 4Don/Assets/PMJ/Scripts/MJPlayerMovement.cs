@@ -72,7 +72,7 @@ public class MJPlayerMovement : NetworkBehaviour
             {
                 Camera.Target = transform;
                 
-                NoChDrop.Teleport(new Vector3(226f + _spawnCount -2, 47f, 365f));
+                NoChDrop.Teleport(new Vector3(225f + _spawnCount , 46f, 362f));
             }
         }
     }
