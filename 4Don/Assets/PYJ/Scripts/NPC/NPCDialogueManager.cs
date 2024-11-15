@@ -46,6 +46,7 @@ public class NPCDialogueManager : MonoBehaviour
     public GameObject stockPrice; //1
     
     private KingQuest kingQuest;
+    
     //private QuestManager questManager;
     
     // 1 -> 0  // 퀘스트 끝남, 퀘스트 번호를 하나 옮기고 0 -> 1 될 떄 까지 안 보이게 한다.  

@@ -43447,7 +43447,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 813881886}
         m_TargetAssemblyTypeName: NPCDialogueManager, Assembly-CSharp
-        m_MethodName: GotoBuyStock2
+        m_MethodName: GotoRealBBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -217891,8 +217891,7 @@ MonoBehaviour:
   newsmain: {fileID: 2012950586}
   chatBot: {fileID: 1077011410}
   blur: {fileID: 1654597595}
-  price: {fileID: 520836232}
-  order: {fileID: 1562599781}
+  dialogue: {fileID: 0}
 --- !u!1001 &1634332368
 PrefabInstance:
   m_ObjectHideFlags: 0

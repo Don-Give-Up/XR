@@ -8,10 +8,8 @@ public class MaterKey : MonoBehaviour
    public GameObject blur;
    private PersonalFinancialManager money;
 
-   public GameObject price;
-   public GameObject order; 
-
-
+   public GameObject dialogue; 
+   
    private void Start()
    {
       // PersonalFinancialManager 싱글톤 인스턴스를 가져옵니다.
@@ -35,17 +33,7 @@ public class MaterKey : MonoBehaviour
             money.InputMoney(8 * 8590);
          }
       }
-
-      if (Input.GetKeyDown(KeyCode.Alpha3))
-      {
-         price.SetActive(true);
-         order.SetActive(false);
-      }
-
-      if (Input.GetKeyDown(KeyCode.Alpha4))
-      {
-         price.SetActive(false);
-         order.SetActive(true);
-      }
+      
+      
    }
 }
