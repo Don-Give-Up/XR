@@ -46,6 +46,8 @@ public class RoundSystem : MonoBehaviour
 
     public bool isLoaded = false;
 
+    public TMP_Text roundText; 
+
     /*
     public GameObject dayObject; 
     public TMP_Text dayText;
@@ -85,6 +87,9 @@ public class RoundSystem : MonoBehaviour
         Debug.Log($"올해 무엇: {currentRound + currentRoundOffset}");
         onRoundChange?.Invoke(currentRound + currentRoundOffset);
         RoundProcess();
+        roundText.text = "다음날";
+        await UniTask.WaitForSeconds(3f);
+        roundText.text = "";
     }
 
     private async UniTask RoundProcess()

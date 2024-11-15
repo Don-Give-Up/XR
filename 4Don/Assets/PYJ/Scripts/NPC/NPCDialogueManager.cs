@@ -118,13 +118,13 @@ public class NPCDialogueManager : MonoBehaviour
         {
             // 일단 상호작용 안 되게만 해놓음
             return;
-        }
 
-        OnShowDialogue(currentDialogueNum);
-        if ((int)dialogueNum.x != (int)dialogueNum.y)
-        {
-            currentDialogueNum++; 
         }
+            OnShowDialogue(currentDialogueNum);
+            if ((int)dialogueNum.x != (int)dialogueNum.y)
+            {
+                currentDialogueNum++; 
+            }
     }
 
     private void Update() // bool 타입 값에 따라 어떤 창을 띄울까 표시
@@ -284,6 +284,19 @@ public class NPCDialogueManager : MonoBehaviour
         selectDialogueOn = false;
         orderObj.SetActive(true);
         stockPrice.SetActive(false);
+    }
+
+    public void GotoDialogue()
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+
+        orderObj.SetActive(false);
+        stockPrice.SetActive(false);
+        
+        dialogueOn = true; 
     }
 
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
