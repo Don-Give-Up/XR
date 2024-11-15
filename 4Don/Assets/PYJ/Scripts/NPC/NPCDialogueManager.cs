@@ -42,8 +42,8 @@ public class NPCDialogueManager : MonoBehaviour
     
     private int currentDialogueNum = 0;
 
-    public GameObject orderObj; // 1
-    public GameObject stockPrice; //2
+    public GameObject orderObj; // 2
+    public GameObject stockPrice; //1
     
     private KingQuest kingQuest;
     //private QuestManager questManager;
@@ -261,8 +261,22 @@ public class NPCDialogueManager : MonoBehaviour
         currentDialogueNum++;
         //OnShowDialogue(currentDialogueNum);
         stockPrice.SetActive(true);
+        orderObj.SetActive(false);
     }
-    
+
+    public void GotoRealBBuy()
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+
+        dialogueOn = false;
+        selectDialogueOn = false;
+        orderObj.SetActive(true);
+        stockPrice.SetActive(false);
+    }
+
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
     public void MoveNext() // 메인 다이알로그와 연결 함
     {
