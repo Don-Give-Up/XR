@@ -15,5 +15,6 @@ public class MaterKey : MonoBehaviour
          chatBot.SetActive(false);
          blur.SetActive(false);
       }
+      
    }
 }

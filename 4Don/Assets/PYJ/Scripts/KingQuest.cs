@@ -13,7 +13,7 @@ public class KingQuest : MonoBehaviour
     public Action onQuestStart; // 퀘스트가 시작함
     public Action onQuestEnd; // 퀘스트가 끝남 
     
-    public NPCDialogueManager npcDialogueManager;
+    private NPCDialogueManager npcDialogueManager;
     
     public static KingQuest instance;
     
@@ -46,11 +46,11 @@ public class KingQuest : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9)) // 마스터 키 
+        /*if (Input.GetKeyDown(KeyCode.Alpha9)) // 마스터 키 
         {
             // 2. 소득의 주 수입원는 노동의 후 상태가 되게하기 + 보상 있는 거 적용 시켜 놓기 
             MoveNextQuest();
-        }
+        }*/
     }
 
     //퀘스트가 끝났을 때 부르는 것
@@ -58,6 +58,8 @@ public class KingQuest : MonoBehaviour
     {
         // 다음 번호가 있는지 확인하고 진행해야 할 듯
         quests.Dequeue();
+        quests.Dequeue();
+        OnQuestStart();
         //CurrentQuestDisplay(); // 퀘스트가 옮겨지는 타이밍이랑 퀘스트가 발생하는 타이밍이랑 다름
     }
     

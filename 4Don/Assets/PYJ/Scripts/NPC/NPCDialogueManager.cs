@@ -21,7 +21,7 @@ public class NPCDialogueManager : MonoBehaviour
     private List<Button> choiceButtons = new();
 
     // 이벤트 유아이 저장
-    public List<GameObject[]> eventUI = new List<GameObject[]>();
+    public GameObject[] eventUI = new GameObject[]{};
     
     // 받아온 정보를 
     [SerializeField] 
@@ -39,7 +39,9 @@ public class NPCDialogueManager : MonoBehaviour
     private bool dialogueOn = false;
     private bool selectDialogueOn = false;
     
-    private int currentDialogueNum = 0; 
+    private int currentDialogueNum = 0;
+
+    public GameObject buyStockObj; 
     
     private KingQuest kingQuest;
     //private QuestManager questManager;
@@ -53,16 +55,12 @@ public class NPCDialogueManager : MonoBehaviour
         kingQuest = KingQuest.instance;
         hasTalked = true; 
         //questManager = QuestManager.instance;
-        for (int i = 0; i < eventUI.Count; i++)
+        for (int i = 0; i < eventUI.Length; i++)
         {
-            GameObject[] eventUIS = eventUI[i];
-
-            for (int j = 0; j < eventUIS.Length; j++)
-            {
-                GameObject events = eventUIS[j]; 
-                events.SetActive(false);
-            }
+            eventUI[i].SetActive(false); 
         }
+        
+        buyStockObj.SetActive(false);
     }
 
     private void OnEnable()
@@ -119,7 +117,10 @@ public class NPCDialogueManager : MonoBehaviour
         }
 
         OnShowDialogue(currentDialogueNum);
-        currentDialogueNum++; 
+        if ((int)dialogueNum.x != (int)dialogueNum.y)
+        {
+            currentDialogueNum++; 
+        }
     }
 
     private void Update() // bool 타입 값에 따라 어떤 창을 띄울까 표시
@@ -143,7 +144,11 @@ public class NPCDialogueManager : MonoBehaviour
             dialogueObj.SetActive(false); 
             selectdialogueObj.SetActive(false);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            OnNPCDialogueCheck("은행원");
+        }
     }
 
     // 필요한 대화 저장하기
@@ -169,27 +174,39 @@ public class NPCDialogueManager : MonoBehaviour
         // 어떤 선택인지 가지고 들어옴 
         selectDialogueOn = true;
 
-        for (int i = 0; i < usedAllDialogue.alldialogues.Count; i++)
+        Debug.Log($"@@@: {selectNum}");
+        for (int i = (int)dialogueNum.x; i < (int)dialogueNum.y; i++)
         {
             if (usedAllDialogue.alldialogues[i].selectLine == selectNum)
             {
+                Debug.Log($"!!!: {usedAllDialogue.alldialogues[i].selectLine}"); //  맞음
                 Button selectButton = Instantiate(selectObjectPrefab);
-                choiceButtons.Add(selectButton);
                 
                 selectButton.transform.SetParent(selectdialogueObj.transform, false);
+                int skipLine = usedAllDialogue.alldialogues[i].skipLine;
                 
-                selectButton.onClick.AddListener(() => OnselectClick(usedAllDialogue.alldialogues[i].skipLine) );
+                selectButton.onClick.AddListener(() => OnselectClick(skipLine));
+                
+                Debug.Log($"스킵!!!: {usedAllDialogue.alldialogues[i].skipLine}"); // 맞음
                 
                 TMP_Text selectText = selectButton.GetComponentInChildren<TMP_Text>();
                 selectText.text = usedAllDialogue.alldialogues[i].content;
+                
+                choiceButtons.Add(selectButton);
             }
         }
     }
 
     private void OnselectClick(int skipNum)
     {
+        Debug.Log($"!!!!: {skipNum}");
         // 이거는 불리는 순간 
         //생성된 버튼 사라지게 하기
+        foreach (Button button in choiceButtons)
+        {
+            Destroy(button.gameObject); // 버튼 오브젝트 삭제
+        }
+
         choiceButtons.Clear();
         // 선택창 끄고
         selectDialogueOn = false; 
@@ -202,63 +219,112 @@ public class NPCDialogueManager : MonoBehaviour
     private void OnEventUI(int eventNum)
     {
         int eventUINum = eventNum - 1;
+        dialogueOn = false;
         dialogueObj.SetActive(false);
-        
-        GameObject[] eventObjects = eventUI[eventUINum]; // 해당하는 이벤트 게임오브젝트 반환
-        
-        eventObjects[0].gameObject.SetActive(true);
-        
+        eventUI[eventUINum].SetActive(true);
         //EventTrigger
         //OnPointClick
     }
-    
 
+    public void BackToDialogue1()
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+        
+        dialogueOn = true;
+        selectDialogueOn = false;
+        currentDialogueNum++;
+        OnShowDialogue(currentDialogueNum);
+    }
+
+    public void GotoBuyStock2()
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+
+        dialogueOn = false; 
+        selectDialogueOn = false;
+        currentDialogueNum++;
+        //OnShowDialogue(currentDialogueNum);
+        buyStockObj.SetActive(true);
+    }
+    
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
     public void MoveNext() // 메인 다이알로그와 연결 함
     {
-        if (currentDialogueNum <= (int)dialogueNum.y)
+        if ((int)dialogueNum.x != (int)dialogueNum.y) 
         {
-            // 현재 번호를 가지고 옴, 처음 클릭 시에는 처음 인덱스를 가지고 옴
-            if (usedAllDialogue.alldialogues[currentDialogueNum].selectLine > 0) // 선택다이알로그이다. 
+            if (currentDialogueNum < (int)dialogueNum.y)
             {
-                // 선택란을 만났다 -> 선택하는 거 몇 개, 어떤 내용으로 뜰 지 결정하는 곳으로 가야함. 여긴 아님
-                OnSelectDialogue(usedAllDialogue.alldialogues[currentDialogueNum].selectLine);
-            }
-            else // 일반 다이알로그입니다.
-            {
-                // 이 땐 다음 버튼이 눌리면 어떻게 움직일지 하면 되긴함.
-                if (usedAllDialogue.alldialogues[currentDialogueNum].choiceEventNum > 0) // 일반 다이알로그에서 발생해야 하는 이벤트가 있다면
+                // 현재 번호를 가지고 옴, 처음 클릭 시에는 처음 인덱스를 가지고 옴
+                if (usedAllDialogue.alldialogues[currentDialogueNum].selectLine > 0) // 선택다이알로그이다. 
                 {
-                    // 이벤트 발생하게 함
-                    OnEventUI(usedAllDialogue.alldialogues[currentDialogueNum].choiceEventNum);
-                    
+                    // 선택란을 만났다 -> 선택하는 거 몇 개, 어떤 내용으로 뜰 지 결정하는 곳으로 가야함. 여긴 아님
+                    OnSelectDialogue(usedAllDialogue.alldialogues[currentDialogueNum].selectLine);
                 }
-                else if (usedAllDialogue.alldialogues[currentDialogueNum].skipLine > 0) // 일반 다이알로그에서 스킵라인이 있다면 
+                else // 일반 다이알로그입니다.
                 {
-                    if (usedAllDialogue.alldialogues[currentDialogueNum].skipLine == 10000)
+                    // 이 땐 다음 버튼이 눌리면 어떻게 움직일지 하면 되긴함.
+                    if (usedAllDialogue.alldialogues[currentDialogueNum].choiceEventNum > 0) // 일반 다이알로그에서 발생해야 하는 이벤트가 있다면
                     {
-                        OnNPCDialogueFinish();
+                        // 이벤트 발생하게 함
+                        OnEventUI(usedAllDialogue.alldialogues[currentDialogueNum].choiceEventNum); // 이벤트가 발생하고 나선
+                        
+                    }
+                    else if (usedAllDialogue.alldialogues[currentDialogueNum].skipLine > 0) // 일반 다이알로그에서 스킵라인이 있다면 
+                    {
+                        if (usedAllDialogue.alldialogues[currentDialogueNum].skipLine == 10000)
+                        {
+                            OnNPCDialogueFinish();
+                        }
+                        else
+                        {
+                            currentDialogueNum = usedAllDialogue.alldialogues[currentDialogueNum].skipLine;
+                            OnShowDialogue(currentDialogueNum);
+                        }
                     }
                     else
                     {
-                        currentDialogueNum = usedAllDialogue.alldialogues[currentDialogueNum].skipLine;
+                        // 이거면 특별한 이벤트나 스킵넘버 없업
                         OnShowDialogue(currentDialogueNum);
+                        currentDialogueNum++; 
                     }
+                }
+            }
+            else
+            {
+                if (usedAllDialogue.alldialogues[currentDialogueNum].questState == 1)
+                { 
+                    // 1 -> 0으로 가는 순간 
+                    // 안 끝내, 대화 계속해  , 다음 퀘스트로 넘어가 
+                    OnNPCDialogueFinish(); // 끝내!
+                    KingQuest.instance.onQuestEnd.Invoke();
+                    // 사실 이 떄 대화 계속 진행하는 코드가 있어야 하는데 아직 구현 안 됨 
                 }
                 else
                 {
-                    // 이거면 특별한 이벤트나 스킵넘버 없업
-                    OnShowDialogue(currentDialogueNum);
-                    currentDialogueNum++; 
+                    // 0 -> 1으로 가는 순간 
+                    // 끝내, 퀘스트 시작 
+                    OnNPCDialogueFinish(); // 끝내!
+                    KingQuest.instance.onQuestStart.Invoke(); 
+                    //OnNPCDialogueFinish(); // 끝내!
+
                 }
+
+                // 다음 번호가 없다. 
             }
         }
-        else
+        else // 첫 번호이자 끝 번호.
         {
             if (usedAllDialogue.alldialogues[currentDialogueNum].questState == 1)
             { 
                 // 1 -> 0으로 가는 순간 
                 // 안 끝내, 대화 계속해  , 다음 퀘스트로 넘어가 
+                OnNPCDialogueFinish(); // 끝내!
                 KingQuest.instance.onQuestEnd.Invoke();
                 // 사실 이 떄 대화 계속 진행하는 코드가 있어야 하는데 아직 구현 안 됨 
             }
@@ -266,14 +332,13 @@ public class NPCDialogueManager : MonoBehaviour
             {
                 // 0 -> 1으로 가는 순간 
                 // 끝내, 퀘스트 시작 
+                OnNPCDialogueFinish(); // 끝내!
                 KingQuest.instance.onQuestStart.Invoke(); 
                 //OnNPCDialogueFinish(); // 끝내!
-            }
-            
-            OnNPCDialogueFinish(); // 끝내!
 
-            // 다음 번호가 없다. 
+            }
         }
+
     }
     
     public void OnNPCDialogueFinish()

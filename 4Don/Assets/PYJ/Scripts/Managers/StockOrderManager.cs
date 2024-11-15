@@ -10,6 +10,7 @@ public class StockOrderManager : MonoBehaviour
     public TMP_Text warningText;
 
     public GameObject stockCanvas;
+    public GameObject dialogueObj; 
     
     private int wantToBuy = 0;
     private double stockPrice = 0;
@@ -22,7 +23,12 @@ public class StockOrderManager : MonoBehaviour
     private void Awake()
     {
         //RoundSystem.Instance.onRoundChange += CurrentStock;
-        StockPriceManager.instance.OnWantToBuyStock += CurrentStock;
+    }
+
+    private void Start()
+    {
+        Debug.Log($"stockOrder: {StockPriceManager.instance.onWantToBuyStock}");
+        StockPriceManager.instance.onWantToBuyStock += CurrentStock;
     }
 
     private void CurrentStock(double stockPrice)
@@ -102,6 +108,8 @@ public class StockOrderManager : MonoBehaviour
             Debug.Log("거래가 완료되었습니다.");
             Set();
             stockCanvas.SetActive(false);
+            dialogueObj.SetActive(true);
+            
         }
         else
         {

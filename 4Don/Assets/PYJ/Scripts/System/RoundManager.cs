@@ -62,6 +62,8 @@ public class RoundSystem : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            currentRound = 0; 
+            currentRoundOffset = 2020; 
         }
         else
         {
@@ -72,26 +74,28 @@ public class RoundSystem : MonoBehaviour
     private void Start() //선생님이 들어와서 아이들도 참가하고 진행버튼 누르면 실시되게 하기
     {
         //round = new int[maxWeek, oneWeekTime]; // 주를 행으로 하루를 열로 하는 2차원 배열 생성
-        RoundProcess();
         //StartCoroutine(Process());
+        SStart();
+    }
+
+    private async UniTask SStart()
+    {
+        await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
+        Debug.Log("@@@@@@"); // 한번 부름 
+        Debug.Log($"올해 무엇: {currentRound + currentRoundOffset}");
+        onRoundChange?.Invoke(currentRound + currentRoundOffset);
+        RoundProcess();
     }
 
     private async UniTask RoundProcess()
     {
-        if (!isLoaded) // 처음에 가격이나 이런 상황 보여주기 위해
-        {
-            onRoundChange?.Invoke(currentRound + currentRoundOffset);
-        }
-
-        isLoaded = true;
-        
-        await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
-        
-        //일단 누르면 라운드 시스템 발동하도록
+        await UniTask.WaitUntil(() => nextRound);
+            //일단 누르면 라운드 시스템 발동하도록
         Debug.Log($"현재 라운드: {currentRound + currentRoundOffset}");
+        currentRound++; 
         onRoundChange?.Invoke(currentRound + currentRoundOffset); // 현재 라운드 정보 제공
 
-        currentRound++; 
+        
     }
 
     private void Update()

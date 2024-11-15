@@ -176,6 +176,7 @@ public class GoogleSheetManager : MonoBehaviour
         {
             Debug.Log($"{u.Key} : {u.Value.Name} : {u.Value.Server}");
         }
+        
         IsLoaded = true;
     }
 
