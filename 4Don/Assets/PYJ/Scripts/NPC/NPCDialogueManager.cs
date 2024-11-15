@@ -152,12 +152,20 @@ public class NPCDialogueManager : MonoBehaviour
         {
             OnNPCDialogueCheck("은행원");
             //orderObj.SetActive(true);
-            
+            // 1번 뜨게 
+            stockPrice.SetActive(true);
+            dialogueOn = false;
+            orderObj.SetActive(false);
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             OnNPCDialogueCheck("안내원");
+            // 2번 뜨게 
+            stockPrice.SetActive(false);
+            dialogueOn = false;
+            orderObj.SetActive(true);
         }
     }
 
