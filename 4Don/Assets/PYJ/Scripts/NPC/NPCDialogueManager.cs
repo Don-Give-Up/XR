@@ -286,7 +286,7 @@ public class NPCDialogueManager : MonoBehaviour
         stockPrice.SetActive(false);
     }
 
-    public void GotoDialogue()
+    public void GotoDialogue()//주식 구매 하면이걸로 연결
     {
         for (int i = 0; i < eventUI.Length; i++)
         {
@@ -296,7 +296,8 @@ public class NPCDialogueManager : MonoBehaviour
         orderObj.SetActive(false);
         stockPrice.SetActive(false);
         
-        dialogueOn = true; 
+        OnNPCDialogueFinish(); // 끝내!
+        KingQuest.instance.onQuestEnd.Invoke();
     }
 
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
