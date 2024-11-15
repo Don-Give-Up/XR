@@ -44,6 +44,7 @@ public class NPCDialogueManager : MonoBehaviour
 
     public GameObject orderObj; // 2
     public GameObject stockPrice; //1
+    public GameObject study; 
     
     private KingQuest kingQuest;
     
@@ -167,6 +168,11 @@ public class NPCDialogueManager : MonoBehaviour
             stockPrice.SetActive(false);
             dialogueOn = false;
             orderObj.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            study.SetActive(true);
         }
     }
 
