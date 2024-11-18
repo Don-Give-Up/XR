@@ -42,10 +42,12 @@ public class NPCDialogueManager : MonoBehaviour
     
     private int currentDialogueNum = 0;
 
-    public GameObject orderObj; // 1
-    public GameObject buyStockObj; //2
+    public GameObject orderObj; // 2
+    public GameObject stockPrice; //1
+    public GameObject study; 
     
     private KingQuest kingQuest;
+    
     //private QuestManager questManager;
     
     // 1 -> 0  // 퀘스트 끝남, 퀘스트 번호를 하나 옮기고 0 -> 1 될 떄 까지 안 보이게 한다.  
@@ -62,7 +64,8 @@ public class NPCDialogueManager : MonoBehaviour
             eventUI[i].SetActive(false); 
         }
         
-        buyStockObj.SetActive(false);
+        orderObj.SetActive(false);
+        stockPrice.SetActive(false);
     }
 
     private void OnEnable()
@@ -116,13 +119,13 @@ public class NPCDialogueManager : MonoBehaviour
         {
             // 일단 상호작용 안 되게만 해놓음
             return;
-        }
 
-        OnShowDialogue(currentDialogueNum);
-        if ((int)dialogueNum.x != (int)dialogueNum.y)
-        {
-            currentDialogueNum++; 
         }
+            OnShowDialogue(currentDialogueNum);
+            if ((int)dialogueNum.x != (int)dialogueNum.y)
+            {
+                currentDialogueNum++; 
+            }
     }
 
     private void Update() // bool 타입 값에 따라 어떤 창을 띄울까 표시
@@ -151,12 +154,25 @@ public class NPCDialogueManager : MonoBehaviour
         {
             OnNPCDialogueCheck("은행원");
             //orderObj.SetActive(true);
-            
+            // 1번 뜨게 
+            stockPrice.SetActive(true);
+            dialogueOn = false;
+            orderObj.SetActive(false);
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             OnNPCDialogueCheck("안내원");
+            // 2번 뜨게 
+            stockPrice.SetActive(false);
+            dialogueOn = false;
+            orderObj.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            study.SetActive(true);
         }
     }
 
@@ -259,9 +275,37 @@ public class NPCDialogueManager : MonoBehaviour
         selectDialogueOn = false;
         currentDialogueNum++;
         //OnShowDialogue(currentDialogueNum);
-        buyStockObj.SetActive(true);
+        stockPrice.SetActive(true);
+        orderObj.SetActive(false);
     }
-    
+
+    public void GotoRealBBuy()
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+
+        dialogueOn = false;
+        selectDialogueOn = false;
+        orderObj.SetActive(true);
+        stockPrice.SetActive(false);
+    }
+
+    public void GotoDialogue()//주식 구매 하면이걸로 연결
+    {
+        for (int i = 0; i < eventUI.Length; i++)
+        {
+            eventUI[i].SetActive(false);
+        }
+
+        orderObj.SetActive(false);
+        stockPrice.SetActive(false);
+        
+        OnNPCDialogueFinish(); // 끝내!
+        KingQuest.instance.onQuestEnd.Invoke();
+    }
+
     // 버튼 클릭 받으면 인덱스 하나 움직인 다음에 OnShowDialogue 부르기 
     public void MoveNext() // 메인 다이알로그와 연결 함
     {

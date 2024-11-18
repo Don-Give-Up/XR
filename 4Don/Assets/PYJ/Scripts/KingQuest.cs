@@ -58,7 +58,6 @@ public class KingQuest : MonoBehaviour
     {
         // 다음 번호가 있는지 확인하고 진행해야 할 듯
         quests.Dequeue();
-        quests.Dequeue();
         OnQuestStart();
         //CurrentQuestDisplay(); // 퀘스트가 옮겨지는 타이밍이랑 퀘스트가 발생하는 타이밍이랑 다름
     }
