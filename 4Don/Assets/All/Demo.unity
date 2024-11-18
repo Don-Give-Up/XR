@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 802eeb7f77a9ad248a4ecb63f8a11f5e
-  m_OcclusionCullingData: {fileID: 36300000, guid: 2b7886cb89341c143a91fb0b3b8fe1a4, type: 2}
+  m_SceneGUID: 88657958399b254488fd852f5ad941f5
+  m_OcclusionCullingData: {fileID: 36300000, guid: f2f810861203881489dddbb9117080cf, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -55909,6 +55909,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8039736971577516546, guid: 45ff7ce98f080734a9319d9f503fa0b2, type: 3}
   m_PrefabInstance: {fileID: 420066078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &420270636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420270638}
+  - component: {fileID: 420270637}
+  m_Layer: 0
+  m_Name: Occlusion Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!192 &420270637
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420270636}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_IsViewVolume: 1
+--- !u!4 &420270638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420270636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &421071321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263593,7 +263636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1992709793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -285602,3 +285645,4 @@ SceneRoots:
   - {fileID: 816961644}
   - {fileID: 1768166933}
   - {fileID: 366438840}
+  - {fileID: 420270638}
