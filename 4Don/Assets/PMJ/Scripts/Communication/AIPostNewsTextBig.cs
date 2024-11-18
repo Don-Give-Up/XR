@@ -141,6 +141,7 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         // 개별 Article 데이터를 사용
         news[0].UseData(newsBigData.economy);
         news[1].UseData(newsBigData.finance);
+        
     }
 
 
