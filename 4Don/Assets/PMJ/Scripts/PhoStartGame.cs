@@ -133,7 +133,7 @@ public class PhoStartGame : MonoBehaviour
             await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
         }
         Debug.Log("광장 접속됨");
-        await UniTask.Delay(6500);
+        await UniTask.Delay(2000);
         loadingPanel.SetActive(false);
         
         // 로딩씬 노래 종료
@@ -162,7 +162,7 @@ public class PhoStartGame : MonoBehaviour
             await runner.StartGame(arg);
         }
         Debug.Log("퀴즈 접속됨");
-        await UniTask.Delay(6500);
+        await UniTask.Delay(2000);
         loadingPanel.SetActive(false);
         // 로딩씬 노래 종료
         audioSourceL.Stop();
