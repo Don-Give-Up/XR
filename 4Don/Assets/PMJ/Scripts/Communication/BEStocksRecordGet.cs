@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEStocksMemberRecord : MonoBehaviour
+public class BEChoicePuoductMember : MonoBehaviour
 {
     public ChoiceProductMember[] choiceProductMembers; // 데이터를 저장할 배열
 

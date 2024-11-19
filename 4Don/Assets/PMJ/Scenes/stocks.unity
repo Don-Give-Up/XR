@@ -450,6 +450,9 @@ GameObject:
   - component: {fileID: 1493971745}
   - component: {fileID: 1493971746}
   - component: {fileID: 1493971747}
+  - component: {fileID: 1493971748}
+  - component: {fileID: 1493971749}
+  - component: {fileID: 1493971750}
   m_Layer: 0
   m_Name: BE
   m_TagString: Untagged
@@ -553,7 +556,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493971739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb24ffc7e6b0f4941bab6cf4c730a44e, type: 3}
   m_Name: 
@@ -566,13 +569,54 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493971739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6b50767b001d6548a645c81d448e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   amount: 0
+--- !u!114 &1493971748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493971739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913077c573d287e4ab33d1876c599960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!114 &1493971749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493971739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bf470d6bd540643a1fcdba3a6a0c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  qid: 0
+  type: 
+--- !u!114 &1493971750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493971739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b3136ae3526194797e85fabcd29a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizSloveMembers: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

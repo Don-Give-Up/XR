@@ -13,6 +13,7 @@ public class Stock
 public class StockRecord
 {
     public int stockId;
+    public int gameId;
     public int stockTradeRecordAmount;
     public string tradeType;
 }
@@ -59,4 +60,29 @@ public class Banklogs
 {
     public int savingProductId;
     public int bankTotalPrice;
+}
+
+[System.Serializable]
+public class GameMemberId
+{
+    public int gameId;
+}
+
+[System.Serializable]
+public class QuizSolve
+{
+    public int gameId;
+    public int quizId;
+    public string correct;
+}
+
+[System.Serializable]
+public class QuizSloveMember
+{
+    public int quizSolveRecordId;
+    public int gameMemberId;
+    public int quizId;
+    public string createdAt;
+    public string correct;
+    public int quizCorrectMoney;
 }

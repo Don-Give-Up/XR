@@ -4,53 +4,47 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEStocksRecordPost : MonoBehaviour
+public class BEGameMembers : MonoBehaviour
 {
     public int id; // 클릭시
-    public int amount; // 클릭시
-    public string type; // 클릭시
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
 
-        SendTradeRequest();
+        SendGameIdRequest();
     }
 
-    public void SendTradeRequest()
+    public void SendGameIdRequest()
     {
-        var urlData = GoogleSheetManager.Instance.UrldataGet("주식사고팔고");
+        var urlData = GoogleSheetManager.Instance.UrldataGet("게임멤버아이디");
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("주식사고팔고 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("게임멤버아이디 URL의 서버 주소가 비어있습니다.");
             return;
         }
 
-        /*// 보낼 데이터를 생성
-        var tradeRequest = new StockRecord
-        {
-            stockId = id,
-            gameId = 6,
-            stockTradeRecordAmount = amount,
-            tradeType = type
-        };*/
         // 보낼 데이터를 생성
-        var tradeRequest = new StockRecord
+        var gameMemberId = new GameMemberId
         {
-            stockId = 1,
-            gameId = 6,
-            stockTradeRecordAmount = 2,
-            tradeType = "BUY"
+            gameId = 3
         };
+       
+        /*// 보낼 데이터를 생성
+        var gameMemberId = new GameMemberId
+        {
+            gameId = id
+        };
+        */
 
-        PostTradeRequest(urlData.Server, tradeRequest).Forget();
+        PostChoiceProductRequest(urlData.Server, gameMemberId).Forget();
     }
 
-    private async UniTask PostTradeRequest(string url, StockRecord stockRecord)
+    private async UniTask PostChoiceProductRequest(string url, GameMemberId gameMemberId)
     {
         // JSON 직렬화
-        string jsonBody = JsonConvert.SerializeObject(stockRecord);
+        string jsonBody = JsonConvert.SerializeObject(gameMemberId);
 
         using var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
