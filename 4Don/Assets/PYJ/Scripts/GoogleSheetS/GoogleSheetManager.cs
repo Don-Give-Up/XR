@@ -194,7 +194,7 @@ public class GoogleSheetManager : MonoBehaviour
 
     public Url UrldataGet(string name)
     {
-        Debug.Log(url[name]);
+        Debug.Log("불러온 URL 이름 : " + url[name].Name);
         return url[name];
     }
 }
