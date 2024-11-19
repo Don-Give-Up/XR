@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 445003195}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2691,6 +2691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1345800365961126986, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_TagString
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 3121051727060338903, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2702,6 +2706,10 @@ PrefabInstance:
     - target: {fileID: 4655463012943802199, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_Text
       value: meami@gmail.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768234151054742526, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_TagString
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 5672779824913710842, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2799,6 +2807,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1628934318}
+    - target: {fileID: 8787775707420656085, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
+      propertyPath: m_TagString
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 9120943428048792372, guid: fe7b29c2000c04a498c055c764d1c4c6, type: 3}
       propertyPath: m_Text
       value: 1234

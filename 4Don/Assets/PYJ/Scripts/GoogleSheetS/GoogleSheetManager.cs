@@ -152,7 +152,7 @@ public class GoogleSheetManager : MonoBehaviour
 
         }
 ////민주야 니가 찾는거 여기있다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var data3 = await Get("URL!A2:B9");
+        var data3 = await Get("URL!A2:B20");
         foreach (var row in data3)
         {
 
@@ -194,7 +194,7 @@ public class GoogleSheetManager : MonoBehaviour
 
     public Url UrldataGet(string name)
     {
-        Debug.Log(url[name]);
+        Debug.Log("불러온 URL 이름 : " + url[name].Name);
         return url[name];
     }
 }

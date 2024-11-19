@@ -60,8 +60,8 @@ public class LoginCommunicator : MonoBehaviour
             Debug.Log(rep);
             SceneManager.LoadScene("SsamMade");
             DontDestroyOnLoad(audioSource);
-            
-            Value = rep.ToString();
+
+            Value = rep;
 
         }
         else

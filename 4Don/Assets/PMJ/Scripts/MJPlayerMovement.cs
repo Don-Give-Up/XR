@@ -20,11 +20,19 @@ public class MJPlayerMovement : NetworkBehaviour
 
     public FirstPersonCamera Camera;
 
+    public AudioSource audioSource;
+
+    public AudioClip stepSound1;
+    public AudioClip stepSound2;
+
+    private bool isFirstsound = true;
+
     private int _spawnCount;
     
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -42,11 +50,8 @@ public class MJPlayerMovement : NetworkBehaviour
         if (Mathf.Abs(moveVertical) > float.Epsilon || Mathf.Abs(moveHorizontal) > float.Epsilon) // 위아래 방향키 입력이 있을 때
         {
             anim.SetBool("IsWalk", true); // 걷기 애니메이션 시작
+            PlayStepSound();
         }
-        /*else if (Mathf.Abs(moveHorizontal) > float.Epsilon) // 좌우 방향키 입력이 있을 때
-        {
-            anim.SetBool("IsWalk", false); // 걷기 애니메이션 멈춤
-        }*/
         else
         {
             anim.SetBool("IsWalk", false); // 입력이 없을 때 걷기 애니메이션 멈춤
@@ -112,5 +117,29 @@ public class MJPlayerMovement : NetworkBehaviour
 
         _jumpPressed = false;
     }
-    
+
+    // 따발총 소리 해결
+    private void PlayStepSound()
+    {
+        // 소리가 재생 중일 때는 새로운 소리를 재생하지 않음
+        if (audioSource.isPlaying)
+        {
+            return; // 소리가 재생 중이면 아무 것도 하지 않음
+        }
+
+        if (isFirstsound)
+        {
+            audioSource.PlayOneShot(stepSound1); // 첫 번째 발소리 재생
+        }
+        else
+        {
+            audioSource.PlayOneShot(stepSound2); // 두 번째 발소리 재생
+        }
+
+        // 발소리 번갈아 재생
+        isFirstsound = !isFirstsound;
+    }
+
+
+
 }

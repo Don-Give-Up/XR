@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 102090241}
   m_Layer: 5
   m_Name: Button - Back
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,6 +340,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102090239}
   m_CullTransparentMesh: 1
+--- !u!1 &149204198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 149204199}
+  - component: {fileID: 149204200}
+  m_Layer: 0
+  m_Name: RoomDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &149204199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149204198}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149204200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149204198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab0ca28ea112884a9a7da070a87c9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameId: 0
+  gameMemberId: 0
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +596,7 @@ GameObject:
   - component: {fileID: 352830247}
   m_Layer: 5
   m_Name: Button - Back (1)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1989,7 +2035,7 @@ GameObject:
   - component: {fileID: 923234084}
   m_Layer: 5
   m_Name: Button - Enter
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3270,7 +3316,7 @@ GameObject:
   - component: {fileID: 1524697809}
   m_Layer: 5
   m_Name: Button - Made
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3477,6 +3523,7 @@ MonoBehaviour:
   roomNamePrefab: {fileID: 1259818260603532112, guid: a5c48fe92fc060e44b6b42f6fc1bcced, type: 3}
   password: {fileID: 1719422468}
   passwordCheck: {fileID: 893623162}
+  _backbt: {fileID: 1860445041}
 --- !u!114 &1719422468 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2356481337231915823, guid: 59bea3de8c5fb3944971ed3c90a489a9, type: 3}
@@ -3742,7 +3789,7 @@ GameObject:
   - component: {fileID: 1860445041}
   m_Layer: 5
   m_Name: Button - Back (1)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4403,7 +4450,7 @@ GameObject:
   - component: {fileID: 5899022776255901057}
   m_Layer: 5
   m_Name: Button - made
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6694,3 +6741,4 @@ SceneRoots:
   - {fileID: 1820326772}
   - {fileID: 1306457789}
   - {fileID: 1094061917}
+  - {fileID: 149204199}
