@@ -4,8 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class RoomData
 {
-    public string gameId;
-    public string memberId;
+    public int gameId;
+    public int memberId;
     public string gameName;
     public string gamePassword;
 }

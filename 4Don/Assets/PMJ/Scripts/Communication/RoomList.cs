@@ -28,6 +28,7 @@ public class RoomList : MonoBehaviour
     public TMP_InputField password;
     public GameObject passwordCheck;
 
+    [SerializeField] private Button _backbt;
 
     //private List<string> gameNameList = new List<string>();
 
@@ -91,9 +92,12 @@ public class RoomList : MonoBehaviour
             
             Room room = gameNameObject.GetComponent<Room>();
             room.UseData(roomData);
-            room.password = password;
+            //room.password = password;
             
-            password.onEndEdit.AddListener(room.CheckPassword);
+            _backbt.onClick.AddListener(() => password.text = null);
+            _backbt.onClick.AddListener(() => room.ToggleSelectButton(false));
+           
+            password.onSubmit.AddListener(room.CheckPassword);
         }
     }
     
