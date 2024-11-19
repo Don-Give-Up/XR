@@ -86,3 +86,12 @@ public class QuizSloveMember
     public string correct;
     public int quizCorrectMoney;
 }
+
+[System.Serializable]
+public class GameMemberIdPost
+{
+    public int gameMemberId { get; set; }
+    public int memberId { get; set; }
+    public int gameId { get; set; }
+    public int gameMemberMoney { get; set; }
+}
