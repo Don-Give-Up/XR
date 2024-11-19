@@ -4,50 +4,50 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEStocksRecordPost : MonoBehaviour
+public class BEQuizSolvePost : MonoBehaviour
 {
     public int id; // 클릭시
-    public int amount; // 클릭시
+    public int qid; // 클릭시
     public string type; // 클릭시
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
 
-        SendTradeRequest();
+        SendQuizSolveRequest();
     }
 
-    public void SendTradeRequest()
+    public void SendQuizSolveRequest()
     {
-        var urlData = GoogleSheetManager.Instance.UrldataGet("주식사고팔고");
+        var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈풀이기록");
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("주식사고팔고 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("퀴즈풀이기록 URL의 서버 주소가 비어있습니다.");
             return;
         }
-
         /*// 보낼 데이터를 생성
-        var tradeRequest = new StockRecord
+        var quizSolve = new QuizSolve
         {
-            stockId = id,
-            gameId = 6,
-            stockTradeRecordAmount = amount,
-            tradeType = type
-        };*/
+            gameId = id,
+            quizId = qid,
+            correct = "CORRECT"
+        };
+        */
+
+        
         // 보낼 데이터를 생성
-        var tradeRequest = new StockRecord
+        var quizSolve = new QuizSolve
         {
-            stockId = 1,
-            gameId = 6,
-            stockTradeRecordAmount = 2,
-            tradeType = "BUY"
+            gameId = 1,
+            quizId = 1,
+            correct = "CORRECT"
         };
 
-        PostTradeRequest(urlData.Server, tradeRequest).Forget();
+        PostTradeRequest(urlData.Server, quizSolve).Forget();
     }
 
-    private async UniTask PostTradeRequest(string url, StockRecord stockRecord)
+    private async UniTask PostTradeRequest(string url, QuizSolve stockRecord)
     {
         // JSON 직렬화
         string jsonBody = JsonConvert.SerializeObject(stockRecord);

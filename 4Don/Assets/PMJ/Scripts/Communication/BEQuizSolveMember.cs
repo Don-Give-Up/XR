@@ -4,32 +4,32 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEStocksMemberRecord : MonoBehaviour
+public class BEQuizSolveMember : MonoBehaviour
 {
-    public StockRecordMemberGet[] stockmembers; // 데이터를 저장할 배열
+    public QuizSloveMember[] quizSloveMembers; // 데이터를 저장할 배열
 
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
 
-        FetchStockRecords();
+        FetchquizsolveMember();
     }
 
-    private void FetchStockRecords()
+    private void FetchquizsolveMember()
     {
-        var urlData = GoogleSheetManager.Instance.UrldataGet("주식특정멤버조회");
+        var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈풀이기록멤버");
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("주식특정멤버조회 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("퀴즈풀이기록멤버 URL의 서버 주소가 비어있습니다.");
             return;
         }
 
-        GetStockRecordsFromServer(urlData.Server).Forget();
+        GetSolveMemberFromServer(urlData.Server).Forget();
     }
 
-    private async UniTask GetStockRecordsFromServer(string url)
+    private async UniTask GetSolveMemberFromServer(string url)
     {
         using var request = UnityWebRequest.Get(url);
 
@@ -46,8 +46,8 @@ public class BEStocksMemberRecord : MonoBehaviour
             Debug.Log("서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터를 List<StockRecordMemberGet>로 파싱
-            List<StockRecordMemberGet> stockRecordList = JsonConvert.DeserializeObject<List<StockRecordMemberGet>>(jsonResponse);
-            UseStocksData(stockRecordList);
+            List<QuizSloveMember> quizSloveMember = JsonConvert.DeserializeObject<List<QuizSloveMember>>(jsonResponse);
+            UseStocksData(quizSloveMember);
         }
         else
         {
@@ -55,17 +55,21 @@ public class BEStocksMemberRecord : MonoBehaviour
         }
     }
 
-    private void UseStocksData(List<StockRecordMemberGet> stockRecordList)
+    private void UseStocksData(List<QuizSloveMember> quizSloveMember)
     {
-        // 데이터를 StockRecordMemberGet 배열로 변환하여 저장
-        stockmembers = stockRecordList.ToArray();
+        // 데이터를 QuizSloveMember 배열로 변환하여 저장
+        quizSloveMembers = quizSloveMember.ToArray();
 
         // 변환된 데이터를 출력
-        foreach (var stock in stockmembers)
+        foreach (var quiz in quizSloveMembers)
         {
-            Debug.Log($"Trade ID: {stock.stockTradeRecordId}, Member ID: {stock.gameMemberId}, " +
-                      $"Amount: {stock.stockTradeRecordAmount}, Type: {stock.tradeType}, " +
-                      $"Stock Name: {stock.stockName}, Total Price: {stock.stockTotalPrice}");
+            Debug.Log($"Quiz Solve Record ID: {quiz.quizSolveRecordId}, " +
+                      $"Member ID: {quiz.gameMemberId}, " +
+                      $"Quiz ID: {quiz.quizId}, " +
+                      $"Created At: {quiz.createdAt}, " +
+                      $"Correct: {quiz.correct}, " +
+                      $"Correct Money: {quiz.quizCorrectMoney}");
         }
     }
+
 }
