@@ -122,7 +122,7 @@ public class PhoStartGame : MonoBehaviour
             loginCommunicator.StopAudio();
             audioSourceQ.Stop();
             audioSourceL.Play();
-
+            
             
             var arg = new StartGameArgs
             {

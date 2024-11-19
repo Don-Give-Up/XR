@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class JJANGMovement : NetworkBehaviour
 {
@@ -16,8 +17,8 @@ public class JJANGMovement : NetworkBehaviour
     public float distanceAheadPlayer = 1f; // 플레이어의 앞쪽으로 이동할 거리
     public float offsetDistance = 1f; // 플레이어의 오른쪽에 위치할 거리
     
-
-
+    
+    
     public override void Spawned()
     {
         
@@ -49,19 +50,16 @@ public class JJANGMovement : NetworkBehaviour
             }
         }
         
-        if (playerObject != null)
-        {
-            player = playerObject.transform;  // 해당 게임오브젝트의 Transform을 player 변수에 할당
-            Debug.Log("첫 번째 플레이어의 transform: " + player.position);
-        }
-        else
-        {
-            Debug.LogError("첫 번째 플레이어의 GameObject를 찾을 수 없습니다.");
-        }
+        
         // 첫 번째 플레이어의 게임오브젝트를 가져와서 그거를 플레이어에 연결
         // 플레이어의 GameObject 가져오기
         // 위치 동기화하는 컴퍼넌트를 들고 와서 teleport
         // 플레이어 프리팹도 연결을 해야 될 거 같은데... 
+    }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
     }
 
     public override void FixedUpdateNetwork()
@@ -75,6 +73,9 @@ public class JJANGMovement : NetworkBehaviour
 
                 // 목표 위치로 NPC 이동
                 agent.SetDestination(offsetPosition);
+               
+                
+                
                 // 씬 안 넘어가게 설정?
                 // 노동씬 넘어갈 땐 없어지고 새로 
                 // 첫 번째 플레이어에 무조건 고정하고 씬 안 넘어가게 설정
@@ -93,6 +94,13 @@ public class JJANGMovement : NetworkBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * 500f);  // 회전 속도 조절
                 }
             }
+
+            if (SceneManager.GetActiveScene().name == "3DWork1")
+            {
+                Debug.Log("짱은 3DWork 못 넘어감");
+            }
+            
+            
         }
 
         
