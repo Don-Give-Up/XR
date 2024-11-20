@@ -56,6 +56,8 @@ public class MJPlayerMovement : NetworkBehaviour
         {
             anim.SetBool("IsWalk", false); // 입력이 없을 때 걷기 애니메이션 멈춤
         }
+
+        
     }
     
     public override void Spawned()
@@ -139,6 +141,8 @@ public class MJPlayerMovement : NetworkBehaviour
         // 발소리 번갈아 재생
         isFirstsound = !isFirstsound;
     }
+    
+    
 
 
 

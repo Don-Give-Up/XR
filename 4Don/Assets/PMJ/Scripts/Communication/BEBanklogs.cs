@@ -31,12 +31,14 @@ public class BEBanklogs : MonoBehaviour
         // 보낼 데이터를 생성
         var banklog = new Banklogs
         {
+            gameId = 1,
             savingProductId = 1,
             bankTotalPrice = 2
         };
 // 보낼 데이터를 생성
         /*var banklog = new Banklogs
         {
+            gameId = ,
             savingProductId = id,
             bankTotalPrice = amount
         };
