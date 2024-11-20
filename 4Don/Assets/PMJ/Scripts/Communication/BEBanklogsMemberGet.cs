@@ -26,8 +26,25 @@ public class BEBanklogsMemberGet : MonoBehaviour
             return;
         }
 
-        GetBanklogsMemberFromServer(urlData.Server).Forget();
+        // URL에 멤버 ID 추가
+        string finalUrl = AppendMemberIdToUrl(urlData.Server, GameDataManager.Instance.gameMemberId);
+        Debug.Log("최종 URL: " + finalUrl);
+
+        GetBanklogsMemberFromServer(finalUrl).Forget();
     }
+
+    private string AppendMemberIdToUrl(string baseUrl, int memberId)
+    {
+        // URL 끝에 "/"가 없으면 추가
+        if (!baseUrl.EndsWith("/"))
+        {
+            baseUrl += "/";
+        }
+
+        // 멤버 ID를 URL에 추가
+        return baseUrl + memberId;
+    }
+
 
     private async UniTask GetBanklogsMemberFromServer(string url)
     {

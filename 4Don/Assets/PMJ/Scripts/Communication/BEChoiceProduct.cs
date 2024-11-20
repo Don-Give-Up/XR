@@ -3,10 +3,11 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 
 public class BEChoiceProduct : MonoBehaviour
 {
-    public int id; // 클릭시
+    public int productId; // 클릭시
     public int amount; // 클릭시
     private async void Start()
     {
@@ -27,20 +28,20 @@ public class BEChoiceProduct : MonoBehaviour
         }
 
        
-        /*// 보낼 데이터를 생성
+        // 보낼 데이터를 생성
         var choiceRequest = new ChoiceProduct
         {   
-            gameId = ,
-            selectProductId = id,
+            gameId = GameDataManager.Instance.gameId,
+            selectProductId = productId,
             selectProductPurchaseAmount = amount
-        };*/
-        // 보낼 데이터를 생성
+        };
+        /*// 보낼 데이터를 생성
         var choiceRequest = new ChoiceProduct
         {
             gameId = 2,
             selectProductId = 1,
             selectProductPurchaseAmount = 2
-        };
+        };*/
 
         PostChoiceProductRequest(urlData.Server, choiceRequest).Forget();
     }
@@ -55,9 +56,9 @@ public class BEChoiceProduct : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        //request.SetRequestHeader("Authorization", LoginCommunicator.Value);
-        request.SetRequestHeader("Authorization",
-            "Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k");
+        request.SetRequestHeader("Authorization", LoginCommunicator.Value);
+        //request.SetRequestHeader("Authorization",
+            //"Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k");
             
 
         await request.SendWebRequest();
@@ -65,7 +66,7 @@ public class BEChoiceProduct : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("선택상품구매서버 응답 수신 성공: " + jsonResponse);
 
             // 추가적인 처리 필요 시 여기에 작성
         }

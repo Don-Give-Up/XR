@@ -25,8 +25,21 @@ public class BEStocksMemberRecord : MonoBehaviour
             Debug.LogError("주식특정멤버조회 URL의 서버 주소가 비어있습니다.");
             return;
         }
+        string finalUrl = AppendMemberIdToUrl(urlData.Server, GameDataManager.Instance.gameMemberId);
+        Debug.Log("최종 URL: " + finalUrl);
+        
+        GetStockRecordsFromServer(finalUrl).Forget();
+    }
+    private string AppendMemberIdToUrl(string baseUrl, int memberId)
+    {
+        // URL 끝에 "/"가 없으면 추가
+        if (!baseUrl.EndsWith("/"))
+        {
+            baseUrl += "/";
+        }
 
-        GetStockRecordsFromServer(urlData.Server).Forget();
+        // 멤버 ID를 URL에 추가
+        return baseUrl + memberId;
     }
 
     private async UniTask GetStockRecordsFromServer(string url)
@@ -43,7 +56,7 @@ public class BEStocksMemberRecord : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("주식 특정 멤버 조회 서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터를 List<StockRecordMemberGet>로 파싱
             List<StockRecordMemberGet> stockRecordList = JsonConvert.DeserializeObject<List<StockRecordMemberGet>>(jsonResponse);

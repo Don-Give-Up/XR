@@ -52,7 +52,7 @@ public class BEGameMembers : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("게임 멤버 아이디서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터에서 gameMemberId만 추출
             var gameMemberIdPost = JsonConvert.DeserializeObject<GameMemberIdPost>(jsonResponse);
