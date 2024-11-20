@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
   m_Name: Task_Report
   m_EditorClassIdentifier: 
-  category: {fileID: 0}
-  codeName: 
-  description: 
-  action: {fileID: 0}
-  targets: []
+  category: {fileID: 11400000, guid: 083763725de264943a2ca246b3eb5e1a, type: 2}
+  codeName: Report
+  description: "\uBD84\uC11D \uB808\uD3EC\uD2B8\uB97C \uD655\uC778\uD558\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 686a7149a1b961e4ab90f01287346088, type: 2}
   initialSuccessValue: {fileID: 0}
-  needSuccessToComplete: 0
+  needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

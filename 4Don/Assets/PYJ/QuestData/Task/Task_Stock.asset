@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
   m_Name: Task_Stock
   m_EditorClassIdentifier: 
-  category: {fileID: 0}
-  codeName: 
-  description: 
-  action: {fileID: 0}
-  targets: []
+  category: {fileID: 11400000, guid: 22406c595b9a66f4b9f280496ed6dfef, type: 2}
+  codeName: Stock
+  description: "\uC8FC\uC2DD\uC5D0 \uD22C\uC790\uD574 \uBCF4\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: a6d4904130bc7ee46ad2547fe28d55f6, type: 2}
   initialSuccessValue: {fileID: 0}
-  needSuccessToComplete: 0
+  needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

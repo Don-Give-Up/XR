@@ -4,7 +4,12 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
    public UnityEngine.Events.UnityEvent onTalk;
-   
+
+   public void OnClick()
+   {
+      
+   }
+
    private void Update()
    {
       if (Input.GetKeyDown(KeyCode.Space))

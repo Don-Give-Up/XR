@@ -4,7 +4,8 @@ using UnityEngine;
 public class GameEventsManager : MonoBehaviour
 {
     public static GameEventsManager instance { get; private set; }
-    
+
+    public NPCDialogueEvents npcdialogEvents;
     public NPCEvents npcEvents; 
 
     private void Awake()
@@ -16,7 +17,8 @@ public class GameEventsManager : MonoBehaviour
         instance = this;
 
         // initialize all events
-        npcEvents = new NPCEvents(); 
-  
+        npcEvents = new NPCEvents();
+        npcdialogEvents = new NPCDialogueEvents(); 
+
     }
 }
