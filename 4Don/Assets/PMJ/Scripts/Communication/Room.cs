@@ -35,7 +35,7 @@ public class Room : MonoBehaviour
         
         if (roomData.gamePassword == text)
         {
-            Debug.Log("비밀번호가 옳바릅니다.");
+            Debug.Log("비밀번호가 올바릅니다.");
             
             GameDataManager.Instance.gameId = roomData.gameId;
             Debug.Log("GameId : " + roomData.gameId);

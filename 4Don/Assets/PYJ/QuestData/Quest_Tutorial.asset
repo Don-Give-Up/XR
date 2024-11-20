@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287649653b18f5c40adcaf915cbd492c, type: 3}
+  m_Name: Quest_Tutorial
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 30f809a6f0566054d813e2bacd21c65b, type: 2}
+  icon: {fileID: 0}
+  codeName: TUTORIAL
+  displayName: Tutorial
+  description: This is Tutorial.
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: f80761c5385deef45906c1634ba4af34, type: 2}
+  rewards: []
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 0
+  acceptionConditions: []
+  cancelConditions: []

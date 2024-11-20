@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6184072211997292986}
   - component: {fileID: 8853342768636007254}
   - component: {fileID: 6340237245857637530}
+  - component: {fileID: 9075174942730827191}
   m_Layer: 0
   m_Name: NPC - JJANG
   m_TagString: NPC
@@ -148,6 +149,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcinfo: {fileID: 11400000, guid: 888bc05ddbe43394eb03b2e2c9fc1075, type: 2}
+--- !u!114 &9075174942730827191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329858570354156875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666bf3a936435d418b84692dab8e1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 069c333e93730894580ad51bcd86e8b6, type: 2}
+  target: {fileID: 11400000, guid: b100aa2e6fe24734f93b552a32d92600, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!1001 &1352122561412684561
 PrefabInstance:
   m_ObjectHideFlags: 0
