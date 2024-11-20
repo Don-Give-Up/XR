@@ -28,7 +28,7 @@ public class NPCDialogueManager : MonoBehaviour
     [SerializeField] 
     private AllDialogueEvent usedAllDialogue;
 
-    private QuestInfoSO currentQuestInfo; 
+    //private QuestInfoSO currentQuestInfo; 
 
     Vector2 dialogueNum = Vector2.zero;
     
@@ -70,7 +70,7 @@ public class NPCDialogueManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck;
+        //GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck += OnNPCDialogueCheck;
         // 일단 이벤트 바뀌는 순간 감지
         // 이벤트 끝나는 순간 감지
         //GameEventsManager.instance.npcdialogEvents.onShowDialoge += OnShowDialogue; 
@@ -79,7 +79,7 @@ public class NPCDialogueManager : MonoBehaviour
     
     private void OnDisable()
     {
-        GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck -= OnNPCDialogueCheck; 
+        //GameEventsManager.instance.npcdialogEvents.onDialogueNumCheck -= OnNPCDialogueCheck; 
         // 끝날 떄, 끝나기
         //GameEventsManager.instance.npcdialogEvents.onShowDialoge -= OnShowDialogue; 
         //GameEventsManager.instance.npcdialogEvents.onStartDialoge -= OnNPCDialogueFinish; 
@@ -92,7 +92,7 @@ public class NPCDialogueManager : MonoBehaviour
         // 현재 퀘스트 정보를 가지고 와서 
         // 이 친구가 말할 수 있는 지? 어떤 내용을 말해야하는 지 대답한다. 
 
-        currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴 // 현재  퀘스트 정보를 어떻게 가져와야하지? 
+        //currentQuestInfo = kingQuest.GetQuestInfo(); // 현재 퀘스트 정보 가저옴 // 현재  퀘스트 정보를 어떻게 가져와야하지? 
         dialogueNum = Vector2.zero;
         
         switch (hasTalked)
@@ -100,13 +100,13 @@ public class NPCDialogueManager : MonoBehaviour
             case true:
                 // 전 대화를 나누었어! 
                 // 후 대화를 나눌차례
-                dialogueNum = currentQuestInfo.dialogueLine[1];
+                //dialogueNum = currentQuestInfo.dialogueLine[1];
                 hasTalked = false;
                 break;
             case false:
                 // 전 대화를 나누지 않았어.
                 // 후 대화를 나눌차례 
-                dialogueNum = currentQuestInfo.dialogueLine[0];
+                //dialogueNum = currentQuestInfo.dialogueLine[0];
                 hasTalked = true; 
                 break;
         }
