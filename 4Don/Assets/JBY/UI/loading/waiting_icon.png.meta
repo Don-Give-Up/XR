@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -93,21 +93,374 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: waiting_icon_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 911
+        width: 585
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d6df6219eaa340429a0594bad371dec
+      internalID: -1268522837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_1
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 379
+        width: 782
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c8201ad06b3fd1428c8b3f79f7dc6c1
+      internalID: -1934512445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 761
+        width: 586
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d4a167080be9f24ab17479c33b0e361
+      internalID: 472760105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_12
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 617
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6ef0c12b0401440b5f3d2a423a407e
+      internalID: 1435015906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_13
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 612
+        width: 47
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04da00511f7b40841af6820e9858a580
+      internalID: 254992037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_14
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 612
+        width: 49
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e1f2be4882ebe49af531ef9b682623
+      internalID: -916780907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_15
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 614
+        width: 53
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ddd5450d7cf1314ab9ce28c4681cdbe
+      internalID: -200118669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_47
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 456
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34d6c809088599e4799fd659e597583f
+      internalID: 241726306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_50
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 432
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dfe71973f1e1544094eac751434b7f7
+      internalID: -1069523497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_71
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 139
+        width: 32
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b5c68c92661d74a9cba4b6cbcd9314
+      internalID: 241121981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_72
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 143
+        width: 55
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f42a1e9b1c90994ab5e29c16f09292e
+      internalID: 564291928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: waiting_icon_3
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 250
+        width: 569
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf7a1c6aefc84441b06c97edb48da65
+      internalID: 1172018002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e64af423f94e4df419cc5ebd899ab921
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      waiting_icon_0: -1268522837
+      waiting_icon_1: -1934512445
+      waiting_icon_10: 364639271
+      waiting_icon_11: 813864862
+      waiting_icon_12: 1435015906
+      waiting_icon_13: 254992037
+      waiting_icon_14: -916780907
+      waiting_icon_15: -200118669
+      waiting_icon_16: -609718658
+      waiting_icon_17: -795524103
+      waiting_icon_18: -418040601
+      waiting_icon_19: -2071076027
+      waiting_icon_2: 472760105
+      waiting_icon_20: 215306418
+      waiting_icon_21: -1990079379
+      waiting_icon_22: 1022642341
+      waiting_icon_23: 75862767
+      waiting_icon_24: -1889221927
+      waiting_icon_25: -1293442598
+      waiting_icon_26: 791710453
+      waiting_icon_27: 1987295200
+      waiting_icon_28: 291709575
+      waiting_icon_29: -1916876042
+      waiting_icon_3: 1172018002
+      waiting_icon_30: 1401623033
+      waiting_icon_31: 106705411
+      waiting_icon_32: 69196264
+      waiting_icon_33: -1021751147
+      waiting_icon_34: 630415562
+      waiting_icon_35: 1112118942
+      waiting_icon_36: -411286065
+      waiting_icon_37: -1387123237
+      waiting_icon_38: -1227960316
+      waiting_icon_39: -1574661287
+      waiting_icon_4: 517124957
+      waiting_icon_40: 2029600057
+      waiting_icon_41: 289373580
+      waiting_icon_42: -358356237
+      waiting_icon_43: -501531570
+      waiting_icon_44: -1871790272
+      waiting_icon_45: -725811294
+      waiting_icon_46: -1578222109
+      waiting_icon_47: 241726306
+      waiting_icon_48: 2068752541
+      waiting_icon_49: -1904443483
+      waiting_icon_5: 1008430909
+      waiting_icon_50: -1069523497
+      waiting_icon_51: 538015753
+      waiting_icon_52: 668570073
+      waiting_icon_53: 1464555143
+      waiting_icon_54: -1311229791
+      waiting_icon_55: 523127036
+      waiting_icon_56: 1139634062
+      waiting_icon_57: -1527684118
+      waiting_icon_58: -2071828347
+      waiting_icon_59: -1124987823
+      waiting_icon_6: -1233933895
+      waiting_icon_60: -983887387
+      waiting_icon_61: -609010990
+      waiting_icon_62: -846008004
+      waiting_icon_63: -1671434830
+      waiting_icon_64: 522081707
+      waiting_icon_65: 1607106409
+      waiting_icon_66: -791006705
+      waiting_icon_67: 280176915
+      waiting_icon_68: -1091963577
+      waiting_icon_69: -1738522868
+      waiting_icon_7: 1133053196
+      waiting_icon_70: -832268492
+      waiting_icon_71: 241121981
+      waiting_icon_72: 564291928
+      waiting_icon_73: 787402023
+      waiting_icon_8: -1109548849
+      waiting_icon_9: -1272752954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
