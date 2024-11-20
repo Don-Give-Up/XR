@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class BEBanklogs : MonoBehaviour
 {
-    public int id; // 클릭시
+    public int id; // 일단 입력받기?
     public int amount; // 클릭시
     private async void Start()
     {
@@ -28,21 +28,21 @@ public class BEBanklogs : MonoBehaviour
 
        
         
-        // 보낼 데이터를 생성
+        /*// 보낼 데이터를 생성
         var banklog = new Banklogs
         {
             gameId = 1,
             savingProductId = 1,
             bankTotalPrice = 2
-        };
+        };*/
 // 보낼 데이터를 생성
-        /*var banklog = new Banklogs
+        var banklog = new Banklogs
         {
-            gameId = ,
+            gameId = GameDataManager.Instance.gameId,
             savingProductId = id,
             bankTotalPrice = amount
         };
-        */
+        
 
         PostChoiceProductRequest(urlData.Server, banklog).Forget();
     }
