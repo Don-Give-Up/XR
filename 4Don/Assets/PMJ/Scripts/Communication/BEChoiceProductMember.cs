@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEChoicePuoductMember : MonoBehaviour
+public class BEChoiceProductMember : MonoBehaviour
 {
     public ChoiceProductMember[] choiceProductMembers; // 데이터를 저장할 배열
 
@@ -26,7 +26,23 @@ public class BEChoicePuoductMember : MonoBehaviour
             return;
         }
 
-        GetChoiceProductMemberFromServer(urlData.Server).Forget();
+        string finalUrl = AppendMemberIdToUrl(urlData.Server, GameDataManager.Instance.gameMemberId);
+        Debug.Log("최종 URL: " + finalUrl);
+
+        
+        GetChoiceProductMemberFromServer(finalUrl).Forget();
+    }
+    
+    private string AppendMemberIdToUrl(string baseUrl, int memberId)
+    {
+        // URL 끝에 "/"가 없으면 추가
+        if (!baseUrl.EndsWith("/"))
+        {
+            baseUrl += "/";
+        }
+
+        // 멤버 ID를 URL에 추가
+        return baseUrl + memberId;
     }
 
     private async UniTask GetChoiceProductMemberFromServer(string url)
@@ -43,7 +59,7 @@ public class BEChoicePuoductMember : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("선택상품 구매 멤버서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터를 List<StockRecordMemberGet>로 파싱
             List<ChoiceProductMember> choiceProductMember = JsonConvert.DeserializeObject<List<ChoiceProductMember>>(jsonResponse);
@@ -63,7 +79,7 @@ public class BEChoicePuoductMember : MonoBehaviour
         // 변환된 데이터를 출력
         foreach (var member in choiceProductMembers)
         {
-            Debug.Log($"Game ID: {member.gameId}, " +
+            Debug.Log($"선택상품Game ID: {member.gameId}, " +
                       $"Purchase Record ID: {member.selectProductPurchaseRecordId}, " +
                       $"Product Name: {member.selectProductName}, " +
                       $"Member ID: {member.gameMemberId}, " +

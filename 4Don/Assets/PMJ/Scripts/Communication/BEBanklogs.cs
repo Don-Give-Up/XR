@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class BEBanklogs : MonoBehaviour
 {
-    public int id; // 일단 입력받기?
+    public int id; // 주식 클릭하고 사기 눌렀을떄 불러주기
     public int amount; // 클릭시
     private async void Start()
     {
@@ -57,9 +57,9 @@ public class BEBanklogs : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        //request.SetRequestHeader("Authorization", LoginCommunicator.Value);
-        request.SetRequestHeader("Authorization",
-            "Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k");
+        request.SetRequestHeader("Authorization", LoginCommunicator.Value);
+        //request.SetRequestHeader("Authorization",
+            //"Bearer eyJkYXRlIjoxNzMxMTM4NzQxOTcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDYiLCJtZW1iZXJTY2hvb2wiOiLsi6DssL3spJEiLCJtZW1iZXJHcmFkZSI6MSwibWVtYmVyTmFtZSI6IuyGoe2YuOynhCIsIm1lbWJlck5pY2tuYW1lIjoi7Iah7Zi47KeEIiwiZXhwIjoxNzYyNjc0NzQxLCJtZW1iZXJSb2xlIjoiVEVBQ0hFUiIsIm1lbWJlckNsYXNzIjoyLCJtZW1iZXJJZCI6NiwibWVtYmVyRW1haWwiOiIwOTE4c3lqQGcuY29tIn0.pH30ziFfTxYDLMqSAfBvKUvfIdEXlRCexcO6zg5ig8k");
             
 
         await request.SendWebRequest();
@@ -67,7 +67,7 @@ public class BEBanklogs : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("저축 이용 내역 서버 응답 수신 성공: " + jsonResponse);
 
             // 추가적인 처리 필요 시 여기에 작성
         }
