@@ -32,7 +32,7 @@ public class QuestSystem : MonoBehaviour
                 instance = FindObjectOfType<QuestSystem>();
                 if (instance == null)
                 {
-                    instance = new GameObject("Quest System").AddComponent<QuestSystem>();
+                    instance = new GameObject("QuestSystem").AddComponent<QuestSystem>();
                     DontDestroyOnLoad(instance.gameObject);
                 }
             }
@@ -64,13 +64,13 @@ public class QuestSystem : MonoBehaviour
     private void Awake()
     {
         questDatatabase = Resources.Load<QuestDatabase>("QuestDatabase");
-        achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
+        //achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
-        if (!Load())
+        /*if (!Load())
         {
             foreach (var achievement in achievementDatabase.Quests)
                 Register(achievement);
-        }
+        }*/
     }
 
     private void OnApplicationQuit()

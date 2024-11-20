@@ -3,53 +3,55 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Serialization;
 
-public class BEChoiceProduct : MonoBehaviour
+public class BEStocksRecordPost : MonoBehaviour
 {
-    public int productId; // 클릭시
+    //BEStocksRecordPost
+    public int stockId; // 클릭시
     public int amount; // 클릭시
+    public string type; // 클릭시
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
 
-        SendChoiceProductRequest();
+        SendTradeRequest();
     }
 
-    public void SendChoiceProductRequest()
+    public void SendTradeRequest()
     {
-        var urlData = GoogleSheetManager.Instance.UrldataGet("선택상품구매");
+        var urlData = GoogleSheetManager.Instance.UrldataGet("주식거래내역사고팔고");
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("선택상품구매 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("주식거래내역사고팔고 URL의 서버 주소가 비어있습니다.");
             return;
         }
 
-       
         // 보낼 데이터를 생성
-        var choiceRequest = new ChoiceProduct
-        {   
-            gameId = GameDataManager.Instance.gameId,
-            selectProductId = productId,
-            selectProductPurchaseAmount = amount
-        };
-        /*// 보낼 데이터를 생성
-        var choiceRequest = new ChoiceProduct
+        var tradeRequest = new StockRecord
         {
-            gameId = 2,
-            selectProductId = 1,
-            selectProductPurchaseAmount = 2
+            stockId = stockId,
+            gameId = GameDataManager.Instance.gameId,
+            stockTradeRecordAmount = amount,
+            tradeType = type
+        };
+        // 보낼 데이터를 생성
+        /*var tradeRequest = new StockRecord
+        {
+            stockId = 1,
+            gameId = 6,
+            stockTradeRecordAmount = 2,
+            tradeType = "BUY"
         };*/
 
-        PostChoiceProductRequest(urlData.Server, choiceRequest).Forget();
+        PostTradeRequest(urlData.Server, tradeRequest).Forget();
     }
 
-    private async UniTask PostChoiceProductRequest(string url, ChoiceProduct choiceProduct)
+    private async UniTask PostTradeRequest(string url, StockRecord stockRecord)
     {
         // JSON 직렬화
-        string jsonBody = JsonConvert.SerializeObject(choiceProduct);
+        string jsonBody = JsonConvert.SerializeObject(stockRecord);
 
         using var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
@@ -66,7 +68,7 @@ public class BEChoiceProduct : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("선택상품구매서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("주식사고팔고 서버 응답 수신 성공: " + jsonResponse);
 
             // 추가적인 처리 필요 시 여기에 작성
         }

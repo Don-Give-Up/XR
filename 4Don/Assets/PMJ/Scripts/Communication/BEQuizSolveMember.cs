@@ -59,7 +59,7 @@ public class BEQuizSolveMember : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("퀴즈풀이기록멤버서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터를 List<StockRecordMemberGet>로 파싱
             List<QuizSloveMember> quizSloveMember = JsonConvert.DeserializeObject<List<QuizSloveMember>>(jsonResponse);

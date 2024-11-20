@@ -4,35 +4,35 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BEBanklogsMemberGet : MonoBehaviour
+public class BEChoiceProductMember : MonoBehaviour
 {
-    public BanklogMember[] banklogMembers; // 데이터를 저장할 배열
+    public ChoiceProductMember[] choiceProductMembers; // 데이터를 저장할 배열
 
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
 
-        FetchBanklogsMember();
+        FetchChoiceProductMember();
     }
 
-    private void FetchBanklogsMember()
+    private void FetchChoiceProductMember()
     {
-        var urlData = GoogleSheetManager.Instance.UrldataGet("저축특정멤버조회");
+        var urlData = GoogleSheetManager.Instance.UrldataGet("선택상품구매멤버");
 
         if (string.IsNullOrEmpty(urlData.Server))
         {
-            Debug.LogError("저축특정멤버조회 URL의 서버 주소가 비어있습니다.");
+            Debug.LogError("선택상품구매멤버 URL의 서버 주소가 비어있습니다.");
             return;
         }
 
-        // URL에 멤버 ID 추가
         string finalUrl = AppendMemberIdToUrl(urlData.Server, GameDataManager.Instance.gameMemberId);
         Debug.Log("최종 URL: " + finalUrl);
 
-        GetBanklogsMemberFromServer(finalUrl).Forget();
+        
+        GetChoiceProductMemberFromServer(finalUrl).Forget();
     }
-
+    
     private string AppendMemberIdToUrl(string baseUrl, int memberId)
     {
         // URL 끝에 "/"가 없으면 추가
@@ -45,8 +45,7 @@ public class BEBanklogsMemberGet : MonoBehaviour
         return baseUrl + memberId;
     }
 
-
-    private async UniTask GetBanklogsMemberFromServer(string url)
+    private async UniTask GetChoiceProductMemberFromServer(string url)
     {
         using var request = UnityWebRequest.Get(url);
 
@@ -60,11 +59,11 @@ public class BEBanklogsMemberGet : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("선택상품 구매 멤버서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터를 List<StockRecordMemberGet>로 파싱
-            List<BanklogMember> banklogMember = JsonConvert.DeserializeObject<List<BanklogMember>>(jsonResponse);
-            UseStocksData(banklogMember);
+            List<ChoiceProductMember> choiceProductMember = JsonConvert.DeserializeObject<List<ChoiceProductMember>>(jsonResponse);
+            UseStocksData(choiceProductMember);
         }
         else
         {
@@ -72,19 +71,20 @@ public class BEBanklogsMemberGet : MonoBehaviour
         }
     }
 
-    private void UseStocksData(List<BanklogMember> banklogMember)
+    private void UseStocksData(List<ChoiceProductMember> choiceProductMember)
     {
-        // 데이터를 BanklogMember 배열로 변환하여 저장
-        banklogMembers = banklogMember.ToArray();
+        // 데이터를 ChoiceProductMember 배열로 변환하여 저장
+        choiceProductMembers = choiceProductMember.ToArray();
 
         // 변환된 데이터를 출력
-        foreach (var member in banklogMembers)
+        foreach (var member in choiceProductMembers)
         {
-            Debug.Log($"Game ID: {member.gameId}, " +
-                      $"Bank Log ID: {member.bankLogId}, " +
+            Debug.Log($"선택상품Game ID: {member.gameId}, " +
+                      $"Purchase Record ID: {member.selectProductPurchaseRecordId}, " +
+                      $"Product Name: {member.selectProductName}, " +
                       $"Member ID: {member.gameMemberId}, " +
-                      $"Saving Product Name: {member.savingProductName}, " +
-                      $"Total Price: {member.bankTotalPrice}");
+                      $"Purchase Amount: {member.selectProductPurchaseAmount}, " +
+                      $"Total Price: {member.productTotalPrice}");
         }
     }
 
