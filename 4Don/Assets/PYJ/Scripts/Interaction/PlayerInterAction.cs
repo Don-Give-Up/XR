@@ -32,7 +32,7 @@ public class PlayerInterAction : MonoBehaviour
       if (hit.collider.CompareTag("NPC"))
       {  
          // npc면 대화창을 열것
-         //GameEventsManager.instance.npcdialogEvents.CheckDialogue(NPCName(hit.collider.GetComponent<NPC>().name));
+         GameEventsManager.instance.npcdialogEvents.CheckDialogue(NPCName(hit.collider.GetComponent<NPC>().name));
       }
       else
       {

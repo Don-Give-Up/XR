@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class KingQuest : MonoBehaviour
 {
-    //public Queue<QuestInfoSO> quests = new Queue<QuestInfoSO>();
+    public Queue<QuestInfoSO> quests = new Queue<QuestInfoSO>();
     public GameObject questObj;
     private TMP_Text questText;
     public int questNum = 0;
@@ -33,14 +33,13 @@ public class KingQuest : MonoBehaviour
         }
 
         questText = questObj.GetComponentInChildren<TMP_Text>();
-        //QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("KingQuest"); //모든 퀘스트 다 불러와
+        QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("KingQuest"); //모든 퀘스트 다 불러와
         
-        /*foreach (var quest in allQuests)
+        foreach (var quest in allQuests)
         {
             Debug.Log($"{quest.id}");
             quests.Enqueue(quest);
         }
-        */
         
         OnQuestStart();
     }
@@ -58,7 +57,7 @@ public class KingQuest : MonoBehaviour
     public void MoveNextQuest() // 이 거 불리면 하나 진행, 퀘스트가 끝나면 진행한다.
     {
         // 다음 번호가 있는지 확인하고 진행해야 할 듯
-        //quests.Dequeue();
+        quests.Dequeue();
         OnQuestStart();
         //CurrentQuestDisplay(); // 퀘스트가 옮겨지는 타이밍이랑 퀘스트가 발생하는 타이밍이랑 다름
     }
@@ -67,10 +66,10 @@ public class KingQuest : MonoBehaviour
     private void OnQuestStart()
     {
         questObj.SetActive(true);
-        //string questName = quests.Peek().diaplayName;
-        //string questContent = quests.Peek().displayContents;
+        string questName = quests.Peek().diaplayName;
+        string questContent = quests.Peek().displayContents;
 
-        //questText.text = $"{questName}\n{questContent}";
+        questText.text = $"{questName}\n{questContent}";
     }
 
     // 퀘스트가 끝날 떄 부르는 것
@@ -79,12 +78,10 @@ public class KingQuest : MonoBehaviour
         questObj.SetActive(false);
     }
 
-    /*
     public QuestInfoSO GetQuestInfo() // 여기서 현재 퀘스트의 정보를 보여주고 있음 
     {
         return quests.Peek();
     }
-    */
 
 
 }
