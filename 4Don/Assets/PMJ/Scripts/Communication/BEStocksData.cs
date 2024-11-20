@@ -32,6 +32,7 @@ public class StockRecordMemberGet
 [System.Serializable]
 public class ChoiceProduct
 {
+    public int gameId;
     public int selectProductId;
     public int selectProductPurchaseAmount;
 }
@@ -39,6 +40,7 @@ public class ChoiceProduct
 [System.Serializable]
 public class ChoiceProductMember
 {
+    public int gameId;
     public int selectProductPurchaseRecordId;
     public string selectProductName;
     public int gameMemberId;
@@ -49,6 +51,7 @@ public class ChoiceProductMember
 [System.Serializable]
 public class BanklogMember
 {
+    public int gameId;
     public int bankLogId;
     public int gameMemberId;
     public string savingProductName;
@@ -58,6 +61,7 @@ public class BanklogMember
 [System.Serializable]
 public class Banklogs
 {
+    public int gameId;
     public int savingProductId;
     public int bankTotalPrice;
 }

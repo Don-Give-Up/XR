@@ -29,13 +29,15 @@ public class BEChoiceProduct : MonoBehaviour
        
         /*// 보낼 데이터를 생성
         var choiceRequest = new ChoiceProduct
-        {
+        {   
+            gameId = ,
             selectProductId = id,
             selectProductPurchaseAmount = amount
         };*/
         // 보낼 데이터를 생성
         var choiceRequest = new ChoiceProduct
         {
+            gameId = 2,
             selectProductId = 1,
             selectProductPurchaseAmount = 2
         };
