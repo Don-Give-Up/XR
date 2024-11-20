@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3078547830630725514}
   - component: {fileID: 6409408337673993755}
   - component: {fileID: 2397873976908068406}
+  - component: {fileID: 4639525213609040848}
   m_Layer: 5
   m_Name: Panel - RoomName
   m_TagString: Untagged
@@ -92,11 +93,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameName: {fileID: 8243758179541294062}
   roomData:
-    gameId: 
-    memberId: 
+    gameId: 0
+    memberId: 0
     gameName: 
     gamePassword: 
   bt: {fileID: 2397873976908068406}
+  beGameMembers: {fileID: 4639525213609040848}
 --- !u!114 &2397873976908068406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +143,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4639525213609040848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259818260603532112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913077c573d287e4ab33d1876c599960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4854113948540696695
 GameObject:
   m_ObjectHideFlags: 0

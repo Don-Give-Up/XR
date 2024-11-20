@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class RoomDataManager : MonoBehaviour
+public class GameDataManager : MonoBehaviour
 {
-    public static RoomDataManager Instance { get; private set; }
+    public static GameDataManager Instance { get; private set; }
     public int gameId;
     public int gameMemberId;
 
