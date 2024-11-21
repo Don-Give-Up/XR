@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: be3676e746464774d86eb50d563275a6, type: 2}
   codeName: WorkQuiz
+  displayName: "\uC18C\uB4DD\uC758 \uC8FC \uC218\uC785\uC6D0\uC740 \uB178\uB3D9"
   description: "\uD034\uC988\uB97C \uD480\uC5B4 \uD559\uC2B5 \uB0B4\uC6A9\uC744 \uAC80\uC99D\uD558\uC790!"
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: 08d35856ed9b44e4c8407114fa242714, type: 2}
+  startDialogueLines: []
+  progressDialogueLines: []
+  completeDialogueLines: []
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

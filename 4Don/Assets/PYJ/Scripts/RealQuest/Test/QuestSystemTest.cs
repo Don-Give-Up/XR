@@ -18,7 +18,7 @@ public class QuestSystemTest : MonoBehaviour
         questSystem.onQuestRegistered += (quest) =>
         {
             print($"New Quest:{quest.CodeName} Registered");
-            print($"Active Quests Count:{questSystem.ActiveQuests.Count}");
+             print($"Active Quests Count:{questSystem.ActiveQuests.Count}");
         };
 
         questSystem.onQuestCompleted += (quest) =>

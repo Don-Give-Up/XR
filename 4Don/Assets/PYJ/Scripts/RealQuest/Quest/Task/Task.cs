@@ -24,6 +24,8 @@ public class Task : ScriptableObject
     [Header("Text")]
     [SerializeField]
     private string codeName;
+    [SerializeField] 
+    private string displayName;
     [SerializeField]
     private string description;
 
@@ -34,6 +36,14 @@ public class Task : ScriptableObject
     [Header("Target")]
     [SerializeField]
     private TaskTarget[] targets;
+    
+    [Header("Dialogue")] 
+    [SerializeField]
+    private RealDialogueLine[] beforDialogueLines; 
+    [SerializeField]
+    private RealDialogueLine[] IngDialogueLines; 
+    [SerializeField]
+    private RealDialogueLine[] AfterDialogueLines; 
 
     [Header("Setting")]
     [SerializeField]
@@ -46,25 +56,31 @@ public class Task : ScriptableObject
     private TaskState state;
     private int currentSuccess;
 
+    private RealDialogueManager realDialogueManager;
+    private QuestTaskTracker questTaskTracker;
+    
     public event StateChangedHandler onStateChanged;
     public event SuccessChangedHandler onSuccessChanged;
 
-    public int CurrentSuccess
+    public int CurrentSuccess // 성공 횟수에 대한 부분
     {
         get => currentSuccess;
         set
         {
             int prevSuccess = currentSuccess;
             currentSuccess = Mathf.Clamp(value, 0, needSuccessToComplete);
-            if (currentSuccess != prevSuccess)
+            if (currentSuccess != prevSuccess) // 성공횟수 상태가 변했을 때, 
             {
-                State = currentSuccess == needSuccessToComplete ? TaskState.Complete : TaskState.Running;
-                onSuccessChanged?.Invoke(this, currentSuccess, prevSuccess);
+                Debug.Log($" 완료codeName: {codeName}, Category: {category}, Target: {targets}");
+                State = currentSuccess == needSuccessToComplete ? TaskState.Complete : TaskState.Running; 
+                realDialogueManager.SetTask(this); // 상태 바뀔 떄도 시작
+                onSuccessChanged?.Invoke(this, currentSuccess, prevSuccess); // 성공 횟수가 변할 떄 마다 호출
             }
         }
     }
     public Category Category => category;
     public string CodeName => codeName;
+    public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
     public TaskState State
@@ -79,31 +95,63 @@ public class Task : ScriptableObject
     }
     public bool IsComplete => State == TaskState.Complete;
     public Quest Owner { get; private set; }
+    public RealDialogueLine[] StartDialogueLines => beforDialogueLines; 
+    public RealDialogueLine[] ProgressDialogueLines => IngDialogueLines; 
+    public RealDialogueLine[] CompleteDialogueLines => AfterDialogueLines; 
 
     public void Setup(Quest owner)
     {
         Owner = owner;
     }
 
-    public void Start()
+    public void Start() // Task 가 시작 될 때 // 이 때 표시되게 하면 될 듯 , 
     {
-        State = TaskState.Running;
+        State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
+        Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
+        
+        /*
+        QuestTaskTracker questTaskTracker = new GameObject("QuestTaskTracker").AddComponent<QuestTaskTracker>(); // 각 업무마다 작업이 등록
+        questTaskTracker.OnDisplay(this,displayName, description);
+        */
+        
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);
+        
+        questTaskTracker = FindObjectOfType<QuestTaskTracker>();  
+        if (questTaskTracker != null)
+        {
+            questTaskTracker.OnDisplay(this);  // task를 RealDialogueManager에 설정
+        }
+        else
+        {
+            Debug.LogError("RealDialogueManager not found in the scene!");
+        }
+        
+        realDialogueManager = FindObjectOfType<RealDialogueManager>();  // RealDialogueManager 인스턴스를 찾아서
+        if (realDialogueManager != null)
+        {
+            realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
+        }
+        else
+        {
+            Debug.LogError("RealDialogueManager not found in the scene!");
+        }
     }
 
     public void End()
     {
+        questTaskTracker.OffDisplay();
         onStateChanged = null;
         onSuccessChanged = null;
     }
 
-    public void ReceiveReport(int successCount)
+    public void ReceiveReport(int successCount) //보고를 받는 부분
     {
+        Debug.Log("지금 보고 잘 이루어지고 있나?");
         CurrentSuccess = action.Run(this, CurrentSuccess, successCount);
     }
 
-    public void Complete()
+    public void Complete() // task 즉시 완료
     {
         CurrentSuccess = needSuccessToComplete;
     }

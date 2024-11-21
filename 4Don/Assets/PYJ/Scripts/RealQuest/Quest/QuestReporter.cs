@@ -26,9 +26,11 @@ public class QuestReporter : MonoBehaviour
 
     public void Report()
     {
-        Debug.Log($"category; {category}, target: {target}, successCount: {successCount}");
+        //Debug.Log($"보고하는 중! category; {category}, target: {target}, successCount: {successCount}");
         QuestSystem.Instance.ReceiveReport(category, target, successCount);
     }
+    
+    // 내가 하고 싶은 건 Quest 에 
 
     private void ReportIfPassCondition(Component other)
     {

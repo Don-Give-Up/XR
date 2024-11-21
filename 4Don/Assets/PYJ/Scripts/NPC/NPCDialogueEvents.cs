@@ -4,8 +4,9 @@ using UnityEngine;
 public class NPCDialogueEvents
 {
 
-    public event Action<string> onDialogueNumCheck;
+    public event Action<string> onDialogueNumCheck; // string 을 매개변수로 받는 반환값이 없는 매소드
 
+    // 이벤트는 알림전달 역할
     public void CheckDialogue(string npcName)
     {
         if (onDialogueNumCheck != null)
@@ -42,3 +43,5 @@ public class NPCDialogueEvents
     }
     
 }
+
+// 대화 시작할 때랑, 끝날 때랑 
