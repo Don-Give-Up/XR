@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
     public TMP_Text gameName;
     public RoomData roomData;
     public Button bt;
-
+    public BEGameMembers beGameMembers;
     private bool _isSelect;
 
     private void Start()
@@ -35,13 +35,15 @@ public class Room : MonoBehaviour
         
         if (roomData.gamePassword == text)
         {
-            Debug.Log("비밀번호가 옳바릅니다.");
+            Debug.Log("비밀번호가 올바릅니다.");
             
-            RoomDataManager.Instance.gameId = roomData.gameId;
+            GameDataManager.Instance.gameId = roomData.gameId;
             Debug.Log("GameId : " + roomData.gameId);
             
             // SceneManager.LoadScene("Room");
+            beGameMembers.GameMembersStart();
             await PhoStartGame.Instance.JoinSquare();
+            
             
         }
         else

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287649653b18f5c40adcaf915cbd492c, type: 3}
+  m_Name: Quest_Tutorial
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 30f809a6f0566054d813e2bacd21c65b, type: 2}
+  icon: {fileID: 0}
+  codeName: TUTORIAL
+  displayName: "\uBA54\uD0C0 \uB9C8\uC744\uC5D0 \uC5B4\uC11C\uC624\uC138\uC694!"
+  description: This is Tutorial.
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: f80761c5385deef45906c1634ba4af34, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 5135a0dbde236e74ba332008f1d70640, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 6386f688229027b41a794e2083f279f6, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: a6ff2cdca1782c34ca9b3e1530c26831, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: c39cb705b61a2da489c478a9d162cd09, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 53fb1d8cec90d3448b331891ca3c07b8, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 1ea27735b8c1ad440a3ce7e3c28cbf22, type: 2}
+  rewards: []
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 0
+  acceptionConditions: []
+  cancelConditions: []

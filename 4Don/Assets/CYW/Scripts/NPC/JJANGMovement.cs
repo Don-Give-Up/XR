@@ -40,13 +40,12 @@ public class JJANGMovement : NetworkBehaviour
         // 첫 번째 플레이어를 가져옴
         var firstPlayer = Runner.ActivePlayers.First(); // 첫번째 플레이어
         var players = GameObject.FindObjectsByType<MJPlayerMovement>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        GameObject playerObject = null;
         foreach (var p in players)
         {
             var nb = p.GetComponent<NetworkBehaviour>();
             if (firstPlayer.PlayerId == nb.Id.Behaviour)
             {
-                playerObject = p.gameObject;
+                player = p.transform;
             }
         }
         
@@ -59,7 +58,7 @@ public class JJANGMovement : NetworkBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     public override void FixedUpdateNetwork()
@@ -95,10 +94,10 @@ public class JJANGMovement : NetworkBehaviour
                 }
             }
 
-            if (SceneManager.GetActiveScene().name == "3DWork1")
+            /*if (SceneManager.GetActiveScene().name == "3DWork1")
             {
                 Debug.Log("짱은 3DWork 못 넘어감");
-            }
+            }*/
             
             
         }

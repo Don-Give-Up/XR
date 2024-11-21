@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class BEGameMembers : MonoBehaviour
 {
     
-    private async void Start()
+    public async void GameMembersStart()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
@@ -28,16 +28,9 @@ public class BEGameMembers : MonoBehaviour
         // 보낼 데이터를 생성
         var gameMemberId = new GameMemberId
         {
-            gameId = RoomDataManager.Instance.gameId
+            gameId = GameDataManager.Instance.gameId
         };
-       
-        /*// 보낼 데이터를 생성
-        var gameMemberId = new GameMemberId
-        {
-            gameId = id
-        };
-        */
-
+        
         PostChoiceProductRequest(urlData.Server, gameMemberId).Forget();
     }
 
@@ -59,12 +52,13 @@ public class BEGameMembers : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            Debug.Log("서버 응답 수신 성공: " + jsonResponse);
+            Debug.Log("게임 멤버 아이디서버 응답 수신 성공: " + jsonResponse);
 
             // JSON 데이터에서 gameMemberId만 추출
             var gameMemberIdPost = JsonConvert.DeserializeObject<GameMemberIdPost>(jsonResponse);
-            int gameMemberIdValue = gameMemberIdPost.gameMemberId;
-            Debug.Log("gameMemberId 값: " + gameMemberIdValue);
+            GameDataManager.Instance.gameMemberId = gameMemberIdPost.gameMemberId;
+            
+            Debug.Log("gameMemberId 값: " + GameDataManager.Instance.gameMemberId);
 
             // 필요한 추가 처리
         }
