@@ -6,6 +6,7 @@ using Fusion;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ReadyUi : MonoBehaviour
@@ -15,7 +16,9 @@ public class ReadyUi : MonoBehaviour
     public GameObject readyBG;
     public Button readyButton;
     public GameObject image;
-    public TMP_Text readyText;
+   
+    public TMP_Text readyText1;
+    public TMP_Text readyText2;
     
     public TMP_Text countdownText;
 
@@ -78,7 +81,8 @@ public class ReadyUi : MonoBehaviour
         {
             var totalCount = PhoStartGame.Instance.runner.SessionInfo.PlayerCount;
             var currentCount = SharedGameData.ReadyCount;
-            readyText.text = $"({currentCount}/{totalCount})";
+            readyText1.text = $"{currentCount}";
+            readyText2.text = $"/{totalCount}";
 
             yield return wfs;
 
@@ -86,7 +90,8 @@ public class ReadyUi : MonoBehaviour
                 break;
         }
 
-        readyText.text = $"({SharedGameData.ReadyCount}/{PhoStartGame.Instance.runner.SessionInfo.PlayerCount})";
+        readyText1.text = $"{SharedGameData.ReadyCount}";
+        readyText2.text = $"/{PhoStartGame.Instance.runner.SessionInfo.PlayerCount}";
         yield return wfs;
 
         image.SetActive(false);
