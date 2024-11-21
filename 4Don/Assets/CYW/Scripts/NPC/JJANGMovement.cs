@@ -94,10 +94,10 @@ public class JJANGMovement : NetworkBehaviour
                 }
             }
 
-            if (SceneManager.GetActiveScene().name == "3DWork1")
+            /*if (SceneManager.GetActiveScene().name == "3DWork1")
             {
                 Debug.Log("짱은 3DWork 못 넘어감");
-            }
+            }*/
             
             
         }

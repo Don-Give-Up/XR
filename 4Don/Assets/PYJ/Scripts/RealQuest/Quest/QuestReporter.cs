@@ -26,6 +26,7 @@ public class QuestReporter : MonoBehaviour
 
     public void Report()
     {
+        Debug.Log($"category; {category}, target: {target}, successCount: {successCount}");
         QuestSystem.Instance.ReceiveReport(category, target, successCount);
     }
 
