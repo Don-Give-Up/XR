@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -93,21 +93,128 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: loading_icon_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 524
+        width: 545
+        height: 462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1254a95edd15e44a1bba06a6776eae
+      internalID: -951746149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_icon_7
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 530
+        width: 545
+        height: 462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646703835e551f64e87b1128c2a313c0
+      internalID: -1373568191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_icon_25
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 725
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c22ab9f4ca66de4e92c193dce95d133
+      internalID: -1844860650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fd41e12947e08e942b771729022c66c8
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      loading_icon_0: -951746149
+      loading_icon_1: 365785352
+      loading_icon_10: 1212445781
+      loading_icon_11: 1668549121
+      loading_icon_12: -656497147
+      loading_icon_13: -1149079629
+      loading_icon_14: -119862024
+      loading_icon_15: 1981945721
+      loading_icon_16: 818577605
+      loading_icon_17: -768099192
+      loading_icon_18: 1787583078
+      loading_icon_19: 1662464140
+      loading_icon_2: 112574462
+      loading_icon_20: -162481347
+      loading_icon_21: 1892914580
+      loading_icon_22: 339127451
+      loading_icon_23: -1023500826
+      loading_icon_24: -1853149740
+      loading_icon_25: -1844860650
+      loading_icon_3: -1998918172
+      loading_icon_4: -2038939163
+      loading_icon_5: -813900438
+      loading_icon_6: 2079414462
+      loading_icon_7: -1373568191
+      loading_icon_8: 756494561
+      loading_icon_9: -407167659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

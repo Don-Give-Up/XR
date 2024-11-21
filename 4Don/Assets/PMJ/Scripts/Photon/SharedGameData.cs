@@ -10,6 +10,7 @@ public class SharedGameData : NetworkBehaviour
 
     public override void Spawned()
     {
+        
         if (!HasStateAuthority)
             return;
         Instance = this;
