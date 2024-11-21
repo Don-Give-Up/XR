@@ -73,7 +73,7 @@ public class Task : ScriptableObject
             {
                 Debug.Log($" 완료codeName: {codeName}, Category: {category}, Target: {targets}");
                 State = currentSuccess == needSuccessToComplete ? TaskState.Complete : TaskState.Running; 
-                realDialogueManager.SetTask(this); // 상태 바뀔 떄도 시작
+                //realDialogueManager.SetTask(this); // 상태 바뀔 떄도 시작
                 onSuccessChanged?.Invoke(this, currentSuccess, prevSuccess); // 성공 횟수가 변할 떄 마다 호출
             }
         }
@@ -83,7 +83,7 @@ public class Task : ScriptableObject
     public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
-    public TaskState State
+    public TaskState State // 상태가 변경될 때
     {
         get => state;
         set
@@ -91,6 +91,12 @@ public class Task : ScriptableObject
             var prevState = state;
             state = value;
             onStateChanged?.Invoke(this, state, prevState);
+            
+            // 상태가 변경될 때마다 RealDialogueManager에 반영
+            if (realDialogueManager != null)
+            {
+                realDialogueManager.SetTask(this);
+            }
         }
     }
     public bool IsComplete => State == TaskState.Complete;
@@ -106,7 +112,8 @@ public class Task : ScriptableObject
 
     public void Start() // Task 가 시작 될 때 // 이 때 표시되게 하면 될 듯 , 
     {
-        State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
+        State = TaskState.Inactive; // 일단 등록되면 Inactive 상태가 맞는 거 같음
+        //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
         
         /*
@@ -138,7 +145,7 @@ public class Task : ScriptableObject
         }
     }
 
-    public void End()
+    public void End() // 자연스럽게 마무리됨 
     {
         questTaskTracker.OffDisplay();
         onStateChanged = null;

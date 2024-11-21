@@ -24,8 +24,16 @@ public class RealDialogueManager : MonoBehaviour
 
     private void Start()
     {
+        // 클릭 -> 비동기 보고 진행 -> 그 상태를 보고 대화 진행 
+        //GameEventsManager.instance.npcdialogEvents.onShow += NPCInteraction;
         options = new List<Button>(); 
     }
+
+    //Np
+    /*private void NPCInteraction()
+    {
+        DisplayDialogue(0);
+    }*/
 
     // Task와 상태를 받아서 해당 상태에 맞는 대화 라인 설정
     public RealDialogueLine[] GetDialogue(Task task, TaskState state)
@@ -35,17 +43,33 @@ public class RealDialogueManager : MonoBehaviour
             case TaskState.Inactive:
                 // Task가 Inactive 상태일 때는 시작 대화 라인
                 currentDialogue = task.StartDialogueLines;
+                if (currentDialogue == null)
+                {
+                    state = TaskState.Running;
+                    GetDialogue(task, state);
+                }
                 break;
 
             case TaskState.Running:
                 // Task가 Running 상태일 때는 진행 중 대화 라인
                 currentDialogue = task.ProgressDialogueLines;
+                if (currentDialogue == null)
+                {
+                    state = TaskState.Complete;
+                    GetDialogue(task, state);
+                }
                 break;
 
             case TaskState.Complete:
                 // Task가 Complete 상태일 때는 완료 대화 라인
                 currentDialogue = task.CompleteDialogueLines;
                 break;
+        }
+
+        if (currentDialogue == null)
+        {
+            //return
+            Debug.Log("선택된 대화 없어요");
         }
 
         return currentDialogue;
@@ -67,11 +91,15 @@ public class RealDialogueManager : MonoBehaviour
                 currentDialogueIndex = 0; // 초기화
                 // 끝까지 다 했으면 상태변화나 Quest 부르는 코드가 여기 있어도 될 듯
                 // 여기서 보고를 하면 될 것 같음
+                EndDialogue();
                 Debug.Log("끝까지 했다옹쓰"); // 다이알로그 끄는 이벤트 발생
                 return;
             }
 
         }
+        
+        // 대화창 뜨는 이벤트는 여기서 진행
+        //GameEventsManager.instance.npcdialogEvents.ShowRealDialogue(); 
 
         // 다이알로그 키는 이벤트
         
@@ -132,16 +160,24 @@ public class RealDialogueManager : MonoBehaviour
             {
                 //string npcName = "NPC";  // 예시로 NPC 이름 설정, 실제로는 동적으로 할당할 수 있음
                 /*Debug.Log("대화할라고");*/
-                DisplayNextDialogue(1); //, npcName);  // 현재 Task의 상태에 맞는 대화 출력
+                DisplayNextDialogue(0); //, npcName);  // 현재 Task의 상태에 맞는 대화 출력
             }
         }
     }
-    
+
+    private void EndDialogue()
+    {
+        // 창 끄고
+        task.State = currentDialogue[0].changedState; // 일단 상태 업데이트는 되고 있고
+    }
+
     public void SetTask(Task newTask) // Task 가 등록된 순간 이거 할당하고, 상태 바뀔 때마다 부름
     {
         task = newTask;
         TaskState state = task.State;
         Debug.Log($"대화 내용: {task}, {state}");
+        currentDialogueIndex = 0;
+        currentOptionDialogueIndex = 0;
         GetDialogue(task, state); // 해당 상태에 맞는 대화 라인 가져오기
         Debug.Log($"할당: {task.CodeName}");
     }
@@ -153,3 +189,5 @@ public class RealDialogueManager : MonoBehaviour
         this.task = task;
     }*/
 }
+
+// 대화 상태에 따라 상태륿 변경하는 코드 작성

@@ -19,7 +19,13 @@ MonoBehaviour:
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: b100aa2e6fe24734f93b552a32d92600, type: 2}
-  beforDialogueLines: []
+  beforDialogueLines:
+  - speaker: "\uC740\uD589\uC6D0"
+    dialogue:
+    - "\uC548\uB155!"
+    options: []
+    currentState: 0
+    changedState: 1
   IngDialogueLines:
   - speaker: "\uC548\uB0B4\uC6D0"
     dialogue:
@@ -57,7 +63,7 @@ MonoBehaviour:
         dialogue:
         - "\uADF8\uB807\uAD6C\uB098! \uBAA8\uB974\uB294 \uAC8C \uC788\uC73C\uBA74
           \uB0A0 \uCC3E\uC544\uC640. \uC990\uAC81\uAC8C \uC798 \uC9C0\uB0B4\uAE38
-          \uBC14\uB798!"
+          \uBC14\uB77C!"
         options: []
         currentState: 1
         changedState: 2
