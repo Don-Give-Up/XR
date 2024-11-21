@@ -147,7 +147,7 @@ public class PhoStartGame : MonoBehaviour
     {
         await ResetRunner();
         
-        loadingPanel.SetActive(true);
+       loadingPanel.SetActive(true);
         {
             // 광장씬 노래 종료
             
