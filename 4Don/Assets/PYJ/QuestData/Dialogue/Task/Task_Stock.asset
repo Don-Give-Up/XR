@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
+  m_Name: Task_Stock
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 22406c595b9a66f4b9f280496ed6dfef, type: 2}
+  codeName: Stock
+  displayName: "\uC800\uCD95\uACFC \uD22C\uC790"
+  description: "\uC8FC\uC2DD\uC5D0 \uD22C\uC790\uD574 \uBCF4\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: a6d4904130bc7ee46ad2547fe28d55f6, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC740\uD589\uC6D0"
+    dialogue:
+    - "\uD1B5\uC7A5\uC744 \uAC1C\uC124 \uD558\uC168\uC73C\uB2C8 \uC774\uC81C \uC800\uCD95\uACFC
+      \uD22C\uC790\uB3C4 \uAC00\uB2A5\uD574\uC694. "
+    - "\uC5B4\uB5A4 \uC0C1\uD488\uC5D0 \uB300\uD574 \uBA3C\uC800 \uC54C\uC544\uBCF4\uC2DC\uACA0\uC5B4\uC694? "
+    options:
+    - optionText: "\uC800\uCD95 \uC0C1\uD488\uC774 \uAD81\uAE08\uD574\uC694!"
+      nextDialogue:
+      - speaker: "\uC740\uD589\uC6D0"
+        dialogue:
+        - "\uC800\uD76C \uBA54\uD0C0 \uBC45\uD06C\uC5D0\uC11C\uB294 \uC790\uC720
+          \uC800\uCD95 \uC608\uC801\uAE08, \uC815\uAE30 \uC608\uAE08, \uC815\uAE30
+          \uC801\uAE08 3\uAC00\uC9C0\uC758 \uC0C1\uD488\uC744 \uC81C\uACF5\uD558\uACE0
+          \uC788\uC5B4\uC694. "
+        - "\uC790\uC720 \uC608\uC801\uAE08 \uC0C1\uD488\uC740 \uAE08\uB9AC\uAC00
+          \uB0AE\uAE34 \uD558\uC9C0\uB9CC \uC790\uC720\uB86D\uAC8C \uB3C8\uC744 \uB123\uACE0
+          \uBE84 \uC218 \uC788\uC5B4\uC694."
+        - "\uC815\uAE30 \uC608\uAE08\uC740 \uD55C \uBC88\uC5D0 \uD070 \uB3C8\uC744
+          \uB123\uACE0 \uC774\uC790\uB97C \uBC1B\uAE30 \uC88B\uC544\uC694. \uBAA9\uB3C8\uC744
+          \uBD88\uB824\uB098\uAC00\uB294 \uB370 \uB531\uC774\uB78D\uB2C8\uB2E4!"
+        - "\uC815\uAE30 \uC801\uAE08\uC740 \uB9E4\uB2EC \uC870\uAE08\uC529 \uB3C8\uC744
+          \uB123\uC5B4\uAC00\uBA70 \uB098\uC911\uC5D0 \uD070 \uBAA9\uB3C8\uC744 \uB9CC\uB4DC\uB294
+          \uB370 \uB3C4\uC6C0\uC774 \uB3FC\uC694! \uAFB8\uC900\uD788 \uBAA8\uC544\uAC00\uBA70
+          \uD070 \uBAA9\uD45C\uB97C \uC774\uB8F0 \uC218 \uC788\uB2F5\uB2C8\uB2E4!"
+        options: []
+        currentState: 0
+        changedState: 1
+      eventObjNum: 0
+    - optionText: "\uC8FC\uC2DD \uC0C1\uD488\uC774 \uAD81\uAE08\uD574\uC694!"
+      nextDialogue:
+      - speaker: "\uC740\uD589\uC6D0"
+        dialogue:
+        - "\uC8FC\uC2DD\uC740 \uB9D0 \uADF8\uB300\uB85C \uD68C\uC0AC\uC758 \uC77C\uBD80\uB97C
+          \uAC70\uB798\uD558\uB294 \uAC70\uC608\uC694. \uC8FC\uC2DD\uC744 \uC0AC\uBA74
+          \uADF8 \uD68C\uC0AC\uC758 \uC8FC\uC8FC\uAC00 \uB418\uB294 \uAC70\uC8E0."
+        - "\uD22C\uC790\uB294 \uC2DC\uC7A5 \uBCC0\uB3D9\uC131 \uACBD\uC81C\uC801
+          \uBD88\uD655\uC2E4\uC131 \uC815\uCE58\uC801\xB7\uADDC\uC81C \uB9AC\uC2A4\uD06C
+          \uB4F1 \uC5EC\uB7EC \uC694\uC778\uC774 \uBCF5\uD569\uC801\uC73C\uB85C \uC791\uC6A9\uD574\uC694."
+        - "\uC774\uB85C \uC778\uD574 \uBD88\uD655\uC2E4\uC131\uC774 \uCEE4\uC9C0\uBA70
+          \uB530\uB77C\uC11C \uC704\uD5D8\uC744 \uB3D9\uBC18\uD569\uB2C8\uB2E4."
+        - "\uADF8\uB798\uC11C \uC2E0\uC911\uD558\uAC8C \uC811\uADFC\uD574\uC57C \uD558\uC8E0."
+        options: []
+        currentState: 0
+        changedState: 1
+      eventObjNum: 0
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC740\uD589\uC6D0"
+    dialogue:
+    - "\uBAA8\uB4E0 \uD22C\uC790\uB294 \uCDA9\uBD84\uD55C \uC815\uBCF4\uB97C \uBC14\uD0D5\uC73C\uB85C
+      \uD574\uC57C\uD574\uC694. \uB274\uC2A4 \uAE30\uC0AC\uB97C \uB2E4\uC2DC \uC0B4\uD3B4\uBCF4\uC138\uC694. "
+    options: []
+    currentState: 1
+    changedState: 1
+  AfterDialogueLines:
+  - speaker: "\uC740\uD589\uC6D0"
+    dialogue:
+    - "\uC5B4\uB5A4 \uD65C\uB3D9\uC744 \uD558\uB7EC \uC624\uC168\uB098\uC694? "
+    options:
+    - optionText: "\uC800\uCD95\uD558\uAE30 \uC704\uD574\uC11C!"
+      nextDialogue:
+      - speaker: "\uC740\uD589\uC6D0"
+        dialogue:
+        - "\uB135 \uC5B4\uB5A4 \uC0C1\uD488\uC5D0 \uAC00\uC785\uD558\uC2E4 \uAC74\uAC00\uC694?"
+        options: []
+        currentState: 2
+        changedState: 3
+      eventObjNum: 0
+    - optionText: "\uC8FC\uC2DD\uD558\uAE30 \uC704\uD574\uC11C!"
+      nextDialogue:
+      - speaker: "\uC740\uD589\uC6D0"
+        dialogue:
+        - "\uC704\uD5D8\uC131\uC5D0 \uB300\uD574 \uC815\uB9D0 \uCDA9\uBD84\uD788
+          \uC219\uC9C0\uD558\uC168\uC8E0? "
+        options:
+        - optionText: "\uB124! "
+          nextDialogue:
+          - speaker: "\uC740\uD589\uC6D0"
+            dialogue:
+            - "\uC8FC\uC2DD\uC5D0 \uD22C\uC790\uD560 \uB54C\uB294 \uD68C\uC0AC\uC758
+              \uC0C1\uD669\uACFC \uC2DC\uC7A5 \uD750\uB984\uC744 \uC798 \uBD84\uC11D\uD558\uACE0
+              \uC815\uBCF4\uB97C \uBC14\uD0D5\uC73C\uB85C \uC2E0\uC911\uD788 \uD22C\uC790\uD558\uB294
+              \uAC8C \uC911\uC694\uD574\uC694! \uBA54\uD0C0 \uB9C8\uC744\uC758 \uAE30\uC5C5\uC5D0
+              \uB300\uD55C \uC815\uBCF4\uB294 \uC624\uB298 \uC544\uCE68 \uC2E0\uBB38\uC5D0\uC11C
+              \uBCF4\uC168\uC8E0?"
+            - "\uB274\uC2A4\uC5D0\uC11C \uD655\uC778\uD560 \uC218 \uC788\uB294 \uC815\uBCF4\uB4E4\uC774
+              \uC815\uB9D0 \uC720\uC6A9\uD558\uB2F5\uB2C8\uB2E4! \uADF8\uB7FC \uD22C\uC790\uD558\uACE0
+              \uC2F6\uC740 \uD68C\uC0AC\uB97C \uC120\uD0DD\uD574\uBCF4\uC138\uC694!@2"
+            - "\uAC10\uC0AC\uD569\uB2C8\uB2E4. \uB610 \uBC29\uBB38\uD574 \uC8FC\uC138\uC694. "
+            options: []
+            currentState: 2
+            changedState: 3
+          eventObjNum: 2
+        - optionText: "\uC544\uB2C8\uC694."
+          nextDialogue:
+          - speaker: "\uB354 \uC54C\uC544\uBCF4\uACE0 \uC624\uC138\uC694."
+            dialogue: []
+            options: []
+            currentState: 2
+            changedState: 2
+          eventObjNum: 0
+        currentState: 2
+        changedState: 3
+      eventObjNum: 0
+    currentState: 2
+    changedState: 3
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 1
+  canReceiveReportsDuringCompletion: 0

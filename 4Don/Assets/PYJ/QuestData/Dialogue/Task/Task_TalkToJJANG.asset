@@ -19,14 +19,9 @@ MonoBehaviour:
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: b100aa2e6fe24734f93b552a32d92600, type: 2}
-  beforDialogueLines:
-  - speaker: "\uC740\uD589\uC6D0"
-    dialogue:
-    - "\uC548\uB155!"
-    options: []
-    currentState: 0
-    changedState: 1
-  IngDialogueLines:
+  beforDialogueLines: []
+  IngDialogueLines: []
+  AfterDialogueLines:
   - speaker: "\uC548\uB0B4\uC6D0"
     dialogue:
     - "\uC5B4\uC11C \uC640! \uBA54\uD0C0 \uB9C8\uC744\uC758 \uC0C8\uB85C\uC6B4 \uC8FC\uBBFC\uC774
@@ -54,8 +49,8 @@ MonoBehaviour:
         - "\uB274\uC2A4\uB098 \uD034\uC988\uB97C \uD1B5\uD574 \uC5BB\uC744 \uC218
           \uC788\uC9C0."
         options: []
-        currentState: 1
-        changedState: 2
+        currentState: 2
+        changedState: 3
       eventObjNum: 0
     - optionText: "\uC798 \uC54C\uACE0 \uC788\uC5B4."
       nextDialogue:
@@ -65,12 +60,11 @@ MonoBehaviour:
           \uB0A0 \uCC3E\uC544\uC640. \uC990\uAC81\uAC8C \uC798 \uC9C0\uB0B4\uAE38
           \uBC14\uB77C!"
         options: []
-        currentState: 1
-        changedState: 2
+        currentState: 2
+        changedState: 3
       eventObjNum: 0
-    currentState: 1
-    changedState: 2
-  AfterDialogueLines: []
+    currentState: 2
+    changedState: 3
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

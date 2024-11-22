@@ -55,12 +55,12 @@ public class RealDialogueManager : MonoBehaviour
                 currentDialogue = task.ProgressDialogueLines;
                 if (currentDialogue == null)
                 {
-                    state = TaskState.Complete;
+                    state = TaskState.WaitingForCompletion;
                     GetDialogue(task, state);
                 }
                 break;
 
-            case TaskState.Complete:
+            case TaskState.WaitingForCompletion:
                 // Task가 Complete 상태일 때는 완료 대화 라인
                 currentDialogue = task.CompleteDialogueLines;
                 break;
@@ -168,9 +168,17 @@ public class RealDialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         // 창 끄고
-        task.State = currentDialogue[0].changedState; // 일단 상태 업데이트는 되고 있고
+        TaskState prevState = currentDialogue[0].currentState;  // 현재 상태를 저장
+        TaskState currentState = currentDialogue[0].changedState;
+    
+        Debug.Log($"대화로 인한 상태 변경 -> {currentState}");
+        // State가 변경되었으므로 onStateChanged 이벤트가 호출되도록 해야 합니다.
+        if (prevState != currentState)  // 상태가 실제로 변경되었을 경우
+        {
+            task.OnStateChanged(task, prevState, currentState);  // 이벤트 호출을 대신해 상태 변경 알림
+        }
     }
-
+    
     public void SetTask(Task newTask) // Task 가 등록된 순간 이거 할당하고, 상태 바뀔 때마다 부름
     {
         task = newTask;
@@ -179,7 +187,7 @@ public class RealDialogueManager : MonoBehaviour
         currentDialogueIndex = 0;
         currentOptionDialogueIndex = 0;
         GetDialogue(task, state); // 해당 상태에 맞는 대화 라인 가져오기
-        Debug.Log($"할당: {task.CodeName}");
+        Debug.Log($"할당: {task.CodeName}"); // 계속 한 대화만 들림
     }
 
     /*// 퀘스트 그룹과 Task를 설정 (이 부분은 예시로 보여주기 위한 코드)

@@ -56,8 +56,7 @@ public class PlayerInterAction : MonoBehaviour
       
         if (questReporter != null)
         {
-            questReporter.WaitForNPCInteractionAsync();
-            
+            questReporter.Report();
         }
         else
         {

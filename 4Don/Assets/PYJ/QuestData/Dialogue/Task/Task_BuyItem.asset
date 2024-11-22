@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
+  m_Name: Task_BuyItem
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 56daf46eebb022d4b9e70858d6bddf2f, type: 2}
+  codeName: BuyItem
+  displayName: "\uAC1C\uC778 \uC9C0\uCD9C"
+  description: "\uC18C\uBE44\uAE30\uC785\uC7A5\uC744 \uD655\uC778\uD574\uBCF4\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 52d4c12683e1eb64c9f855d8c0750434, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC774\uC81C \uC740\uD589\uC5D0\uC11C \uC790\uC0B0\uC744 \uC798 \uAD00\uB9AC\uD558\uAC8C
+      \uB418\uC5C8\uC73C\uB2C8 \uB9C8\uC744\uC758 \uACBD\uC81C \uD65C\uB3D9\uC5D0
+      \uCC38\uC5EC\uD560 \uCC28\uB840\uC57C. "
+    - "\uC0C1\uC810\uC5D0\uC11C\uB294 \uB124\uAC00 \uB9CC\uB4E0 \uC0C1\uD488\uC744
+      \uD310\uB9E4\uD558\uAC70\uB098 \uB2E4\uB978 \uC0AC\uB78C\uB4E4\uC774 \uB9CC\uB4E0
+      \uC0C1\uD488\uC744 \uAD6C\uB9E4\uD560 \uC218 \uC788\uC5B4!"
+    - "\uAC70\uB798\uB294 \uB2E8\uC21C\uD788 \uBB3C\uAC74\uC744 \uC0AC\uACE0 \uD30C\uB294
+      \uAC83\uB9CC\uC774 \uC544\uB2C8\uC57C. \uC0C1\uC810\uC5D0\uC11C \uBB3C\uAC74\uC744
+      \uC0AC\uACE0 \uD314\uBA74 \uADF8 \uB3C8\uC774 \uB2E4\uC2DC \uB9C8\uC744\uB85C
+      \uB3CC\uC544\uC640 \uACBD\uC81C\uAC00 \uD65C\uC131\uD654\uB418\uACE0 \uB354
+      \uD65C\uAE30\uCC28\uC9C0\uAC8C \uB3FC."
+    - "\uB3C8\uC774 \uC21C\uD658\uB418\uBA74\uC11C \uB9C8\uC744\uB3C4 \uD568\uAED8
+      \uC131\uC7A5\uD558\uB294 \uAC70\uC9C0! \uADF8\uB7EC\uB2C8\uAE4C \uC0C1\uC810\uC5D0\uC11C
+      \uB2E4\uC591\uD55C \uC0C1\uD488\uB4E4\uC744 \uB458\uB7EC\uBCF4\uACE0 \uACBD\uC81C
+      \uD65C\uB3D9\uC5D0 \uCC38\uC5EC\uD574 \uBCF4\uC790!"
+    - "\uC774\uC81C \uC0C1\uC810\uC73C\uB85C \uC774\uB3D9\uD574\uBCFC\uAE4C?"
+    options: []
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uBB3C\uAC74 \uAD6C\uB9E4\uB97C \uC2DC\uB3C4\uD574\uBD10!"
+    options: []
+    currentState: 1
+    changedState: 1
+  AfterDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uB108\uC758 \uB2E4\uC591\uD55C \uAE08\uC735 \uD65C\uB3D9\uC73C\uB85C \uBA54\uD0C0
+      \uB9C8\uC744\uC758 '\uAE08\uC735 \uC5D0\uB108\uC9C0'\uAC00 \uAC00\uB4DD \uCC3C\uC5B4!"
+    - "\uC774\uC81C \uC774 \uC5D0\uB108\uC9C0\uB294 \uB9C8\uC744\uC744 \uB354\uC6B1
+      \uBC1C\uC804\uC2DC\uD0A4\uB294 \uB370 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC744
+      \uAC70\uC57C! \uC815\uB9D0 \uACE0\uB9C8\uC6CC."
+    options: []
+    currentState: 2
+    changedState: 3
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 1
+  canReceiveReportsDuringCompletion: 0
