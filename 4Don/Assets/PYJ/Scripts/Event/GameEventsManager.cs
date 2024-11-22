@@ -22,3 +22,5 @@ public class GameEventsManager : MonoBehaviour
 
     }
 }
+
+// 행동 -> 클릭 -> 비동기로 업데이트 -> 대화 진행

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TaskDescriptor : MonoBehaviour
+public class TaskDescriptor : MonoBehaviour // 각 Task의 진행사항 + UI // 내가 하고 싶은 것과 유사한 부분
 {
     [SerializeField]
     private TextMeshProUGUI text;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class QuestTracker : MonoBehaviour
+public class QuestTracker : MonoBehaviour // 퀘스트의 진행사항 추적 및 ui 표현
 {
     [SerializeField]
     private TextMeshProUGUI questTitleText;
@@ -29,7 +29,7 @@ public class QuestTracker : MonoBehaviour
         }
     }
 
-    public void Setup(Quest targetQuest, Color titleColor)
+    public void Setup(Quest targetQuest, Color titleColor) // 초기화 할 때 호출, UI 요소를 설정하고 이벤트를 구독함
     {
         this.targetQuest = targetQuest;
 
@@ -58,7 +58,7 @@ public class QuestTracker : MonoBehaviour
         }
     }
 
-    private void UpdateTaskDescriptos(Quest quest, TaskGroup currentTaskGroup, TaskGroup prevTaskGroup = null)
+    private void UpdateTaskDescriptos(Quest quest, TaskGroup currentTaskGroup, TaskGroup prevTaskGroup = null) // task 그룹 업데이트
     {
         foreach (var task in currentTaskGroup.Tasks)
         {

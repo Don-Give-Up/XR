@@ -36,6 +36,9 @@ public class PlayerInterAction : MonoBehaviour
             // npc면 대화창을 열것
             QuestReport(hit); // 가지고 있는 보고 함 하고
             NPCName(hit); // 이름 뭔지 알아낸다음
+            
+            // 대화창 뜨는 시점
+            GameEventsManager.instance.npcdialogEvents.ShowRealDialogue(); 
             Debug.Log("대화 시작"); // 대화 시작
             //GameEventsManager.instance.npcdialogEvents.CheckDialogue(NPCName(hit.collider.GetComponent<NPC>().name));
             // 이때 실행을 해야하나? 
@@ -53,7 +56,8 @@ public class PlayerInterAction : MonoBehaviour
       
         if (questReporter != null)
         {
-            questReporter.Report();
+            questReporter.WaitForNPCInteractionAsync();
+            
         }
         else
         {

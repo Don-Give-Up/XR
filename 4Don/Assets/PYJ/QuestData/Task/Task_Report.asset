@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 083763725de264943a2ca246b3eb5e1a, type: 2}
   codeName: Report
+  displayName: "\uAC1C\uC778 \uC7AC\uBB34\uAD00\uB9AC"
   description: "\uBD84\uC11D \uB808\uD3EC\uD2B8\uB97C \uD655\uC778\uD558\uC790!"
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: 686a7149a1b961e4ab90f01287346088, type: 2}
+  startDialogueLines: []
+  progressDialogueLines: []
+  completeDialogueLines: []
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

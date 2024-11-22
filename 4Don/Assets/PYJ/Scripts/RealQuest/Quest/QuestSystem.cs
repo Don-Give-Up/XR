@@ -73,12 +73,12 @@ public class QuestSystem : MonoBehaviour
         }*/
     }
 
-    private void OnApplicationQuit()
+    private void OnApplicationQuit() // 게임 종료하기 전 처리
     {
         isApplicationQuitting = true;
     }
 
-    public Quest Register(Quest quest)
+    public Quest Register(Quest quest) // 가능한 모든 퀘스트가 등록 됨, 선행 퀘스트를 준비할 것
     {
         var newQuest = quest.Clone();
 
@@ -101,6 +101,8 @@ public class QuestSystem : MonoBehaviour
             newQuest.OnRegister();
             onQuestRegistered?.Invoke(newQuest);
         }
+        
+        Debug.Log($"등록: {newQuest.CodeName}");
 
         return newQuest;
     }

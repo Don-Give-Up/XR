@@ -1,20 +1,39 @@
 using UnityEngine;
 
-public struct DialogueLine
+[System.Serializable]
+public class RealDialogueLine 
 {
-    public string speaker;
-    public string dialogue;
+    public string speaker;  // 대사하는 사람 (NPC나 플레이어)
+    public string[] dialogue; // 대사 내용
+    public RealDialogueOption[] options; // 선택지들
+    public TaskState currentState; // 대화를 할 때 요구하는 상태
+    public TaskState changedState; // 대화가 끝나면 변경할 상태
 
-    public DialogueLine(string speaker, string dialogue)
+    public RealDialogueLine(string speaker, string[] dialogue, TaskState currentState, TaskState changedState,RealDialogueOption[] options = null)
     {
         this.speaker = speaker;
         this.dialogue = dialogue;
+        this.currentState = currentState;
+        this.changedState = changedState; 
+        this.options = options;
     }
 }
 
-public class RealDialogue
+[System.Serializable]
+public class RealDialogueOption
 {
-    public QuestState state;
-    public DialogueLine[] dialogueLines; 
+    public string optionText;  // 선택지 텍스트
+    public RealDialogueLine[] nextDialogue;  // 선택 후 나올 대사
+    public int eventObjNum; 
+    //public Action onSelect;  // 선택 시 실행될 이벤트
+    //public TaskState requiredQuestStatus; // 선택지가 활성화될 퀘스트 상태
 
+    public RealDialogueOption(string optionText, RealDialogueLine[] nextDialogue, int eventObjNum)//, QuestState requiredQuestStatus)//, Action onSelect = null)
+    {
+        this.optionText = optionText;
+        this.nextDialogue = nextDialogue;
+        this.eventObjNum = eventObjNum; 
+        //this.requiredQuestStatus = requiredQuestStatus;
+        //this.onSelect = onSelect;
+    }
 }

@@ -14,10 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 4be1b9a92d3a0104ba7affaeb55e4020, type: 2}
   codeName: ReadNews
+  displayName: "\uAE30\uC0AC \uC77D\uAE30"
   description: "\uB274\uC2A4\uB97C \uC77D\uC5B4 \uC815\uBCF4\uB97C \uC5BB\uC790!"
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: d1da2b4ae40a3d545b997662c0d89791, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uB274\uC2A4\uB97C \uD1B5\uD574 \uC5BB\uB294 \uC815\uBCF4\uB294 \uB9E4\uC6B0
+      \uC911\uC694\uD574. "
+    - "\uC774\uAC74 \uC6B0\uB9AC \uBA54\uD0C0 \uB9C8\uC744\uC758 \uC911\uC694\uD55C
+      \uB274\uC2A4\uC57C! \uC774 \uC18C\uC2DD\uC774 \uB9C8\uC744\uC5D0 \uC5B4\uB5A4
+      \uC601\uD5A5\uC744 \uBBF8\uCE60\uC9C0 \uC54C\uBA74 \uC55E\uC73C\uB85C \uB124
+      \uD65C\uB3D9\uC5D0 \uD070 \uB3C4\uC6C0\uC774 \uB420 \uAC70\uC57C. \uD55C \uBC88
+      \uC77D\uC5B4 \uBD10!"
+    options: []
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uB274\uC2A4\uB97C \uC77D\uC5B4\uBCF4\uB294\uAC8C \uC88B\uC544. "
+    options: []
+    currentState: 1
+    changedState: 1
+  AfterDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uADF8\uB807\uAC8C \uC313\uC740 \uAE08\uC735 \uC9C0\uC2DD\uC740 \uB108\uC640
+      \uB9C8\uC744\uC758 \uC131\uC7A5\uC744 \uB3D5\uB294 \uC911\uC694\uD55C \uC790\uC6D0\uC73C\uB85C
+      \uD65C\uC6A9\uB420 \uAC70\uC57C!"
+    options: []
+    currentState: 1
+    changedState: 2
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0
