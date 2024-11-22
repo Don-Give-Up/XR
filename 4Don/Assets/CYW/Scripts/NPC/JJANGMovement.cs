@@ -49,18 +49,8 @@ public class JJANGMovement : NetworkBehaviour
             }
         }
         
-        
-        // 첫 번째 플레이어의 게임오브젝트를 가져와서 그거를 플레이어에 연결
-        // 플레이어의 GameObject 가져오기
-        // 위치 동기화하는 컴퍼넌트를 들고 와서 teleport
-        // 플레이어 프리팹도 연결을 해야 될 거 같은데... 
     }
-
-    private void Start()
-    {
-        //DontDestroyOnLoad(this);
-    }
-
+    
     public override void FixedUpdateNetwork()
     {
         if (player != null)
@@ -93,12 +83,6 @@ public class JJANGMovement : NetworkBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * 500f);  // 회전 속도 조절
                 }
             }
-
-            /*if (SceneManager.GetActiveScene().name == "3DWork1")
-            {
-                Debug.Log("짱은 3DWork 못 넘어감");
-            }*/
-            
             
         }
 

@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
-  m_Name: Task_
-  m_EditorClassIdentifier: 
-  codeName: 
-  description: 
-  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
-  needSuccessToComplete: 0
+  m_Script: {fileID: 0}
+  m_Name: DialogueOption_
+  m_EditorClassIdentifier: Assembly-CSharp::RealDialogueOption
+  optionText: "\uC544\uB2C8"
+  nextDialogue: {fileID: 0}
+  requiredQuestStatus: 0

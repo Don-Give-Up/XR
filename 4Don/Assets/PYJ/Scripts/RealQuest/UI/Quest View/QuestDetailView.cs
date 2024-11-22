@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class QuestDetailView : MonoBehaviour
+public class QuestDetailView : MonoBehaviour // 퀘스트의 세부 정보를 전체적으로 표시
 {
     [SerializeField]
     private GameObject displayGroup;
@@ -86,7 +86,7 @@ public class QuestDetailView : MonoBehaviour
                 else if (taskGroup == quest.CurrentTaskGroup)
                     poolObject.UpdateText(task);
                 else
-                    poolObject.UpdateText("�� ??????????");
+                    poolObject.UpdateText("● ??????????");
             }
         }
 
@@ -101,7 +101,7 @@ public class QuestDetailView : MonoBehaviour
             if (i < rewardCount)
             {
                 var reward = rewards[i];
-                poolObject.text = $"�� {reward.Description} +{reward.Quantity}";
+                poolObject.text = $"● {reward.Description} +{reward.Quantity}";
                 poolObject.gameObject.SetActive(true);
             }
             else

@@ -11,7 +11,7 @@ public class QuestGiver : MonoBehaviour
     {
         foreach (var quest in quests)
         {
-            if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+            if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest)) // 추기힐 수 있음 giver 에서 추가한다.
                 QuestSystem.Instance.Register(quest);
         }
     }

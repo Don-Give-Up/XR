@@ -30,7 +30,7 @@ public class TaskGroup
     public void Setup(Quest owner)
     {
         Owner = owner;
-        foreach (var task in tasks)
+        foreach (var task in tasks) // 있는 모든 Task 시작
             task.Setup(owner);
     }
 
@@ -52,7 +52,7 @@ public class TaskGroup
         foreach (var task in  tasks)
         {
             if (task.IsTarget(category, target))
-                task.ReceiveReport(successCount);
+                task.ReceiveReport(successCount); // 여기서 부릅니다. 
         }
     }
 

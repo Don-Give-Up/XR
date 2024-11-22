@@ -11,8 +11,8 @@ public enum QuestState
     Inactive,
     Running,
     Complete,
+    WaitingForCompletion,
     Cancel,
-    WaitingForCompletion
 }
 
 [CreateAssetMenu(menuName = "Quest/Quest", fileName = "Quest_")]
@@ -41,7 +41,7 @@ public class Quest : ScriptableObject
     [Header("Task")]
     [SerializeField]
     private TaskGroup[] taskGroups;
-
+    
     [Header("Reward")]
     [SerializeField]
     private Reward[] rewards;
@@ -87,7 +87,6 @@ public class Quest : ScriptableObject
     public void OnRegister()
     {
         Debug.Assert(!IsRegistered, "This quest has already been registered.");
-
         foreach (var taskGroup in taskGroups)
         {
             taskGroup.Setup(this);
