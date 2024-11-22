@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class BEQuizSolveMember : MonoBehaviour
 {
     public QuizSloveMember[] quizSloveMembers; // 데이터를 저장할 배열
-    public int member = 1;
+    
     private async void Start()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
@@ -28,10 +28,10 @@ public class BEQuizSolveMember : MonoBehaviour
         }
 
         // 특정 숫자를 URL 뒤에 추가
-        string appendedUrl = AppendNumberToUrl(urlData.Server, member); // 예: 숫자 123을 추가
-        Debug.Log("최종 URL: " + appendedUrl);
+        string finalUrl = AppendNumberToUrl(urlData.Server, GameDataManager.Instance.gameMemberId);
+        Debug.Log("최종 URL: " + finalUrl);
 
-        GetSolveMemberFromServer(appendedUrl).Forget();
+        GetSolveMemberFromServer(finalUrl).Forget();
     }
 
     private string AppendNumberToUrl(string baseUrl, int number)

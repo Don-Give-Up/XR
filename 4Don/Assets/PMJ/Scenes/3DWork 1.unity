@@ -7119,6 +7119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908500660}
   - component: {fileID: 1908500661}
+  - component: {fileID: 1908500662}
   m_Layer: 0
   m_Name: Quiz
   m_TagString: Untagged
@@ -7173,6 +7174,19 @@ MonoBehaviour:
   displayTime: 7
   displayDuration: 2
   seeSawManager: {fileID: 1009687917}
+  quizSolvePost: {fileID: 1908500662}
+--- !u!114 &1908500662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908500659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bf470d6bd540643a1fcdba3a6a0c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1940972204
 PrefabInstance:
   m_ObjectHideFlags: 0
