@@ -727,7 +727,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19248166}
-  - component: {fileID: 19248168}
   - component: {fileID: 19248167}
   m_Layer: 0
   m_Name: QuizStart
@@ -760,40 +759,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 19248165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34ec46f4293ae6469743c5ef1a88421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BEQuizdata: []
-  Textquiz: {fileID: 0}
-  TextTitle: {fileID: 0}
-  Textlevel: {fileID: 0}
-  resultText: {fileID: 0}
-  desText: {fileID: 0}
-  textComponent: {fileID: 0}
-  sugoimage: {fileID: 0}
-  test: {fileID: 0}
-  desImage: {fileID: 0}
-  oxCanvas: {fileID: 0}
-  oButton: {fileID: 0}
-  xButton: {fileID: 0}
-  onlaborCheak: 0
-  correntAnswerCount: 0
-  displayTime: 5
-  displayDuration: 2
-  seeSawManager: {fileID: 0}
---- !u!114 &19248168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19248165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 558ad1f1810acd645bfc68eaf429fa91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quiz: {fileID: 19248167}
+  quiz: {fileID: 0}
 --- !u!1001 &20397204
 PrefabInstance:
   m_ObjectHideFlags: 0
