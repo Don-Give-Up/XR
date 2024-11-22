@@ -958,8 +958,9 @@ GameObject:
   - component: {fileID: 791979434}
   - component: {fileID: 791979433}
   - component: {fileID: 791979432}
+  - component: {fileID: 791979437}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,6 +1071,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &791979437
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791979431}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &846940207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,26 +1661,14 @@ GameObject:
   - component: {fileID: 1248999212}
   - component: {fileID: 1248999211}
   - component: {fileID: 1248999210}
-  - component: {fileID: 1248999209}
+  - component: {fileID: 1248999214}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: FadeGo
   m_TagString: Fade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1248999209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248999207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2463cacf535e941b4c49046d110732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1248999210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1742,6 +1758,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1462814195}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1248999214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248999207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4b4eab14f6e5345ab8976ca11c4ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 240104505}
+  vignette: {fileID: 0}
+  fadeSpeed: 1
 --- !u!1 &1258846167
 GameObject:
   m_ObjectHideFlags: 0

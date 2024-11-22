@@ -1,12 +1,10 @@
 using System;
 using UnityEngine;
 
-public class OpenDoor : MonoBehaviour
+public class BankOpenDoor : MonoBehaviour
 {
     //// 오른쪽 문이든 왼쪽이 문이든 클릭하면 둘 다 열리게
     // 문 클릭하면 오른쪽, 왼쪽 문 애니메이션 모두 재생
-    
-    // 안 됨 안 됨 안 된 암 도미알도안 됨
     
 
     public Animator leftDoorAnim;
