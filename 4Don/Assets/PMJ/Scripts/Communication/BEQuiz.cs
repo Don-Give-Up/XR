@@ -10,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -20,8 +21,9 @@ public class BEQuiz : MonoBehaviour
 {
     public Action QuizTeleport;
     
-    public QuizData[] BEQuizdata;
+    public QuizData[] jsonBEQuizdata;
 
+  
 
     //public TMP_Text TextquizNum;
     //public TMP_Text Textcategory;
@@ -62,7 +64,7 @@ public class BEQuiz : MonoBehaviour
     
    
     
-    private void Awake()
+    private void Awake() 
     {
         if (Instance == null)
         {
@@ -75,7 +77,7 @@ public class BEQuiz : MonoBehaviour
             Debug.Log("BEQuiz Destroy");
             Destroy(gameObject);
         }
-        
+       
     }
 
     private void OnDestroy()
@@ -94,7 +96,7 @@ public class BEQuiz : MonoBehaviour
 
     public void Start()
     {
-        
+        jsonBEQuizdata = BEQuizStart.BEQuizdata;
         desImage.SetActive(false);
         
         
@@ -103,8 +105,7 @@ public class BEQuiz : MonoBehaviour
         {
             Debug.Log("오늘 노동을 시작.");
             //oxCanvas.gameObject.SetActive(true);
-            //QuizStart();
-            //ShowEasyQuiz();
+            ShowEasyQuiz();
             
 
             Debug.Log("퀴즈 시작합니당당구리동동");
@@ -123,73 +124,13 @@ public class BEQuiz : MonoBehaviour
 
 
     }
-
-
-    public async void QuizStart() // 퀴즈 먼저 읽어오기
-    {
-        if (!GoogleSheetManager.Instance.IsLoaded)
-            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
-        
-        var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈데이터");
-        
-        if (string.IsNullOrEmpty(urlData.Server))
-        {
-            Debug.LogError("퀴즈데이터 URL의 서버 주소가 비어있습니다.");
-            return;
-        }
-
-
-
-        GetQuizDataFromUrl(urlData.Server).Forget();
-
-    }
     
-    private async UniTask GetQuizDataFromUrl(string url)
-    {
-      
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
-        {
-            request.SetRequestHeader("Authorization",LoginCommunicator.Value);
-            //request.SetRequestHeader("Authorization", "Bearer eyJkYXRlIjoxNzMwNzEyNjA4NTY4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDgiLCJtZW1iZXJTY2hvb2wiOiJzY2hvb2wiLCJtZW1iZXJHcmFkZSI6MywibWVtYmVyTmFtZSI6Im5hbWUiLCJtZW1iZXJOaWNrbmFtZSI6Im5pY2tuYW1lIiwiZXhwIjoxNzYyMjQ4NjA4LCJtZW1iZXJSb2xlIjoiU1RVREVOVCIsIm1lbWJlckNsYXNzIjozLCJtZW1iZXJJZCI6OCwibWVtYmVyRW1haWwiOiJlbWFpbCJ9.dxvJMBF88sWHvsPLosKjD4jbgzDPh_-ROUZ7U8vpMW4"); // test
-            await request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("퀴즈 데이터를 가져오는 중 오류 발생: " + request.error);
-            }
-            else
-            {
-                // JSON 데이터를 받아옴
-                string jsonQuizData = request.downloadHandler.text;
-
-                try
-                {
-                    // JSON 데이터를 QuizData 객체 배열로 변환
-                    BEQuizdata = JsonConvert.DeserializeObject<QuizData[]>(jsonQuizData);
-
-                    if (BEQuizdata != null && BEQuizdata.Length > 0)
-                    {
-                        ShowEasyQuiz();
-                        Debug.Log($"총 {BEQuizdata.Length}개의 퀴즈 데이터를 불러왔습니다.");
-                    }
-                    else
-                    {
-                        Debug.LogError("퀴즈 데이터를 불러오는 데 실패했습니다.");
-                    }
-                }
-                catch (JsonReaderException ex)
-                {
-                    Debug.LogError("JSON 파싱 중 오류 발생: " + ex.Message);
-                }
-            }
-        }
-    }
 
     private QuizData GETEasyQuiz() 
     {
         Random.InitState(100);
-        _Count = BEQuizdata.Length;
-        if (BEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
+        _Count = jsonBEQuizdata.Length;
+        if (jsonBEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
         {
             int QuizRandom;
 
@@ -200,7 +141,7 @@ public class BEQuiz : MonoBehaviour
 
             usedQuiz.Add(QuizRandom);
 
-            return BEQuizdata[QuizRandom];
+            return jsonBEQuizdata[QuizRandom];
         }
         else
         {
@@ -254,7 +195,7 @@ public class BEQuiz : MonoBehaviour
         if (usedQuiz.Count > 0)
         {
             int lastQuestionIndex = usedQuiz[usedQuiz.Count - 1];
-            QuizData currentQuiz = BEQuizdata[lastQuestionIndex];
+            QuizData currentQuiz = jsonBEQuizdata[lastQuestionIndex];
 
             //정답 체크
             if (currentQuiz.answer == selectedAnswer)
