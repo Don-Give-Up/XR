@@ -10,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -20,8 +21,9 @@ public class BEQuiz : MonoBehaviour
 {
     public Action QuizTeleport;
     
-    public QuizData[] BEQuizdata;
+    public QuizData[] jsonBEQuizdata;
 
+  
 
     //public TMP_Text TextquizNum;
     //public TMP_Text Textcategory;
@@ -59,10 +61,11 @@ public class BEQuiz : MonoBehaviour
     public static BEQuiz Instance;
 
     public SeeSawManager seeSawManager;
+    public BEQuizSolvePost quizSolvePost;
     
    
     
-    private void Awake()
+    private void Awake() 
     {
         if (Instance == null)
         {
@@ -75,6 +78,7 @@ public class BEQuiz : MonoBehaviour
             Debug.Log("BEQuiz Destroy");
             Destroy(gameObject);
         }
+       
     }
 
     private void OnDestroy()
@@ -93,7 +97,7 @@ public class BEQuiz : MonoBehaviour
 
     public void Start()
     {
-        
+        jsonBEQuizdata = BEQuizStart.BEQuizdata;
         desImage.SetActive(false);
         
         
@@ -102,8 +106,7 @@ public class BEQuiz : MonoBehaviour
         {
             Debug.Log("오늘 노동을 시작.");
             //oxCanvas.gameObject.SetActive(true);
-            QuizStart();
-            //ShowEasyQuiz();
+            ShowEasyQuiz();
             
 
             Debug.Log("퀴즈 시작합니당당구리동동");
@@ -122,73 +125,13 @@ public class BEQuiz : MonoBehaviour
 
 
     }
-
-
-    public async void QuizStart() // 퀴즈 먼저 읽어오기
-    {
-        if (!GoogleSheetManager.Instance.IsLoaded)
-            await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
-        
-        var urlData = GoogleSheetManager.Instance.UrldataGet("퀴즈데이터");
-        
-        if (string.IsNullOrEmpty(urlData.Server))
-        {
-            Debug.LogError("퀴즈데이터 URL의 서버 주소가 비어있습니다.");
-            return;
-        }
-
-
-
-        GetQuizDataFromUrl(urlData.Server).Forget();
-
-    }
     
-    private async UniTask GetQuizDataFromUrl(string url)
-    {
-      
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
-        {
-            request.SetRequestHeader("Authorization",LoginCommunicator.Value);
-            //request.SetRequestHeader("Authorization", "Bearer eyJkYXRlIjoxNzMwNzEyNjA4NTY4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJ0b2tlbiA6IDgiLCJtZW1iZXJTY2hvb2wiOiJzY2hvb2wiLCJtZW1iZXJHcmFkZSI6MywibWVtYmVyTmFtZSI6Im5hbWUiLCJtZW1iZXJOaWNrbmFtZSI6Im5pY2tuYW1lIiwiZXhwIjoxNzYyMjQ4NjA4LCJtZW1iZXJSb2xlIjoiU1RVREVOVCIsIm1lbWJlckNsYXNzIjozLCJtZW1iZXJJZCI6OCwibWVtYmVyRW1haWwiOiJlbWFpbCJ9.dxvJMBF88sWHvsPLosKjD4jbgzDPh_-ROUZ7U8vpMW4"); // test
-            await request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("퀴즈 데이터를 가져오는 중 오류 발생: " + request.error);
-            }
-            else
-            {
-                // JSON 데이터를 받아옴
-                string jsonQuizData = request.downloadHandler.text;
-
-                try
-                {
-                    // JSON 데이터를 QuizData 객체 배열로 변환
-                    BEQuizdata = JsonConvert.DeserializeObject<QuizData[]>(jsonQuizData);
-
-                    if (BEQuizdata != null && BEQuizdata.Length > 0)
-                    {
-                        ShowEasyQuiz();
-                        Debug.Log($"총 {BEQuizdata.Length}개의 퀴즈 데이터를 불러왔습니다.");
-                    }
-                    else
-                    {
-                        Debug.LogError("퀴즈 데이터를 불러오는 데 실패했습니다.");
-                    }
-                }
-                catch (JsonReaderException ex)
-                {
-                    Debug.LogError("JSON 파싱 중 오류 발생: " + ex.Message);
-                }
-            }
-        }
-    }
 
     private QuizData GETEasyQuiz() 
     {
         Random.InitState(100);
-        _Count = BEQuizdata.Length;
-        if (BEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
+        _Count = jsonBEQuizdata.Length;
+        if (jsonBEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
         {
             int QuizRandom;
 
@@ -199,7 +142,7 @@ public class BEQuiz : MonoBehaviour
 
             usedQuiz.Add(QuizRandom);
 
-            return BEQuizdata[QuizRandom];
+            return jsonBEQuizdata[QuizRandom];
         }
         else
         {
@@ -215,13 +158,13 @@ public class BEQuiz : MonoBehaviour
 
         if (easyQuiz != null)
         {
-            Debug.Log(easyQuiz.quizNum);
+            /*Debug.Log(easyQuiz.quizNum);
             Debug.Log(easyQuiz.category);
             Debug.Log(easyQuiz.quiz);
             Debug.Log(easyQuiz.type);
             Debug.Log(easyQuiz.answer);
             Debug.Log(easyQuiz.desc);
-            Debug.Log(easyQuiz.level);
+            Debug.Log(easyQuiz.level);*/
             //TextquizNum.text = $"{easyQuiz.quizNum}";
             //Textcategory.text = $"{easyQuiz.category}";
             //Textquiz.text = $"{easyQuiz.quiz}";
@@ -248,75 +191,90 @@ public class BEQuiz : MonoBehaviour
     private async UniTaskVoid Process(string selectedAnswer)
     {
         TextTitle.text = "";
-        
+
         //현재 어디이썽?
         if (usedQuiz.Count > 0)
         {
             int lastQuestionIndex = usedQuiz[usedQuiz.Count - 1];
-            QuizData currentQuiz = BEQuizdata[lastQuestionIndex];
+            QuizData currentQuiz = jsonBEQuizdata[lastQuestionIndex];
+
+            string result;
 
             //정답 체크
             if (currentQuiz.answer == selectedAnswer)
             {
                 Debug.Log("정답입니다");
+                result = "CORRECT";
                 correntAnswerCount++;
                 // 화면에 정답 개수를 표시
                 resultText.text = "정답 개수: " + correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
 
                 // 화면에 정답입니다 텍스트 표시
                 await DisplayTextForTime("정답입니다", 1f);
-                
-                
-                
 
-                // 노동 종료할 때 수고 이미지 띄우기
-                if (correntAnswerCount >= 3)
-                {
-                    // 유진이 언니의 월급 관리자 호출
-                    // 노동 관리자 호출
-                    onlaborCheak = true;
-                    Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
-                    ShowDescription(currentQuiz.desc);
-                    
-                    await UniTask.Delay((int)(displayTime * 1000));
-                    HIdeDescriptionAfterTime(); // 7초 후에 해설을 숨기는 코드
-                    
-                    //await UniTask.Delay(5500);
-                    
-                    //await UniTask.Delay((int)(displayTime * 1000));
-                    sugoimage.SetActive(true);
-                    Debug.Log("수고이미지 나와유");
-                    await UniTask.Delay(2000);
-                    SetActiveFalse();
-                    
-                    await PhoStartGame.Instance.JoinSquare();
-                    
-                    return;
-                }
-                
             }
             else
             {
                 Debug.Log("틀렸습니다.");
+                result = "INCORRECT";
                 await DisplayTextForTime("오답입니다", displayDuration);
 
 
             }
 
+            SendQuizSolveRequest(currentQuiz.quizNum, result);
             // 문제 사라지고
             // 정답입니다
             ShowDescription(currentQuiz.desc);
             await UniTask.Delay((int)(displayTime * 1000));
             HIdeDescriptionAfterTime(); // 7초 후에 해설을 숨기는 코드
 
-            //다음문제
-            //여기다가 플레이어 위치 초기화되는 코드 추가해주기.
-            // bool 타입 통해서 다음 문제 나오기 전에 시소 클릭 안 되게 하기
+
+
+            // 노동 종료할 때 수고 이미지 띄우기
+            if (correntAnswerCount >= 3)
+            {
+                // 유진이 언니의 월급 관리자 호출
+                // 노동 관리자 호출
+                onlaborCheak = true;
+                Debug.Log("정답을 다 맞혔습니다! 노동을 종료합니다!");
+                //ShowDescription(currentQuiz.desc);
+
+                //await UniTask.Delay((int)(displayTime * 1000));
+                //HIdeDescriptionAfterTime(); // 7초 후에 해설을 숨기는 코드
+
+                //await UniTask.Delay(5500);
+
+                //await UniTask.Delay((int)(displayTime * 1000));
+                sugoimage.SetActive(true);
+                Debug.Log("수고이미지 나와유");
+                await UniTask.Delay(2000);
+                SetActiveFalse();
+
+                await PhoStartGame.Instance.JoinSquare();
+
+                return;
+            }
+
             ShowEasyQuiz();
+        }
+
+    }
+
+
+    private void SendQuizSolveRequest(int quizNum, string correct)
+    {
+        if (quizSolvePost != null)
+        {
+            quizSolvePost.SendQuizSolveData(quizNum, correct);
+            Debug.Log($"{quizNum}번째 문제풀이 보내짐");
+        }
+        else
+        {
+            Debug.LogError("QuizSolvePost가 연결되지 않았습니다.");
         }
     }
 
-    
     // 마지막에 수고 이미지도 해설 뜬 이후에 뜨기
     
     private async UniTask DisplayTextForTime(string message, float duration)
@@ -380,6 +338,7 @@ public class BEQuiz : MonoBehaviour
         }*/
         
     }
+    
     
 }
 

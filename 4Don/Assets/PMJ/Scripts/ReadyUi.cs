@@ -32,6 +32,8 @@ public class ReadyUi : MonoBehaviour
 
     private void Awake()
     {
+        readyText1.text = "";
+        readyText2.text = "";
         Instance = this;
     }
 
@@ -67,7 +69,6 @@ public class ReadyUi : MonoBehaviour
         // 초기화
         _isReady = false;
         countdownText.gameObject.SetActive(false);
-        readyButton.gameObject.SetActive(true);
         
         // SharedGameData 스폰
         var dataOp = PhoStartGame.Instance.runner.SpawnAsync(sharedGameDataPrefab);
@@ -77,9 +78,10 @@ public class ReadyUi : MonoBehaviour
        
         // 모든 플레이어가 레디할 때까지 대기
         var wfs = new WaitForSeconds(0.5f);
+        readyButton.gameObject.SetActive(true);
         while (true)
         {
-            var totalCount = PhoStartGame.Instance.runner.SessionInfo.PlayerCount;
+            var totalCount = PhoStartGame.Instance.runner.SessionInfo.MaxPlayers;
             var currentCount = SharedGameData.ReadyCount;
             readyText1.text = $"{currentCount}";
             readyText2.text = $"/{totalCount}";
@@ -91,7 +93,7 @@ public class ReadyUi : MonoBehaviour
         }
 
         readyText1.text = $"{SharedGameData.ReadyCount}";
-        readyText2.text = $"/{PhoStartGame.Instance.runner.SessionInfo.PlayerCount}";
+        readyText2.text = $"/{PhoStartGame.Instance.runner.SessionInfo.MaxPlayers}";
         yield return wfs;
 
         image.SetActive(false);
