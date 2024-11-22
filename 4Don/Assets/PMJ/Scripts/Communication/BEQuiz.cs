@@ -75,6 +75,7 @@ public class BEQuiz : MonoBehaviour
             Debug.Log("BEQuiz Destroy");
             Destroy(gameObject);
         }
+        
     }
 
     private void OnDestroy()
@@ -102,7 +103,7 @@ public class BEQuiz : MonoBehaviour
         {
             Debug.Log("오늘 노동을 시작.");
             //oxCanvas.gameObject.SetActive(true);
-            QuizStart();
+            //QuizStart();
             //ShowEasyQuiz();
             
 

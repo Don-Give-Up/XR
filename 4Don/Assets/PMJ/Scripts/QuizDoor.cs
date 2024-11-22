@@ -8,8 +8,9 @@ using UnityEngine.Serialization;
 public class QuizDoor : MonoBehaviour
 {
     private PhoStartGame a;
-    private bool _interact = false; // >> 플레이어가 닿았을때 true, 
+    private bool _interact = true; // >> 플레이어가 닿았을때 true, 
     public GameObject _1Key;
+    public GameObject readyCanvasZzab;
 
     private bool OnTrigger = false;
     //콜라이더 닿았을때를 불타입변수로
@@ -17,7 +18,8 @@ public class QuizDoor : MonoBehaviour
     
     private void Start()
     {
-        a = PhoStartGame.Instance; 
+        a = PhoStartGame.Instance;
+        readyCanvasZzab.SetActive(false);
         _1Key.SetActive(false);
     }
 
@@ -31,8 +33,8 @@ public class QuizDoor : MonoBehaviour
                 _interact = false;
                 OnTrigger = false;
                 Debug.Log("자 노동 드가자");
+                readyCanvasZzab.SetActive(true); 
                 a.JoinQuiz();
-                
             }
         }
 
@@ -41,15 +43,29 @@ public class QuizDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("닿음");
-        _1Key.SetActive(true);
-
-        _interact = true;
         if (other.gameObject.CompareTag("Player") && _interact)
         {
-            OnTrigger = true;
-            Debug.Log("노동 문 열어라");
+            var ntObject = other.GetComponent<NetworkObject>();
+            if (ntObject.InputAuthority != PhoStartGame.Instance.runner.LocalPlayer)
+            {
+                _1Key.SetActive(true);
+                OnTrigger = true;
+                Debug.Log("노동 문 열어라");
+            }
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            var ntObject = other.GetComponent<NetworkObject>();
+            if (ntObject.InputAuthority != PhoStartGame.Instance.runner.LocalPlayer)
+            {
+                _1Key.SetActive(false);
+                OnTrigger = false;
+                Debug.Log("노동 문 멀어졌는데??");
+            }
+        }
+    }
 }

@@ -147,25 +147,26 @@ public class PhoStartGame : MonoBehaviour
     {
         await ResetRunner();
         
-       loadingPanel.SetActive(true);
+       //loadingPanel.SetActive(true);
         {
             // 광장씬 노래 종료
             
             audioSourceD.Stop();
-            audioSourceL.Play();
+           // audioSourceL.Play();
             var arg = new StartGameArgs()
             {
                 GameMode = GameMode.Shared,
                 SessionName = "노동",
+                PlayerCount = 2,
                 Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
             };
             await runner.StartGame(arg);
         }
         Debug.Log("퀴즈 접속됨");
-        await UniTask.Delay(2000);
-        loadingPanel.SetActive(false);
+        //await UniTask.Delay(2000);
+        //loadingPanel.SetActive(false);
         // 로딩씬 노래 종료
-        audioSourceL.Stop();
+        //audioSourceL.Stop();
         // 퀴즈씬 노래 시작
         audioSourceQ.Play();
         
