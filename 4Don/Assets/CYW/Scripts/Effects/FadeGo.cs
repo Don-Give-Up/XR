@@ -1,10 +1,10 @@
-using System;
+/*using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 public class FadeGo : MonoBehaviour
 {
-    public PostProcessVolume volume;  // PostProcessing Volume
+    /*public PostProcessVolume volume;  // PostProcessing Volume
     public Vignette vignette;         // Vignette 효과
 
     // 페이드 속도
@@ -55,3 +55,4 @@ public class FadeGo : MonoBehaviour
         }
     }
 }
+*/
