@@ -7396,10 +7396,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PresonalManager
       objectReference: {fileID: 0}
+    - target: {fileID: 578514529003950313, guid: 0225a3f75c81afa498455f5445956f1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5364686633821263084, guid: 0225a3f75c81afa498455f5445956f1e, type: 3}
       propertyPath: currentMoneyText
       value: 
       objectReference: {fileID: 673415428}
+    - target: {fileID: 7066327876251487984, guid: 0225a3f75c81afa498455f5445956f1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9170149683949636161, guid: 0225a3f75c81afa498455f5445956f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13994,7 +14002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2569334757017957190, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 118.79999
       objectReference: {fileID: 0}
     - target: {fileID: 2569334757017957190, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14092,6 +14100,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3948240601530607539, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6646305803426729739, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -14110,11 +14122,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039708094265636332, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -590
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8039708094265636332, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 353
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8083366648475238550, guid: ad8226f844f02e141ab24ecaf166daad, type: 3}
       propertyPath: m_Name
@@ -21900,6 +21912,8 @@ MonoBehaviour:
   chatBot: {fileID: 1077011410}
   blur: {fileID: 1654597595}
   dialogue: {fileID: 0}
+  parentPosition: {fileID: 1077011412}
+  youPrefab: {fileID: 766160572028907372, guid: c236fb4180366d54ab195a542e52fe0b, type: 3}
 --- !u!4 &1647857798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1634973223157045965, guid: c03003085bc85784a9c0bbb87b3c49ee, type: 3}
@@ -24753,6 +24767,10 @@ PrefabInstance:
     - target: {fileID: 3367567144450301323, guid: c03003085bc85784a9c0bbb87b3c49ee, type: 3}
       propertyPath: m_Name
       value: RenewUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367567144450301323, guid: c03003085bc85784a9c0bbb87b3c49ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3915344126124676066, guid: c03003085bc85784a9c0bbb87b3c49ee, type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,7 +8,10 @@ public class MaterKey : MonoBehaviour
    public GameObject blur;
    private PersonalFinancialManager money;
 
-   public GameObject dialogue; 
+   public GameObject dialogue;
+
+   public GameObject parentPosition;
+   public GameObject youPrefab;
    
    private void Start()
    {
@@ -33,7 +36,11 @@ public class MaterKey : MonoBehaviour
             money.InputMoney(8 * 8590);
          }
       }
-      
+
+      if (Input.GetKeyDown(KeyCode.Alpha4))
+      {
+         var go = Instantiate(youPrefab, parentPosition.transform);
+      }
       
    }
 }
