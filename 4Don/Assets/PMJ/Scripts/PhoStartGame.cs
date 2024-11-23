@@ -56,7 +56,10 @@ public class PhoStartGame : MonoBehaviour
     // 여기서 러너 생성
     private void Start()
     {
-        InstantiateRunner();
+        if (runner == null)
+        {
+            InstantiateRunner();
+        }
     }
 
     public void InstantiateRunner()
@@ -94,52 +97,78 @@ public class PhoStartGame : MonoBehaviour
 
     private async UniTask ResetRunner()
     {
-        Debug.Log("리셋 되었습니다.");
-        if (runner == null)
-        {
-            InstantiateRunner();
-            return;
-        }
-        
-        if (runner.State != NetworkRunner.States.Shutdown)
+        if (runner != null)
         {
             await runner.Shutdown();
+            Debug.Log("RunnerShutdown");
         }
         
-        runner = null;
         InstantiateRunner();
+        Debug.Log("리셋 되었습니다.");
     }
 
     public async UniTask JoinSquare()
     {
-        
-        await ResetRunner();
-        
-        loadingPanel.SetActive(true);
+        try 
         {
-            
+            // 기존 연결 정리를 확실히
+            if (runner != null && runner.IsRunning) 
+            {
+                await runner.Shutdown();
+            }
+        
+            await ResetRunner();
+
+            loadingPanel.SetActive(true);
+        
             loginCommunicator.StopAudio();
             audioSourceQ.Stop();
             audioSourceL.Play();
-            
-            
+
+            var sceneInfo = new NetworkSceneInfo();
+            sceneInfo.AddSceneRef(SceneRef.FromIndex(2));
+
             var arg = new StartGameArgs
             {
                 GameMode = GameMode.Shared,
                 SessionName = "광장",
-                Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
+                PlayerCount = 10,
+                Scene = sceneInfo
             };
-            await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+            
+            await UniTask.Delay(2000);
+            
+        
+            // 연결 시도 전 상태 체크
+            if (!runner.IsRunning)
+            {
+                var result = await runner.StartGame(arg);
+            
+                // 결과 확인
+                if (result.Ok)
+                {
+                    Debug.Log("광장 접속됨");
+                    
+                }
+                else
+                {
+                    Debug.LogError($"Failed to start game: {result.ErrorMessage}");
+                    return;
+                }
+            }
+
+            
+            await UniTask.Delay(2000);
+            loadingPanel.SetActive(false);
+
+            audioSourceL.Stop();
+            audioSourceD.Play();
         }
-        Debug.Log("광장 접속됨");
-        await UniTask.Delay(2000);
-        loadingPanel.SetActive(false);
-        
-        // 로딩씬 노래 종료
-        audioSourceL.Stop();
-        // 광장씬 노래 시작
-        audioSourceD.Play();
-        
+        catch (Exception e)
+        {
+            Debug.LogError($"Error joining square: {e.Message}");
+            loadingPanel.SetActive(false);
+        }
     }
 
     public async void JoinQuiz()
@@ -174,6 +203,7 @@ public class PhoStartGame : MonoBehaviour
     public async UniTask Shutdown()
     {
         await runner.Shutdown();
+        runner = null;
     }
 
     private void BackRoom()

@@ -20,12 +20,7 @@ public class ReadyUi : MonoBehaviour
     public TMP_Text readyText1;
     public TMP_Text readyText2;
     
-    public TMP_Text countdownText;
-
-    public int countdown = 3;
-
-
-    private TickTimer startTimer;
+    
     private bool _isReady;
 
     public static ReadyUi Instance;
@@ -68,7 +63,6 @@ public class ReadyUi : MonoBehaviour
     {
         // 초기화
         _isReady = false;
-        countdownText.gameObject.SetActive(false);
         
         // SharedGameData 스폰
         var dataOp = PhoStartGame.Instance.runner.SpawnAsync(sharedGameDataPrefab);
@@ -99,24 +93,10 @@ public class ReadyUi : MonoBehaviour
         image.SetActive(false);
         // 카운트다운 UI 활성화
         readyButton.gameObject.SetActive(false);
-        countdownText.gameObject.SetActive(true);
         
         // 게임 시작
         readyBG.SetActive(false);
-
-        // 카운트다운 진행
-        startTimer = TickTimer.CreateFromSeconds(PhoStartGame.Instance.runner, countdown + 1.1f);
-        for (var i = countdown; i > 0; i--)
-        {
-            countdownText.text = $"{i}!";
-            Debug.Log(countdownText.text);
-            yield return new WaitForSeconds(1f);
-            countdownText.text = string.Empty;
-            yield return new WaitForSeconds(0.1f);
-        }
         
-        // 네트워크상의 시간이 완료될때까지 대기
-        yield return new WaitUntil(() => startTimer.Expired(PhoStartGame.Instance.runner));
 
         // 게임 종료 대기
         yield return new WaitUntil(() => SharedGameData.GameEndCount == PhoStartGame.Instance.runner.SessionInfo.PlayerCount);
