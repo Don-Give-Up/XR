@@ -191,6 +191,7 @@ public class Task : ScriptableObject
         State = TaskState.Running;
         
         questTaskTracker = FindObjectOfType<QuestTaskTracker>();  
+        // 두번 이루어지면 안 반복되게 하기
         if (questTaskTracker != null)
         {
             questTaskTracker.OnDisplay(this);  // task를 RealDialogueManager에 설정

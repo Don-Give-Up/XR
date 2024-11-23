@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +20,10 @@ public class RealDialogueManager : MonoBehaviour
     private Task task; // 현재 할당된 Task
     private int currentDialogueIndex = 0;
     private int currentOptionDialogueIndex = 0; // 일단 이거 쓰는 곳 없음, 어떻게 해야할 지 모르겠음 
-    private bool canFinish = false; 
+    private bool canFinish = false;
+    private bool canStartEvent = false;
+    private int eventNum = 0;
+    private GameObject[] eventObj;
     
     // dialogue 
     //option 의 구조 반복을 어떻게 처리할 지 확인해보기
@@ -48,7 +53,8 @@ public class RealDialogueManager : MonoBehaviour
 
         optionParentPos = optionParentsObj.transform; 
         
-        options = new List<Button>(); 
+        options = new List<Button>();
+        eventObj = new GameObject[]{ };
     }
 
     //Np
@@ -115,24 +121,81 @@ public class RealDialogueManager : MonoBehaviour
         
         string dialogue = currentDialogue[0].dialogue[currentDialogueIndex];
         
-        dialogueText.text = dialogue;
+        string formattedDialogue = FormatDialogue(dialogue);
+        
+        CheckEvent(formattedDialogue);
+        
+        dialogueText.text = formattedDialogue;
         npcName.text = currentDialogue[0].speaker; 
 
-        Debug.Log($"{currentDialogue[0].speaker}: {dialogue}");
+        Debug.Log($"{currentDialogue[0].speaker}: {formattedDialogue}");
 
         CheckDialogueIndex();
         //CheckDialogueIndex();
     }
 
+    private void CheckEvent(string currentText)
+    {
+        if (currentText.Contains("@")) //currentText.StartsWith("@") // 시작이 저렇게 되는지 확인
+        {
+            canStartEvent = true; 
+            // 포함되어 있다면 다음번 클릭이 들어 왔을 
+        }
+    }
+
+    public void ReturnDialogue()
+    {
+        eventObj[eventNum].SetActive(false);
+        CheckDialogueIndex(); // 일단 해보자잉~
+    }
+
+    private void StartEevnet(int objNum)
+    {
+        eventObj[objNum].SetActive(true);
+        canFinish = false; 
+        OffDialogue();
+        OffOptionDialogue();
+    }
+
+    // 대화 텍스트를 말 끝나는 기호로 분리하고 줄 바꿈 추가
+    private string FormatDialogue(string dialogue)
+    {
+        // 말 끝나는 기호를 기준으로 텍스트를 나눔
+        // 정규 표현식을 사용하여 문장 끝을 기준으로 분리하되, 구분자도 포함한다.
+        string pattern = @"(?<=[.!?])\s*";  // [] 안에 있는 걸 기준으로 매칭되는 텍스트를 찾음 // 문장 끝에 !, ., ? 가 있을 경우, 그 뒤의 공백을 기준으로 문자열을 나누는 패턴
+        string[] sentences = Regex.Split(dialogue, pattern); // Regular Expression
+        
+        // 각 문장 끝에 줄 바꿈 추가
+        List<string> formattedSentences = new List<string>();
+        for (int i = 0; i < sentences.Length; i++)
+        {
+            string sentence = sentences[i].Trim();
+
+            // 마지막 문장이 아니라면 줄 바꿈 추가
+            if (i < sentences.Length - 1)
+            {
+                formattedSentences.Add(sentence + "\n");
+            }
+            else
+            {
+                // 마지막 문장은 그대로 추가 (줄 바꿈 없음)
+                formattedSentences.Add(sentence);
+            }
+        }
+
+        // 문장들을 하나로 합쳐서 반환
+        return string.Join("", formattedSentences);
+    }
+
     private void CheckDialogueIndex()
     {
-        /*if (currentDialogueIndex == 0)
+        if (canStartEvent)
         {
-            Debug.Log($"지금 무슨 대화? {task.CodeName}, {task.State}");
+            eventNum = currentDialogue[0].options[0].eventObjNum; 
+            StartEevnet(eventNum);
+            return;
+        }
 
-            GetDialogue(task, task.State);
-        }*/
-   
         if (currentDialogueIndex + 1 >= currentDialogue[0].dialogue.Length) // 끝일 떄,
         {
             if (currentDialogue[0].options.Length > 0)
