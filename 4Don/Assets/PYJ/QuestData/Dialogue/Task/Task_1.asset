@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
+  m_Name: Task_1
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 96dfe1478fe73e04b91f70c3022833cf, type: 2}
+  codeName: 1
+  displayName: 1
+  description: test
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: fcb714b405d13d24d9a45614dbdc7eb1, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC720\uC9C4\uC774"
+    dialogue:
+    - "\uB418\uB098?"
+    options:
+    - optionText: "\uC544\uB9C8\uB3C4?"
+      nextDialogue:
+      - speaker: "\uC774\uAC70\uB3C4 \uB418\uB098? @"
+        dialogue: []
+        options: []
+        currentState: 0
+        changedState: 1
+      eventObjNum: 1
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC720\uC9C4\uC774"
+    dialogue:
+    - "\uADF8\uB7FC \uC774\uAC83\uB3C4?"
+    options:
+    - optionText: " \uB2F9\uC5F0 @"
+      nextDialogue:
+      - speaker: "\uC720\uC9C4\uC774"
+        dialogue:
+        - "\uC774\uAC83\uB3C4\uB3C4??"
+        options:
+        - optionText: "\uB2F9\uC5F0!"
+          nextDialogue:
+          - speaker: "\uC720\uC9C4\uC774"
+            dialogue:
+            - "\uC774\uAC70 \uB2E4\uC74C\uC5D0 \uB098\uC634 @"
+            - "\uC9C4\uC9DC \uC798 \uB098\uC634!"
+            options: []
+            currentState: 1
+            changedState: 2
+          eventObjNum: 1
+        currentState: 1
+        changedState: 2
+      eventObjNum: 2
+    currentState: 0
+    changedState: 0
+  AfterDialogueLines: []
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 0
+  canReceiveReportsDuringCompletion: 0

@@ -47,7 +47,8 @@ public class TaskGroup
             task.End();
     }
 
-    public void ReceiveReport(string category, object target, int successCount)
+    public void ReceiveReport(string category, object target, int successCount) // Quest의 리포트를 받음 
+    
     {
         foreach (var task in  tasks)
         {

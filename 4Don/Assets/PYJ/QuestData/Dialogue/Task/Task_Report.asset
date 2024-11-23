@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
+  m_Name: Task_Report
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 083763725de264943a2ca246b3eb5e1a, type: 2}
+  codeName: Report
+  displayName: "\uAC1C\uC778 \uC7AC\uBB34\uAD00\uB9AC"
+  description: "\uBD84\uC11D \uB808\uD3EC\uD2B8\uB97C \uD655\uC778\uD558\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 686a7149a1b961e4ab90f01287346088, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC774\uAC74 \uB108\uC758 \uAE08\uC735 \uD65C\uB3D9\uC744 \uBD84\uC11D\uD55C
+      \uB808\uD3EC\uD2B8\uC57C! \uC18C\uBE44, \uC800\uCD95, \uD22C\uC790 \uADF8\uB9AC\uACE0
+      \uD559\uC2B5\uAE4C\uC9C0 \uB124\uAC00 \uD574\uBCF8 \uB2E4\uC591\uD55C \uD65C\uB3D9\uC5D0
+      \uB300\uD55C \uD53C\uB4DC\uBC31\uC774 \uB2F4\uACA8 \uC788\uC9C0."
+    - "\uC5B4\uB5A4 \uC810\uC774 \uC88B\uC558\uACE0 \uB610 \uC5B4\uB514\uC5D0\uC11C
+      \uB354 \uAC1C\uC120\uD560 \uC218 \uC788\uC744\uC9C0 \uC0DD\uAC01\uD574\uBCF8\uB2E4\uBA74
+      \uC55E\uC73C\uB85C \uB354 \uB098\uC740 \uAE08\uC735 \uC758\uC0AC\uACB0\uC815\uC744
+      \uB0B4\uB9B4 \uC218 \uC788\uC744 \uAC70\uC57C!"
+    options: []
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC5B4\uC11C \uBD84\uC11D \uB808\uD3EC\uD2B8\uB97C \uD655\uC778\uD574\uBD10!"
+    options: []
+    currentState: 1
+    changedState: 1
+  AfterDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC624\uB298 \uBC30\uC6B4 \uAE08\uC735 \uD65C\uB3D9\uC744 \uD1B5\uD574 \uB124\uAC00
+      \uBA54\uD0C0 \uB9C8\uC744 \uBC1C\uC804\uC5D0 \uD070 \uAE30\uC5EC\uB97C \uD588\uB2E4\uB294
+      \uAC78 \uAE30\uC5B5\uD574!"
+    - "\uC774 \uC9C0\uC2DD\uC740 \uC55E\uC73C\uB85C\uB3C4 \uACC4\uC18D \uC313\uC774\uACE0 
+      \uC810\uC810 \uB354 \uD070 \uBCC0\uD654\uB97C \uC77C\uC73C\uD0AC \uC218 \uC788\uC744
+      \uAC70\uC57C."
+    - "\uAD81\uAE08\uD55C \uC810\uC774 \uC0DD\uAE30\uBA74 \uC5B8\uC81C\uB4E0\uC9C0
+      \uCC3E\uC544\uC640. \uB0B4\uAC00 \uB3C4\uC640\uC904\uAC8C!"
+    - "\uAC19\uC774 \uD798\uC744 \uBAA8\uC544 \uB354 \uBA4B\uC9C4 \uB9C8\uC744\uC744
+      \uB9CC\uB4E4\uC5B4 \uBCF4\uC790!"
+    options: []
+    currentState: 2
+    changedState: 3
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 1
+  canReceiveReportsDuringCompletion: 0

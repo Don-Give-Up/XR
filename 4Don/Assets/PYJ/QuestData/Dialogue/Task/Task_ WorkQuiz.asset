@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12252044d8b27424a88a28e9b593a3b5, type: 3}
+  m_Name: Task_ WorkQuiz
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: be3676e746464774d86eb50d563275a6, type: 2}
+  codeName: WorkQuiz
+  displayName: "\uC18C\uB4DD\uC758 \uC8FC \uC218\uC785\uC6D0\uC740 \uB178\uB3D9"
+  description: "\uD034\uC988\uB97C \uD480\uC5B4 \uD559\uC2B5 \uB0B4\uC6A9\uC744 \uAC80\uC99D\uD558\uC790!"
+  action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 08d35856ed9b44e4c8407114fa242714, type: 2}
+  beforDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC774\uC81C \uBA54\uD0C0 \uB9C8\uC744\uC5D0\uC11C \uAE08\uC735 \uD65C\uB3D9\uC744
+      \uD558\uBA70 \uACBD\uC81C \uD65C\uB3D9\uC5D0 \uCC38\uC5EC\uD560 \uCC28\uB840\uC57C!"
+    - "\uB9C8\uC744\uC758 \uACBD\uC81C\uB294 \uC6B0\uB9AC\uAC00 \uD558\uB294 \uBAA8\uB4E0
+      \uAE08\uC735 \uD65C\uB3D9\uC774\uB780 \uC608\uB97C \uB4E4\uC5B4 \uB3C8\uC744
+      \uBC8C\uACE0 \uC18C\uBE44\uD558\uACE0 \uD22C\uC790\uD558\uB294 \uBAA8\uB4E0
+      \uACFC\uC815\uC5D0\uC11C \uC131\uC7A5\uD574 \uB098\uAC00."
+    - "\uAC00\uC7A5 \uBA3C\uC800 \uC911\uC694\uD55C \uAC74 '\uB3C8\uC744 \uBC8C\uAE30
+      \uC704\uD55C \uBC29\uBC95'\uC774\uC57C."
+    - "\uBA54\uD0C0 \uB9C8\uC744\uC5D0\uC11C \uB3C8\uC744 \uBC8C\uB824\uBA74 \uD034\uC988\uB97C
+      \uD480\uC5B4\uC57C \uD574! \uD034\uC988\uB97C \uD480\uC5B4\uBCF4\uBA70 \uAE08\uC735
+      \uC9C0\uC2DD\uC744 \uC313\uC544\uBCF4\uC790. \uC900\uBE44\uB410\uC9C0?"
+    options: []
+    currentState: 0
+    changedState: 1
+  IngDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uC5B4\uC11C \uC77C\uC744 \uD558\uACE0 \uC624\uB3C4\uB85D \uD574! \uB178\uB3D9\uC740
+      \uC911\uC694\uD55C \uAC70\uC57C. "
+    options: []
+    currentState: 1
+    changedState: 1
+  AfterDialogueLines:
+  - speaker: "\uC548\uB0B4\uC6D0"
+    dialogue:
+    - "\uB274\uC2A4\uC5D0\uC11C \uBC30\uC6B4 \uB0B4\uC6A9 \uC720\uC775\uD588\uC9C0?
+      \uC774\uC81C \uAE08\uC735 \uC9C0\uC2DD\uC774 \uD55C\uCE35 \uB354 \uB298\uC5C8\uC744
+      \uAC70\uC57C."
+    - "\uBC29\uAE08 \uD034\uC988\uB97C \uD480\uACE0 \uAE08\uC735 \uC9C0\uC2DD\uC744
+      \uC313\uC558\uC73C\uB2C8 '\uAE08\uC735 \uC5D0\uB108\uC9C0'\uAC00 \uCC44\uC6CC\uC84C\uACA0\uB124!
+      \uB9C8\uC744 \uBC1C\uC804\uC5D0 \uD070 \uB3C4\uC6C0\uC774 \uB420 \uAC70\uC57C!"
+    options: []
+    currentState: 2
+    changedState: 3
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 1
+  canReceiveReportsDuringCompletion: 0

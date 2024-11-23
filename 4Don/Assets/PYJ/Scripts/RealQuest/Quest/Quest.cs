@@ -98,7 +98,7 @@ public class Quest : ScriptableObject
         CurrentTaskGroup.Start();
     }
 
-    public void ReceiveReport(string category, object target, int successCount)
+    public void ReceiveReport(string category, object target, int successCount)// tl
     {
         Debug.Assert(IsRegistered, "This quest has already been registered.");
         Debug.Assert(!IsCancel, "This quest has been canceled.");
