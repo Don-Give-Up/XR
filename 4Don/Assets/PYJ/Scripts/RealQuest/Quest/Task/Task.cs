@@ -100,7 +100,11 @@ public class Task : ScriptableObject
             
             /*if (realDialogueManager != null)
             {
-                realDialogueManager.SetTask(this);
+                realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
+            }
+            else
+            {
+                Debug.LogError("RealDialogueManager not found in the scene!");
             }*/
         }
     }
@@ -177,14 +181,15 @@ public class Task : ScriptableObject
             CurrentSuccess = initialSuccessValue.GetValue(this);
         
         realDialogueManager = FindObjectOfType<RealDialogueManager>();  // RealDialogueManager 인스턴스를 찾아서
-        /*if (realDialogueManager != null)
+       
+        if (realDialogueManager != null)
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
         else
         {
             Debug.LogError("RealDialogueManager not found in the scene!");
-        }*/
+        }
     }
 
     public void Active()
@@ -201,11 +206,28 @@ public class Task : ScriptableObject
         {
             Debug.LogError("RealDialogueManager not found in the scene!");
         }
+        
+        if (realDialogueManager != null)
+        {
+            realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
+        }
+        else
+        {
+            Debug.LogError("RealDialogueManager not found in the scene!");
+        }
     }
 
     public void End() // 자연스럽게 마무리됨 
     {
         questTaskTracker.OffDisplay();
+        if (realDialogueManager != null)
+        {
+            realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
+        }
+        else
+        {
+            Debug.LogError("RealDialogueManager not found in the scene!");
+        }
         onStateChanged = null;
         onSuccessChanged = null;
     }
@@ -223,12 +245,13 @@ public class Task : ScriptableObject
         {
             case TaskState.Running:
                 Debug.Log("활성화");
+                onStateChanged?.Invoke(this, newState, prevState);
                 Active();
                 break;
             case TaskState.Complete:
                 Debug.Log("끝내야함!!");
                 this.state = TaskState.Complete; 
-                onStateChanged?.Invoke(task, newState, prevState);
+                onStateChanged?.Invoke(this, newState, prevState);
                 onSuccessChanged?.Invoke(this, CurrentSuccess++, CurrentSuccess);
                 //CurrentSuccess++; 
                 break;
