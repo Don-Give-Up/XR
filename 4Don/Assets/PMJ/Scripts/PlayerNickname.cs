@@ -34,20 +34,32 @@ public class PlayerNickname : NetworkBehaviour
         }
     }
 
+    public override void Spawned()
+    {
+        RpcHoya();
+    }
+
+
     public override void FixedUpdateNetwork()
     {
         if (followTarget != null && nicknameText != null && mainCamera != null)
         {
-            // 캐릭터 위치 + 오프셋에 닉네임 UI 위치시키기
-            Vector3 targetPos = followTarget.position + Vector3.up * 1.9f;
-            nicknameText.transform.position = targetPos;
             
+
             // UI가 항상 카메라를 향하도록
             nicknameText.transform.rotation = Quaternion.LookRotation(
                 nicknameText.transform.position - mainCamera.transform.position);
         }
     }
 
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    private void RpcHoya()
+    {
+        Debug.Log("이름 위치");
+        // 캐릭터 위치 + 오프셋에 닉네임 UI 위치시키기
+        Vector3 targetPos = followTarget.position + Vector3.up * 1.9f;
+        nicknameText.transform.position = targetPos;
+    }
     private void LateUpdate()
     {
         if (mainCamera != null && nicknameText != null)
