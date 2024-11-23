@@ -94,52 +94,51 @@ public class PhoStartGame : MonoBehaviour
 
     private async UniTask ResetRunner()
     {
-        Debug.Log("리셋 되었습니다.");
-        if (runner == null)
-        {
-            InstantiateRunner();
-            return;
-        }
         
         if (runner.State != NetworkRunner.States.Shutdown)
         {
+            Debug.Log("RunnerShutdown");
             await runner.Shutdown();
         }
         
+        Debug.Log("리셋 되었습니다.");
         runner = null;
         InstantiateRunner();
     }
 
     public async UniTask JoinSquare()
     {
-        
+
         await ResetRunner();
-        
+
         loadingPanel.SetActive(true);
+        
+        loginCommunicator.StopAudio();
+        audioSourceQ.Stop();
+        audioSourceL.Play();
+
+        var sceneInfo = new NetworkSceneInfo();
+        sceneInfo.AddSceneRef(SceneRef.FromIndex(2));
+
+        var arg = new StartGameArgs
         {
-            
-            loginCommunicator.StopAudio();
-            audioSourceQ.Stop();
-            audioSourceL.Play();
-            
-            
-            var arg = new StartGameArgs
-            {
-                GameMode = GameMode.Shared,
-                SessionName = "광장",
-                Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
-            };
-            await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
-        }
+            GameMode = GameMode.Shared,
+            SessionName = "광장",
+            PlayerCount = 10,
+            //Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Demo"))
+            Scene = sceneInfo
+        };
+        await runner.StartGame(arg); // await는 뒤에 있는 거를 기다림
+
         Debug.Log("광장 접속됨");
         await UniTask.Delay(2000);
         loadingPanel.SetActive(false);
-        
+
         // 로딩씬 노래 종료
         audioSourceL.Stop();
         // 광장씬 노래 시작
         audioSourceD.Play();
-        
+
     }
 
     public async void JoinQuiz()

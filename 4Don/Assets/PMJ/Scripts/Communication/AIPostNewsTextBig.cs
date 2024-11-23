@@ -38,7 +38,8 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
     private int articleYear; //  몫
     private int articleDay; //나누기
     private int offset = 1996;
-
+    private int round;
+    
     public string aritcleDayText;
     
     //지금 날짜 넘어갔을때 넘어가는거 안되어있음. 다시 해야함. 
@@ -63,9 +64,14 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
 
     private void Start()
     {
+        RoundSystem.Instance.onRoundChange += Day;
         StartCoroutine(Test());
     }
 
+    private void Day(int round)
+    {
+        this.round = round;
+    }
     private IEnumerator Test()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
@@ -94,7 +100,7 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, int>
         {
-            { "year", 2020 }
+            { "year", this.round }
         };
         Debug.Log("본문 데이터 서버에 보냄");
         // 데이터를 JSON으로 직렬화

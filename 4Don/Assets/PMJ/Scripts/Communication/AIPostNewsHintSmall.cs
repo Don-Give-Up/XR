@@ -7,12 +7,19 @@ using UnityEngine.Networking;
 public class AIPostNewsHintSmall : MonoBehaviour
 {
     public NewsHintsmall[] news1;
+    private int round;
     
     private void Start()
     {
+        RoundSystem.Instance.onRoundChange += Day;
         StartCoroutine(Test());
+        
     }
 
+    private void Day(int round)
+    {
+        this.round = round;
+    }
     private IEnumerator Test()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
@@ -42,7 +49,7 @@ public class AIPostNewsHintSmall : MonoBehaviour
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, int>
         {
-            { "year", 2020 }
+            { "year", this.round }
         };
 
         Debug.Log("힌트 뉴스 요청");

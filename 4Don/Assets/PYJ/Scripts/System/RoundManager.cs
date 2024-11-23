@@ -87,9 +87,6 @@ public class RoundSystem : MonoBehaviour
         Debug.Log($"올해 무엇: {currentRound + currentRoundOffset}");
         onRoundChange?.Invoke(currentRound + currentRoundOffset);
         RoundProcess();
-        roundText.text = "다음날";
-        await UniTask.WaitForSeconds(3f);
-        roundText.text = "";
     }
 
     private async UniTask RoundProcess()
@@ -99,7 +96,9 @@ public class RoundSystem : MonoBehaviour
         Debug.Log($"현재 라운드: {currentRound + currentRoundOffset}");
         currentRound++; 
         onRoundChange?.Invoke(currentRound + currentRoundOffset); // 현재 라운드 정보 제공
-
+        roundText.text = "다음날";
+        await UniTask.WaitForSeconds(3f);
+        roundText.text = "";
         
     }
 
