@@ -24,6 +24,7 @@ public class PlayerInterAction : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, rayDistance))
             {
+                QuestReport(hit); 
                 NPCCheck(hit);
             }
         }
@@ -34,11 +35,10 @@ public class PlayerInterAction : MonoBehaviour
         if (hit.collider.CompareTag("NPC"))
         {  
             // npc면 대화창을 열것
-            QuestReport(hit); // 가지고 있는 보고 함 하고
-            NPCName(hit); // 이름 뭔지 알아낸다음
+            //NPCName(hit); // 이름 뭔지 알아낸다음
             
             // 대화창 뜨는 시점
-            GameEventsManager.instance.npcdialogEvents.ShowRealDialogue(); 
+            GameEventsManager.instance.npcdialogEvents.ShowRealDialogue();
             Debug.Log("대화 시작"); // 대화 시작
             //GameEventsManager.instance.npcdialogEvents.CheckDialogue(NPCName(hit.collider.GetComponent<NPC>().name));
             // 이때 실행을 해야하나? 
@@ -50,17 +50,19 @@ public class PlayerInterAction : MonoBehaviour
         }
     }
 
-    private void QuestReport(RaycastHit hit)
+    private void QuestReport(RaycastHit hit)// 클릭했을 떄 리포트가 있으면 반환 할 것 
     {
-        QuestReporter questReporter = hit.collider.GetComponent<QuestReporter>();
+        Debug.Log("퀘스트 리포터 확인");
+        QuestReporter questReporter = hit.collider.GetComponent<QuestReporter>(); 
       
         if (questReporter != null)
         {
+            Debug.Log("퀘스트 리포터 확인후 보고");
             questReporter.Report();
         }
         else
         {
-            Debug.Log("NPC 지만 있는 퀘스트가 없어요");
+            Debug.Log("퀘스트가 없어요");
         }
     }
 

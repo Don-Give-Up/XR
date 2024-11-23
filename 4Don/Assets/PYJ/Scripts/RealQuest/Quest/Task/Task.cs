@@ -94,8 +94,14 @@ public class Task : ScriptableObject
                         : TaskState.Running; // 
                     //realDialogueManager.SetTask(this); // 상태 바뀔 떄도 시작
                     onSuccessChanged?.Invoke(this, currentSuccess, prevSuccess); // 성공 횟수가 변할 떄 마다 호출
+                    
                 }
             }
+            
+            /*if (realDialogueManager != null)
+            {
+                realDialogueManager.SetTask(this);
+            }*/
         }
     }
     public Category Category => category;
@@ -171,14 +177,14 @@ public class Task : ScriptableObject
             CurrentSuccess = initialSuccessValue.GetValue(this);
         
         realDialogueManager = FindObjectOfType<RealDialogueManager>();  // RealDialogueManager 인스턴스를 찾아서
-        if (realDialogueManager != null)
+        /*if (realDialogueManager != null)
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
         else
         {
             Debug.LogError("RealDialogueManager not found in the scene!");
-        }
+        }*/
     }
 
     public void Active()

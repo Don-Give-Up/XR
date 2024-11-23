@@ -83,7 +83,7 @@ public class StockPriceManager : MonoBehaviour
                 double currentStockPrice = roundStockPrices[i] + Random.Range(lowerBound, upperBound);
                 double dayOverDay = (((currentStockPrice - beforeRoundStockPrice[i]) / beforeRoundStockPrice[i]) * 100);
                 
-                StockText(i, currentStockPrice, dayOverDay);
+                //StockText(i, currentStockPrice, dayOverDay);
             }
 
             // 1초 간격으로 갱신
@@ -95,8 +95,8 @@ public class StockPriceManager : MonoBehaviour
     private void StockText(int i, double stockPrice, double dayDif)
     {
         
-        stockCurrentObj[2*i].text = stockPrice.ToString("N0");
-        stockCurrentObj[2*i + 1].text = dayDif.ToString("N0");
+        //stockCurrentObj[2*i].text = stockPrice.ToString("N0");
+        //stockCurrentObj[2*i + 1].text = dayDif.ToString("N0");
         
     }
 
