@@ -273,7 +273,7 @@ public class RealDialogueManager : MonoBehaviour
             PlaySoundWithRandomPitch(chosung.ToString());
 
             // 음성 재생 후 잠시 대기
-            yield return new WaitForSeconds(0.5f); // 음성 길이에 맞춰 대기
+            yield return new WaitForSeconds(1f/7f); // 음성 길이에 맞춰 대기
         }
     }
     
