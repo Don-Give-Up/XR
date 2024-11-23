@@ -3974,6 +3974,7 @@ GameObject:
   - component: {fileID: 992522953}
   - component: {fileID: 992522952}
   - component: {fileID: 992522951}
+  - component: {fileID: 992522954}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4056,6 +4057,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 992522954}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &992522952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4094,6 +4107,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992522949}
   m_CullTransparentMesh: 1
+--- !u!114 &992522954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992522949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666bf3a936435d418b84692dab8e1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: be3676e746464774d86eb50d563275a6, type: 2}
+  target: {fileID: 11400000, guid: 08d35856ed9b44e4c8407114fa242714, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!54 &1009687915
 Rigidbody:
   m_ObjectHideFlags: 0
