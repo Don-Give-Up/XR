@@ -27,6 +27,7 @@ public class RunnerController : INetworkRunnerCallbacks
             }
         }
     }
+    
 
     public void OnConnectedToServer(NetworkRunner runner)
     {

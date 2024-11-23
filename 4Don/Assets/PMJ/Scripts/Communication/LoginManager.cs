@@ -86,7 +86,7 @@ public class LoginData
 [System.Serializable]
 public class NickAndToken
 {
-    public string nickName { get; set; }
+    public string memberNickName { get; set; }
     public string token { get; set; }
 }
 

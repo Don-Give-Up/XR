@@ -10,9 +10,11 @@ public class LoginCommunicator : MonoBehaviour
 {
     public LoginManager loginManager;
     public AudioSource audioSource;
+   
 
     public static string Value;
     public static string nickName;
+    
     private async void StartLoginProcess() 
     {
         await (LoginStart());
@@ -66,6 +68,15 @@ public class LoginCommunicator : MonoBehaviour
             UseNickAndToken(nickAndToken);
             //Value = rep;
 
+            if (NickNameManager.Instance != null)
+            {
+                NickNameManager.Instance.SetNickName(nickAndToken.memberNickName);
+            }
+            else
+            {
+                Debug.LogError("닉네임 어딧음?");
+            }
+
         }
         else
         {
@@ -76,7 +87,10 @@ public class LoginCommunicator : MonoBehaviour
     public void UseNickAndToken(NickAndToken nickAndToken)
     {
         Value = nickAndToken.token;
-        nickName = nickAndToken.nickName;
+        nickName = nickAndToken.memberNickName;
+        Debug.Log($"{Value}");
+        Debug.Log($"{nickName}");
+        
     }
     
     public void StopAudio()
