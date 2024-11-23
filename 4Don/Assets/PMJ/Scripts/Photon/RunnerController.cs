@@ -30,6 +30,7 @@ public class RunnerController : INetworkRunnerCallbacks
 
     public void OnConnectedToServer(NetworkRunner runner)
     {
+        Debug.Log("Connected to server successfully");
     }
 
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
@@ -58,6 +59,7 @@ public class RunnerController : INetworkRunnerCallbacks
 
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
     {
+        Debug.Log($"Disconnected from server: {reason}");
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
@@ -66,6 +68,7 @@ public class RunnerController : INetworkRunnerCallbacks
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
     {
+        Debug.LogError($"Connection failed: {reason}");
     }
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)

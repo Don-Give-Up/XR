@@ -12,6 +12,7 @@ public class LoginCommunicator : MonoBehaviour
     public AudioSource audioSource;
 
     public static string Value;
+    public static string nickName;
     private async void StartLoginProcess() 
     {
         await (LoginStart());
@@ -61,13 +62,21 @@ public class LoginCommunicator : MonoBehaviour
             SceneManager.LoadScene("SsamMade");
             DontDestroyOnLoad(audioSource);
 
-            Value = rep;
+            NickAndToken nickAndToken = JsonConvert.DeserializeObject<NickAndToken>(rep);
+            UseNickAndToken(nickAndToken);
+            //Value = rep;
 
         }
         else
         {
             Debug.LogError("Error sending data: " + request.error);
         }
+    }
+
+    public void UseNickAndToken(NickAndToken nickAndToken)
+    {
+        Value = nickAndToken.token;
+        nickName = nickAndToken.nickName;
     }
     
     public void StopAudio()
