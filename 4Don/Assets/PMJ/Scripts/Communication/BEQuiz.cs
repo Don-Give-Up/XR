@@ -251,6 +251,8 @@ public class BEQuiz : MonoBehaviour
                 await UniTask.Delay(2000);
                 SetActiveFalse();
 
+
+                await PhoStartGame.Instance.Shutdown();
                 await PhoStartGame.Instance.JoinSquare();
 
                 return;
