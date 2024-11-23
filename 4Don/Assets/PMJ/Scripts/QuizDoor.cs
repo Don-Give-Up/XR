@@ -43,10 +43,12 @@ public class QuizDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("닿음");
-        if (other.gameObject.CompareTag("Player") && _interact)
+        var ntObject = other.GetComponent<NetworkObject>();
+        Debug.Log($"ntObject " + ntObject);
+        if (other.CompareTag("Player") && _interact)
         {
-            var ntObject = other.GetComponent<NetworkObject>();
-            if (ntObject.InputAuthority != PhoStartGame.Instance.runner.LocalPlayer)
+            Debug.Log($"InputAuthority : {ntObject.InputAuthority} , LocalPlayer : {PhoStartGame.Instance.runner.LocalPlayer}");
+            if (ntObject.InputAuthority == PhoStartGame.Instance.runner.LocalPlayer)
             {
                 _1Key.SetActive(true);
                 OnTrigger = true;

@@ -112,7 +112,6 @@ public class PhoStartGame : MonoBehaviour
 
     public async UniTask JoinSquare()
     {
-        // 
         
         await ResetRunner();
         
