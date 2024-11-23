@@ -67234,9 +67234,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 813881886}
-        m_TargetAssemblyTypeName: NPCDialogueManager, Assembly-CSharp
-        m_MethodName: BackToDialogue1
+      - m_Target: {fileID: 1017237487}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -80017,9 +80017,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 813881886}
-        m_TargetAssemblyTypeName: NPCDialogueManager, Assembly-CSharp
-        m_MethodName: GotoDialogue
+      - m_Target: {fileID: 1208266502}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137659,6 +137659,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 5686182562377023351}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2208486509622689748
 GameObject:
   m_ObjectHideFlags: 0
@@ -138321,6 +138333,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1069124258, guid: 49b123bfc4d8f07499c27d37e0fec564, type: 3}
+    - target: {fileID: 7525203146997330122, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7513662308233031845}
+    - target: {fileID: 7525203146997330122, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Report
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525203146997330122, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuestReporter, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7799250763714199572, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
       propertyPath: m_text
       value: "\uC790\uC0B0 \uD604\uD669"
@@ -138357,7 +138381,8 @@ PrefabInstance:
       propertyPath: panel
       value: 
       objectReference: {fileID: 4182502206685964391, guid: 57f49e18d3c004a489a99b296f89cfa9, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6450889661975348115, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8993959701817635697, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}
     - {fileID: 5603699167179940417, guid: 1ed7f2661941230448baa98dcd0d1ba6, type: 3}

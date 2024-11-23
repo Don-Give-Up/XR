@@ -98,14 +98,7 @@ public class Task : ScriptableObject
                 }
             }
             
-            /*if (realDialogueManager != null)
-            {
-                realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
-            }
-            else
-            {
-                Debug.LogError("RealDialogueManager not found in the scene!");
-            }*/
+            // 여기 setTask 부르면 안 됨
         }
     }
     public Category Category => category;
