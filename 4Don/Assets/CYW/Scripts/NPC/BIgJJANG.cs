@@ -11,6 +11,7 @@ public class BigJJANG : MonoBehaviour
     // 물음표 껐다 켜기
 
     public GameObject bigJJANG; // 대화창이나 짱이 나오는 오브젝트
+    public GameObject bigJJANGLight;
     public Animator anim; // 애니메이터 컴포넌트
     public GameObject mark;
     public NavMeshAgent agent; // NavMeshAgent
@@ -24,6 +25,7 @@ public class BigJJANG : MonoBehaviour
         if (bigJJANG != null)
         {
             bigJJANG.SetActive(false);
+            bigJJANGLight.SetActive(false);
             Debug.Log("빅짱 비활성화");
         }
 
@@ -63,6 +65,7 @@ public class BigJJANG : MonoBehaviour
                         // bigJJANG 오브젝트를 켜거나 끄기
                         bool isActive = !bigJJANG.activeSelf;
                         bigJJANG.SetActive(isActive);
+                        bigJJANGLight.SetActive(isActive);
 
                         // 물음표 오브젝트 끄기
                         mark.SetActive(false);

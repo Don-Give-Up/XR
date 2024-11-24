@@ -13,6 +13,7 @@ public class BigJJANGMovement : NetworkBehaviour
     private bool isWaiting = false;
     public Transform player;
 
+
     public float distanceAheadPlayer = 1f; // 플레이어의 앞쪽으로 이동할 거리
     public float offsetDistance = 1f; // 플레이어의 오른쪽에 위치할 거리
 
@@ -22,11 +23,12 @@ public class BigJJANGMovement : NetworkBehaviour
     /// 평소엔 WayPoint로만 돌아다니다가
     /// 물음표 뜨면 플레이어한테 가기
     /// 대화 다 하면 다시 WayPoint로 가기
-    void Start()
+    public void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         ToNextWaypoint();
         ConnectPlayer().Forget();
+        
         
     }
 
@@ -50,7 +52,7 @@ public class BigJJANGMovement : NetworkBehaviour
     }
 
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
         // 목적지에 도달했는지 확인
         if (!isWaiting && !agent.pathPending && agent.remainingDistance < 0.5f)
@@ -104,16 +106,19 @@ public class BigJJANGMovement : NetworkBehaviour
     }
 
     // 첫 번째 플레이어 찾아서 가기
-    private async UniTaskVoid ConnectPlayer()
+     private async UniTaskVoid ConnectPlayer()
     {
-        await UniTask.WaitUntil(() => Runner.ActivePlayers.Any());
+        await UniTask.WaitUntil(() => Runner != null && Runner.ActivePlayers.Any());
         // 한 명이 되면 연결
         // 아마 1
-        
+
+        await UniTask.Delay(1000);
            
         // 첫 번째 플레이어를 가져옴
         var firstPlayer = Runner.ActivePlayers.First(); // 첫번째 플레이어
         var players = GameObject.FindObjectsByType<MJPlayerMovement>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        Debug.Log("첫 번째 플레이어 위치 잡았음");
+        
         foreach (var p in players)
         {
             var nb = p.GetComponent<NetworkBehaviour>();

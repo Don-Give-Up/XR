@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 public class BIgHANG : MonoBehaviour
 {
     public GameObject bigHANG; // 대화창이나 짱이 나오는 오브젝트
+    public GameObject bigHANGLight;
     public Animator anim; // 애니메이터 컴포넌트
     public GameObject mark;
     public string hangTag = "HANG"; // 짱 태그 누르면 켜졌다 꺼졌다 하게
@@ -15,6 +16,7 @@ public class BIgHANG : MonoBehaviour
         if (bigHANG != null)
         {
             bigHANG.SetActive(false);
+            bigHANGLight.SetActive(false);
             Debug.Log("빅짱 비활성화");
         }
 
@@ -54,6 +56,7 @@ public class BIgHANG : MonoBehaviour
                         // bigJJANG 오브젝트를 켜거나 끄기
                         bool isActive = !bigHANG.activeSelf;
                         bigHANG.SetActive(isActive);
+                        bigHANGLight.SetActive(isActive);
 
                         // 물음표 오브젝트 끄기
                         mark.SetActive(false);
