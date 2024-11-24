@@ -10,7 +10,7 @@ public class StockPriceManager : MonoBehaviour
     public TMP_Text[] stockCurrentObj;
     
     // 주식 가격 및 전일 가격을 저장할 배열
-    private double[] roundStockPrices = new double[8];  // 예시로 8개의 주식
+    public double[] roundStockPrices = new double[8];  // 예시로 8개의 주식
     private double[] beforeRoundStockPrice = new double[8];
     
     public double wantToBuyStockPrice = 0;
@@ -42,15 +42,20 @@ public class StockPriceManager : MonoBehaviour
     private void RoundStockPriceGet(int year)
     {
         var stockPrices = GoogleSheetManager.Instance.YearlyStockDataGet(year);
-        
-        roundStockPrices[0] = stockPrices.ITStockPrice;//stockPrices.ITStockPrice;//133703;
-        roundStockPrices[1] = stockPrices.ThreeStarStockPrice;//stockPrices.ThreeStarStockPrice;67100;
-        roundStockPrices[2] = stockPrices.HoldingsStockPrice;//stockPrices.HoldingsStockPrice;4180;
-        roundStockPrices[3] = stockPrices.BioStockPrice;//stockPrices.BioStockPrice;43533;
-        roundStockPrices[4] = stockPrices.FoodStockPrice;//stockPrices.FoodStockPrice;102000;
-        roundStockPrices[5] = stockPrices.InnovationStockPrice;//stockPrices.InnovationStockPrice;176000;
-        roundStockPrices[6] = stockPrices.AirStockPrice;//stockPrices.AirStockPrice;25950;
-        roundStockPrices[7] = stockPrices.ElectonicCarStockPrice;//stockPrices.ElectonicCarStockPrice;220096;
+
+        roundStockPrices[0] = stockPrices.ITStockPrice; //stockPrices.ITStockPrice;//133703;
+        roundStockPrices[1] = stockPrices.ThreeStarStockPrice; //stockPrices.ThreeStarStockPrice;67100;
+        roundStockPrices[2] = stockPrices.HoldingsStockPrice; //stockPrices.HoldingsStockPrice;4180;
+        roundStockPrices[3] = stockPrices.BioStockPrice; //stockPrices.BioStockPrice;43533;
+        roundStockPrices[4] = stockPrices.FoodStockPrice; //stockPrices.FoodStockPrice;102000;
+        roundStockPrices[5] = stockPrices.InnovationStockPrice; //stockPrices.InnovationStockPrice;176000;
+        roundStockPrices[6] = stockPrices.AirStockPrice; //stockPrices.AirStockPrice;25950;
+        roundStockPrices[7] = stockPrices.ElectonicCarStockPrice; //stockPrices.ElectonicCarStockPrice;220096;
+
+        foreach (var a in roundStockPrices)
+        {
+            Debug.Log($"{a}");
+        }
 
         int beforyear = year - 1;
         var beforStockPrice = GoogleSheetManager.Instance.YearlyStockDataGet(beforyear);
@@ -64,7 +69,12 @@ public class StockPriceManager : MonoBehaviour
         beforeRoundStockPrice[6] = beforStockPrice.AirStockPrice;//beforStockPrice.AirStockPrice;41513;
         beforeRoundStockPrice[7] = beforStockPrice.ElectonicCarStockPrice;//beforStockPrice.ElectonicCarStockPrice;17768;
     
+        foreach (var a in beforeRoundStockPrice)
+        {
+            Debug.Log($"{a}");
+        }
         Debug.Log("가격 받았음 둥");
+        
         StockPrice();
     }
 

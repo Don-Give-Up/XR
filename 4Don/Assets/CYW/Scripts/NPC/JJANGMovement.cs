@@ -21,6 +21,8 @@ public class JJANGMovement : NetworkBehaviour
     
     public override void Spawned()
     {
+        if (!enabled)
+            return;
         
         // NavMeshAgent 컴포넌트를 가져옵니다.
         agent = GetComponent<NavMeshAgent>();
