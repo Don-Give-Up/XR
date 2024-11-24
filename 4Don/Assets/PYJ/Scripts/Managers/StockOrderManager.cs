@@ -9,6 +9,8 @@ public class StockOrderManager : MonoBehaviour
     public TMP_Text wantText;
     public TMP_Text warningText;
     
+    
+    
     private int wantToBuy = 0; //
     private double stockPrice = 0;
 
@@ -50,6 +52,7 @@ public class StockOrderManager : MonoBehaviour
         warningText.text = ""; 
         personalMoney = 60000; // 이거만 personal 거기서 받아오게 하면 first 가 아니라 Set 으로 사용 가능
         stockPrice = stockPrices[stockNum]; // 일단 주식 가격 할당
+        this.stockNum = stockNum;
         canToBuy = (int)(personalMoney / stockPrice); // 몇 주 살 수 있는 지 결정 
         //Debug.Log($"{stockPrice}");
         //canToBuyText.text = $"{canToBuy}({canToBuy*stockPrice:N0})"; // 가격 보여줌 
@@ -111,6 +114,7 @@ public class StockOrderManager : MonoBehaviour
             Debug.Log("거래 가능 수량");
             // 이때만 구매되게 
             TextUpdate(wantToBuy,currentStock);
+            this.wantToBuy = wantToBuy;
             isOrdered = true; 
             
         }
@@ -139,6 +143,11 @@ public class StockOrderManager : MonoBehaviour
             // 이 때 주식 사는 이벤트 발생하면 될 듯 // 
             // CHECK 에 관련된 이벤트 하던가. 
             // 이 때 다이알로그랑 관련된 이벤트 추가
+
+            BEStocksRecordPost.stockId = stockNum;
+            BEStocksRecordPost.amount = wantToBuy;
+            BEStocksRecordPost.stockRecordPost.StockStart();
+           
         }
         else
         {

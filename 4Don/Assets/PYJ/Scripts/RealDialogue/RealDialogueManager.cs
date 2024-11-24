@@ -112,7 +112,15 @@ public class RealDialogueManager : MonoBehaviour
     // 대화 내용 출력 (예시로 콘솔에 출력) // 버튼 눌리면 이거 한다.
     public void DisplayDialogue() //, string npcName)
     {
-        if (optionParentsObj.activeSelf)
+        
+        // dialogueObj가 null인지 확인
+        if (dialogueObj == null)
+        {
+            Debug.LogWarning("dialogueObj가 null입니다. 객체가 이미 파괴되었을 수 있습니다.");
+            return; // 더 이상 실행되지 않도록 return
+        }
+        
+        if (optionParentsObj.activeSelf) //여기!
         {
             return;
         }

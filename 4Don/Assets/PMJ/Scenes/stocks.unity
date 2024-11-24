@@ -1115,9 +1115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bf470d6bd540643a1fcdba3a6a0c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  qid: 0
-  type: 
 --- !u!114 &1493971750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,13 +1122,56 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493971739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08b3136ae3526194797e85fabcd29a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quizSloveMembers: []
-  member: 1
+--- !u!1 &1559628119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1559628121}
+  - component: {fileID: 1559628120}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1559628120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559628119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba80fa285bcd0841a74494627082ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1559628121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559628119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933411748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,8 +1339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce30fe044d306143bf6021fa063f798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedGameDataPrefab:
+    RawGuidValue: 00000000000000000000000000000000
+  readyBG: {fileID: 0}
   readyButton: {fileID: 8429198}
-  readyStatusText: {fileID: 141131601}
+  image: {fileID: 0}
+  readyText1: {fileID: 0}
+  readyText2: {fileID: 0}
 --- !u!4 &2000630873
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,3 +1402,4 @@ SceneRoots:
   - {fileID: 1380732550}
   - {fileID: 1304687167}
   - {fileID: 2000630873}
+  - {fileID: 1559628121}
