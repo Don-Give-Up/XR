@@ -19,6 +19,8 @@ public class ReportEvents // 게임 오브젝트에 붙여서 작동할 필요�
   {
     onBuyStock?.Invoke(stockName, stockPrice); 
   }
+  
+  
 
   /*private void Update()
   {
