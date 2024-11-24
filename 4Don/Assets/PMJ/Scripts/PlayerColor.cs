@@ -70,6 +70,6 @@ public class PlayerColor : NetworkBehaviour
         materials[2].color = newColor;
         skinnedMeshRenderer.materials = materials;
         
-        Debug.Log($"Applied color {newColor} to material");
+        //Debug.Log($"Applied color {newColor} to material");
     }
 }

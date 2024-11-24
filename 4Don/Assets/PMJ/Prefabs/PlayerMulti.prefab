@@ -200,12 +200,12 @@ GameObject:
   - component: {fileID: -7494963961069689272}
   - component: {fileID: 1701358952434060654}
   - component: {fileID: 223437138989427249}
-  - component: {fileID: 3893485113062051144}
   - component: {fileID: 681864102221675173}
   - component: {fileID: 4822477992924546276}
   - component: {fileID: 221597608053021108}
   - component: {fileID: 5672700237410154570}
   - component: {fileID: 3691072201942117626}
+  - component: {fileID: 1537295463217589515}
   m_Layer: 0
   m_Name: PlayerMulti
   m_TagString: Player
@@ -267,14 +267,14 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 503
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.3
   m_Height: 1.32
@@ -298,8 +298,8 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 223437138989427249}
-  - {fileID: 3893485113062051144}
   - {fileID: 681864102221675173}
+  - {fileID: 1537295463217589515}
   - {fileID: 8407958560949304021}
   - {fileID: 692665337414208207}
   - {fileID: 6486067071106004550}
@@ -325,7 +325,7 @@ CharacterController:
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.2
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &223437138989427249
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c6f243779a8d14288dd2e25df56816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 4
+  PlayerSpeed: 120
   JumpForce: 5
   GravityValue: -9.81
   anim: {fileID: 2164617198070385418}
@@ -348,24 +348,6 @@ MonoBehaviour:
   audioSource: {fileID: 3691072201942117626}
   stepSound1: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
   stepSound2: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
---- !u!114 &3893485113062051144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6849122848582386394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: -20
-  jumpImpulse: 8
-  acceleration: 10
-  braking: 10
-  maxSpeed: 2
-  rotationSpeed: 15
 --- !u!114 &681864102221675173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +525,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1537295463217589515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849122848582386394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1869825851, guid: 977dbcf975465374990f471e1497f563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    Shape: 1
+    IsTrigger: 0
+    Radius: 0.35
+    Height: 1.8
+    Extent: 0.035
+    ColliderLayer: 0
+    CollisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 1
+    ProxyInterpolationMode: 0
+    MaxPenetrationSteps: 8
+    CCDRadiusMultiplier: 0.75
+    AntiJitterDistance: {x: 0.025, y: 0.01}
+    CompressNetworkPosition: 0
+    ForcePredictedLookRotation: 0
+    StepHeight: 0.5
+    StepDepth: 0.2
+    StepSpeed: 1
+    StepMinPushBack: 0.5
+    StepGroundCheckRadiusScale: 0.5
+    StepRequireGroundTarget: 0
+    SnapDistance: 0.25
+    SnapSpeed: 4
 --- !u!1 &7656605936613035054
 GameObject:
   m_ObjectHideFlags: 0

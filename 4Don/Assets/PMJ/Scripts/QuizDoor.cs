@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using TMPro;
 using UnityEngine;
@@ -23,19 +24,17 @@ public class QuizDoor : MonoBehaviour
         _1Key.SetActive(false);
     }
 
-    private void Update()
+    private async UniTaskVoid Goto()
     {
         if (OnTrigger)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _1Key.SetActive(false);
-                _interact = false;
-                OnTrigger = false;
-                Debug.Log("자 노동 드가자");
-                readyCanvasZzab.SetActive(true); 
-                a.JoinQuiz();
-            }
+            await UniTask.Delay(1550);
+            _1Key.SetActive(false);
+            _interact = false;
+            OnTrigger = false;
+            Debug.Log("자 노동 드가자");
+            readyCanvasZzab.SetActive(true); 
+            a.JoinQuiz();
         }
 
     }
@@ -52,6 +51,7 @@ public class QuizDoor : MonoBehaviour
             {
                 _1Key.SetActive(true);
                 OnTrigger = true;
+                Goto().Forget();
                 Debug.Log("노동 문 열어라");
             }
         }
