@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerNickname : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI nicknameText; // 닉네임 표시할 UI Text
+    [SerializeField] private GameObject nicknameBox; // 닉네임 표시할 UI Text
     [SerializeField] private Transform followTarget; // 캐릭터의 위치를 따라갈 대상
 
     // 네트워크 변수로 Nickname을 정의
@@ -57,8 +58,9 @@ public class PlayerNickname : NetworkBehaviour
     {
         Debug.Log("이름 위치");
         // 캐릭터 위치 + 오프셋에 닉네임 UI 위치시키기
-        Vector3 targetPos = followTarget.position + Vector3.up * 1.9f;
+        Vector3 targetPos = followTarget.position + Vector3.up * 1.7f;
         nicknameText.transform.position = targetPos;
+        nicknameBox.transform.position = targetPos;
     }
     private void LateUpdate()
     {
@@ -66,11 +68,12 @@ public class PlayerNickname : NetworkBehaviour
         {
             // 빌보드 효과: UI가 항상 카메라를 향하도록
             nicknameText.transform.forward = mainCamera.transform.forward;
-            
+            nicknameBox.transform.forward = mainCamera.transform.forward;
             // UI 크기를 거리에 따라 조절 (선택사항)
             float distance = Vector3.Distance(mainCamera.transform.position, transform.position);
             float scale = Mathf.Max(1, distance * 0.1f);
             nicknameText.transform.localScale = Vector3.one * scale;
+            nicknameBox.transform.localScale = Vector3.one * scale;
         }
     }
 

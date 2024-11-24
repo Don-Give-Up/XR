@@ -1,12 +1,15 @@
+using Newtonsoft.Json;
+
 [System.Serializable]
-public class AIReportResponseData
+public class ResponseData
 {
-    public AIReportRawData aiReportRawData;
+   
+    public RawData raw_Data;
     public string analysis;
 }
 
 [System.Serializable]
-public class AIReportRawData
+public class RawData
 {
     public int player_id;
     public Assets assets;
@@ -22,18 +25,16 @@ public class Assets
     public float savings;
     public float products;
     public float stocks;
-    public float avg_difference;
 }
 
 [System.Serializable]
 public class Ratios
 {
-    public float cash;       // 현금
-    public float savings;    // 저축
-    public float products;   // 상품
-    public float stocks;     // 주식
+    public float cash;
+    public float savings;
+    public float products;
+    public float stocks;
 }
-
 
 [System.Serializable]
 public class WrongAnswer
@@ -41,5 +42,4 @@ public class WrongAnswer
     public string quiz;
     public string answer;
     public string desc;
-    public string category;
 }

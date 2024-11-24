@@ -6,11 +6,12 @@ using UnityEngine.Networking;
 
 public class BEStocksRecordPost : MonoBehaviour
 {
+    public static BEStocksRecordPost stockRecordPost;
     //BEStocksRecordPost
-    public int stockId; // 클릭시
-    public int amount; // 클릭시
+    public static int stockId; // 클릭시
+    public static int amount; // 클릭시
     public string type; // 클릭시
-    private async void Start()
+    public async void StockStart()
     {
         if (!GoogleSheetManager.Instance.IsLoaded)
             await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
@@ -34,7 +35,7 @@ public class BEStocksRecordPost : MonoBehaviour
             stockId = stockId,
             gameId = GameDataManager.Instance.gameId,
             stockTradeRecordAmount = amount,
-            tradeType = type
+            tradeType = "BUY"
         };
         // 보낼 데이터를 생성
         /*var tradeRequest = new StockRecord

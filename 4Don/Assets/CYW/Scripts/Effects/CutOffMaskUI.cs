@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
@@ -7,7 +8,6 @@ using UnityEngine.Rendering;
 using Image = UnityEngine.UI.Image;
 
 public class CutOffMaskUI : Image
-
 {
     public override Material materialForRendering
     {

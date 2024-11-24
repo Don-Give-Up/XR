@@ -6,7 +6,8 @@ public class GameEventsManager : MonoBehaviour
     public static GameEventsManager instance { get; private set; }
 
     public NPCDialogueEvents npcdialogEvents;
-    public NPCEvents npcEvents; 
+    public NPCEvents npcEvents;
+    public ReportEvents reportEvents;
 
     private void Awake()
     {
@@ -18,7 +19,8 @@ public class GameEventsManager : MonoBehaviour
 
         // initialize all events
         npcEvents = new NPCEvents();
-        npcdialogEvents = new NPCDialogueEvents(); 
+        npcdialogEvents = new NPCDialogueEvents();
+        reportEvents = new ReportEvents(); 
 
     }
 }

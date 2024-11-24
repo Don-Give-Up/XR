@@ -47,6 +47,7 @@ public class AIReport : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer(); 
         request.SetRequestHeader("Content-Type", "application/json");
 
+        Debug.Log("오래 걸리는거임 오해 ㄴ노 보내긴함");
         // 요청 보내기
         await request.SendWebRequest();  
 
@@ -57,8 +58,8 @@ public class AIReport : MonoBehaviour
             Debug.Log("Response: " + jsonResponse);
 
            
-            AIReportResponseData aiReportResponseData = JsonConvert.DeserializeObject<AIReportResponseData>(jsonResponse);
-            ProcessResponse(aiReportResponseData); 
+            ResponseData responseData = JsonConvert.DeserializeObject<ResponseData>(jsonResponse);
+            ProcessResponse(responseData); 
         }
         else
         {
@@ -67,11 +68,11 @@ public class AIReport : MonoBehaviour
     }
 
     // JSON 응답을 처리하는 메서드
-    private void ProcessResponse(AIReportResponseData aiReportResponseData)
+    private void ProcessResponse(ResponseData responseData)
     {
         // 응답 데이터에서 player_id와 자산 정보 출력
-        Debug.Log($"Player ID: {aiReportResponseData.aiReportRawData.player_id}");
-        Debug.Log($"Total Assets: {aiReportResponseData.aiReportRawData.assets.total}");
+        Debug.Log($"Player ID: {responseData.raw_Data.player_id}");
+        Debug.Log($"Total Assets: {responseData.raw_Data.assets.total}");
     }
 }
 

@@ -1,6 +1,8 @@
 
+using System;
 using System.Linq;
 using Fusion;
+using Fusion.Addons.SimpleKCC;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +11,8 @@ public class MJPlayerMovement : NetworkBehaviour
     private Vector3 _velocity;
     private bool _jumpPressed;
 
-    private CharacterController _controller;
-    private NetworkCharacterController NoChDrop;
+    private SimpleKCC _controller;
+    private SimpleKCC NoChDrop;
 
     public float PlayerSpeed = 2f;
 
@@ -31,7 +33,7 @@ public class MJPlayerMovement : NetworkBehaviour
     
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        _controller = GetComponent<SimpleKCC>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -65,7 +67,7 @@ public class MJPlayerMovement : NetworkBehaviour
         if (HasStateAuthority)
         {
             Camera = FindAnyObjectByType<FirstPersonCamera>();
-            NoChDrop = GetComponent<NetworkCharacterController>();
+            NoChDrop = GetComponent<SimpleKCC>();
             
             _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
             Debug.Log(_spawnCount);
@@ -79,14 +81,14 @@ public class MJPlayerMovement : NetworkBehaviour
             {
                 Camera.Target = transform;
                 
-                NoChDrop.Teleport(new Vector3(225f + _spawnCount , 46f, 362f));
+                NoChDrop.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
             }
         }
     }
 
     private void Teleport()
     {
-        NoChDrop.Teleport(new Vector3(0, 3f, _spawnCount + 4f));
+        NoChDrop.SetPosition(new Vector3(0, 3f, _spawnCount + 4f), true);
     }
 
     public override void FixedUpdateNetwork()
@@ -97,7 +99,7 @@ public class MJPlayerMovement : NetworkBehaviour
             return;
         }
 
-        if (_controller.isGrounded)
+        if (_controller.IsGrounded)
         {
             _velocity = new Vector3(0, -1f, 0);
         }
@@ -106,7 +108,7 @@ public class MJPlayerMovement : NetworkBehaviour
         Vector3 move = cameraRotationY * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Runner.DeltaTime * PlayerSpeed;
         
         _velocity.y += GravityValue * Runner.DeltaTime;
-        if (_jumpPressed && _controller.isGrounded)
+        if (_jumpPressed && _controller.IsGrounded)
         {
             _velocity.y += JumpForce;
         }
@@ -114,7 +116,7 @@ public class MJPlayerMovement : NetworkBehaviour
 
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            _controller.SetLookRotation(Quaternion.LookRotation(move));
         }
 
         _jumpPressed = false;
