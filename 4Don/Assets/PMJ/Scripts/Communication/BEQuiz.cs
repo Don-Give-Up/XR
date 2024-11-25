@@ -63,6 +63,10 @@ public class BEQuiz : MonoBehaviour
 
     public SeeSawManager seeSawManager;
     public BEQuizSolvePost quizSolvePost;
+
+    public AudioSource oSound;
+    public AudioSource xSound;
+    public AudioSource quizGoSound;
     
    
     
@@ -211,6 +215,7 @@ public class BEQuiz : MonoBehaviour
     private async UniTaskVoid Process(string selectedAnswer)
     {
         TextTitle.text = "";
+        //quizGoSound.Play();
 
         //현재 어디이썽?
         //if (usedQuiz.Count > 0)
@@ -231,6 +236,7 @@ public class BEQuiz : MonoBehaviour
                 Debug.Log("정답입니다");
                 result = "CORRECT";
                 correntAnswerCount++;
+                oSound.Play();
                 // 화면에 정답 개수를 표시
                 resultText.text = correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
 
@@ -242,6 +248,7 @@ public class BEQuiz : MonoBehaviour
             {
                 Debug.Log("틀렸습니다.");
                 result = "INCORRECT";
+                xSound.Play();
                 await DisplayTextForTime("오답입니다", displayDuration);
 
 
@@ -257,7 +264,7 @@ public class BEQuiz : MonoBehaviour
 
 
             // 노동 종료할 때 수고 이미지 띄우기
-            if (correntAnswerCount >= 5)
+            if (correntAnswerCount >= 1)
             {
                 // 유진이 언니의 월급 관리자 호출
                 // 노동 관리자 호출

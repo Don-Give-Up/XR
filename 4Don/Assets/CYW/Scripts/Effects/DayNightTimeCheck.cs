@@ -84,7 +84,7 @@ public class DayNightTimeCheck : MonoBehaviour
         }
     }
 
-    // 게임 시작 시 아침 환경을 강제로 설정
+    // 게임 시작 시 아침 환경을 강제 설정
     void StartGameAtMorning()
     {
         // 아침 환경 강제 설정
@@ -95,5 +95,15 @@ public class DayNightTimeCheck : MonoBehaviour
         RenderSettings.skybox = skybox1;
         directionalLight.SetActive(true);  // 아침에는 해가 떠 있으므로 조명 활성화
         ToggleLamp(false); // 아침에는 가로등 비활성화
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // N 키를 누르면 하루를 초기화하고 아침으로 설정
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            StartGameAtMorning();  // 아침으로 초기화
+        }
     }
 }
