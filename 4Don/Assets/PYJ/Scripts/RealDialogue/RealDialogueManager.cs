@@ -37,7 +37,6 @@ public class RealDialogueManager : MonoBehaviour
     private List<Button> options;
 
     public AudioSource audioSource;
-    
     private void Start()
     {
         GameEventsManager.instance.npcdialogEvents.onShow += DisplayDialogue;
@@ -50,6 +49,7 @@ public class RealDialogueManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
+        
     }
     
     // Task와 상태를 받아서 해당 상태에 맞는 대화 라인 설정
@@ -127,8 +127,37 @@ public class RealDialogueManager : MonoBehaviour
 
         CheckDialogueIndex();
         CheckEvent(formattedDialogue);
-        //ExtractChosung(dialogue);
+        //PlayDialogueWithPitchAdjustment(dialogue);
         //CheckDialogueIndex();
+        PlayDialogue(dialogue);
+    }
+
+    private void PlayDialogue(string dialogue)
+    {
+        int length = dialogue.Length;
+        int num = 0;
+        int randomNum = (int)Random.Range(1f, 19f);
+
+        while (num < length)
+        {
+            AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
+            // 피치 조정
+            float randomPitch = Random.Range(2f, 3f);  // 피치를 랜덤으로 조절 (0.8f ~ 1.2f)
+
+            // AudioSource에 clip과 pitch 설정
+            audioSource.clip = clip;
+            audioSource.pitch = randomPitch;  // 피치 조절
+            audioSource.Play(); 
+        }
+
+        // Resources에서 해당 오디오 파일을 찾는다
+        //AudioClip clip = Resources.Load<AudioClip>(audioFileName);
+
+        /*if (clip == null)
+        {
+            Debug.LogError($"초성에 해당하는 오디오 파일을 찾을 수 없습니다: {audioFileName}");
+            return;
+        }*/
     }
 
     private void CheckEvent(string currentText)
@@ -192,11 +221,13 @@ public class RealDialogueManager : MonoBehaviour
         // 문장들을 하나로 합쳐서 반환
         return string.Join("", formattedSentences);
     }
-    /*
+    
     // 문자열에서 한 글자씩 분리해서 초성만 분리해서 뭉쳐서 내보낸다.  
     // 
     
     // 한글 음절을 초성만 분리
+/*
+// 한글 음절을 초성만 분리
     public static char GetChosung(char hangul)
     {
         // 한글 유니코드 범위 확인 (AC00 ~ D7A3)
@@ -208,53 +239,67 @@ public class RealDialogueManager : MonoBehaviour
 
         // 초성 인덱스 계산
         int chosungIndex = code / (21 * 28); // 초성의 인덱스 (19개 초성)
-        
+    
         // 초성의 유니코드 범위: 0x1100 ~ 0x1112
-        char chosung = (char)(0x1100 + chosungIndex);
+        char chosung = (char)(0x1100 + chosungIndex);  // 초성 문자 반환
 
         return chosung;  // 초성만 반환
     }
 
     // 문자열에서 초성만 추출하는 함수
+    // 문자열에서 초성만 추출하는 함수
     public static string ExtractChosung(string input)
     {
-        StringBuilder chosung = new StringBuilder(); // string 보다 문자열을 ㅎ율적으로 수정하기 좋음
+        StringBuilder chosung = new StringBuilder(); // string보다 문자열을 더 효율적으로 수정하기 좋음
         foreach (char c in input)
         {
             if (c >= 0xAC00 && c <= 0xD7A3)  // 한글인 경우
             {
-                char 초성 = GetChosung(c);  // 초성만 추출
-                chosung.Append(초성);  // 초성만 추가
+                char cc = GetChosung(c);  // 초성만 추출
+                chosung.Append(cc);  // 초성만 추가
             }
         }
-        
+
         Debug.Log($"초성분리: {chosung}");
         return chosung.ToString();  // 초성만 포함된 문자열 반환
     }
     
     // 초성 음성을 랜덤 피치로 재생
+    // 초성을 받아서 음성을 랜덤 피치로 재생하는 함수
     public void PlaySoundWithRandomPitch(string chosung)
     {
-        // 초성에 해당하는 음성 파일 경로
-        string filePath = "Assets/Resources/Audio/" + chosung + ".mp3";
-
-        // 음성 파일 불러오기
-        AudioClip clip = Resources.Load<AudioClip>(filePath);
-
-        if (clip != null)
+        // 초성은 한 글자만 입력 가능합니다.
+        if (chosung.Length > 1)
         {
-            // 랜덤 피치 설정 (0.5 ~ 1.5 사이)
-            audioSource.pitch = Random.Range(0.5f, 1.5f);
+            Debug.LogError($"초성은 한 글자만 입력 가능합니다. 입력된 초성: {chosung}");
+            return;
+        }
 
-            // 음성 재생
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
-        else
+        // `chosung`을 string으로 변환하여 Map에서 찾을 수 있도록 하기
+        string chosungString = chosung.ToString();  // `chosung`이 `char`이면 `string`으로 변환
+
+        // 초성에 해당하는 오디오 파일 경로
+        string audioFileName = $"Audio/{chosungString}";
+
+        int randomNum = (int)Random.Range(1f, 19f);
+        // Resources에서 해당 오디오 파일을 찾는다
+        //AudioClip clip = Resources.Load<AudioClip>(audioFileName);
+
+        /*if (clip == null)
         {
-            Debug.LogError($"음성 파일 {chosung}.mp3을 찾을 수 없습니다.");
-        }
+            Debug.LogError($"초성에 해당하는 오디오 파일을 찾을 수 없습니다: {audioFileName}");
+            return;
+        }#1#
+        AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
+        // 피치 조정
+        float randomPitch = Random.Range(2f, 3f);  // 피치를 랜덤으로 조절 (0.8f ~ 1.2f)
+
+        // AudioSource에 clip과 pitch 설정
+        audioSource.clip = clip;
+        audioSource.pitch = randomPitch;  // 피치 조절
+        audioSource.Play();  // 재생
     }
+    
     public void PlayDialogueWithPitchAdjustment(string dialogue)
     {
         string chosungSequence = ExtractChosung(dialogue); // 초성만 추출
@@ -271,11 +316,10 @@ public class RealDialogueManager : MonoBehaviour
             PlaySoundWithRandomPitch(chosung.ToString());
 
             // 음성 재생 후 잠시 대기
-            yield return new WaitForSeconds(1f/7f); // 음성 길이에 맞춰 대기
+            yield return new WaitForSeconds(1f/8f); // 음성 길이에 맞춰 대기
         }
     }
     */
-    
 
     private void CheckDialogueIndex()
     {
