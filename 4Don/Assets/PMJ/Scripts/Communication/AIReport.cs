@@ -47,7 +47,8 @@ public class AIReport : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer(); 
         request.SetRequestHeader("Content-Type", "application/json");
 
-        Debug.Log("오래 걸리는거임 오해 ㄴ노 보내긴함");
+        Debug.Log("요청을 보냅니다...");
+        
         // 요청 보내기
         await request.SendWebRequest();  
 
@@ -55,24 +56,48 @@ public class AIReport : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text; 
-            Debug.Log("Response: " + jsonResponse);
+            Debug.Log("응답 받음: " + jsonResponse);
 
-           
-            ResponseData responseData = JsonConvert.DeserializeObject<ResponseData>(jsonResponse);
-            ProcessResponse(responseData); 
+            try
+            {
+                // JSON 응답을 RootData 객체로 역직렬화
+                RootData responseData = JsonConvert.DeserializeObject<RootData>(jsonResponse);
+
+                if (responseData != null)
+                {
+                    ProcessResponse(responseData);
+                }
+                else
+                {
+                    Debug.LogError("응답 데이터를 처리하는 데 실패했습니다. JSON 구조를 확인하세요.");
+                }
+            }
+            catch (JsonException ex)
+            {
+                Debug.LogError("JSON 파싱 중 오류 발생: " + ex.Message);
+            }
         }
         else
         {
-            Debug.LogError("Error: " + request.error);
+            Debug.LogError($"요청 실패: {request.error}");
         }
     }
 
     // JSON 응답을 처리하는 메서드
-    private void ProcessResponse(ResponseData responseData)
+    private void ProcessResponse(RootData responseData)
     {
         // 응답 데이터에서 player_id와 자산 정보 출력
-        Debug.Log($"Player ID: {responseData.raw_data.player_id}");
-        Debug.Log($"Total Assets: {responseData.analysis.AssetStatusSummary}");
+        Debug.Log($"플레이어 ID: {responseData.raw_data.player_id}");
+        
+        var assets = responseData.raw_data.assets;
+        
+        Debug.Log($"총 자산: {assets.total}");
+        Debug.Log($"현금: {assets.cash}");
+        Debug.Log($"저축: {assets.savings}");
+        
+        var analysis = responseData.analysis;
+        
+        Debug.Log($"자산 현황 요약: {analysis.AssetStatusSummary}");
+        Debug.Log($"자산 운용 현황: {analysis.AssetManagementStatus}");
     }
 }
-
