@@ -40,6 +40,10 @@ public class PlayerInterAction : MonoBehaviour
             string npcName = npc.npcinfo.name; 
             GameEventsManager.instance.npcdialogEvents.ShowRealDialogue();
         }
+        else
+        {
+            Debug.Log($"콜라이더 이름: {hit.collider.gameObject.name}");
+        }
         /*if (hit.collider.CompareTag("NPC"))
         {  
             // npc면 대화창을 열것
@@ -52,10 +56,6 @@ public class PlayerInterAction : MonoBehaviour
             // 이때 실행을 해야하나? 
 
         }*/
-        else
-        {
-            Debug.Log($"콜라이더 이름: {hit.collider.gameObject.name}");
-        }
     }
 
     private void QuestReport(RaycastHit hit)// 클릭했을 떄 리포트가 있으면 반환 할 것 
