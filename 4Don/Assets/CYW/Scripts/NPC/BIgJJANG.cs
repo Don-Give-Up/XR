@@ -41,6 +41,26 @@ public class BigJJANG : MonoBehaviour
         {
             anim = bigJJANG.GetComponent<Animator>();
         }
+
+        GameEventsManager.instance.npcdialogEvents.onShow += StartDialogue; 
+        GameEventsManager.instance.npcdialogEvents.offShow += EndDialogue;
+
+    }
+
+    // 여원아 여기 추가 하면 된다!
+    private void StartDialogue()
+    {
+        // 대화를 시작했을 때 있어야 하는 기능
+        // 화면 켜지고, 움직임 멈춰
+    }
+
+    private void EndDialogue()
+    {
+        // 대화 끝났을 떄 있어야 하는 기능
+        // 화면 꺼지고, 다시 움직임 
+      bigJJANG.SetActive(false);
+      bigJJANGLight.SetActive(false);
+      agent.isStopped = false;
     }
 
     private void Update()

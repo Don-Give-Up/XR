@@ -59,7 +59,7 @@ public class Task : ScriptableObject
 
     private RealDialogueManager realDialogueManager;
     private QuestTaskTracker questTaskTracker;
-    
+    private TEST test; 
     public event StateChangedHandler onStateChanged;
     public event SuccessChangedHandler onSuccessChanged;
 
@@ -146,29 +146,26 @@ public class Task : ScriptableObject
 
     public void Start() // Task 가 시작 될 때 // 이 때 표시되게 하면 될 듯 , 
     {
+        test = FindObjectOfType<TEST>();
+        
+        if (test != null)
+        {
+            test.SetTask(this);
+        }
+
         State = TaskState.Inactive; // 일단 등록되면 Inactive 상태가 맞는 거 같음
         //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
+        
+        Active();
 
-        /*
-        if (this.CodeName == "TalkToJJANGforTutorial") // 첫 퀘스트면 
-        {
-            State = TaskState.Running; 
-        }
-        */
-
-
-        if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
+        /*if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
         {
             //첫 퀘스트라면 
             Debug.Log($"firstQuest : {this.CodeName}");
             State = TaskState.Running;
             Active();
-        }
-        /*
-        QuestTaskTracker questTaskTracker = new GameObject("QuestTaskTracker").AddComponent<QuestTaskTracker>(); // 각 업무마다 작업이 등록
-        questTaskTracker.OnDisplay(this,displayName, description);
-        */
+        }*/
         
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);
@@ -179,10 +176,7 @@ public class Task : ScriptableObject
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
-        else
-        {
-            Debug.LogError("RealDialogueManager not found in the scene!");
-        }
+       
     }
 
     public void Active()
@@ -196,18 +190,10 @@ public class Task : ScriptableObject
         {
             questTaskTracker.OnDisplay(this);  // task를 RealDialogueManager에 설정
         }
-        else
-        {
-            Debug.LogError("RealDialogueManager not found in the scene!");
-        }
         
         if (realDialogueManager != null)
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
-        }
-        else
-        {
-            Debug.LogError("RealDialogueManager not found in the scene!");
         }
     }
 
@@ -217,10 +203,6 @@ public class Task : ScriptableObject
         if (realDialogueManager != null)
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
-        }
-        else
-        {
-            Debug.LogError("RealDialogueManager not found in the scene!");
         }
         onStateChanged = null;
         onSuccessChanged = null;

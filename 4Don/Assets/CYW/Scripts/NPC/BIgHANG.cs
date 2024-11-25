@@ -32,6 +32,14 @@ public class BIgHANG : MonoBehaviour
         {
             anim = bigHANG.GetComponent<Animator>();
         }
+
+        GameEventsManager.instance.npcdialogEvents.offShow += OFF; 
+    }
+
+    private void OFF()
+    {
+        bigHANG.SetActive(false);
+        bigHANGLight.SetActive(false);
     }
 
     private void Update()

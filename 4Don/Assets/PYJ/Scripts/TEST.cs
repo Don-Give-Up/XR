@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class TEST : MonoBehaviour
 {
-    public QuestReporter QuestReporter; 
-    
+    private Task task;
+
+    public void SetTask(Task a)
+    {
+        task = a; 
+        Debug.Log($"치트퀘스트: {task.CodeName}");
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Q)) 
         {
-            // 다이알로그 시작한 상황
-            QuestReporter.Report();
+          task.OnStateChanged(task, TaskState.Running, TaskState.Complete);
         }
         
     }
