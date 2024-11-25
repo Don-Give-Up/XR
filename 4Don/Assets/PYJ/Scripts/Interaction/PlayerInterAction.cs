@@ -7,7 +7,7 @@ public class PlayerInterAction : MonoBehaviour
     //public UnityEngine.Events.UnityEvent onTalk;
    
     private float rayDistance = 10f;
-   
+    
     private void Update()
     {
         // Camera.main이 null인지 확인
@@ -28,11 +28,19 @@ public class PlayerInterAction : MonoBehaviour
                 NPCCheck(hit);
             }
         }
+        
     }
 
     private void NPCCheck(RaycastHit hit)
     {
-        if (hit.collider.CompareTag("NPC"))
+        NPC npc = hit.collider.GetComponent<NPC>();
+        
+        if (npc != null)
+        {
+            string npcName = npc.npcinfo.name; 
+            GameEventsManager.instance.npcdialogEvents.ShowRealDialogue();
+        }
+        /*if (hit.collider.CompareTag("NPC"))
         {  
             // npc면 대화창을 열것
             //NPCName(hit); // 이름 뭔지 알아낸다음
@@ -43,22 +51,25 @@ public class PlayerInterAction : MonoBehaviour
             //GameEventsManager.instance.npcdialogEvents.CheckDialogue(NPCName(hit.collider.GetComponent<NPC>().name));
             // 이때 실행을 해야하나? 
 
-        }
+        }*/
         else
         {
-            Debug.Log("NPC 아님"); // 일단 되긴 하는 듯 일단 npc 아니라고 함 ㅋㅋ
+            Debug.Log($"콜라이더 이름: {hit.collider.gameObject.name}");
         }
     }
 
     private void QuestReport(RaycastHit hit)// 클릭했을 떄 리포트가 있으면 반환 할 것 
     {
         Debug.Log("퀘스트 리포터 확인");
-        QuestReporter questReporter = hit.collider.GetComponent<QuestReporter>(); 
+        QuestReporter[] questReporters = hit.collider.GetComponents<QuestReporter>(); 
       
-        if (questReporter != null)
+        if (questReporters != null)
         {
+            foreach (var questReport in questReporters)
+            {
+                questReport.Report();
+            }
             Debug.Log("퀘스트 리포터 확인후 보고");
-            questReporter.Report();
         }
         else
         {

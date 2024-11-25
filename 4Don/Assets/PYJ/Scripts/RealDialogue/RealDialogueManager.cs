@@ -20,18 +20,15 @@ public class RealDialogueManager : MonoBehaviour
     private TMP_Text npcName; 
     
     private RealDialogueLine[] currentDialogue; // 대화 라인 배열
-    private TaskGroup taskGroup; // 퀘스트 그룹
     private Task task; // 현재 할당된 Task
     private int currentDialogueIndex = 0;
     private int currentOptionDialogueIndex = 0; // 일단 이거 쓰는 곳 없음, 어떻게 해야할 지 모르겠음 
     private bool canFinish = false;
     private bool canStartEvent = false;
     private int eventNum = 0;
+    [SerializeField]
     private GameObject[] eventObj;
     
-    // dialogue 
-    //option 의 구조 반복을 어떻게 처리할 지 확인해보기
-
     [SerializeField] 
     private Button optionDialogue;
     [SerializeField] 
@@ -41,34 +38,20 @@ public class RealDialogueManager : MonoBehaviour
 
     public AudioSource audioSource;
     
-    //대화 시작할 떄, 
-    //대화 끝날 떄 
-    // 두가지 상황에 대해서 이벤트??
-
     private void Start()
     {
-        // 클릭 -> 비동기 보고 진행 -> 그 상태를 보고 대화 진행 
-        //GameEventsManager.instance.npcdialogEvents.onShow += NPCInteraction;
-        // "Body" 이름을 가진 자식 오브젝트에서 TMP_Text 컴포넌트를 찾음
         GameEventsManager.instance.npcdialogEvents.onShow += DisplayDialogue;
-        
-        //dialogueText = dialogueObj.transform.Find("Body").GetComponentInChildren<TMP_Text>();
-
-        // "Name" 이름을 가진 자식 오브젝트에서 TMP_Text 컴포넌트를 찾음
-        //npcName = dialogueObj.transform.Find("Name").GetComponentInChildren<TMP_Text>();
 
         optionParentPos = optionParentsObj.transform; 
         
         options = new List<Button>();
-        eventObj = new GameObject[]{ };
+        //eventObj = new GameObject[]{ };
+        foreach (var obj in eventObj)
+        {
+            obj.SetActive(false);
+        }
     }
-
-    //Np
-    /*private void NPCInteraction()
-    {
-        DisplayDialogue(0);
-    }*/
-
+    
     // Task와 상태를 받아서 해당 상태에 맞는 대화 라인 설정
     public RealDialogueLine[] GetDialogue(Task task, TaskState state)
     {
@@ -112,7 +95,7 @@ public class RealDialogueManager : MonoBehaviour
     // 대화 내용 출력 (예시로 콘솔에 출력) // 버튼 눌리면 이거 한다.
     public void DisplayDialogue() //, string npcName)
     {
-        
+        // 여기서 OnShow 관련돤 거 한다음 대본 없음 추가 다른 말 하게 하기
         // dialogueObj가 null인지 확인
         if (dialogueObj == null)
         {
@@ -126,20 +109,16 @@ public class RealDialogueManager : MonoBehaviour
         }
         
         Debug.Log($"대화 인덱스 : {currentDialogueIndex}");
-
-        // 대화창 뜨는 이벤트는 여기서 진행
-        //GameEventsManager.instance.npcdialogEvents.ShowRealDialogue(); 
+        
         OnDialogue();
 
         // 다이알로그 키는 이벤트
         
         string dialogue = currentDialogue[0].dialogue[currentDialogueIndex];
         
-        ExtractChosung(dialogue);
         
         string formattedDialogue = FormatDialogue(dialogue);
 
-        CheckEvent(formattedDialogue);
         
         dialogueText.text = formattedDialogue;
         npcName.text = currentDialogue[0].speaker; 
@@ -147,6 +126,8 @@ public class RealDialogueManager : MonoBehaviour
         Debug.Log($"{currentDialogue[0].speaker}: {formattedDialogue}");
 
         CheckDialogueIndex();
+        CheckEvent(formattedDialogue);
+        //ExtractChosung(dialogue);
         //CheckDialogueIndex();
     }
 
@@ -161,18 +142,27 @@ public class RealDialogueManager : MonoBehaviour
 
     public void ReturnDialogue()
     {
+        GameEventsManager.instance.npcdialogEvents.ShowRealDialogue();
+        Debug.Log($"다이알로그로 돌아와요");
         eventObj[eventNum].SetActive(false);
-        CheckDialogueIndex(); // 일단 해보자잉~
+        canStartEvent = false;
+        OnDialogue();
+        //CheckDialogueIndex(); // 일단 해보자잉~
+        //이벤트 순서가 되었음 , 다음 클릭 때 이벤트 발생하게 해놈
+        // 이벤트가 발생함 
+        // 이 순서로 돌아옴 
+        // 
     }
 
     private void StartEevnet(int objNum)
     {
+        GameEventsManager.instance.npcdialogEvents.offRealDialogue();
         eventObj[objNum].SetActive(true);
-        canFinish = false; 
+        canStartEvent = false; 
         OffDialogue();
         OffOptionDialogue();
     }
-
+    
     // 대화 텍스트를 말 끝나는 기호로 분리하고 줄 바꿈 추가
     private string FormatDialogue(string dialogue)
     {
@@ -202,7 +192,7 @@ public class RealDialogueManager : MonoBehaviour
         // 문장들을 하나로 합쳐서 반환
         return string.Join("", formattedSentences);
     }
-    
+    /*
     // 문자열에서 한 글자씩 분리해서 초성만 분리해서 뭉쳐서 내보낸다.  
     // 
     
@@ -284,13 +274,16 @@ public class RealDialogueManager : MonoBehaviour
             yield return new WaitForSeconds(1f/7f); // 음성 길이에 맞춰 대기
         }
     }
+    */
     
 
     private void CheckDialogueIndex()
     {
+        Debug.Log("대화 인덱스 확인");
         if (canStartEvent)
         {
-            eventNum = currentDialogue[0].options[0].eventObjNum; 
+            eventNum = (int) currentDialogue[0].eventNum.y; 
+            Debug.Log($"이벤트 번호: {eventNum}");
             StartEevnet(eventNum);
             return;
         }
@@ -347,6 +340,9 @@ public class RealDialogueManager : MonoBehaviour
 
     public void DisplayOptionDialogue() 
     {
+        // 대화 시작할 떄를 알려줌
+        //GameEventsManager.instance.npcdialogEvents.ShowRealDialogue();
+        
         OnOptionDialogue();
         
         for (int i = 0; i < currentDialogue[0].options.Length; i++)
@@ -380,7 +376,7 @@ public class RealDialogueManager : MonoBehaviour
         
         foreach (Button option in options)
         {
-            Destroy(option);
+            Destroy(option.gameObject);
         }
         
         options.Clear();
@@ -393,6 +389,7 @@ public class RealDialogueManager : MonoBehaviour
     
     private void EndDialogue()
     {
+        GameEventsManager.instance.npcdialogEvents.offRealDialogue();
         // 창 끄고
         OffDialogue();
         OffOptionDialogue();

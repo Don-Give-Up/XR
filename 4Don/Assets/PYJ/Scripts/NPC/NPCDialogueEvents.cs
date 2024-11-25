@@ -10,6 +10,13 @@ public class NPCDialogueEvents
        onShow?.Invoke();
     }
     
+    public event Action offShow; 
+    public void offRealDialogue()
+    {
+        offShow?.Invoke();
+    }
+
+    
     public event Action<string> onDialogueNumCheck; // string 을 매개변수로 받는 반환값이 없는 매소드
 
     // 이벤트는 알림전달 역할
