@@ -41,7 +41,7 @@ public class RoundSystem : MonoBehaviour
 
     private int currentRound = 0;
     private int currentRoundOffset = 2020; 
-    private bool nextRound; 
+    private bool nextRound = false; 
     public Action<int> onRoundChange; 
 
     public bool isLoaded = false;
@@ -83,7 +83,7 @@ public class RoundSystem : MonoBehaviour
     private async UniTask SStart()
     {
         await UniTask.WaitUntil(() => GoogleSheetManager.Instance.IsLoaded);
-        Debug.Log("@@@@@@"); // 한번 부름 
+        roundText.text = "";
         Debug.Log($"올해 무엇: {currentRound + currentRoundOffset}");
         onRoundChange?.Invoke(currentRound + currentRoundOffset);
         RoundProcess();

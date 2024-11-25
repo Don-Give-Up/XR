@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 10182891}
   - component: {fileID: 10182890}
   m_Layer: 5
-  m_Name: Text - HJ Car
+  m_Name: Text - Meta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD638\uC9C4\uC790\uB3D9\uCC28\n"
+  m_text: "\uBA54\uD0C0IT"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
   m_sharedMaterial: {fileID: 2219011476113103088, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
@@ -1140,7 +1140,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 71692690}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &71692690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1380,7 +1392,7 @@ GameObject:
   - component: {fileID: 98632071}
   - component: {fileID: 98632070}
   m_Layer: 5
-  m_Name: Text - UpAndDown8
+  m_Name: Text - UpAndDown3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1751,7 +1763,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 131905164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &131905164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2937,7 +2961,7 @@ GameObject:
   - component: {fileID: 220725246}
   - component: {fileID: 220725245}
   m_Layer: 0
-  m_Name: Button - MinJung
+  m_Name: Button - Meta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3005,7 +3029,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 220725246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &220725246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,7 +3866,7 @@ GameObject:
   - component: {fileID: 290790927}
   - component: {fileID: 290790926}
   m_Layer: 5
-  m_Name: Text - Now8
+  m_Name: Text - Now2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4269,7 +4305,7 @@ GameObject:
   - component: {fileID: 322151100}
   - component: {fileID: 322151099}
   m_Layer: 0
-  m_Name: Button - MinJu
+  m_Name: Button - YW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4338,14 +4374,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 813881886}
-        m_TargetAssemblyTypeName: NPCDialogueManager, Assembly-CSharp
-        m_MethodName: GotoRealBBuy
-        m_Mode: 1
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4478,7 +4514,7 @@ GameObject:
   - component: {fileID: 333410160}
   - component: {fileID: 333410159}
   m_Layer: 5
-  m_Name: Icon - HJ Car
+  m_Name: Icon - MinJu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4524,7 +4560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1415883654, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
+  m_Sprite: {fileID: 197608639, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5802,7 +5838,7 @@ GameObject:
   - component: {fileID: 449358824}
   - component: {fileID: 449358823}
   m_Layer: 5
-  m_Name: Icon - HJ Car
+  m_Name: Icon - MinJung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5848,7 +5884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1415883654, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
+  m_Sprite: {fileID: -1468124044, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7335,7 +7371,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 507486646}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &507486646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7385,7 +7433,7 @@ GameObject:
   - component: {fileID: 513180223}
   - component: {fileID: 513180224}
   m_Layer: 0
-  m_Name: Size - MinJung JunJa (1)
+  m_Name: Size - MinJung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7451,6 +7499,7 @@ GameObject:
   - component: {fileID: 520836234}
   - component: {fileID: 520836233}
   - component: {fileID: 520836237}
+  - component: {fileID: 520836238}
   m_Layer: 5
   m_Name: StockType Canvas
   m_TagString: Untagged
@@ -7519,7 +7568,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 900
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &520836236
 RectTransform:
@@ -7554,14 +7603,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8bc42ad9c43f3a4385d4564e9e096d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image1: {fileID: 0}
-  image2: {fileID: 2043972646}
+  image1: {fileID: 2043972646}
+  image2: {fileID: 663379392}
   image3: {fileID: 638977397}
   image4: {fileID: 1482799695}
   image5: {fileID: 395524298}
   image6: {fileID: 143094946}
   image7: {fileID: 89663106}
   image8: {fileID: 493685994}
+--- !u!225 &520836238
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520836232}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &532017780
 GameObject:
   m_ObjectHideFlags: 0
@@ -9911,7 +9972,7 @@ GameObject:
   - component: {fileID: 701159051}
   - component: {fileID: 701159050}
   m_Layer: 5
-  m_Name: Text - Now8
+  m_Name: Text - Now4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10130,7 +10191,7 @@ GameObject:
   - component: {fileID: 708216250}
   - component: {fileID: 708216249}
   m_Layer: 5
-  m_Name: Icon - HJ Car
+  m_Name: Icon - Mata
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10176,7 +10237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1415883654, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
+  m_Sprite: {fileID: 1726928070, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10206,7 +10267,7 @@ GameObject:
   - component: {fileID: 708947330}
   - component: {fileID: 708947329}
   m_Layer: 5
-  m_Name: Text - UpAndDown8
+  m_Name: Text - UpAndDown1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10886,7 +10947,7 @@ GameObject:
   - component: {fileID: 775544926}
   - component: {fileID: 775544925}
   m_Layer: 5
-  m_Name: Text - UpAndDown8
+  m_Name: Text - UpAndDown4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11054,7 +11115,7 @@ GameObject:
   - component: {fileID: 791395577}
   - component: {fileID: 791395576}
   m_Layer: 5
-  m_Name: Text - HJ Car
+  m_Name: Text - MinJu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11100,7 +11161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD638\uC9C4\uC790\uB3D9\uCC28\n"
+  m_text: "\uBBFC\uC8FC\uC911\uACF5\uC5C5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
   m_sharedMaterial: {fileID: 2219011476113103088, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
@@ -11993,7 +12054,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 820366820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &820366820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12089,7 +12162,7 @@ GameObject:
   - component: {fileID: 834438219}
   - component: {fileID: 834438218}
   m_Layer: 5
-  m_Name: Text - HJ Car
+  m_Name: Text - BY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12135,7 +12208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD638\uC9C4\uC790\uB3D9\uCC28\n"
+  m_text: "\uBCF4\uC601\uBC14\uC774\uC624"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
   m_sharedMaterial: {fileID: 2219011476113103088, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
@@ -13874,7 +13947,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 944891320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &944891320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16437,7 +16522,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1094697401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562599782}
+        m_TargetAssemblyTypeName: StockOrderManager, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1094697401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22353,7 +22450,7 @@ GameObject:
   - component: {fileID: 1522388679}
   - component: {fileID: 1522388680}
   m_Layer: 0
-  m_Name: Size - MinJu JungGongUp
+  m_Name: Size - MinJu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22941,6 +23038,9 @@ MonoBehaviour:
   canToBuyText: {fileID: 1210400736}
   wantText: {fileID: 1055065879}
   warningText: {fileID: 365707016}
+  priceObj: {fileID: 520836232}
+  orderObj: {fileID: 1631299631}
+  dialogueObj: {fileID: 690971139}
   currentStock: 0
   personalMoney: 5500
 --- !u!4 &1562599783
@@ -23603,6 +23703,7 @@ GameObject:
   - component: {fileID: 1631299635}
   - component: {fileID: 1631299634}
   - component: {fileID: 1631299633}
+  - component: {fileID: 1631299636}
   m_Layer: 5
   m_Name: StockBuyCanvas
   m_TagString: Untagged
@@ -23691,8 +23792,20 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
+--- !u!225 &1631299636
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631299631}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1631623257
 GameObject:
   m_ObjectHideFlags: 0
@@ -24215,7 +24328,7 @@ GameObject:
   - component: {fileID: 1676399246}
   - component: {fileID: 1676399245}
   m_Layer: 5
-  m_Name: Text - UpAndDown8
+  m_Name: Text - UpAndDown2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24351,7 +24464,7 @@ GameObject:
   - component: {fileID: 1681596003}
   - component: {fileID: 1681596002}
   m_Layer: 5
-  m_Name: Icon - HJ Car
+  m_Name: Icon - BY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24397,7 +24510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1415883654, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
+  m_Sprite: {fileID: 14942096, guid: 5ac87f6b71b2d2b48952b2257da3f4e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28286,7 +28399,7 @@ GameObject:
   - component: {fileID: 1946265758}
   - component: {fileID: 1946265759}
   m_Layer: 0
-  m_Name: Size - MinJung JunJa
+  m_Name: Size - Meta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28547,7 +28660,7 @@ GameObject:
   - component: {fileID: 1971956820}
   - component: {fileID: 1971956819}
   m_Layer: 5
-  m_Name: Text - Now8
+  m_Name: Text - Now1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30129,7 +30242,7 @@ GameObject:
   - component: {fileID: 2031730511}
   - component: {fileID: 2031730510}
   m_Layer: 5
-  m_Name: Text - HJ Car
+  m_Name: Text - MinJung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30175,7 +30288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD638\uC9C4\uC790\uB3D9\uCC28\n"
+  m_text: "\uBBFC\uC815\uC804\uC790"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
   m_sharedMaterial: {fileID: 2219011476113103088, guid: a53b808df3937ee4abe2306811ee3744, type: 2}
@@ -30312,7 +30425,7 @@ GameObject:
   - component: {fileID: 2043972646}
   - component: {fileID: 2043972645}
   m_Layer: 0
-  m_Name: Image - Click2
+  m_Name: Image - Click1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30414,7 +30527,7 @@ GameObject:
   - component: {fileID: 2061560105}
   - component: {fileID: 2061560104}
   m_Layer: 5
-  m_Name: Text - Now8
+  m_Name: Text - Now3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31054,7 +31167,7 @@ GameObject:
   - component: {fileID: 2093803829}
   - component: {fileID: 2093803830}
   m_Layer: 0
-  m_Name: Size - BY Bio
+  m_Name: Size - BY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
