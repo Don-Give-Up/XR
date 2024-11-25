@@ -12,6 +12,7 @@ public class ChatBot : MonoBehaviour
     public TMP_InputField question;
     public GameObject mePrefab;
     public GameObject youPrefab;
+    public GameObject empty;
     public GameObject parentPosition;
     public ScrollRect scrollrect;
 
@@ -47,6 +48,7 @@ public class ChatBot : MonoBehaviour
         if (question.text.Trim() != "")
         {
             Me(question.text);
+            Empty();
             StartCoroutine(PostChatBotQuestion(_url));
         }
     }
@@ -91,7 +93,7 @@ public class ChatBot : MonoBehaviour
 
             // JSON 응답을 ChatBotData 객체로 역직렬화
             ChatBotData chatBotData = JsonConvert.DeserializeObject<ChatBotData>(jsonResponse);
-            You(chatBotData.Result);
+            //You(chatBotData.Result);
             Debug.Log(chatBotData.Result);
         }
         else
@@ -136,4 +138,10 @@ public class ChatBot : MonoBehaviour
         Rebuild(text).Forget();
     }
     //읭? 지금 텍스트 받아온건 어디로 주지?
+    private void Empty()
+    {
+        //여기서 내 말 생성해주기   
+        var go = Instantiate(empty, parentPosition.transform);
+        
+    }
 }
