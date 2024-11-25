@@ -6,6 +6,23 @@ public class ReportDataManager : MonoBehaviour
 {
     private RootData parsedData; // 파싱된 데이터를 저장할 객체
 
+    public static ReportDataManager instance;
+    public Assets currentAssets;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void Start()
     {
         LoadJsonData();
@@ -44,5 +61,10 @@ public class ReportDataManager : MonoBehaviour
         {
             Debug.LogError("JSON 파일을 찾을 수 없습니다! Resources 폴더에 Data.json 파일이 있는지 확인하세요.");
         }
+    }
+
+    public void UpdateAssets(Assets newAssets)
+    {
+        currentAssets = newAssets;
     }
 }
