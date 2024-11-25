@@ -22,6 +22,7 @@ public class BEQuiz : MonoBehaviour
     public Action QuizTeleport;
     
     public QuizData[] jsonBEQuizdata;
+    private int currentIndex = 0; // 현재 문제의 인덱스
 
   
 
@@ -65,25 +66,23 @@ public class BEQuiz : MonoBehaviour
     
    
     
-    private void Awake() 
-    {
-        if (Instance == null)
-        {
+    private void Awake() {
+        if (Instance == null) {
             Instance = this;
-            //RoundSystem.Instance.onRoundChange += QuizReset;
-            isFinish = true; 
-        }
-        else
-        {
-            Debug.Log("BEQuiz Destroy");
+            isFinish = true;
+        
+            /*// 여기서 한 번만 리스너 등록
+            oButton.onClick.AddListener(() => OnAnswerSelected("O"));
+            xButton.onClick.AddListener(() => OnAnswerSelected("X"));*/
+        } else {
             Destroy(gameObject);
         }
-       
     }
 
-    private void OnDestroy()
-    {
-        Debug.Log("OnDestroy");
+
+    private void OnDestroy() {
+        oButton.onClick.RemoveAllListeners();
+        xButton.onClick.RemoveAllListeners();
     }
 
 
@@ -127,9 +126,9 @@ public class BEQuiz : MonoBehaviour
     }
     
 
-    private QuizData GETEasyQuiz() 
+    /*private QuizData GETEasyQuiz() 
     {
-        Random.InitState(100);
+        //Random.InitState(100);
         _Count = jsonBEQuizdata.Length;
         if (jsonBEQuizdata != null && _Count > 0 && usedQuiz.Count < _Count)
         {
@@ -148,12 +147,33 @@ public class BEQuiz : MonoBehaviour
         {
             return null;
         }
+    }*/
+    private QuizData GETEasyQuiz() 
+    {
+        if (currentIndex < jsonBEQuizdata.Length) 
+        {
+            for (int i = 0; i < jsonBEQuizdata.Length; i++)
+            {
+                Debug.Log($"순서 : {i} 퀴즈번호 : "+jsonBEQuizdata[i].quizNum);
+            }
+            // 마지막 인덱스부터 시작해서 역순으로 접근
+            int reverseIndex = jsonBEQuizdata.Length - 1 - currentIndex;
+            currentIndex++;
+            Debug.Log("현재 번호 : " + jsonBEQuizdata[reverseIndex].quizNum);
+            return jsonBEQuizdata[reverseIndex];
+        } 
+        else 
+        {
+            Debug.Log("모든 문제를 풀었습니다.");
+            return null;
+        }
     }
 
     public void ShowEasyQuiz() // 퀴즈가 보이게 함.
     {
         QuizTeleport?.Invoke();
         QuizData easyQuiz = GETEasyQuiz();
+        //QuizData easyQuiz = jsonBEQuizdata;
 
 
         if (easyQuiz != null)
@@ -193,16 +213,21 @@ public class BEQuiz : MonoBehaviour
         TextTitle.text = "";
 
         //현재 어디이썽?
-        if (usedQuiz.Count > 0)
+        //if (usedQuiz.Count > 0)
+        if(currentIndex > 0)
         {
-            int lastQuestionIndex = usedQuiz[usedQuiz.Count - 1];
-            QuizData currentQuiz = jsonBEQuizdata[lastQuestionIndex];
+            //int lastQuestionIndex = usedQuiz[usedQuiz.Count - 1];
+            //QuizData currentQuiz = jsonBEQuizdata[lastQuestionIndex];
+            int reverseIndex = jsonBEQuizdata.Length - currentIndex;
+            Debug.Log("현재 번호 : " + jsonBEQuizdata[reverseIndex].quizNum);
+            QuizData currentQuiz = jsonBEQuizdata[reverseIndex];
 
             string result;
 
             //정답 체크
             if (currentQuiz.answer == selectedAnswer)
             {
+                
                 Debug.Log("정답입니다");
                 result = "CORRECT";
                 correntAnswerCount++;
