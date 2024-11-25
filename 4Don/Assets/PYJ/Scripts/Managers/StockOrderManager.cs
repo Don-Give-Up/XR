@@ -19,13 +19,13 @@ public class StockOrderManager : MonoBehaviour
     private int canToBuy; 
     
     public double currentStock; // 주식 가격이랑 연동
-    public double personalMoney = 60000; // 일단 이거 임의로 설정하기
+    public double personalMoney = 50000; // 일단 이거 임의로 설정하기
     
     private bool isOrdered = false;
     
     private double[] stockPrices = new double[8];
     private string[] stockNames = new string[] { "애플IT", "삼성전자", "홀딩스", "바이오", "식품", "에너지", "에어항공", "테슬라"}; // 이거 정하기 
-    private int stockNum = 2; // 일단 홀딩스 주식 살 수 있게 하기
+    private int stockNum = 0; // 일단 홀딩스 주식 살 수 있게 하기
     
     private void Update()
     {
@@ -56,7 +56,7 @@ public class StockOrderManager : MonoBehaviour
         
         wantText.text = "";
         warningText.text = ""; 
-        personalMoney = 60000; // 이거만 personal 거기서 받아오게 하면 first 가 아니라 Set 으로 사용 가능
+        personalMoney = PersonalFinancialManager.Instance.currentMoney; // 이거만 personal 거기서 받아오게 하면 first 가 아니라 Set 으로 사용 가능
         stockPrice = stockPrices[stockNum]; // 일단 주식 가격 할당
         this.stockNum = stockNum;
         canToBuy = (int)(personalMoney / stockPrice); // 몇 주 살 수 있는 지 결정 
@@ -128,7 +128,7 @@ public class StockOrderManager : MonoBehaviour
     {
         if (isOrdered)
         {
-            PersonalFinancialManager.Instance.OutputMoney(stockPrice);
+            PersonalFinancialManager.Instance.OutputMoney(stockPrice * wantToBuy);
             Debug.Log("거래가 완료되었습니다.");
             //Set();
             Set(stockNum);
