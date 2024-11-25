@@ -185,7 +185,7 @@ public class PhoStartGame : MonoBehaviour
             {
                 GameMode = GameMode.Shared,
                 SessionName = "노동",
-                PlayerCount = 2,
+                PlayerCount = 1,
                 Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("3DWork 1"))
             };
             await runner.StartGame(arg);
