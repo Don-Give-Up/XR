@@ -28,7 +28,7 @@ public class BEQuizSolvePost : MonoBehaviour
         {
             gameId = GameDataManager.Instance.gameId,
             quizId = quizNum,
-            correct = "CORRECT"
+            correct = correct
         };
       
 

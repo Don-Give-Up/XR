@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ public class RealDialogueManager : MonoBehaviour
     private bool canFinish = false;
     private bool canStartEvent = false;
     private int eventNum = 0;
+    private string beforeString = "";
     [SerializeField]
     private GameObject[] eventObj;
     
@@ -37,7 +39,6 @@ public class RealDialogueManager : MonoBehaviour
     private List<Button> options;
 
     public AudioSource audioSource;
-    
     private void Start()
     {
         GameEventsManager.instance.npcdialogEvents.onShow += DisplayDialogue;
@@ -96,13 +97,7 @@ public class RealDialogueManager : MonoBehaviour
     public void DisplayDialogue() //, string npcName)
     {
         // 여기서 OnShow 관련돤 거 한다음 대본 없음 추가 다른 말 하게 하기
-        // dialogueObj가 null인지 확인
-        if (dialogueObj == null)
-        {
-            Debug.LogWarning("dialogueObj가 null입니다. 객체가 이미 파괴되었을 수 있습니다.");
-            return; // 더 이상 실행되지 않도록 return
-        }
-        
+     
         if (optionParentsObj.activeSelf) //여기!
         {
             return;
@@ -127,8 +122,49 @@ public class RealDialogueManager : MonoBehaviour
 
         CheckDialogueIndex();
         CheckEvent(formattedDialogue);
-        //ExtractChosung(dialogue);
+        PlayDialogue(dialogue);
+        //PlayDialogueWithPitchAdjustment(dialogue);
         //CheckDialogueIndex();
+    }
+
+    private async UniTaskVoid PlayDialogue(string dialogue)
+    {
+        if (beforeString == dialogue)
+        {
+            return;
+        }
+
+        beforeString = dialogue; 
+
+        Debug.Log($"어떤말하고 있나? {dialogue}");
+        int length = dialogue.Length;
+        int num = 0;
+        int randomNum = (int)Random.Range(1f, 19f);
+
+        /*
+        AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
+        // 피치 조정
+        float randomPitch = Random.Range(3f, 4f);
+        */
+
+        // AudioSource에 clip과 pitch 설정
+        /*audioSource.clip = clip;
+        audioSource.pitch = randomPitch;  // 피치 조절
+        audioSource.Play();
+        await UniTask.WaitForSeconds(1 / 10F); */
+        while (num < length)
+        {
+            num++; 
+            AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
+            // 피치 조정
+            float randomPitch = Random.Range(3f, 4f);
+
+            // AudioSource에 clip과 pitch 설정
+            audioSource.clip = clip;
+            audioSource.pitch = randomPitch;  // 피치 조절
+            audioSource.Play();
+            await UniTask.WaitForSeconds(1 / 10F); 
+        }
     }
 
     private void CheckEvent(string currentText)
@@ -192,91 +228,7 @@ public class RealDialogueManager : MonoBehaviour
         // 문장들을 하나로 합쳐서 반환
         return string.Join("", formattedSentences);
     }
-    /*
-    // 문자열에서 한 글자씩 분리해서 초성만 분리해서 뭉쳐서 내보낸다.  
-    // 
     
-    // 한글 음절을 초성만 분리
-    public static char GetChosung(char hangul)
-    {
-        // 한글 유니코드 범위 확인 (AC00 ~ D7A3)
-        if (hangul < 0xAC00 || hangul > 0xD7A3)
-            throw new ArgumentException("한글 문자만 입력 가능합니다.");
-
-        // 한글 음절의 유니코드 값을 0xAC00 기준으로 변환
-        int code = hangul - 0xAC00;
-
-        // 초성 인덱스 계산
-        int chosungIndex = code / (21 * 28); // 초성의 인덱스 (19개 초성)
-        
-        // 초성의 유니코드 범위: 0x1100 ~ 0x1112
-        char chosung = (char)(0x1100 + chosungIndex);
-
-        return chosung;  // 초성만 반환
-    }
-
-    // 문자열에서 초성만 추출하는 함수
-    public static string ExtractChosung(string input)
-    {
-        StringBuilder chosung = new StringBuilder(); // string 보다 문자열을 ㅎ율적으로 수정하기 좋음
-        foreach (char c in input)
-        {
-            if (c >= 0xAC00 && c <= 0xD7A3)  // 한글인 경우
-            {
-                char 초성 = GetChosung(c);  // 초성만 추출
-                chosung.Append(초성);  // 초성만 추가
-            }
-        }
-        
-        Debug.Log($"초성분리: {chosung}");
-        return chosung.ToString();  // 초성만 포함된 문자열 반환
-    }
-    
-    // 초성 음성을 랜덤 피치로 재생
-    public void PlaySoundWithRandomPitch(string chosung)
-    {
-        // 초성에 해당하는 음성 파일 경로
-        string filePath = "Assets/Resources/Audio/" + chosung + ".mp3";
-
-        // 음성 파일 불러오기
-        AudioClip clip = Resources.Load<AudioClip>(filePath);
-
-        if (clip != null)
-        {
-            // 랜덤 피치 설정 (0.5 ~ 1.5 사이)
-            audioSource.pitch = Random.Range(0.5f, 1.5f);
-
-            // 음성 재생
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
-        else
-        {
-            Debug.LogError($"음성 파일 {chosung}.mp3을 찾을 수 없습니다.");
-        }
-    }
-    public void PlayDialogueWithPitchAdjustment(string dialogue)
-    {
-        string chosungSequence = ExtractChosung(dialogue); // 초성만 추출
-
-        // 각 초성을 순차적으로 재생
-        StartCoroutine(PlayChosungSounds(chosungSequence));
-    }
-
-    private IEnumerator PlayChosungSounds(string chosungSequence)
-    {
-        foreach (char chosung in chosungSequence)
-        {
-            // 초성에 해당하는 음성 파일 재생
-            PlaySoundWithRandomPitch(chosung.ToString());
-
-            // 음성 재생 후 잠시 대기
-            yield return new WaitForSeconds(1f/7f); // 음성 길이에 맞춰 대기
-        }
-    }
-    */
-    
-
     private void CheckDialogueIndex()
     {
         Debug.Log("대화 인덱스 확인");
@@ -292,6 +244,7 @@ public class RealDialogueManager : MonoBehaviour
         {
             if (currentDialogue[0].options.Length > 0)
             {
+                //PlayDialogue(currentDialogue[0].dialogue[currentDialogueIndex]); 
                 DisplayOptionDialogue();
                 return;
             }
@@ -313,6 +266,7 @@ public class RealDialogueManager : MonoBehaviour
         }
         else
         {
+            //PlayDialogue(currentDialogue[0].dialogue[currentDialogueIndex]);
             currentDialogueIndex++;
         }
         
@@ -373,11 +327,13 @@ public class RealDialogueManager : MonoBehaviour
         Debug.Log($"몇 번 버튼 ?: {currentOptionDialogueIndex}");
         currentDialogue = currentDialogue[0].options[currentOptionDialogueIndex].nextDialogue; // 매개변수로 바꿔주기
         // 데화 다시 시작할 수 있게 해줌
+        //PlayDialogue(currentDialogue[0].dialogue[0]);
         
         foreach (Button option in options)
         {
             Destroy(option.gameObject);
         }
+        
         
         options.Clear();
         

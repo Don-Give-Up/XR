@@ -30,6 +30,10 @@ public class Task : ScriptableObject
     [SerializeField]
     private string description;
 
+    [Header("Detail")]
+    [SerializeField] 
+    private string[] directions; 
+
     [Header("Action")]
     [SerializeField]
     private TaskAction action;

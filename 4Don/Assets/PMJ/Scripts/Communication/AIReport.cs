@@ -71,8 +71,8 @@ public class AIReport : MonoBehaviour
     private void ProcessResponse(ResponseData responseData)
     {
         // 응답 데이터에서 player_id와 자산 정보 출력
-        Debug.Log($"Player ID: {responseData.raw_Data.player_id}");
-        Debug.Log($"Total Assets: {responseData.raw_Data.assets.total}");
+        Debug.Log($"Player ID: {responseData.raw_data.player_id}");
+        Debug.Log($"Total Assets: {responseData.analysis.AssetStatusSummary}");
     }
 }
 

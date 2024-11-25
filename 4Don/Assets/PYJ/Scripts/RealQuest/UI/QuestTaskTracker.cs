@@ -7,15 +7,19 @@ public class QuestTaskTracker : MonoBehaviour
 {
     public GameObject questPrefab;
     public Transform questParent; // 퀘스트가 표시될 부모 객체
-    private Queue<GameObject> quests; 
+    private Queue<GameObject> quests;
+    private Task currentTask;
 
     private void Awake()
     {
         quests = new Queue<GameObject>();
     }
 
+    // 만약 이미 불렀던 값이면 다시 부르지 말기
     public void OnDisplay(Task task)
     {
+        // 현재 등록된 퀘스트를 가지고 온다.
+        
         string title = task.DisplayName;
         string body = task.Description; 
         
@@ -138,4 +142,7 @@ public class QuestTaskTracker : MonoBehaviour
         // 애니메이션 종료 후 완전히 흐려지고 왼쪽으로 이동했으므로 삭제
         Destroy(questDisplay);
     }
+    
+    // 퀘스트가 설명이 있으면 눌렀을 떄 늘어나면서 나오던가 
+    // 퀘스트가 설명이 있으면 밑에 작게 추가되던가
 }
