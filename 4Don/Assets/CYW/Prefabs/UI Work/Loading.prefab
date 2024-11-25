@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 1306514146318277294}
   - component: {fileID: 7318566012324047197}
   - component: {fileID: 8943809275901934079}
+  - component: {fileID: 1131453084559924059}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -321,6 +322,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 180
+  blinkSpeed: 1
+--- !u!225 &1131453084559924059
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810999467245298552}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5723902064667641460
 GameObject:
   m_ObjectHideFlags: 0
