@@ -39,8 +39,8 @@ public class BEBanklogs : MonoBehaviour
         var banklog = new Banklogs
         {
             gameId = GameDataManager.Instance.gameId,
-            savingProductId = id,
-            bankTotalPrice = amount
+            savingProductId = 1,
+            bankTotalPrice = 2
         };
         
 

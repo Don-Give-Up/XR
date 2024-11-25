@@ -32,8 +32,8 @@ public class BEChoiceProduct : MonoBehaviour
         var choiceRequest = new ChoiceProduct
         {   
             gameId = GameDataManager.Instance.gameId,
-            selectProductId = productId,
-            selectProductPurchaseAmount = amount
+            selectProductId = 1,
+            selectProductPurchaseAmount = 2
         };
         /*// 보낼 데이터를 생성
         var choiceRequest = new ChoiceProduct
