@@ -58,15 +58,32 @@ public class BigJJANG : MonoBehaviour
     {
         // 대화 끝났을 떄 있어야 하는 기능
         // 화면 꺼지고, 다시 움직임 
-      bigJJANG.SetActive(false);
-      bigJJANGLight.SetActive(false);
-      agent.isStopped = false;
+        if (bigJJANG != null)
+        {
+            // bigJJANG 오브젝트를 끄기
+            bigJJANG.SetActive(false);
+            bigJJANGLight.SetActive(false);
+
+            // 애니메이션 파라미터 "IsTalking"을 false로 설정
+            if (anim != null)
+            {
+                anim.SetBool("IsTalking", false); // 비활성화되면 false
+            }
+
+            // NPC가 다시 이동 가능하도록
+            agent.isStopped = false;
+
+            // WayPoint로 이동 (필요한 경우)
+            bigJjangMovement.ToNextWaypoint();
+        }
+      
     }
 
     private void Update()
     {
         QuestionMark();
-
+        
+        
         // 마우스 클릭 시
         if (Input.GetMouseButtonDown(0))
         {
@@ -82,32 +99,23 @@ public class BigJJANG : MonoBehaviour
                 {
                     if (bigJJANG != null)
                     {
-                        // bigJJANG 오브젝트를 켜거나 끄기
-                        bool isActive = !bigJJANG.activeSelf;
-                        bigJJANG.SetActive(isActive);
-                        bigJJANGLight.SetActive(isActive);
-
-                        // 물음표 오브젝트 끄기
-                        mark.SetActive(false);
-
-
-                        // 애니메이션 파라미터 "IsTalking"을 설정
-                        if (anim != null)
+                        // bigJJANG 오브젝트가 아직 비활성화되어 있으면, 한 번만 활성화
+                        if (!bigJJANG.activeSelf)
                         {
-                            anim.SetBool("IsTalking", isActive); // 활성화되면 true, 비활성화되면 false
-                            // 말하는 중일 때 WayPoint로 이동하지 않게
-                           
-                            //말하는 중일 때 NPC가 그 자리에 멈추도록
-                            if (isActive)
+                            bigJJANG.SetActive(true);
+                            bigJJANGLight.SetActive(true);
+
+                            // 물음표 오브젝트 끄기
+                            mark.SetActive(false);
+
+                            // 애니메이션 파라미터 "IsTalking"을 true로 설정
+                            if (anim != null)
                             {
+                                anim.SetBool("IsTalking", true); // 활성화되면 true
+
+                                // 말하는 중일 때 WayPoint로 이동하지 않게
                                 agent.isStopped = true;
                             }
-                            else
-                            {
-                                agent.isStopped = false;
-                                bigJjangMovement.ToNextWaypoint();
-                            }
-                            
                         }
                     }
                 }
