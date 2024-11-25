@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -37,6 +38,8 @@ public class RealDialogueManager : MonoBehaviour
     private GameObject optionParentsObj;
     private Transform optionParentPos;
     private List<Button> options;
+    
+    private CancellationTokenSource cancellationTokenSource;
 
     public AudioSource audioSource;
     private void Start()
@@ -122,7 +125,7 @@ public class RealDialogueManager : MonoBehaviour
 
         CheckDialogueIndex();
         CheckEvent(formattedDialogue);
-        PlayDialogue(dialogue);
+        //PlayDialogue(dialogue);
         //PlayDialogueWithPitchAdjustment(dialogue);
         //CheckDialogueIndex();
     }
@@ -134,27 +137,34 @@ public class RealDialogueManager : MonoBehaviour
             return;
         }
 
-        beforeString = dialogue; 
+        beforeString = dialogue;
+
+        // 이전 대사가 실행 중이면 취소 처리
+        if (cancellationTokenSource != null)
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
+        }
+
+        cancellationTokenSource = new CancellationTokenSource(); // 새로운 토큰 소스 생성
+        CancellationToken token = cancellationTokenSource.Token;
 
         Debug.Log($"어떤말하고 있나? {dialogue}");
         int length = dialogue.Length;
         int num = 0;
         int randomNum = (int)Random.Range(1f, 19f);
 
-        /*
-        AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
-        // 피치 조정
-        float randomPitch = Random.Range(3f, 4f);
-        */
-
-        // AudioSource에 clip과 pitch 설정
-        /*audioSource.clip = clip;
-        audioSource.pitch = randomPitch;  // 피치 조절
-        audioSource.Play();
-        await UniTask.WaitForSeconds(1 / 10F); */
         while (num < length)
         {
-            num++; 
+            num++;
+
+            // 취소 토큰을 체크하여 취소 요청이 있으면 종료
+            if (token.IsCancellationRequested)
+            {
+                Debug.Log("대사 재생이 취소되었습니다.");
+                return;
+            }
+
             AudioClip clip = Resources.Load<AudioClip>($"Audio/{randomNum}");
             // 피치 조정
             float randomPitch = Random.Range(3f, 4f);
@@ -225,6 +235,7 @@ public class RealDialogueManager : MonoBehaviour
             }
         }
 
+        PlayDialogue(formattedSentences[0]);
         // 문장들을 하나로 합쳐서 반환
         return string.Join("", formattedSentences);
     }
