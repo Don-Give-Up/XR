@@ -5,6 +5,8 @@ public class StoreOpenDoor : MonoBehaviour
     public Animator leftDoorAnim;
     public Animator rightDoorAnim;
 
+    public AudioSource audioSource; // 문 여는 소리
+    
     private void OnTriggerEnter(Collider other)
     {
       
@@ -16,6 +18,7 @@ public class StoreOpenDoor : MonoBehaviour
             // 두 문을 동시에 열게 트리거 실행
             leftDoorAnim.SetTrigger("Open");
             rightDoorAnim.SetTrigger("Open");
+            audioSource.Play();
         }
     }
 }
