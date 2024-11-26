@@ -102,7 +102,7 @@ public class BEQuiz : MonoBehaviour
        
     }*/
 
-    public void Start()
+    public void AStart()
     {
         jsonBEQuizdata = BEQuizStart.BEQuizdata;
         desImage.SetActive(false);

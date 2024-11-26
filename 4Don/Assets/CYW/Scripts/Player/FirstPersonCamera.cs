@@ -30,6 +30,13 @@ public class FirstPersonCamera : MonoBehaviour
         personalCamera.enabled = false;
         fixedCamera.enabled = true;
     }
+    
+    public void SwitchToPersonalCamera()
+    {
+        useFixedCamera = false;
+        personalCamera.enabled = true;
+        fixedCamera.enabled = false;
+    }
 
     void LateUpdate()
     {
