@@ -90,6 +90,8 @@ public class QuestTaskTracker : MonoBehaviour
         
         UpdateText(questDiaplay);
         // 소리 효과, 띠링
+        SoundManager sound = this.GetComponentInChildren<SoundManager>();
+        sound.SoundPlay();
 
         //QuestSoundManager questSoundManager = GameObject.Find() 
         
@@ -159,7 +161,8 @@ public class QuestTaskTracker : MonoBehaviour
             // 첫 번째 퀘스트 UI 객체를 큐에서 꺼냄
             GameObject questToRemove = quests.Dequeue();
             // 퀘스트 완료 효과, 띠로링
-
+            SoundManager sound = this.GetComponentInChildren<SoundManager>();
+            sound.SoundPlay();
             // 애니메이션 시작 (흐리게 되면서 왼쪽으로 이동)
             StartCoroutine(FadeOutAndMoveLeft(questToRemove));
 
