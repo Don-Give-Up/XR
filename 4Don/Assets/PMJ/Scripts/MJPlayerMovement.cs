@@ -12,7 +12,6 @@ public class MJPlayerMovement : NetworkBehaviour
     private bool _jumpPressed;
 
     private SimpleKCC _controller;
-    private SimpleKCC NoChDrop;
 
     public float PlayerSpeed = 2f;
 
@@ -28,12 +27,12 @@ public class MJPlayerMovement : NetworkBehaviour
     public AudioClip stepSound2;
 
     private bool isFirstsound = true;
+    private bool isTeleported = false;
 
     private int _spawnCount;
     
     private void Awake()
     {
-        _controller = GetComponent<SimpleKCC>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -67,7 +66,7 @@ public class MJPlayerMovement : NetworkBehaviour
         if (HasStateAuthority)
         {
             Camera = FindAnyObjectByType<FirstPersonCamera>();
-            NoChDrop = GetComponent<SimpleKCC>();
+            _controller = GetComponent<SimpleKCC>();
             
             _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
             Debug.Log(_spawnCount);
@@ -81,14 +80,14 @@ public class MJPlayerMovement : NetworkBehaviour
             {
                 Camera.Target = transform;
                 
-                NoChDrop.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
+                _controller.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
             }
         }
     }
 
-    private void Teleport()
+    public void Teleport()
     {
-        NoChDrop.SetPosition(new Vector3(0, 3f, _spawnCount + 4f), true);
+        isTeleported = true;
     }
 
     public override void FixedUpdateNetwork()
@@ -120,6 +119,12 @@ public class MJPlayerMovement : NetworkBehaviour
         }
 
         _jumpPressed = false;
+
+        if (isTeleported)
+        {
+            isTeleported = false;
+            _controller.SetPosition(new Vector3(0, 3f, _spawnCount + 4f), true, true);
+        }
     }
 
     // 따발총 소리 해결

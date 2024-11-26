@@ -30,6 +30,10 @@ public class Task : ScriptableObject
     [SerializeField]
     private string description;
 
+    [Header("Detail")]
+    [SerializeField] 
+    private string[] directions; 
+
     [Header("Action")]
     [SerializeField]
     private TaskAction action;
@@ -106,6 +110,8 @@ public class Task : ScriptableObject
     public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
+
+    public string[] Directions => directions; 
     public TaskState State // 상태가 변경될 때, 자동으로 할당
     {
         get => state;

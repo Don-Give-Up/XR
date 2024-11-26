@@ -657,7 +657,7 @@ MonoBehaviour:
   bigJJANG: {fileID: 393610507502351102}
   bigJJANGLight: {fileID: 468007747170295708}
   anim: {fileID: 3642443633919306589}
-  mark: {fileID: 380836607710330236}
+  mark: {fileID: 1685250031412612154}
   agent: {fileID: 1059795061013906544}
   jjangTag: NPC
   bigJjangMovement: {fileID: 3643475103681303443}
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 24269131
+  SortKey: 1823212278
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -739,6 +739,55 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!1 &3051802925317463140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8938447239942692721}
+  - component: {fileID: 6885832288908815570}
+  m_Layer: 0
+  m_Name: SkyBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8938447239942692721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051802925317463140}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3915344126124676066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6885832288908815570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051802925317463140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d2aa9528ca8b448992432c4efa465f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skybox1: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
+  skybox2: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
+  skybox3: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
+  Lamp: {fileID: 0}
+  directionalLight: {fileID: 0}
 --- !u!1 &3367567144450301323
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +822,7 @@ Transform:
   - {fileID: 8927725055460269759}
   - {fileID: 5392070238834521634}
   - {fileID: 946319607430587563}
+  - {fileID: 8938447239942692721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3482633791490287918
@@ -953,7 +1003,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a070293e3b424774d95020cf187a38c3, type: 2}
   m_BuildHeightMesh: 0
@@ -2367,6 +2417,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6245742623385853276, guid: 1383977d14cdab84fa5b4f2ec0c9624b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6321438654749380409, guid: 1383977d14cdab84fa5b4f2ec0c9624b, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2412,9 +2466,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1383977d14cdab84fa5b4f2ec0c9624b, type: 3}
---- !u!1 &380836607710330236 stripped
+--- !u!1 &1685250031412612154 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4938021937427737626, guid: 1383977d14cdab84fa5b4f2ec0c9624b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6245742623385853276, guid: 1383977d14cdab84fa5b4f2ec0c9624b, type: 3}
   m_PrefabInstance: {fileID: 4741833193613594982}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &3642443633919306589 stripped

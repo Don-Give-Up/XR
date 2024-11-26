@@ -14,6 +14,10 @@ public class StockPriceManager : MonoBehaviour
     private double[] beforeRoundStockPrice = new double[8];
     
     public double wantToBuyStockPrice = 0;
+    
+    private Color red = Color.red;
+    private Color blue = Color.blue;
+    private Color block = Color.black;
 
     // 주식 구매 관련 이벤트
     public Action<double> onWantToBuyStock;
@@ -36,6 +40,7 @@ public class StockPriceManager : MonoBehaviour
     private void OnEnable()
     {
         RoundSystem.Instance.onRoundChange += RoundStockPriceGet; // 라운드가 바뀔 때 가격이 바뀜
+        StockPrice().Forget();
     }
 
     // 라운드 변경 시 주식 가격 업데이트
@@ -75,7 +80,6 @@ public class StockPriceManager : MonoBehaviour
         }
         Debug.Log("가격 받았음 둥");
         
-        StockPrice();
     }
 
     // 값에 변동을 주는 코드
@@ -93,7 +97,7 @@ public class StockPriceManager : MonoBehaviour
                 double currentStockPrice = roundStockPrices[i] + Random.Range(lowerBound, upperBound);
                 double dayOverDay = (((currentStockPrice - beforeRoundStockPrice[i]) / beforeRoundStockPrice[i]) * 100);
                 
-                //StockText(i, currentStockPrice, dayOverDay);
+                StockText(i, currentStockPrice, dayOverDay);
             }
 
             // 1초 간격으로 갱신
@@ -105,8 +109,22 @@ public class StockPriceManager : MonoBehaviour
     private void StockText(int i, double stockPrice, double dayDif)
     {
         
-        //stockCurrentObj[2*i].text = stockPrice.ToString("N0");
-        //stockCurrentObj[2*i + 1].text = dayDif.ToString("N0");
+        stockCurrentObj[2*i].text = stockPrice.ToString("N0");
+
+        if (dayDif > 0)
+        {
+            stockCurrentObj[2 * i + 1].color = red;
+        }
+        else if (dayDif < 0)
+        {
+            stockCurrentObj[2 * i + 1].color = blue;
+        }
+        else
+        {
+            stockCurrentObj[2 * i + 1].color = block; 
+        }
+
+        stockCurrentObj[2*i + 1].text = dayDif.ToString("N0");
         
     }
 

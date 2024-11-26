@@ -4,8 +4,12 @@ public class QuizOpenDoor : MonoBehaviour
 {
     public Animator leftDoorAnim;
     public Animator rightDoorAnim;
-    
+
+    public AudioSource audioSource; // 문 여는 소리
     private PhoStartGame a;
+    
+   
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +22,7 @@ public class QuizOpenDoor : MonoBehaviour
             // 두 문을 동시에 열게 트리거 실행
             leftDoorAnim.SetTrigger("Open");
             rightDoorAnim.SetTrigger("Open");
+            audioSource.Play();
         }
     }
     
