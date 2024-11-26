@@ -71,17 +71,17 @@ public class MJPlayerMovement : NetworkBehaviour
             _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
             Debug.Log(_spawnCount);
             
-            if (SceneManager.GetActiveScene().name == "3DWork 1")
+            /*if (SceneManager.GetActiveScene().name == "3DWork 1")
             {
                 BEQuiz.Instance.QuizTeleport += Teleport;
                 Teleport();
-            }
-            else
-            {
+            }*/
+            
+          
                 Camera.Target = transform;
                 
                 _controller.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
-            }
+            
         }
     }
 
@@ -123,7 +123,7 @@ public class MJPlayerMovement : NetworkBehaviour
         if (isTeleported)
         {
             isTeleported = false;
-            _controller.SetPosition(new Vector3(0, 3f, _spawnCount + 4f), true, true);
+            _controller.SetPosition(new Vector3(537f, 36f, _spawnCount + 179f), true, true);
         }
     }
 

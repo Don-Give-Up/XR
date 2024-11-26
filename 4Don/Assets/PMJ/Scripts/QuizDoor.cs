@@ -30,11 +30,17 @@ public class QuizDoor : MonoBehaviour
         {
             await UniTask.Delay(1550);
             _1Key.SetActive(false);
-            _interact = false;
             OnTrigger = false;
             Debug.Log("자 노동 드가자");
-            readyCanvasZzab.SetActive(true); 
-            a.JoinQuiz();
+            //readyCanvasZzab.SetActive(true); 
+            //a.JoinQuiz();
+            // 플레이어 텔레포트 실행
+            var player = FindObjectOfType<MJPlayerMovement>();
+            if (player != null && _interact )
+            {
+                player.Teleport();
+                _interact = false;
+            }
         }
 
     }

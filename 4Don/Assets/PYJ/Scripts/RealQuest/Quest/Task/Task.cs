@@ -105,8 +105,6 @@ public class Task : ScriptableObject
                     
                 }
             }
-            
-            // 여기 setTask 부르면 안 됨
         }
     }
     public Category Category => category;
