@@ -90,6 +90,8 @@ public class QuestTaskTracker : MonoBehaviour
         
         UpdateText(questDiaplay);
         // 소리 효과, 띠링
+
+        //QuestSoundManager questSoundManager = GameObject.Find() 
         
         await UniTask.WaitUntil(() => Input.GetMouseButtonDown(0));
 
