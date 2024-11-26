@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_ENV_Water_City
   m_Shader: {fileID: 4800000, guid: 65a8f26568f587244976c6e6d66ddb95, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -87,7 +90,7 @@ Material:
     - _Normal2Size: 0.07
     - _NormalStrength: 0.3
     - _OcclusionStrength: 1
-    - _Opacity: 0.939
+    - _Opacity: 0.72
     - _Parallax: 0.02
     - _QueueControl: -1
     - _QueueOffset: 0
@@ -111,3 +114,4 @@ Material:
     - _Normal2Speed: {r: 0.04, g: -0.01, b: 0, a: 0}
     - _RipplesEmission: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

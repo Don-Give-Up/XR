@@ -79,12 +79,12 @@ public class BEChoiceProductMember : MonoBehaviour
         // 변환된 데이터를 출력
         foreach (var member in choiceProductMembers)
         {
-            Debug.Log($"선택상품Game ID: {member.gameId}, " +
+            /*Debug.Log($"선택상품Game ID: {member.gameId}, " +
                       $"Purchase Record ID: {member.selectProductPurchaseRecordId}, " +
                       $"Product Name: {member.selectProductName}, " +
                       $"Member ID: {member.gameMemberId}, " +
                       $"Purchase Amount: {member.selectProductPurchaseAmount}, " +
-                      $"Total Price: {member.productTotalPrice}");
+                      $"Total Price: {member.productTotalPrice}");*/
         }
     }
 

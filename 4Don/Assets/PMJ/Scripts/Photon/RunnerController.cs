@@ -20,10 +20,10 @@ public class RunnerController : INetworkRunnerCallbacks
             
             if (runner.IsSharedModeMasterClient)
             {
-               // PhoStartGame.Instance.runner.SpawnAsync(JJANGPrefab);
+                // PhoStartGame.Instance.runner.SpawnAsync(JJANGPrefab);
                 // 여기서 스폰하기
-                Debug.Log("짱 출발!!!");
-                runner.Spawn(PhoStartGame.Instance.JJANGPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                // Debug.Log("짱 출발!!!");
+                // runner.Spawn(PhoStartGame.Instance.JJANGPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
             }
         }
     }

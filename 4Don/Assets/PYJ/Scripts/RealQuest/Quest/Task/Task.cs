@@ -67,7 +67,9 @@ public class Task : ScriptableObject
     public event StateChangedHandler onStateChanged;
     public event SuccessChangedHandler onSuccessChanged;
 
-    private QuestReporter questReporter; 
+    private QuestReporter questReporter;
+
+    private QuestPositionManager questPointManager; 
 
     public int CurrentSuccess // 성공 횟수에 대한 부분 // Setter는 값을 설정하는 매서드, 속성에 값이 할당될 때 set 매서드가 자동으로 할당됨 
     {
@@ -110,6 +112,8 @@ public class Task : ScriptableObject
     public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
+
+    public string[] Directions => directions; 
     public TaskState State // 상태가 변경될 때, 자동으로 할당
     {
         get => state;
@@ -161,15 +165,13 @@ public class Task : ScriptableObject
         //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
         
-        Active();
-
-        /*if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
+        if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
         {
             //첫 퀘스트라면 
             Debug.Log($"firstQuest : {this.CodeName}");
             State = TaskState.Running;
             Active();
-        }*/
+        }
         
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);

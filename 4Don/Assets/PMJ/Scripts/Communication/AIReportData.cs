@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class Assets
@@ -9,6 +9,10 @@ public class Assets
     public float savings;        // 저축
     public float products;       // 상품 구매 자산
     public float stocks;         // 주식 자산
+    public float avg_assets;     // 평균 자산
+    public float avg_stocks;     // 평균 주식 자산
+    public float avg_products;   // 평균 상품 구매 자산
+    public float avg_savings;    // 평균 저축 자산
     public float avg_difference; // 평균 대비 차이
 }
 
@@ -32,16 +36,16 @@ public class RawData
 [Serializable]
 public class Analysis
 {
-    public string AssetStatusSummary;          // 자산 현황 요약
-    public string AssetManagementStatus;       // 자산 운용 현황
-    public string InvestmentPropensityAnalysis;// 투자 성향 분석
-    public string LearningAnalytics;           // 금융 이해도 진단
-    public string ImprovementSuggestions;      // 개선 제안
+    public string AssetStatusSummary; // 자산 현황 요약
+    public string AssetManagementStatus; // 자산 운용 현황
+    public string InvestmentPropensityAnalysis; // 투자 성향 분석
+    public string LearningAnalytics; // 금융 이해도 진단
+    public string ImprovementSuggestions; // 개선 제안
 }
 
 [Serializable]
 public class RootData
 {
-    public RawData raw_data;  // 기본 데이터
-    public Analysis analysis; // 분석 데이터
+    public RawData raw_data;  // 기본 데이터 (자산 및 비율)
+    public Analysis analysis; // 분석 데이터 (요약 및 제안)
 }
