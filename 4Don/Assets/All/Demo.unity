@@ -2577,6 +2577,7 @@ Transform:
   - {fileID: 971466493}
   - {fileID: 850492510}
   - {fileID: 655747371}
+  - {fileID: 1814149679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &166528228
@@ -6883,6 +6884,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4126228396140728692, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1985851785}
+    - targetCorrespondingSourceObject: {fileID: 4126228396140728692, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985851786}
     - targetCorrespondingSourceObject: {fileID: 640627711432260678, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2081254832}
@@ -23764,6 +23768,7 @@ GameObject:
   - component: {fileID: 1537684158}
   - component: {fileID: 1537684159}
   - component: {fileID: 1537684160}
+  - component: {fileID: 1537684161}
   m_Layer: 0
   m_Name: Bank - Doors
   m_TagString: Untagged
@@ -23943,6 +23948,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1537684161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537684155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9224af9b551d9e64e8b17ab91e8798a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointName: Bank
 --- !u!1 &1548281305
 GameObject:
   m_ObjectHideFlags: 0
@@ -28711,6 +28729,50 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: 6d0ec46f78236b84399041686f43b041, type: 2}
   successCount: 1
   colliderTags: []
+--- !u!1 &1814149678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814149679}
+  - component: {fileID: 1814149680}
+  m_Layer: 0
+  m_Name: QuestPositionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814149679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814149678}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 166528227}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814149680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814149678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3037604b05bd1ef4d823934082b784c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817723661
 GameObject:
   m_ObjectHideFlags: 0
@@ -30652,6 +30714,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1985851786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985851781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9224af9b551d9e64e8b17ab91e8798a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointName: Quiz
 --- !u!1 &1991486179
 GameObject:
   m_ObjectHideFlags: 0
@@ -31878,6 +31953,7 @@ GameObject:
   - component: {fileID: 2027047035}
   - component: {fileID: 2027047036}
   - component: {fileID: 2027047037}
+  - component: {fileID: 2027047038}
   m_Layer: 0
   m_Name: Store - Doors
   m_TagString: Untagged
@@ -32035,6 +32111,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2027047038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027047033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9224af9b551d9e64e8b17ab91e8798a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointName: Store
 --- !u!1 &2031730508
 GameObject:
   m_ObjectHideFlags: 0
