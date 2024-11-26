@@ -64,6 +64,7 @@ public class BEQuiz : MonoBehaviour
 
     public SeeSawManager seeSawManager;
     public BEQuizSolvePost quizSolvePost;
+    public LoadingPanel loadingPanel;
 
     public AudioSource oSound;
     public AudioSource xSound;
@@ -287,10 +288,14 @@ public class BEQuiz : MonoBehaviour
                 Debug.Log("수고이미지 나와유");
                 await UniTask.Delay(2000);
                 SetActiveFalse();
-
-
-                await PhoStartGame.Instance.Shutdown();
-                await PhoStartGame.Instance.JoinSquare();
+        
+                loadingPanel.OnLoading();
+                loadingPanel.GotoSpaure();
+                await UniTask.Delay(2000);
+                loadingPanel.EndLoading();
+                
+                /*await PhoStartGame.Instance.Shutdown();
+                await PhoStartGame.Instance.JoinSquare();*/
 
                 return;
             }
