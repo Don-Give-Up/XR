@@ -61,7 +61,7 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         StartCoroutine(Test());
     }
     */
-
+ 
     private void Start()
     {
         RoundSystem.Instance.onRoundChange += Day;

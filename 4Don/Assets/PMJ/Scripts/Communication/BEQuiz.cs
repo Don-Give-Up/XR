@@ -57,6 +57,7 @@ public class BEQuiz : MonoBehaviour
 
     public float displayTime = 5f; // 해설에 배경 이미지가 표시되는 시간
     public float displayDuration = 2f; // 텍스트가 표시될 시간
+    private double dayoffer = 0; 
     
 
     public static BEQuiz Instance;
@@ -81,6 +82,8 @@ public class BEQuiz : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+        RoundSystem.Instance.onRoundChange += SalaryDataGet;
     }
 
 
@@ -242,7 +245,9 @@ public class BEQuiz : MonoBehaviour
 
                 // 화면에 정답입니다 텍스트 표시
                 await DisplayTextForTime("정답입니다", 1f);
-
+                
+                // 입급하기. 지금은 4문제 맞힌 값까지 더해서 줌
+                PersonalFinancialManager.Instance.InputMoney(dayoffer*4);
             }
             else
             {
@@ -294,6 +299,12 @@ public class BEQuiz : MonoBehaviour
         }
 
     }
+
+    private void SalaryDataGet(int year)
+    {
+        dayoffer = GoogleSheetManager.Instance.YearlyDataGet(year).Salary;
+    }
+    
 
 
     private void SendQuizSolveRequest(int quizNum, string correct)
