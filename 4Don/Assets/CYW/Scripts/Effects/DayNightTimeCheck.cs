@@ -6,9 +6,6 @@ using System;
 public class DayNightTimeCheck : MonoBehaviour
 {
     [Header("스카이 박스3개, Light 넣기")]
-    [SerializeField] Material skybox1;  // 아침
-    [SerializeField] Material skybox2;  // 낮
-    [SerializeField] Material skybox3;  // 밤
     [SerializeField] GameObject directionalLight; // 아침에만 활성화
 
     int hours;  // 시간
