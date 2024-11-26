@@ -34,7 +34,10 @@ public class Task : ScriptableObject
     [SerializeField] 
     private string[] directions;
     [SerializeField]
-    private string goal; 
+    private string goal;
+
+    [SerializeField] 
+    private int position;
 
     [Header("Action")]
     [SerializeField]
@@ -115,6 +118,8 @@ public class Task : ScriptableObject
     public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
+
+    public int PositionNum => position; 
 
     public string[] Directions => directions; 
     public TaskState State // 상태가 변경될 때, 자동으로 할당
@@ -212,7 +217,14 @@ public class Task : ScriptableObject
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
-        
+
+        questPointManager = FindObjectOfType<QuestPositionManager>();
+
+        if (questPointManager != null) 
+        {
+            questPointManager.Position(position);
+        }
+
     }
 
     public void End() // 자연스럽게 마무리됨 

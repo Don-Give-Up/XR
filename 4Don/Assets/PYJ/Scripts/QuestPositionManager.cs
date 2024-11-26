@@ -42,16 +42,17 @@ public class QuestPositionManager : MonoBehaviour
     // 
     // 일단 은행으로 요청들어왔다고 가정 
 
-    // 요청들어왔다고 가정
+    // 요청들어왔다고 가정(완료)
     
     // y축 방향으로 회전
     // 두 물체의 위치가 그리는 선
     // 시작 위치는 나보다 앞 쪽으로 z축에 1, y축에 2 만큼 offset 추가
     public void Position(int num)
     {
-        // 이걸 위치에 해당하는 값을 받아서 하기로
-        // while 인 동안 계속 하기
-        num = 0; // num 값을 0으로 초기화
+        if (num == 0)
+        {
+            return;
+        }
 
         // 문 객체의 위치 (door[0] 위치)
         Transform doorPosition = door[0].transform;
