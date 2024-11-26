@@ -124,7 +124,7 @@ public class RealDialogueManager : MonoBehaviour
         Debug.Log($"{currentDialogue[0].speaker}: {formattedDialogue}");
 
         CheckDialogueIndex();
-        CheckEvent(formattedDialogue);
+        CheckEvent(dialogue);
         //PlayDialogue(dialogue);
         //PlayDialogueWithPitchAdjustment(dialogue);
         //CheckDialogueIndex();
@@ -212,6 +212,7 @@ public class RealDialogueManager : MonoBehaviour
     // 대화 텍스트를 말 끝나는 기호로 분리하고 줄 바꿈 추가
     private string FormatDialogue(string dialogue)
     {
+        dialogue = dialogue.Replace("@", "");
         // 말 끝나는 기호를 기준으로 텍스트를 나눔
         // 정규 표현식을 사용하여 문장 끝을 기준으로 분리하되, 구분자도 포함한다.
         string pattern = @"(?<=[.!?])\s*";  // [] 안에 있는 걸 기준으로 매칭되는 텍스트를 찾음 // 문장 끝에 !, ., ? 가 있을 경우, 그 뒤의 공백을 기준으로 문자열을 나누는 패턴
