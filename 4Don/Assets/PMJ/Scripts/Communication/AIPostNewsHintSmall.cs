@@ -9,6 +9,7 @@ public class AIPostNewsHintSmall : MonoBehaviour
     public NewsHintsmall[] news1;
     private int round;
     
+   
     private void Start()
     {
         RoundSystem.Instance.onRoundChange += Day;
