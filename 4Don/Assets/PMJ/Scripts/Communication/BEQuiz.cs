@@ -84,7 +84,6 @@ public class BEQuiz : MonoBehaviour
             Destroy(gameObject);
         }
 
-        RoundSystem.Instance.onRoundChange += SalaryDataGet;
     }
 
 
@@ -106,7 +105,7 @@ public class BEQuiz : MonoBehaviour
     {
         jsonBEQuizdata = BEQuizStart.BEQuizdata;
         desImage.SetActive(false);
-        
+        RoundSystem.Instance.onRoundChange += SalaryDataGet;
         
         
         if (!onlaborCheak)
