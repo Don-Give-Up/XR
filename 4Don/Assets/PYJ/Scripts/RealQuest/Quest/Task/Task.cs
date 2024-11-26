@@ -32,7 +32,9 @@ public class Task : ScriptableObject
 
     [Header("Detail")]
     [SerializeField] 
-    private string[] directions; 
+    private string[] directions;
+    [SerializeField]
+    private string goal; 
 
     [Header("Action")]
     [SerializeField]
@@ -108,6 +110,7 @@ public class Task : ScriptableObject
         }
     }
     public Category Category => category;
+    public string Goal => goal; 
     public string CodeName => codeName;
     public string DisplayName => displayName;
     public string Description => description;
@@ -164,7 +167,7 @@ public class Task : ScriptableObject
         State = TaskState.Inactive; // 일단 등록되면 Inactive 상태가 맞는 거 같음
         //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
-        
+
         if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
         {
             //첫 퀘스트라면 
@@ -173,17 +176,16 @@ public class Task : ScriptableObject
             Active();
         }
         
-        
         bigJJang = FindObjectOfType<BigJJANG>();
        
         if (bigJJang != null)
         {
             bigJJang.QuestionMark();
         }
-
         
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);
+        
         
         realDialogueManager = FindObjectOfType<RealDialogueManager>();  // RealDialogueManager 인스턴스를 찾아서
        
