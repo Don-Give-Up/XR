@@ -54,13 +54,13 @@ public class PhoStartGame : MonoBehaviour
 
     
     // 여기서 러너 생성
-    private void Start()
+    /*private void Start()
     {
         if (runner == null)
         {
             InstantiateRunner();
         }
-    }
+    }*/
 
     public void InstantiateRunner()
     {

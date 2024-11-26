@@ -678,7 +678,7 @@ MonoBehaviour:
   - {fileID: 1634973223157045965}
   - {fileID: 5439222327648039878}
   - {fileID: 4488007902135644874}
-  player: {fileID: 2455321249054526162, guid: cda9f423f75b1954a9df9177493a975f, type: 3}
+  player: {fileID: 0}
   distanceAheadPlayer: 1
   offsetDistance: 1
   bigJjang: {fileID: 6283083682844264171}
@@ -786,7 +786,6 @@ MonoBehaviour:
   skybox1: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   skybox2: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
   skybox3: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
-  Lamp: {fileID: 0}
   directionalLight: {fileID: 0}
 --- !u!1 &3367567144450301323
 GameObject:
