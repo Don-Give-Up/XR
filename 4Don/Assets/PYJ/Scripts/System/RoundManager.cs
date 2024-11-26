@@ -75,8 +75,6 @@ public class RoundSystem : MonoBehaviour
 
     private void Start() //선생님이 들어와서 아이들도 참가하고 진행버튼 누르면 실시되게 하기
     {
-        //round = new int[maxWeek, oneWeekTime]; // 주를 행으로 하루를 열로 하는 2차원 배열 생성
-        //StartCoroutine(Process());
         SStart();
     }
 
