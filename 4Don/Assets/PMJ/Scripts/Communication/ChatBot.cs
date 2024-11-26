@@ -48,7 +48,7 @@ public class ChatBot : MonoBehaviour
         if (question.text.Trim() != "")
         {
             Me(question.text);
-            Empty();
+            //Empty();
             StartCoroutine(PostChatBotQuestion(_url));
         }
     }
@@ -93,7 +93,7 @@ public class ChatBot : MonoBehaviour
 
             // JSON 응답을 ChatBotData 객체로 역직렬화
             ChatBotData chatBotData = JsonConvert.DeserializeObject<ChatBotData>(jsonResponse);
-            //You(chatBotData.Result);
+            You(chatBotData.Result);
             Debug.Log(chatBotData.Result);
         }
         else
