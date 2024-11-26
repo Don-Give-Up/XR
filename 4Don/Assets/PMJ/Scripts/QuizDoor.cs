@@ -10,8 +10,7 @@ public class QuizDoor : MonoBehaviour
 {
     private PhoStartGame a;
     private bool _interact = true; // >> 플레이어가 닿았을때 true, 
-    public GameObject _1Key;
-    public GameObject readyCanvasZzab;
+    public GameObject readyCanvasJjin;
 
     private bool OnTrigger = false;
     //콜라이더 닿았을때를 불타입변수로
@@ -20,8 +19,8 @@ public class QuizDoor : MonoBehaviour
     private void Start()
     {
         a = PhoStartGame.Instance;
-        readyCanvasZzab.SetActive(false);
-        _1Key.SetActive(false);
+        readyCanvasJjin.SetActive(false);
+        
     }
 
     private async UniTaskVoid Goto()
@@ -29,9 +28,10 @@ public class QuizDoor : MonoBehaviour
         if (OnTrigger)
         {
             await UniTask.Delay(1550);
-            _1Key.SetActive(false);
+           
             OnTrigger = false;
             Debug.Log("자 노동 드가자");
+            
             //readyCanvasZzab.SetActive(true); 
             //a.JoinQuiz();
             // 플레이어 텔레포트 실행
@@ -39,6 +39,7 @@ public class QuizDoor : MonoBehaviour
             if (player != null && _interact )
             {
                 player.Teleport();
+                FirstPersonCamera.Instance.SwitchToFixedCamera();  // 모든 플레이어의 카메라를 고정 카메라로 전환
                 _interact = false;
             }
         }
@@ -55,7 +56,7 @@ public class QuizDoor : MonoBehaviour
             Debug.Log($"InputAuthority : {ntObject.InputAuthority} , LocalPlayer : {PhoStartGame.Instance.runner.LocalPlayer}");
             if (ntObject.InputAuthority == PhoStartGame.Instance.runner.LocalPlayer)
             {
-                _1Key.SetActive(true);
+                
                 OnTrigger = true;
                 Goto().Forget();
                 Debug.Log("노동 문 열어라");
@@ -70,10 +71,14 @@ public class QuizDoor : MonoBehaviour
             var ntObject = other.GetComponent<NetworkObject>();
             if (ntObject.InputAuthority != PhoStartGame.Instance.runner.LocalPlayer)
             {
-                _1Key.SetActive(false);
                 OnTrigger = false;
                 Debug.Log("노동 문 멀어졌는데??");
             }
         }
+    }
+
+    private void CameraToggle()
+    {
+        
     }
 }

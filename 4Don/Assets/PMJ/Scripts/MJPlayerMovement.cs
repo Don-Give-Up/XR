@@ -80,9 +80,14 @@ public class MJPlayerMovement : NetworkBehaviour
           
                 Camera.Target = transform;
                 
-                _controller.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
+                Spuare();
             
         }
+    }
+
+    public void Spuare()
+    {
+        _controller.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
     }
 
     public void Teleport()
