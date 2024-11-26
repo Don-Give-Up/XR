@@ -85,7 +85,7 @@ public class BigJJANG : NetworkBehaviour
 
     private void Update()
     {
-        QuestionMark();
+        //QuestionMark();
         
         
         // 마우스 클릭 시
@@ -147,12 +147,9 @@ public class BigJJANG : NetworkBehaviour
     
     public void QuestionMark()
     {
+        mark.SetActive(true);
         // 퀘스트 바뀌거나 할 말 있을 때 켜기
         // 지금은 1번 누르면 켜지게
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            mark.SetActive(true);
-        }
     }
 
     // 물음표가 생성되고 안 되고를 판단하는 메소드 return값을 받아와야 다른 스크립트에 쓸 수 있

@@ -69,7 +69,9 @@ public class Task : ScriptableObject
 
     private QuestReporter questReporter;
 
-    private QuestPositionManager questPointManager; 
+    private QuestPositionManager questPointManager;
+
+    private BigJJANG bigJJang; 
 
     public int CurrentSuccess // 성공 횟수에 대한 부분 // Setter는 값을 설정하는 매서드, 속성에 값이 할당될 때 set 매서드가 자동으로 할당됨 
     {
@@ -173,6 +175,15 @@ public class Task : ScriptableObject
             Active();
         }
         
+        
+        bigJJang = FindObjectOfType<BigJJANG>();
+       
+        if (bigJJang != null)
+        {
+            bigJJang.QuestionMark();
+        }
+
+        
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);
         
@@ -201,6 +212,7 @@ public class Task : ScriptableObject
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
+        
     }
 
     public void End() // 자연스럽게 마무리됨 
