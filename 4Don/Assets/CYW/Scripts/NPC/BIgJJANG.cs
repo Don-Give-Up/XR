@@ -1,8 +1,9 @@
 using System;
+using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BigJJANG : MonoBehaviour
+public class BigJJANG : NetworkBehaviour
 {
     // 클릭하면 대화창이랑 짱 크게 나오는 거
     // 대사창은 언니가 크게 하니까 여기선 크게만 내기
@@ -18,6 +19,7 @@ public class BigJJANG : MonoBehaviour
     public string jjangTag = "NPC"; // 짱 태그 누르면 켜졌다 꺼졌다 하게
 
     public BigJJANGMovement bigJjangMovement;
+    private NetworkObject _networkObject;
 
     private void Start()
     {
@@ -41,6 +43,8 @@ public class BigJJANG : MonoBehaviour
         {
             anim = bigJJANG.GetComponent<Animator>();
         }
+
+        _networkObject = GetComponent<NetworkObject>();
 
         GameEventsManager.instance.npcdialogEvents.onShow += StartDialogue; 
         GameEventsManager.instance.npcdialogEvents.offShow += EndDialogue;
@@ -122,6 +126,9 @@ public class BigJJANG : MonoBehaviour
             }
         }
         
+        
+        if (!_networkObject.HasStateAuthority)
+            return;
         
         // NavMeshAgent의 속도가 0보다 크면 이동 중, 아니면 멈춤
         if (agent.velocity.sqrMagnitude > 0f) // 
