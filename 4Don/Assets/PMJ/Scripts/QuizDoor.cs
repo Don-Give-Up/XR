@@ -33,6 +33,7 @@ public class QuizDoor : MonoBehaviour
             OnTrigger = false;
             Debug.Log("자 노동 드가자");
             
+            ReadyUi.Instance.ReadyPanel();
             //readyCanvasZzab.SetActive(true); 
             //a.JoinQuiz();
             // 플레이어 텔레포트 실행

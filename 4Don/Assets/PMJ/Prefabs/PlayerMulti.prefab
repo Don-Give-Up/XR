@@ -319,7 +319,6 @@ MonoBehaviour:
   JumpForce: 5
   GravityValue: -9.81
   anim: {fileID: 2164617198070385418}
-  Camera: {fileID: 0}
   audioSource: {fileID: 3691072201942117626}
   stepSound1: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
   stepSound2: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
@@ -596,7 +595,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.76}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4271920846883165403
 Canvas:

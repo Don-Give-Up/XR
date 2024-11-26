@@ -16,6 +16,7 @@ public class ReadyUi : MonoBehaviour
     public GameObject readyBG;
     public Button readyButton;
     public GameObject image;
+    public Canvas readyCanvas;
    
     public TMP_Text readyText1;
     public TMP_Text readyText2;
@@ -35,6 +36,12 @@ public class ReadyUi : MonoBehaviour
     public void Start()
     {
         StartCoroutine(Process());
+        readyCanvas.gameObject.SetActive(false);
+    }
+
+    public void ReadyPanel()
+    {
+        readyCanvas.gameObject.SetActive(true);
     }
 
     public void Ready()
@@ -75,7 +82,8 @@ public class ReadyUi : MonoBehaviour
         readyButton.gameObject.SetActive(true);
         while (true)
         {
-            var totalCount = PhoStartGame.Instance.runner.SessionInfo.MaxPlayers;
+            //var totalCount = PhoStartGame.Instance.runner.SessionInfo.MaxPlayers;
+            var totalCount = 1;
             var currentCount = SharedGameData.ReadyCount;
             readyText1.text = $"{currentCount}";
             readyText2.text = $"/{totalCount}";
@@ -87,7 +95,8 @@ public class ReadyUi : MonoBehaviour
         }
 
         readyText1.text = $"{SharedGameData.ReadyCount}";
-        readyText2.text = $"/{PhoStartGame.Instance.runner.SessionInfo.MaxPlayers}";
+        //readyText2.text = $"/{PhoStartGame.Instance.runner.SessionInfo.MaxPlayers}";
+        readyText2.text = "/2";
         yield return wfs;
 
         image.SetActive(false);
