@@ -11,6 +11,7 @@ public class QuizDoor : MonoBehaviour
     private PhoStartGame a;
     private bool _interact = true; // >> 플레이어가 닿았을때 true, 
     public GameObject readyCanvasJjin;
+    public CameraToggle cameraToggle;
 
     private bool OnTrigger = false;
     //콜라이더 닿았을때를 불타입변수로
@@ -38,8 +39,8 @@ public class QuizDoor : MonoBehaviour
             var player = FindObjectOfType<MJPlayerMovement>();
             if (player != null && _interact )
             {
-                player.Teleport();
-                FirstPersonCamera.Instance.SwitchToFixedCamera();  // 모든 플레이어의 카메라를 고정 카메라로 전환
+                player.Teleport(new Vector3(537f, 36f, 179f), true);
+                cameraToggle.QuizCamera();
                 _interact = false;
             }
         }
@@ -77,8 +78,5 @@ public class QuizDoor : MonoBehaviour
         }
     }
 
-    private void CameraToggle()
-    {
-        
-    }
+   
 }

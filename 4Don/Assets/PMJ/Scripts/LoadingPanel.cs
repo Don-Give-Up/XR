@@ -3,7 +3,8 @@ using UnityEngine;
 public class LoadingPanel : MonoBehaviour
 {
     public GameObject loading;
-    
+    public CameraToggle cameraToggle;
+
     public void OnLoading()
     {
         loading.SetActive(true);
@@ -13,15 +14,21 @@ public class LoadingPanel : MonoBehaviour
     {
         loading.SetActive(false);
     }
+    
 
     public void GotoSpaure()
     {
-        var player = FindObjectOfType<MJPlayerMovement>();
-        if (player != null )
+        var players = FindObjectsOfType<MJPlayerMovement>();
+        foreach (var player in players)
         {
-            player.Teleport();
-            FirstPersonCamera.Instance.SwitchToFixedCamera();  // 모든 플레이어의 카메라를 고정 카메라로 전환
-            
+            if (player.HasStateAuthority) // 로컬 플레이어만 처리
+            {
+                player.Spuare();
+                cameraToggle.PlayerCamera();
+                break;
+            }
         }
     }
+
+
 }
