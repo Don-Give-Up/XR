@@ -22887,6 +22887,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 795105435544362756, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 65020118}
+    - targetCorrespondingSourceObject: {fileID: 5710311656855888125, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 631139373}
   m_SourcePrefab: {fileID: 100100000, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
 --- !u!4 &486229934 stripped
 Transform:
@@ -25116,7 +25119,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!1 &523396835
 GameObject:
   m_ObjectHideFlags: 0
@@ -29410,6 +29413,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627631462}
   m_Mesh: {fileID: 8507197454391578652, guid: 85d56d315218c9843b3909bef548e285, type: 3}
+--- !u!1 &631139372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5710311656855888125, guid: fb211fb533b876646a039d8fa8a575ae, type: 3}
+  m_PrefabInstance: {fileID: 486229933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &631139373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631139372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666bf3a936435d418b84692dab8e1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 22406c595b9a66f4b9f280496ed6dfef, type: 2}
+  target: {fileID: 11400000, guid: a6d4904130bc7ee46ad2547fe28d55f6, type: 2}
+  successCount: 1
+  colliderTags: []
 --- !u!1 &632426835
 GameObject:
   m_ObjectHideFlags: 0
@@ -31734,7 +31758,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 950
+  m_SortingOrder: 850
   m_TargetDisplay: 0
 --- !u!224 &687685883
 RectTransform:
@@ -38743,7 +38767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -195.59998, y: -47}
+  m_AnchoredPosition: {x: -195.59998, y: -30}
   m_SizeDelta: {x: 360, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &835971577
@@ -77091,7 +77115,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!61 &1631299637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77561,7 +77585,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!1 &1654597595
 GameObject:
   m_ObjectHideFlags: 0
@@ -81468,7 +81492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1733543556
