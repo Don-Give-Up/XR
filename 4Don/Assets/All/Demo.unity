@@ -6147,6 +6147,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 434574770}
     - target: {fileID: 8506038573396835575, guid: 0331667c3052d014f8f3765342b5b8db, type: 3}
+      propertyPath: fadeAnim
+      value: 
+      objectReference: {fileID: 477056530}
+    - target: {fileID: 8506038573396835575, guid: 0331667c3052d014f8f3765342b5b8db, type: 3}
       propertyPath: quizGoSound
       value: 
       objectReference: {fileID: 434574769}
@@ -6686,6 +6690,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465709755}
   m_CullTransparentMesh: 1
+--- !u!95 &477056530 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4359476563624377274, guid: c03003085bc85784a9c0bbb87b3c49ee, type: 3}
+  m_PrefabInstance: {fileID: 1813299411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &478616580
 GameObject:
   m_ObjectHideFlags: 0
