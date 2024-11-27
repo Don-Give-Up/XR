@@ -82,7 +82,7 @@ public class SeeSawManager : NetworkBehaviour
         var players = GameObject.FindObjectsByType<MJPlayerMovement>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         foreach (var player in players)
         {
-            player.Teleport(new Vector3(537f, 36f, 179f), true);
+            player.Teleport(new Vector3(537f, 35f, 179f), true);
         }
 
         _interact = false;

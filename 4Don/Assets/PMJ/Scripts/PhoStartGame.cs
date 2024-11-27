@@ -159,7 +159,7 @@ public class PhoStartGame : MonoBehaviour
             }
 
             
-            await UniTask.Delay(2000);
+            await UniTask.Delay(4000);
             loadingPanel.SetActive(false);
 
             audioSourceL.Stop();

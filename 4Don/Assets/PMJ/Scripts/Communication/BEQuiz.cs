@@ -46,7 +46,7 @@ public class BEQuiz : MonoBehaviour
     
     public bool onlaborCheak = false;
 
-    public int correntAnswerCount = 0; // 맞힌 정답 갯수
+    public int correntAnswerCount = 4; // 맞힌 정답 갯수
     private List<int> usedQuiz = new List<int>(); // 이미 출제된 문제 기록
     
     private int _Count;
@@ -56,8 +56,8 @@ public class BEQuiz : MonoBehaviour
     
 
     public float displayTime = 5f; // 해설에 배경 이미지가 표시되는 시간
-    public float displayDuration = 2f; // 텍스트가 표시될 시간
-    private double dayoffer = 0; 
+    public float displayDuration = 1f; // 텍스트가 표시될 시간
+    private double dayoffer = 76960f; 
     
 
     public static BEQuiz Instance;
@@ -244,7 +244,7 @@ public class BEQuiz : MonoBehaviour
                 resultText.text = correntAnswerCount.ToString(); // UI 텍스트로 정답 개수를 출력
 
                 // 화면에 정답입니다 텍스트 표시
-                await DisplayTextForTime("정답입니다", 1f);
+                await DisplayTextForTime("정답입니다", displayDuration);
                 
                 // 입급하기. 지금은 4문제 맞힌 값까지 더해서 줌
                 PersonalFinancialManager.Instance.InputMoney(dayoffer*4);
@@ -269,7 +269,7 @@ public class BEQuiz : MonoBehaviour
 
 
             // 노동 종료할 때 수고 이미지 띄우기
-            if (correntAnswerCount >= 2)
+            if (correntAnswerCount >= 5)
             {
                 // 유진이 언니의 월급 관리자 호출
                 // 노동 관리자 호출
