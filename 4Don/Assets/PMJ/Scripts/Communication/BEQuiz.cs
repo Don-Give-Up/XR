@@ -296,11 +296,13 @@ public class BEQuiz : MonoBehaviour
         
                 //loadingPanel.OnLoading();
                 
+                /*
+                fadeAnim.SetTrigger("FadeOut");
                 loadingPanel.GotoSpaure();
-                /*fadeAnim.SetTrigger("FadeOut");
-                //await UniTask.Delay(1000);
+                */
+
+                FadeAndGo();
                 
-                await UniTask.Delay(4000);*/
                 //loadingPanel.EndLoading();
                 
                 /*await PhoStartGame.Instance.Shutdown();
@@ -314,6 +316,33 @@ public class BEQuiz : MonoBehaviour
 
     }
 
+    
+    public async UniTask FadeOut()
+    {
+        await UniTask.Delay(2300); // 1초 동안 대기
+        fadeAnim.SetTrigger("FadeOut");
+        Console.WriteLine("FadeOut complete");
+    }
+
+    public async UniTask SquareGo()
+    {
+        await UniTask.Delay(500); // 2초 동안 대기
+        loadingPanel.GotoSpaure();
+        Console.WriteLine("Method2 complete");
+    }
+
+    public async UniTask FadeAndGo()
+    {
+        // Method1과 Method2를 동시에 실행
+        await UniTask.WhenAll(FadeOut(), SquareGo());
+        
+        // 모든 메서드가 완료된 후 실행
+        Console.WriteLine("Both methods are complete.");
+    }
+    
+    
+    
+    
     private void SalaryDataGet(int year)
     {
         dayoffer = GoogleSheetManager.Instance.YearlyDataGet(year).Salary;
