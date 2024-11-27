@@ -88,7 +88,7 @@ public class QuestTaskTracker : MonoBehaviour
 
         if (goalText != null)
         {
-            goalText.text = $"학습목표\n{goal}";
+            goalText.text = $"{goal}";
         }
 
 
