@@ -15,6 +15,7 @@ public class ChatBot : MonoBehaviour
     public GameObject empty;
     public GameObject parentPosition;
     public ScrollRect scrollrect;
+    public AudioSource audioSource; 
 
     private string _url;
     
@@ -134,8 +135,10 @@ public class ChatBot : MonoBehaviour
         var you = Instantiate(youPrefab, parentPosition.transform);
         var text = you.GetComponentInChildren<TMP_Text>();
         text.text = resultText;
-
+        
         Rebuild(text).Forget();
+        
+        audioSource.Play();
     }
     //읭? 지금 텍스트 받아온건 어디로 주지?
     private void Empty()
