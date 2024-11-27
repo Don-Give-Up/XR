@@ -6,7 +6,7 @@ public class ReportGraph : MonoBehaviour
     // R 누르면 켜지게
     public GameObject graph;
     public GameObject text;
-    public GameObject textR;
+   //public GameObject textR;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class ReportGraph : MonoBehaviour
         {
             text.SetActive(false); // 시작 시 graph를 비활성화
             graph.SetActive(false);
-            textR.SetActive(false);
+            //textR.SetActive(false);
         }
     }
 
@@ -29,7 +29,7 @@ public class ReportGraph : MonoBehaviour
             {
                 text.SetActive(true); // graph를 활성화
                 graph.SetActive(true);
-                textR.SetActive(false);
+                //textR.SetActive(false);
             }
         }
     }
