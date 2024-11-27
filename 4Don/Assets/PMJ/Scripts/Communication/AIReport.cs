@@ -155,6 +155,19 @@ public class AIReport : MonoBehaviour
 
     public void ReportGraph(RootData responseData)
     {
-        
+        var g0 = responseData.raw_data.assets.products;
+        var g1 = responseData.raw_data.assets.cash;
+        var g2 = responseData.raw_data.assets.avg_assets;
+        var g3 = responseData.analysis.ImprovementSuggestions;
+        var g4 = responseData.raw_data.assets.avg_products; //평균값
+        Debug.Log(g0);
+        Debug.Log("그래프 레포트 테스트");
+
+        var ra0 = responseData.raw_data.ratios.cash;
+        var ra1 = responseData.raw_data.ratios.savings;
+        var ra2 = responseData.raw_data.ratios.products;
+        var ra3 = responseData.raw_data.ratios.stocks;
+        Debug.Log(ra3);
+        Debug.Log("라티오 레포트 테스트");
     }
 }
