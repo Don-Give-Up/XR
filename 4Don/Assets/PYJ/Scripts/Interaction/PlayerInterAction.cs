@@ -1,6 +1,7 @@
 using System;
 using Fusion;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInterAction : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class PlayerInterAction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return; 
+            }
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
