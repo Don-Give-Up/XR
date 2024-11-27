@@ -169,5 +169,10 @@ public class AIReport : MonoBehaviour
         var ra3 = responseData.raw_data.ratios.stocks;
         Debug.Log(ra3);
         Debug.Log("라티오 레포트 테스트");
+
+        var one0 = responseData.analysis.InvestmentPropensityAnalysis;
+        var one1 = responseData.analysis.LearningAnalytics;
+        Debug.Log(one1);
+        Debug.Log("원형그래프");
     }
 }
