@@ -4,11 +4,18 @@ using UnityEngine.Networking;
 using System.Text;
 using Newtonsoft.Json;
 using Cysharp.Threading.Tasks;
+using TMPro;
 
 public class AIReport : MonoBehaviour
 {
-    private string apiUrl = "https://example.com/api"; // API URL을 여기에 입력
 
+    public TMP_Text playeridTMPText;
+    public TMP_Text assetTotalTMPText;
+    public TMP_Text avg_differenceTMPText;
+    public TMP_Text improvementSuggestionsTMPText;
+    public TMP_Text learningAnglyticsTMPText;
+    public TMP_Text stock_avg_stocksTMPText;
+    public TMP_Text analysisAssetStatusSummaryTMPText;
     private async void Start()
     {
         // GoogleSheetManager의 데이터가 로드될 때까지 기다립니다.
@@ -88,16 +95,24 @@ public class AIReport : MonoBehaviour
     {
         // 응답 데이터에서 player_id와 자산 정보 출력
         Debug.Log($"플레이어 ID: {responseData.raw_data.player_id}");
-        
+
         var assets = responseData.raw_data.assets;
-        
+
         Debug.Log($"총 자산: {assets.total}");
         Debug.Log($"현금: {assets.cash}");
         Debug.Log($"저축: {assets.savings}");
-        
+
         var analysis = responseData.analysis;
-        
+
         Debug.Log($"자산 현황 요약: {analysis.AssetStatusSummary}");
         Debug.Log($"자산 운용 현황: {analysis.AssetManagementStatus}");
+
+        playeridTMPText.text = responseData.raw_data.player_id;
+        assetTotalTMPText.text = responseData.raw_data.assets.total.ToString();
+        avg_differenceTMPText.text = responseData.raw_data.assets.avg_difference.ToString();
+        improvementSuggestionsTMPText.text = responseData.analysis.ImprovementSuggestions;
+        learningAnglyticsTMPText.text = responseData.analysis.LearningAnalytics;
+        stock_avg_stocksTMPText.text = responseData.raw_data.assets.avg_stocks.ToString();
+        analysisAssetStatusSummaryTMPText.text = responseData.analysis.AssetStatusSummary;
     }
 }
