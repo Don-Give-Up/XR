@@ -135,11 +135,11 @@ public class AIReport : MonoBehaviour
         
         //소비
         improvementSuggestionsTMPText.text = responseData.analysis.ImprovementSuggestions;
-        assetProduct_avg_productsTMPText.text = responseData.raw_data.assets.avg_products.ToString();
+        assetProduct_avg_productsTMPText.text = responseData.raw_data.assets.avg_products;
        
         //투자
         learningAnglyticsTMPText.text = responseData.analysis.LearningAnalytics;
-        stock_avg_stocksTMPText.text = responseData.raw_data.assets.avg_stocks.ToString();
+        stock_avg_stocksTMPText.text = responseData.raw_data.assets.avg_stocks;
         
         //내 자산 분석
         analysisAssetStatusSummaryTMPText.text = responseData.analysis.AssetStatusSummary;

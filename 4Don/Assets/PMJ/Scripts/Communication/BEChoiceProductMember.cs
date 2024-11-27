@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
@@ -84,8 +85,9 @@ public class BEChoiceProductMember : MonoBehaviour
                       $"Product Name: {member.selectProductName}, " +
                       $"Member ID: {member.gameMemberId}, " +
                       $"Purchase Amount: {member.selectProductPurchaseAmount}, " +
-                      $"Total Price: {member.productTotalPrice}");*/
+                      $"Total Price: {member.productTotalPrice}");#1#
         }
     }
 
 }
+*/
