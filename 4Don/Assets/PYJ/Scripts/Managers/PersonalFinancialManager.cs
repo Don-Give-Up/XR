@@ -16,7 +16,7 @@ public class PersonalFinancialManager : MonoBehaviour
 
     //public Action<double> onMoneyChanged; 
 
-    public double currentMoney = 60000;
+    public double currentMoney = 0;
 
     public TMP_Text currentMoneyText;
 
@@ -37,7 +37,7 @@ public class PersonalFinancialManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        currentMoney = 60000;
+        currentMoney = 0;
         
         MoneyText(currentMoney).Forget();
         //MoneyText(currentMoney);
@@ -85,7 +85,6 @@ public class PersonalFinancialManager : MonoBehaviour
             // UniTask.Delay로 지연을 주며 애니메이션 처리
             await UniTask.Delay(1); // 1프레임 지연
         }
-        
     
         // 마지막 값으로 확실히 설정
         currentMoneyText.text = $"{targetMoney:N0}원";
