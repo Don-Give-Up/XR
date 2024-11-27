@@ -193,4 +193,5 @@ public class MJPlayerMovement : NetworkBehaviour
         // 발소리 번갈아 재생
         isFirstsound = !isFirstsound;
     }
+   
 }
