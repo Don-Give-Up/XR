@@ -4,6 +4,7 @@ public class LoadingPanel : MonoBehaviour
 {
     public GameObject loading;
     public CameraToggle cameraToggle;
+    
 
     public void OnLoading()
     {

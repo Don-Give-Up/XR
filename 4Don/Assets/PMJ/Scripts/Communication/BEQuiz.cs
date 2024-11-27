@@ -69,8 +69,8 @@ public class BEQuiz : MonoBehaviour
     public AudioSource oSound;
     public AudioSource xSound;
     public AudioSource quizGoSound;
-    
-   
+
+    public Animator fadeAnim;
     
     private void Awake() {
         if (Instance == null) {
@@ -287,11 +287,21 @@ public class BEQuiz : MonoBehaviour
                 Debug.Log("수고이미지 나와유");
                 await UniTask.Delay(2000);
                 SetActiveFalse();
+
+               
+                fadeAnim.SetTrigger("FadeIn");
+                
+
+                await UniTask.Delay(1000);
         
-                loadingPanel.OnLoading();
+                //loadingPanel.OnLoading();
+                
                 loadingPanel.GotoSpaure();
-                await UniTask.Delay(2000);
-                loadingPanel.EndLoading();
+                /*fadeAnim.SetTrigger("FadeOut");
+                //await UniTask.Delay(1000);
+                
+                await UniTask.Delay(4000);*/
+                //loadingPanel.EndLoading();
                 
                 /*await PhoStartGame.Instance.Shutdown();
                 await PhoStartGame.Instance.JoinSquare();*/
@@ -377,8 +387,8 @@ public class BEQuiz : MonoBehaviour
 
     private void SetActiveFalse()
     {
-        sugoimage.SetActive(false);
-        oxCanvas.gameObject.SetActive(false);
+        //sugoimage.SetActive(false);
+        //oxCanvas.gameObject.SetActive(false);
         
         correntAnswerCount = 0;
         /*foreach (var a in dotory)

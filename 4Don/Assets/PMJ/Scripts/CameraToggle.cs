@@ -7,8 +7,11 @@ public class CameraToggle : MonoBehaviour
     public CinemachineCamera player;
     public CinemachineCamera quiz;
 
+    //public Animator fadeAnim;
+
     public void PlayerCamera()
     {
+        //fadeAnim.SetTrigger("FadeOut");
         player.gameObject.SetActive(true);
         quiz.gameObject.SetActive(false);
     }
