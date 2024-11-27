@@ -171,6 +171,9 @@ public class Task : ScriptableObject
 
         State = TaskState.Inactive; // 일단 등록되면 Inactive 상태가 맞는 거 같음
         //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
+        
+        Active(); // 이거 없애라!!
+        
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
 
         if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
@@ -283,5 +286,10 @@ public class Task : ScriptableObject
         (!IsComplete || (IsComplete && canReceiveReportsDuringCompletion));
 
     public bool ContainsTarget(object target) => targets.Any(x => x.IsEqual(target));
+
+    public static async System.Threading.Tasks.Task Yield()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

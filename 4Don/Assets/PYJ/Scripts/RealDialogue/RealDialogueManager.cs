@@ -373,7 +373,15 @@ public class RealDialogueManager : MonoBehaviour
         // State가 변경되었으므로 onStateChanged 이벤트가 호출되도록 해야 합니다.
         task.OnStateChanged(task, prevState, currentState);  // 이벤트 호출을 대신해 상태 변경 알림
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            task.OnStateChanged(task, TaskState.Inactive, TaskState.Complete);
+        }
+    }
+
     public void SetTask(Task newTask) // Task 가 등록된 순간 이거 할당하고 // 바꾸니 상태를 업데이트
     {
         Debug.Log($"대화주제 : {newTask.CodeName}");
