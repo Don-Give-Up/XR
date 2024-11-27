@@ -38,7 +38,9 @@ public class Room : MonoBehaviour
             Debug.Log("비밀번호가 올바릅니다.");
             
             GameDataManager.Instance.gameId = roomData.gameId;
+            GameDataManager.Instance.gameName = roomData.gameName;
             Debug.Log("GameId : " + roomData.gameId);
+            Debug.Log("GameName: "+ roomData.gameName);
             
             // SceneManager.LoadScene("Room");
             beGameMembers.GameMembersStart();

@@ -16,6 +16,22 @@ public class AIReport : MonoBehaviour
     public TMP_Text learningAnglyticsTMPText;
     public TMP_Text stock_avg_stocksTMPText;
     public TMP_Text analysisAssetStatusSummaryTMPText;
+    public TMP_Text avg_savingTMPText;
+    public TMP_Text AssetsSavingTMPText;
+    public TMP_Text analysisAssetManagementStatusTMPText;
+    public TMP_Text assetProduct_avg_productsTMPText;
+    
+    //원형 그래프 필요한 정보들
+    //inves~ 주식 이름
+    //Learning~ 퍼센트
+    
+    //꺽은선 그래프 필요한 정보들
+    //assests.products 0(초기값같음)
+    //cash 
+    //assets.avg_assets
+    //improvement~
+    //avg_product 평균값 까만선
+    
     private async void Start()
     {
         // GoogleSheetManager의 데이터가 로드될 때까지 기다립니다.
@@ -73,6 +89,8 @@ public class AIReport : MonoBehaviour
                 if (responseData != null)
                 {
                     ProcessResponse(responseData);
+                    ReportGraph(responseData);
+
                 }
                 else
                 {
@@ -93,6 +111,7 @@ public class AIReport : MonoBehaviour
     // JSON 응답을 처리하는 메서드
     public void ProcessResponse(RootData responseData)
     {
+        
         // 응답 데이터에서 player_id와 자산 정보 출력
         Debug.Log($"플레이어 ID: {responseData.raw_data.player_id}");
 
@@ -107,12 +126,53 @@ public class AIReport : MonoBehaviour
         Debug.Log($"자산 현황 요약: {analysis.AssetStatusSummary}");
         Debug.Log($"자산 운용 현황: {analysis.AssetManagementStatus}");
 
+        // 플레이어 이름
         playeridTMPText.text = responseData.raw_data.player_id;
+        
+        //내 소득은?
         assetTotalTMPText.text = responseData.raw_data.assets.total.ToString();
         avg_differenceTMPText.text = responseData.raw_data.assets.avg_difference.ToString();
+        
+        //소비
         improvementSuggestionsTMPText.text = responseData.analysis.ImprovementSuggestions;
+        assetProduct_avg_productsTMPText.text = responseData.raw_data.assets.avg_products.ToString();
+       
+        //투자
         learningAnglyticsTMPText.text = responseData.analysis.LearningAnalytics;
         stock_avg_stocksTMPText.text = responseData.raw_data.assets.avg_stocks.ToString();
+        
+        //내 자산 분석
         analysisAssetStatusSummaryTMPText.text = responseData.analysis.AssetStatusSummary;
+        
+        //저축 금액
+        avg_savingTMPText.text = responseData.raw_data.assets.avg_savings.ToString();
+        AssetsSavingTMPText.text = responseData.raw_data.assets.savings.ToString();
+        
+        //종합평가
+        analysisAssetManagementStatusTMPText.text = responseData.analysis.AssetManagementStatus;
+
+    }
+
+    public void ReportGraph(RootData responseData)
+    {
+        var g0 = responseData.raw_data.assets.products;
+        var g1 = responseData.raw_data.assets.cash;
+        var g2 = responseData.raw_data.assets.avg_assets;
+        var g3 = responseData.analysis.ImprovementSuggestions;
+        var g4 = responseData.raw_data.assets.avg_products; //평균값
+        Debug.Log(g0);
+        Debug.Log("그래프 레포트 테스트");
+
+        var ra0 = responseData.raw_data.ratios.cash;
+        var ra1 = responseData.raw_data.ratios.savings;
+        var ra2 = responseData.raw_data.ratios.products;
+        var ra3 = responseData.raw_data.ratios.stocks;
+        Debug.Log(ra3);
+        Debug.Log("라티오 레포트 테스트");
+
+        var one0 = responseData.analysis.InvestmentPropensityAnalysis;
+        var one1 = responseData.analysis.LearningAnalytics;
+        Debug.Log(one1);
+        Debug.Log("원형그래프");
     }
 }
