@@ -16,6 +16,9 @@ MonoBehaviour:
   codeName: ReadNews
   displayName: "\uAE30\uC0AC \uC77D\uAE30"
   description: "\uB274\uC2A4\uB97C \uC77D\uC5B4 \uC815\uBCF4\uB97C \uC5BB\uC790!"
+  directions: []
+  goal: "\uAE08\uC735 \uC0DD\uD65C\uC740 \uC815\uBCF4\uB97C \uD1B5\uD574 \uC774\uB8E8\uC5B4\uC9C4\uB2E4. "
+  position: 0
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: d1da2b4ae40a3d545b997662c0d89791, type: 2}
@@ -32,6 +35,7 @@ MonoBehaviour:
     options: []
     currentState: 0
     changedState: 1
+    eventNum: {x: 0, y: 0}
   IngDialogueLines:
   - speaker: "\uC548\uB0B4\uC6D0"
     dialogue:
@@ -39,6 +43,7 @@ MonoBehaviour:
     options: []
     currentState: 1
     changedState: 1
+    eventNum: {x: 0, y: 0}
   AfterDialogueLines:
   - speaker: "\uC548\uB0B4\uC6D0"
     dialogue:
@@ -48,6 +53,7 @@ MonoBehaviour:
     options: []
     currentState: 2
     changedState: 3
+    eventNum: {x: 0, y: 0}
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0
