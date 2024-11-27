@@ -32,7 +32,7 @@ public class QuizOpenDoor : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("퀴즈 출발~!~!");
-            a.JoinQuiz();
+            //a.JoinQuiz();
            
         }
     }

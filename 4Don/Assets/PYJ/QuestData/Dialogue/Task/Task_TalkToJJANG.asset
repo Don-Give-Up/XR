@@ -16,6 +16,12 @@ MonoBehaviour:
   codeName: TalkToJJANGforTutorial
   displayName: "\uB9C8\uC744 \uC785\uC8FC\uD558\uAE30"
   description: "\uB9C8\uC744 \uC815\uBCF4\uB97C \uC5BB\uC5B4\uBCF4\uC790!"
+  directions:
+  - 
+  - "\uB2E4\uAC00\uC624\uB294 \uC8FC\uBBFC\uACFC \uB300\uD654\uB97C \uB098\uB204\uC5B4
+    \uC815\uBCF4\uB97C \uC5BB\uC790."
+  - 
+  goal: "\uAE08\uC735\uD65C\uB3D9\uC758 \uC911\uC694\uC131\uC744 \uB290\uB080\uB2E4."
   action: {fileID: 11400000, guid: 93ba6872ce644cf49a5e71a6211b689c, type: 2}
   targets:
   - {fileID: 11400000, guid: b100aa2e6fe24734f93b552a32d92600, type: 2}
@@ -51,7 +57,8 @@ MonoBehaviour:
         options: []
         currentState: 2
         changedState: 3
-      eventObjNum: 0
+        eventNum: {x: 0, y: 0}
+      optioneventNum: {x: 0, y: 0}
     - optionText: "\uC798 \uC54C\uACE0 \uC788\uC5B4."
       nextDialogue:
       - speaker: "\uC548\uB0B4\uC6D0"
@@ -62,9 +69,11 @@ MonoBehaviour:
         options: []
         currentState: 2
         changedState: 3
-      eventObjNum: 0
+        eventNum: {x: 0, y: 0}
+      optioneventNum: {x: 0, y: 0}
     currentState: 2
     changedState: 3
+    eventNum: {x: 0, y: 0}
   initialSuccessValue: {fileID: 0}
   needSuccessToComplete: 1
   canReceiveReportsDuringCompletion: 0

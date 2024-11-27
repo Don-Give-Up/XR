@@ -64,12 +64,13 @@ public class BEQuiz : MonoBehaviour
 
     public SeeSawManager seeSawManager;
     public BEQuizSolvePost quizSolvePost;
+    public LoadingPanel loadingPanel;
 
     public AudioSource oSound;
     public AudioSource xSound;
     public AudioSource quizGoSound;
-    
-   
+
+    public Animator fadeAnim;
     
     private void Awake() {
         if (Instance == null) {
@@ -83,7 +84,6 @@ public class BEQuiz : MonoBehaviour
             Destroy(gameObject);
         }
 
-        RoundSystem.Instance.onRoundChange += SalaryDataGet;
     }
 
 
@@ -101,11 +101,11 @@ public class BEQuiz : MonoBehaviour
        
     }*/
 
-    public void Start()
+    public void AStart()
     {
         jsonBEQuizdata = BEQuizStart.BEQuizdata;
         desImage.SetActive(false);
-        
+        RoundSystem.Instance.onRoundChange += SalaryDataGet;
         
         
         if (!onlaborCheak)
@@ -269,7 +269,7 @@ public class BEQuiz : MonoBehaviour
 
 
             // 노동 종료할 때 수고 이미지 띄우기
-            if (correntAnswerCount >= 1)
+            if (correntAnswerCount >= 2)
             {
                 // 유진이 언니의 월급 관리자 호출
                 // 노동 관리자 호출
@@ -288,9 +288,23 @@ public class BEQuiz : MonoBehaviour
                 await UniTask.Delay(2000);
                 SetActiveFalse();
 
+               
+                fadeAnim.SetTrigger("FadeIn");
+                
 
-                await PhoStartGame.Instance.Shutdown();
-                await PhoStartGame.Instance.JoinSquare();
+                await UniTask.Delay(1000);
+        
+                //loadingPanel.OnLoading();
+                
+                loadingPanel.GotoSpaure();
+                /*fadeAnim.SetTrigger("FadeOut");
+                //await UniTask.Delay(1000);
+                
+                await UniTask.Delay(4000);*/
+                //loadingPanel.EndLoading();
+                
+                /*await PhoStartGame.Instance.Shutdown();
+                await PhoStartGame.Instance.JoinSquare();*/
 
                 return;
             }
@@ -373,8 +387,8 @@ public class BEQuiz : MonoBehaviour
 
     private void SetActiveFalse()
     {
-        sugoimage.SetActive(false);
-        oxCanvas.gameObject.SetActive(false);
+        //sugoimage.SetActive(false);
+        //oxCanvas.gameObject.SetActive(false);
         
         correntAnswerCount = 0;
         /*foreach (var a in dotory)

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Fusion;
 using Fusion.Addons.SimpleKCC;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,6 @@ public class MJPlayerMovement : NetworkBehaviour
     public float GravityValue = -9.81f;
     public Animator anim;
 
-    public FirstPersonCamera Camera;
 
     public AudioSource audioSource;
 
@@ -30,6 +30,8 @@ public class MJPlayerMovement : NetworkBehaviour
     private bool isTeleported = false;
 
     private int _spawnCount;
+    private Vector3 _teleportPosition;
+    private PlayerCamera playerCamera;
     
     private void Awake()
     {
@@ -63,36 +65,57 @@ public class MJPlayerMovement : NetworkBehaviour
     
     public override void Spawned()
     {
-        if (HasStateAuthority)
-        {
-            Camera = FindAnyObjectByType<FirstPersonCamera>();
-            _controller = GetComponent<SimpleKCC>();
+        if (!HasStateAuthority)
+            return;
+        
+        _controller = GetComponent<SimpleKCC>();
             
-            _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
-            Debug.Log(_spawnCount);
+        _spawnCount = PhoStartGame.Instance.runner.ActivePlayers.Count();
+        Debug.Log(_spawnCount);
             
-            if (SceneManager.GetActiveScene().name == "3DWork 1")
+        /*if (SceneManager.GetActiveScene().name == "3DWork 1")
             {
                 BEQuiz.Instance.QuizTeleport += Teleport;
                 Teleport();
-            }
-            else
-            {
-                Camera.Target = transform;
+            }*/
+
+        playerCamera = PlayerCamera.Instance;
+        playerCamera.SetTarget(transform);
                 
-                _controller.SetPosition(new Vector3(225f + _spawnCount , 46f, 362f), true);
-            }
+        Spuare();
+    }
+
+    public void Spuare()
+    {
+        if (_controller == null)
+        {
+            _controller = GetComponent<SimpleKCC>();
+        }
+    
+        if (_controller != null)
+        {
+            Debug.Log("컨트롤러있음?", _controller);
+            Teleport(new Vector3(225f + _spawnCount, 46f, 362f), false);
+        }
+        else
+        {
+            Debug.LogError("SimpleKCC controller not found!");
         }
     }
 
-    public void Teleport()
+
+    public void Teleport(Vector3 pos, bool useSpawnPos)
     {
         isTeleported = true;
+        
+        if (useSpawnPos)
+            pos.z += _spawnCount;
+        
+        _teleportPosition = pos;
     }
 
     public override void FixedUpdateNetwork()
     {
-        // Only move own player and not every other player. Each player controls its own player object.
         if (HasStateAuthority == false)
         {
             return;
@@ -102,10 +125,10 @@ public class MJPlayerMovement : NetworkBehaviour
         {
             _velocity = new Vector3(0, -1f, 0);
         }
-        
-        Quaternion cameraRotationY = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
+    
+        Quaternion cameraRotationY = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
         Vector3 move = cameraRotationY * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Runner.DeltaTime * PlayerSpeed;
-        
+    
         _velocity.y += GravityValue * Runner.DeltaTime;
         if (_jumpPressed && _controller.IsGrounded)
         {
@@ -113,6 +136,7 @@ public class MJPlayerMovement : NetworkBehaviour
         }
         _controller.Move(move + _velocity * Runner.DeltaTime);
 
+        // move 벡터가 zero가 아닐 때만 회전 적용
         if (move != Vector3.zero)
         {
             _controller.SetLookRotation(Quaternion.LookRotation(move));
@@ -123,7 +147,7 @@ public class MJPlayerMovement : NetworkBehaviour
         if (isTeleported)
         {
             isTeleported = false;
-            _controller.SetPosition(new Vector3(0, 3f, _spawnCount + 4f), true, true);
+            _controller.SetPosition(_teleportPosition, true, true);
         }
     }
 

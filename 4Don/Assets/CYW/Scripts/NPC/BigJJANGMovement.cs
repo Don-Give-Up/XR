@@ -18,7 +18,7 @@ public class BigJJANGMovement : NetworkBehaviour
     public float offsetDistance = 1f; // 플레이어의 오른쪽에 위치할 거리
 
     public BigJJANG bigJjang;
-    
+    private NetworkTransform _networkTransform;
     
     /// 평소엔 WayPoint로만 돌아다니다가
     /// 물음표 뜨면 플레이어한테 가기
@@ -26,10 +26,13 @@ public class BigJJANGMovement : NetworkBehaviour
     public void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        _networkTransform = GetComponent<NetworkTransform>();
         ToNextWaypoint();
+    }
+
+    public override void Spawned()
+    {
         ConnectPlayer().Forget();
-        
-        
     }
 
     public void ToNextWaypoint()
@@ -77,14 +80,15 @@ public class BigJJANGMovement : NetworkBehaviour
 
 
                     // NPC가 멈췄을 때 플레이어를 마주보게 하는 코드
-                    if (agent.velocity.sqrMagnitude == 0) // 속도가 0일 때, 즉 멈췄을 때
+                    if (agent.remainingDistance <= agent.stoppingDistance) // 속도가 0일 때, 즉 멈췄을 때
                     {
                         // 플레이어를 바라보게 회전
                         Vector3 direction = player.position - transform.position;
                         direction.y = 0; // Y축 회전만 하도록 함 (수평 회전만 필요)
                         Quaternion toRotation = Quaternion.LookRotation(direction);
-                        transform.rotation =
+                        var qot =
                             Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * 500f); // 회전 속도 조절
+                        _networkTransform.Teleport(transform.position, qot);
                     }
                 }
 
@@ -107,31 +111,26 @@ public class BigJJANGMovement : NetworkBehaviour
 
     // 첫 번째 플레이어 찾아서 가기
      private async UniTaskVoid ConnectPlayer()
-    {
+     {
+         if (!HasStateAuthority)
+             return;
+         
         await UniTask.WaitUntil(() => Runner != null && Runner.ActivePlayers.Any());
         // 한 명이 되면 연결
         // 아마 1
 
         await UniTask.Delay(1000);
            
-        // 첫 번째 플레이어를 가져옴
-        var firstPlayer = Runner.ActivePlayers.First(); // 첫번째 플레이어
         var players = GameObject.FindObjectsByType<MJPlayerMovement>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        Debug.Log("첫 번째 플레이어 위치 잡았음");
-        
         foreach (var p in players)
         {
-            var nb = p.GetComponent<NetworkBehaviour>();
-            if (firstPlayer.PlayerId == nb.Id.Behaviour)
+            if (p.HasStateAuthority)
             {
                 player = p.transform;
+                Debug.Log("첫 번째 플레이어 위치 잡았음");
+                break;
             }
         }
-        
     }
-
-
-    
-
 }
 

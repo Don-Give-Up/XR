@@ -32,7 +32,12 @@ public class Task : ScriptableObject
 
     [Header("Detail")]
     [SerializeField] 
-    private string[] directions; 
+    private string[] directions;
+    [SerializeField]
+    private string goal;
+
+    [SerializeField] 
+    private int position;
 
     [Header("Action")]
     [SerializeField]
@@ -67,7 +72,11 @@ public class Task : ScriptableObject
     public event StateChangedHandler onStateChanged;
     public event SuccessChangedHandler onSuccessChanged;
 
-    private QuestReporter questReporter; 
+    private QuestReporter questReporter;
+
+    private QuestPositionManager questPointManager;
+
+    private BigJJANG bigJJang; 
 
     public int CurrentSuccess // 성공 횟수에 대한 부분 // Setter는 값을 설정하는 매서드, 속성에 값이 할당될 때 set 매서드가 자동으로 할당됨 
     {
@@ -101,15 +110,16 @@ public class Task : ScriptableObject
                     
                 }
             }
-            
-            // 여기 setTask 부르면 안 됨
         }
     }
     public Category Category => category;
+    public string Goal => goal; 
     public string CodeName => codeName;
     public string DisplayName => displayName;
     public string Description => description;
     public int NeedSuccessToComplete => needSuccessToComplete;
+
+    public int PositionNum => position; 
 
     public string[] Directions => directions; 
     public TaskState State // 상태가 변경될 때, 자동으로 할당
@@ -162,19 +172,25 @@ public class Task : ScriptableObject
         State = TaskState.Inactive; // 일단 등록되면 Inactive 상태가 맞는 거 같음
         //State = TaskState.Running; // 이 상태로라면 Inactive 한 상태가 없음! + 다이알로그 시스템이랑 결합하여 수정할 것 , 
         Debug.Log($"starttaskName: {codeName}"); // 이때이미 시작되어 있네
-        
-        Active();
 
-        /*if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
+        if (this.CodeName == Owner.TaskGroups[0].Tasks[0].codeName)
         {
             //첫 퀘스트라면 
             Debug.Log($"firstQuest : {this.CodeName}");
             State = TaskState.Running;
             Active();
-        }*/
+        }
+        
+        bigJJang = FindObjectOfType<BigJJANG>();
+       
+        if (bigJJang != null)
+        {
+            bigJJang.QuestionMark();
+        }
         
         if (initialSuccessValue)
             CurrentSuccess = initialSuccessValue.GetValue(this);
+        
         
         realDialogueManager = FindObjectOfType<RealDialogueManager>();  // RealDialogueManager 인스턴스를 찾아서
        
@@ -201,6 +217,14 @@ public class Task : ScriptableObject
         {
             realDialogueManager.SetTask(this);  // task를 RealDialogueManager에 설정
         }
+
+        questPointManager = FindObjectOfType<QuestPositionManager>();
+
+        if (questPointManager != null) 
+        {
+            questPointManager.Position(position);
+        }
+
     }
 
     public void End() // 자연스럽게 마무리됨 

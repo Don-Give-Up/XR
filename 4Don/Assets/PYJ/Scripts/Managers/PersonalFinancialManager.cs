@@ -16,13 +16,13 @@ public class PersonalFinancialManager : MonoBehaviour
 
     //public Action<double> onMoneyChanged; 
 
-    public double currentMoney = 60000;
+    public double currentMoney = 0;
 
     public TMP_Text currentMoneyText;
 
     private double displayMoney = 0;
 
-    private float duration = 2f; 
+    private float duration = 1.5f; 
     
     public static PersonalFinancialManager Instance;
     
@@ -37,7 +37,7 @@ public class PersonalFinancialManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        currentMoney = 60000;
+        currentMoney = 0;
         
         MoneyText(currentMoney).Forget();
         //MoneyText(currentMoney);
@@ -65,6 +65,9 @@ public class PersonalFinancialManager : MonoBehaviour
     {
         float timeElapsed = 0F;
     
+        SoundManager sound = gameObject.GetComponentInChildren<SoundManager>();
+        sound.SoundPlay();
+        
         // 현재 값 displayMoney로 시작하여 targetMoney로 변경
         while (timeElapsed < duration)
         {
@@ -77,6 +80,7 @@ public class PersonalFinancialManager : MonoBehaviour
             currentMoneyText.text = $"{currentValue:N0}원"; // 천 단위 구분을 위해 N0 포맷 사용
 
             timeElapsed += Time.deltaTime;
+
 
             // UniTask.Delay로 지연을 주며 애니메이션 처리
             await UniTask.Delay(1); // 1프레임 지연
