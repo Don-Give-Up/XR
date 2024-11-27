@@ -28,7 +28,7 @@ public class Ratios
 [Serializable]
 public class RawData
 {
-    public int player_id;   // 플레이어 ID
+    public string player_id;   // 플레이어 ID
     public Assets assets;   // 자산 정보
     public Ratios ratios;   // 비율 정보
 }
