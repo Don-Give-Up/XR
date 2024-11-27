@@ -4358,13 +4358,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2240289762344771139}
     m_Modifications:
+    - target: {fileID: 537559295125315783, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
+      propertyPath: m_fontSize
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 537559295125315783, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 37
+      objectReference: {fileID: 0}
     - target: {fileID: 899682515502001411, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
       propertyPath: m_text
       value: "\u3147\u3139\u3147\u313B\u313B\u3147"
       objectReference: {fileID: 0}
     - target: {fileID: 899682515502001411, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
+      propertyPath: m_fontSize
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 899682515502001411, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
       propertyPath: m_lineSpacing
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 899682515502001411, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 1102893409805605409, guid: 3ffb277a74beb01429e85e21b57bd260, type: 3}
       propertyPath: m_IsActive
