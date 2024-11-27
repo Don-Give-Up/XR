@@ -83,7 +83,7 @@ public class ReadyUi : MonoBehaviour
         while (true)
         {
             //var totalCount = PhoStartGame.Instance.runner.SessionInfo.MaxPlayers;
-            var totalCount = 3;
+            var totalCount = 2;
             var currentCount = SharedGameData.ReadyCount;
             readyText1.text = $"{currentCount}";
             readyText2.text = $"/{totalCount}";
