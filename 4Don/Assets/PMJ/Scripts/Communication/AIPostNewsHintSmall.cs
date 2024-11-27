@@ -50,7 +50,7 @@ public class AIPostNewsHintSmall : MonoBehaviour
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, int>
         {
-            { "year", this.round }
+            { "year", 2023 }
         };
 
         Debug.Log("힌트 뉴스 요청");

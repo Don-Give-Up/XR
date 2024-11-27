@@ -100,7 +100,7 @@ public class AIPostNewsTextBig : MonoBehaviour // 뉴스 전문
         // 서버에 보낼 데이터
         var requestData = new Dictionary<string, int>
         {
-            { "year", this.round }
+            { "year", 2023 }
         };
         Debug.Log("본문 데이터 서버에 보냄");
         // 데이터를 JSON으로 직렬화

@@ -40,7 +40,7 @@ public class RoundSystem : MonoBehaviour
     //public Action<int> onWeekChanged;
 
     private int currentRound = 0;
-    private int currentRoundOffset = 2020; 
+    private int currentRoundOffset = 2023; 
     private bool nextRound = false; 
     public Action<int> onRoundChange; 
 
