@@ -19,7 +19,7 @@ public class PhoStartGame : MonoBehaviour
     public NetworkRunner runnerPrefab;
     public NetworkPrefabRef sharedGameDataPrefab;
     public NetworkPrefabRef playerPrefab;
-    public NetworkPrefabRef JJANGPrefab;
+    //public NetworkPrefabRef JJANGPrefab;
 
     public GameObject loadingPanel;
     
@@ -131,12 +131,13 @@ public class PhoStartGame : MonoBehaviour
             var arg = new StartGameArgs
             {
                 GameMode = GameMode.Shared,
-                SessionName = "광장",
+                SessionName = GameDataManager.Instance.gameName,
                 PlayerCount = 10,
                 Scene = sceneInfo
             };
             
             await UniTask.Delay(2000);
+            Debug.Log($"들어간 방 이름{GameDataManager.Instance.gameName}");
             
         
             // 연결 시도 전 상태 체크
@@ -170,6 +171,8 @@ public class PhoStartGame : MonoBehaviour
             loadingPanel.SetActive(false);
         }
     }
+    
+    
 
     public async void JoinQuiz()
     {
