@@ -10,8 +10,8 @@ public class Assets
     public float products;       // 상품 구매 자산
     public float stocks;         // 주식 자산
     public float avg_assets;     // 평균 자산
-    public float avg_stocks;     // 평균 주식 자산
-    public float avg_products;   // 평균 상품 구매 자산
+    public string avg_stocks;     // 평균 주식 자산
+    public string avg_products;   // 평균 상품 구매 자산
     public float avg_savings;    // 평균 저축 자산
     public float avg_difference; // 평균 대비 차이
 }
