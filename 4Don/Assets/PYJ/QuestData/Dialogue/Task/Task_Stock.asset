@@ -90,7 +90,7 @@ MonoBehaviour:
     dialogue:
     - "\uC5B4\uB5A4 \uD65C\uB3D9\uC744 \uD558\uB7EC \uC624\uC168\uB098\uC694? "
     options:
-    - optionText: "\uC800\uCD95\uD558\uAE30 \uC704\uD574\uC11C!"
+    - optionText: "\uC800\uCD95\uD558\uACE0 \uC2F6\uC5B4\uC694!"
       nextDialogue:
       - speaker: "\uC740\uD589\uC6D0"
         dialogue:
@@ -100,7 +100,7 @@ MonoBehaviour:
         changedState: 3
         eventNum: {x: 0, y: 0}
       optioneventNum: {x: 0, y: 0}
-    - optionText: "\uC8FC\uC2DD\uD558\uAE30 \uC704\uD574\uC11C!"
+    - optionText: "\uC8FC\uC2DD\uD558\uACE0 \uC2F6\uC5B4\uC694!"
       nextDialogue:
       - speaker: "\uC740\uD589\uC6D0"
         dialogue:
