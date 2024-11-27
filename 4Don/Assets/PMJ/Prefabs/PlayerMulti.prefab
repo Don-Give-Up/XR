@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\uBC15\uC720\uC9C4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45ccbadc2b2237d4790bef0fbb5c7a15, type: 2}
   m_sharedMaterial: {fileID: 8273992268244731056, guid: 45ccbadc2b2237d4790bef0fbb5c7a15, type: 2}
@@ -302,7 +302,6 @@ MonoBehaviour:
   - {fileID: 1537295463217589515}
   - {fileID: 8407958560949304021}
   - {fileID: 692665337414208207}
-  - {fileID: 1208609359732297152}
 --- !u!114 &223437138989427249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +321,7 @@ MonoBehaviour:
   audioSource: {fileID: 3691072201942117626}
   stepSound1: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
   stepSound2: {fileID: 8300000, guid: 3fdda0da54b9318448c0d2342548b6cb, type: 3}
+  nick: {fileID: 1694498744513600691}
 --- !u!114 &681864102221675173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +568,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2902050139356700037}
   - component: {fileID: 4271920846883165403}
-  - component: {fileID: 1208609359732297152}
   m_Layer: 5
   m_Name: Canvas - Nickname
   m_TagString: Untagged
@@ -620,21 +619,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1208609359732297152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7656605936613035054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6866d545e95b96740bab5174873b9bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nicknameCanvas: {fileID: 4271920846883165403}
-  nicknameText: {fileID: 1694498744513600691}
-  followTarget: {fileID: 2455321249054526162}
 --- !u!1001 &5719807331310466715
 PrefabInstance:
   m_ObjectHideFlags: 0

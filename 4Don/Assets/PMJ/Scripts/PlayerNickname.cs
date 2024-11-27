@@ -1,3 +1,4 @@
+/*
 using System;
 using Fusion;
 using TMPro;
@@ -21,10 +22,18 @@ public class PlayerNickname : NetworkBehaviour
         // 씬이 로드된 후 NickNameManager에서 닉네임 가져오기
         if (NickNameManager.Instance != null)
         {
-            nicknameText.text = NickNameManager.Instance.GetNickName();
+            if (!HasStateAuthority)
+                return;
+            RpcNickname();
         }
     }
-
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RpcNickname()
+    {
+        nicknameText.text = NickNameManager.Instance.GetNickName();
+        
+    }
+ 
     public override void Spawned()
     {
         RpcHoya();
@@ -60,3 +69,4 @@ public class PlayerNickname : NetworkBehaviour
         }
     }
 }
+*/

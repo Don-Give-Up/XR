@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Fusion;
 using Fusion.Addons.SimpleKCC;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,6 +33,9 @@ public class MJPlayerMovement : NetworkBehaviour
     private int _spawnCount;
     private Vector3 _teleportPosition;
     private PlayerCamera playerCamera;
+
+    private string[] nicknames = new string[7] { "박민주", "박유진", "조여원", "정보영", "박민정", "김채호", "송호진" };
+    public TMP_Text nick;
     
     private void Awake()
     {
@@ -79,11 +83,28 @@ public class MJPlayerMovement : NetworkBehaviour
                 Teleport();
             }*/
 
+        int playerOrder = Runner.SessionInfo.PlayerCount - 1; 
+        
+        RPCNickName(playerOrder);
         playerCamera = PlayerCamera.Instance;
         playerCamera.SetTarget(transform);
                 
         Spuare();
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPCNickName(int playerOrder)
+    {
+        if (playerOrder >= 0 && playerOrder < nicknames.Length)
+        {
+            nick.text = nicknames[playerOrder]; 
+        }
+        else
+        {
+            
+        }
+    }
+    
 
     public void Spuare()
     {
