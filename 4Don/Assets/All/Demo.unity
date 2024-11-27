@@ -16421,7 +16421,7 @@ MonoBehaviour:
   changePrefabs:
   - {fileID: 5345065543760439888, guid: 5d915f9f74529c74787007243bb4c274, type: 3}
   - {fileID: 2172097493864940574, guid: 85d0e17568ee1bd46aea541b54c896c6, type: 3}
-  - {fileID: 7054689337368424903, guid: a43f4a9fd1c0c4c45a7acb4bce2ba248, type: 3}
+  - {fileID: 2452622693975828157, guid: d1481f7961625594db5b7462d5648f49, type: 3}
   questParent: {fileID: 1732369327}
   isClicked: 0
 --- !u!1001 &1044294912
@@ -24749,7 +24749,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537684155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9224af9b551d9e64e8b17ab91e8798a2, type: 3}
   m_Name: 
@@ -29747,7 +29747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1814149679
 Transform:
   m_ObjectHideFlags: 0
@@ -31127,7 +31127,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cd861dd5bc6bdd4b98eaea4a5aaf2e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63dbeaec67b3a2849ae23d5c62a110b5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33492,7 +33492,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027047033}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9224af9b551d9e64e8b17ab91e8798a2, type: 3}
   m_Name: 
@@ -36015,6 +36015,10 @@ PrefabInstance:
       propertyPath: _1Key
       value: 
       objectReference: {fileID: 1293147715}
+    - target: {fileID: 5569627179207906418, guid: 73e56c1a8602d674e9c37291665c5ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5569627179207906418, guid: 73e56c1a8602d674e9c37291665c5ff3, type: 3}
       propertyPath: cameraToggle
       value: 
