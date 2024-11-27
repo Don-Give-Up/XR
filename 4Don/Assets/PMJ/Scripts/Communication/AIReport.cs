@@ -84,7 +84,7 @@ public class AIReport : MonoBehaviour
     }
 
     // JSON 응답을 처리하는 메서드
-    private void ProcessResponse(RootData responseData)
+    public void ProcessResponse(RootData responseData)
     {
         // 응답 데이터에서 player_id와 자산 정보 출력
         Debug.Log($"플레이어 ID: {responseData.raw_data.player_id}");
