@@ -29,21 +29,24 @@ public class QuizDoor : MonoBehaviour
         if (OnTrigger)
         {
             await UniTask.Delay(1550);
-           
+
             OnTrigger = false;
             Debug.Log("자 노동 드가자");
-            
+
             ReadyUi.Instance.ReadyPanel();
             //readyCanvasZzab.SetActive(true); 
             //a.JoinQuiz();
             // 플레이어 텔레포트 실행
-            var player = FindObjectOfType<MJPlayerMovement>();
-            if (player != null && _interact )
+            var players = FindObjectsOfType<MJPlayerMovement>();
+            foreach (var player in players)
             {
-                player.Teleport(new Vector3(537f, 36f, 179f), true);
-                cameraToggle.QuizCamera();
-                _interact = false;
+                if (player != null && _interact)
+                {
+                    player.Teleport(new Vector3(537f, 35f, 179f), true);
+                    cameraToggle.QuizCamera();
+                }
             }
+            _interact = false;
         }
 
     }
