@@ -79,7 +79,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotateSpeed: 2.5
-  anim: {fileID: 0}
 --- !u!136 &4480048272255463219
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -115,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8374fb3b719e34fb403ea9c9ff035d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readyCanvasJjin: {fileID: 0}
+  cameraToggle: {fileID: 0}
 --- !u!114 &-7494963961069689272
 MonoBehaviour:
   m_ObjectHideFlags: 0
