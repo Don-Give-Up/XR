@@ -40,7 +40,7 @@ public class MenuButtonHandler : MonoBehaviour //
         if (!isMenuActive)
         {
             menuButtonController.object1.SetActive(false);
-            menuButtonController.object2.SetActive(false);
+           // menuButtonController.object2.SetActive(false);
             menuButtonController.object3.SetActive(false);
         }
 
