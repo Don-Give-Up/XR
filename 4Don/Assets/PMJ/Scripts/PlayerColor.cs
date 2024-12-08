@@ -56,20 +56,22 @@ public class PlayerColor : NetworkBehaviour
     {
         if (skinnedMeshRenderer == null)
         {
-            Debug.LogError("SkinnedMeshRenderer is null!");
+            Debug.LogError("SkinnedMeshRenderer가 null입니다!");
             return;
         }
 
-        if (skinnedMeshRenderer.materials.Length <= 2)
+        // 머티리얼이 최소 1개 이상 있는지 확인
+        if (skinnedMeshRenderer.materials.Length <= 0)
         {
-            Debug.LogError($"Not enough materials! Count: {skinnedMeshRenderer.materials.Length}");
+            Debug.LogError($"머티리얼이 없습니다! Count: {skinnedMeshRenderer.materials.Length}");
             return;
         }
 
+        // 첫 번째 머티리얼의 색상 변경
         Material[] materials = skinnedMeshRenderer.materials;
-        materials[2].color = newColor;
+        materials[0].color = newColor; // 첫 번째 머티리얼의 색상 변경
         skinnedMeshRenderer.materials = materials;
-        
-        //Debug.Log($"Applied color {newColor} to material");
+
+        Debug.Log($"첫 번째 머티리얼에 색상 {newColor} 적용 완료");
     }
 }
