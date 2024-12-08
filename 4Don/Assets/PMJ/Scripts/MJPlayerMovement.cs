@@ -30,7 +30,7 @@ public class MJPlayerMovement : NetworkBehaviour
     private bool isFirstsound = true;
     private bool isTeleported = false;
 
-    private int _spawnCount;
+    public static int _spawnCount;
     private Vector3 _teleportPosition;
     private PlayerCamera playerCamera;
 

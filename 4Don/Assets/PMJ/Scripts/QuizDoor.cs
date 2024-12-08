@@ -42,7 +42,7 @@ public class QuizDoor : MonoBehaviour
             {
                 if (player != null && _interact)
                 {
-                    player.Teleport(new Vector3(537f, 35f, 179f), true);
+                    player.Teleport(new Vector3(537f, 35f, 179f + MJPlayerMovement._spawnCount), true);
                     cameraToggle.QuizCamera();
                 }
             }

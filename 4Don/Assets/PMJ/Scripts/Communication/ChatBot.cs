@@ -49,8 +49,8 @@ public class ChatBot : MonoBehaviour
         if (question.text.Trim() != "")
         {
             Me(question.text);
-            //Empty();
-            StartCoroutine(PostChatBotQuestion(_url));
+            Empty();
+            //StartCoroutine(PostChatBotQuestion(_url));
         }
     }
 

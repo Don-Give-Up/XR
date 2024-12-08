@@ -143,16 +143,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC0C1\uBB3C\uAC00 \uC2B9\uC740 \uBB3C\uAC74\uC774\uB098 \uC11C\uBE44\uC2A4\uC758
-    \uAC00\uACA9\uC774 \uC62C\uB77C\uAC00\uB294 \uAC83\uC744 \uB9D0\uD574.\r\n\uC778\uD50C\uB808\uC774\uC158\uC740
-    \uBB3C\uAC00 \uC0C1\uC2B9\uB960\uC774 \uC77C\uC815 \uC218\uC900 \uC774\uC0C1\uC73C\uB85C
-    \n\uACC4\uC18D \uC62C\uB77C\uAC00\uB294 \uC0C1\uD669\uC744 \uB9D0\uD558\uACE0,
-    \n\uC774\uB7F0 \uC0C1\uD669\uC774 \uC624\uB798 \uAC00\uBA74 \uB3C8\uC758 \uAC00\uCE58\uAC00
-    \uB5A8\uC5B4\uC838.\r\n\uC608\uB97C \uB4E4\uC5B4, \uCF54\uCE74\uCF5C\uB77C\uAC00
-    1,000\uC6D0\uC5D0\uC11C 1,500\uC6D0\uC73C\uB85C \n\uAC00\uACA9\uC774 \uC62C\uB790\uB2E4\uBA74
-    \uADF8\uAC83\uC740 \uBB3C\uAC00 \uC0C1\uC2B9\uC774\uACE0, \n\uC774\uB7F0 \uC0C1\uD669\uC774
-    \uACC4\uC18D\uB418\uC5B4 \uBAA8\uB4E0 \uBB3C\uAC74\uC758 \uAC00\uACA9\uC774 \uC62C\uB77C\uAC00\uBA74
-    \n\uADF8\uAC83\uC740 \uC778\uD50C\uB808\uC774\uC158\uC774\uC57C."
+  m_text: "\uC778\uD50C\uB808\uC774\uC158\uC740 \uBB3C\uAC74\uC774\uB098 \uC11C\uBE44\uC2A4\uC758
+    \uAC00\uACA9\uC774 \uC624\uB974\uB294 \uD604\uC0C1\uC774\uC57C.\n\uC608\uB97C
+    \uB4E4\uC5B4, \uC791\uB144\uC5D0 \uC0AC\uBA39\uB358 \uC544\uC774\uC2A4\uD06C\uB9BC\uC774
+    1.000\uC6D0\uC774\uC5C8\uB294\uB370, \n\uC62C\uD574\uB294 1,200\uC6D0\uC774 \uB418\uC5C8\uB2E4\uBA74
+    \uC774\uAC83\uC774 \uBC14\uB85C \uC778\uD50C\uB808\uC774\uC158\uC758 \uC608\uC2DC\uC57C.\n\uC774\uB807\uAC8C
+    \uAC00\uACA9\uC774 \uC624\uB974\uBA74 \uB3C8\uC758 \uAC00\uCE58\uB294 \uB5A8\uC5B4\uC9C0\uAC8C
+    \uB418\uC9C0."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 52627a17697525c4180b61142f38114d, type: 2}
   m_sharedMaterial: {fileID: -8946146907470170193, guid: 52627a17697525c4180b61142f38114d, type: 2}
@@ -260,8 +257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 877.32, y: -0}
-  m_SizeDelta: {x: 877.32, y: 0}
+  m_AnchoredPosition: {x: 927.36, y: -0}
+  m_SizeDelta: {x: 927.36, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3699336895065529606
 CanvasRenderer:

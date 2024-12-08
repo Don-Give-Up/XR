@@ -30,7 +30,7 @@ public class ReportCircle : MonoBehaviour
         assetValues = new float[] 
         { 
            // assets.total,
-            assets.cash,
+            assets.cash = 0,
             assets.savings,
             assets.products,
             assets.stocks 
